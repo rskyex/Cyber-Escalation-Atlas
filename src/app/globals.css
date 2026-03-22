@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #1B2A4A;
+    --color-slate: #475569;
+    --color-offwhite: #F1F5F9;
+    --color-teal: #0D7377;
+    --color-amber: #D97706;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  .dark body {
+    @apply bg-navy-800 text-offwhite;
+  }
+
+  .light body {
+    @apply bg-offwhite text-navy;
+  }
+}
+
+@layer components {
+  .attack-ref {
+    @apply font-mono text-sm text-teal-400 dark:text-teal-300;
+  }
+}
