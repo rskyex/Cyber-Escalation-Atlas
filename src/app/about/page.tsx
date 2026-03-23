@@ -141,13 +141,46 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ── Author ── */}
+        <Card>
+          <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
+            Author &amp; Builder
+          </h3>
+          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+            The Cyber Escalation Atlas&trade; is designed, researched, and built
+            by{" "}
+            <a
+              href="https://risakoyanagi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal dark:text-teal-300 hover:text-teal-600 dark:hover:text-teal-200 transition-colors underline underline-offset-2"
+            >
+              Risa Koyanagi
+            </a>
+            . The project reflects an ongoing research interest in the
+            intersection of cyber operations, space security, and nuclear risk
+            governance — and the analytical infrastructure required to make
+            those entanglements legible to policymakers.
+          </p>
+        </Card>
+
         <Card>
           <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
             Contact
           </h3>
           <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
             For inquiries about the project, data corrections, or collaboration
-            opportunities, please reach out through the project repository.
+            opportunities, please reach out through the project repository or
+            via{" "}
+            <a
+              href="https://risakoyanagi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal dark:text-teal-300 hover:text-teal-600 dark:hover:text-teal-200 transition-colors underline underline-offset-2"
+            >
+              risakoyanagi.com
+            </a>
+            .
           </p>
         </Card>
       </div>

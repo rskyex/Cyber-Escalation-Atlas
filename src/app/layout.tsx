@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Cyber Escalation Atlas",
+  title: "Cyber Escalation Atlas\u2122",
   description:
     "A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks.",
 };

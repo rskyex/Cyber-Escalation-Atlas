@@ -14,7 +14,7 @@ export function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
-              Cyber Escalation Atlas
+              Cyber Escalation Atlas&trade;
             </h3>
             <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
               A policy-grade interactive reference for understanding cyber
@@ -88,10 +88,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-navy-200/20 dark:border-navy-600/40">
-          <p className="text-xs text-slate dark:text-navy-300 text-center">
-            Cyber Escalation Atlas &middot; A research and teaching tool for
-            understanding cyber conflict dynamics
+        <div className="mt-10 pt-6 border-t border-navy-200/20 dark:border-navy-600/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-slate dark:text-navy-300">
+            &copy; 2026 Risa Koyanagi. All rights reserved.
+          </p>
+          <p className="text-xs text-slate dark:text-navy-300">
+            Built by{" "}
+            <a
+              href="https://risakoyanagi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal dark:text-teal-300 hover:text-teal-600 dark:hover:text-teal-200 transition-colors"
+            >
+              Risa Koyanagi
+            </a>
           </p>
         </div>
       </div>

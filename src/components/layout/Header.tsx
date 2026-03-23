@@ -19,7 +19,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="text-lg font-semibold text-navy dark:text-offwhite tracking-tight">
-              Cyber Escalation Atlas
+              Cyber Escalation Atlas<sup className="text-[0.5em] ml-0.5">&trade;</sup>
             </span>
           </Link>
 

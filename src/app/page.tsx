@@ -109,7 +109,7 @@ export default function HomePage() {
             Structured Analysis of Cyber Conflict
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-navy dark:text-offwhite leading-tight">
-            Cyber Escalation Atlas
+            Cyber Escalation Atlas<sup className="text-[0.5em] ml-0.5">&trade;</sup>
           </h1>
           <p className="mt-6 text-lg text-slate dark:text-navy-200 leading-relaxed max-w-2xl">
             A policy-grade interactive reference mapping how state-linked cyber
