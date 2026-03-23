@@ -55,7 +55,7 @@ export function EscalationRadar({ incident, size = 280 }: EscalationRadarProps) 
         <RadarChart cx="50%" cy="50%" outerRadius="72%" data={data}>
           <PolarGrid
             stroke="currentColor"
-            className="text-navy-200/50 dark:text-navy-600/60"
+            className="text-steel-200/50 dark:text-ink-600/60"
           />
           <PolarAngleAxis
             dataKey="axis"
@@ -63,7 +63,7 @@ export function EscalationRadar({ incident, size = 280 }: EscalationRadarProps) 
               fontSize: 10,
               fill: "currentColor",
             }}
-            className="text-slate dark:text-navy-300"
+            className="text-steel-500 dark:text-steel-300"
           />
           <Radar
             dataKey="value"

@@ -64,7 +64,7 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
       {/* ---- Mobile filter toggle ---- */}
       <button
         onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-        className="lg:hidden flex items-center gap-2 text-sm text-teal-600 dark:text-teal-400 font-medium"
+        className="lg:hidden flex items-center gap-2 text-sm text-atlas-600 dark:text-atlas-400 font-medium"
       >
         <svg
           className="w-4 h-4"
@@ -88,8 +88,8 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
           mobileFiltersOpen ? "block" : "hidden lg:block"
         }`}
       >
-        <div className="sticky top-20 space-y-4 p-4 rounded-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700/50">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate dark:text-navy-300">
+        <div className="sticky top-20 space-y-4 p-4 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03]">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-steel-500 dark:text-steel-400">
             Filters
           </h3>
           <CasesFilters filters={filters} onChange={setFilters} />
@@ -100,16 +100,16 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
       <div className="flex-1 min-w-0">
         {/* Toolbar */}
         <div className="flex items-center justify-between mb-5">
-          <p className="text-sm text-slate dark:text-navy-300">
+          <p className="text-sm text-steel-500 dark:text-steel-400">
             {filtered.length} of {incidents.length} cases
           </p>
-          <div className="flex items-center rounded-md border border-navy-200/30 dark:border-navy-600/40 overflow-hidden">
+          <div className="flex items-center rounded-md border border-transparent dark:border-white/[0.04] overflow-hidden">
             <button
               onClick={() => setView("list")}
               className={`px-3 py-1.5 text-xs font-medium transition-colors ${
                 view === "list"
-                  ? "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
-                  : "text-slate dark:text-navy-300 hover:bg-navy-50 dark:hover:bg-navy-600/30"
+                  ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
+                  : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
               }`}
             >
               List
@@ -118,8 +118,8 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
               onClick={() => setView("map")}
               className={`px-3 py-1.5 text-xs font-medium transition-colors ${
                 view === "map"
-                  ? "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
-                  : "text-slate dark:text-navy-300 hover:bg-navy-50 dark:hover:bg-navy-600/30"
+                  ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
+                  : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
               }`}
             >
               Map
@@ -136,7 +136,7 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
 
         {/* Always show cards (below map when in map mode, as the primary list) */}
         {filtered.length === 0 ? (
-          <p className="text-sm text-slate dark:text-navy-300 text-center py-12">
+          <p className="text-sm text-steel-500 dark:text-steel-400 text-center py-12">
             No cases match the current filters.
           </p>
         ) : (

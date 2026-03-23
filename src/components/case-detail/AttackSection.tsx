@@ -26,7 +26,7 @@ export function AttackSection({ incident }: AttackSectionProps) {
         <div className="space-y-4">
           {Array.from(byTactic.entries()).map(([tactic, techs]) => (
             <div key={tactic}>
-              <p className="text-xs font-semibold text-slate dark:text-navy-300 uppercase tracking-wider mb-1.5">
+              <p className="text-xs font-semibold text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-1.5">
                 {tactic}
               </p>
               <div className="space-y-1">
@@ -35,10 +35,10 @@ export function AttackSection({ incident }: AttackSectionProps) {
                     key={t.id}
                     className="flex items-center gap-2 text-sm"
                   >
-                    <span className="font-mono text-xs text-teal-600 dark:text-teal-400 shrink-0">
+                    <span className="font-mono text-xs text-atlas-600 dark:text-atlas-400 shrink-0">
                       {t.id}
                     </span>
-                    <span className="text-navy dark:text-offwhite">
+                    <span className="text-ink dark:text-white">
                       {t.name}
                     </span>
                   </div>
@@ -47,7 +47,7 @@ export function AttackSection({ incident }: AttackSectionProps) {
             </div>
           ))}
         </div>
-        <p className="text-xs text-slate dark:text-navy-400 mt-4 italic">
+        <p className="text-xs text-steel-500 dark:text-ink-400 mt-4 italic">
           Technique IDs reference the MITRE ATT&CK Enterprise or ICS matrices.
           Mappings are illustrative, not exhaustive.
         </p>

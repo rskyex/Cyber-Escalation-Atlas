@@ -32,10 +32,10 @@ const zones = [
     range: "0–30",
     start: 0,
     end: 30,
-    bg: "bg-teal-50 dark:bg-teal-900/15",
-    border: "border-teal-200/40 dark:border-teal-700/25",
-    dot: "bg-teal-500",
-    text: "text-teal-700 dark:text-teal-300",
+    bg: "bg-atlas-50 dark:bg-atlas-900/15",
+    border: "border-atlas-200/40 dark:border-atlas-700/25",
+    dot: "bg-atlas-500",
+    text: "text-atlas-700 dark:text-atlas-400",
     description:
       "Routine intelligence collection, low-severity probes, or operations contained within accepted norms of peacetime competition. Minimal governance response expected.",
   },
@@ -44,10 +44,10 @@ const zones = [
     range: "30–60",
     start: 30,
     end: 60,
-    bg: "bg-navy-50 dark:bg-navy-700/20",
-    border: "border-navy-200/40 dark:border-navy-600/25",
-    dot: "bg-navy-400",
-    text: "text-navy dark:text-navy-100",
+    bg: "bg-ink-50 dark:bg-ink-700/20",
+    border: "border-steel-200/40 dark:border-ink-600/25",
+    dot: "bg-ink-400",
+    text: "text-ink dark:text-ink-100",
     description:
       "Operations that strain existing norms or provoke formal attribution, indictment, or sanctions. The line between peacetime espionage and coercive action is actively debated.",
   },
@@ -56,10 +56,10 @@ const zones = [
     range: "60–100",
     start: 60,
     end: 100,
-    bg: "bg-amber-50 dark:bg-amber-900/10",
-    border: "border-amber-200/40 dark:border-amber-700/25",
-    dot: "bg-amber-500",
-    text: "text-amber-700 dark:text-amber-300",
+    bg: "bg-signal-50 dark:bg-signal-900/10",
+    border: "border-signal-200/40 dark:border-signal-700/25",
+    dot: "bg-signal-500",
+    text: "text-signal-700 dark:text-signal-300",
     description:
       "Destructive or strategic-impact operations that cross established thresholds — causing physical damage, mass economic disruption, or triggering multilateral governance responses.",
   },
@@ -187,8 +187,8 @@ function IncidentDot({
       title={item.incident.shortName}
     >
       <span
-        className={`block rounded-full border-2 border-white dark:border-navy-800 shadow-sm transition-all ${zone.dot} ${
-          isActive ? "w-5 h-5 ring-2 ring-offset-1 ring-teal-400/50 dark:ring-teal-500/40 dark:ring-offset-navy-800" : "w-3.5 h-3.5"
+        className={`block rounded-full border-2 border-white dark:border-ink-800 shadow-sm transition-all ${zone.dot} ${
+          isActive ? "w-5 h-5 ring-2 ring-offset-1 ring-atlas-400/50 dark:ring-atlas-500/40 dark:ring-offset-ink-800" : "w-3.5 h-3.5"
         }`}
       />
     </button>
@@ -198,24 +198,24 @@ function IncidentDot({
 function AxisTooltip({ item }: { item: PlottedIncident }) {
   const inc = item.incident;
   return (
-    <div className="p-3.5 rounded-lg bg-white dark:bg-navy-700 border border-navy-200/30 dark:border-navy-600/40 shadow-lg max-w-xs">
+    <div className="p-3.5 rounded-xl bg-white dark:bg-ink-700 border border-transparent dark:border-white/[0.04] shadow-lg max-w-xs">
       <div className="flex items-center justify-between gap-3 mb-1.5">
-        <p className="text-sm font-semibold text-navy dark:text-offwhite leading-snug">
+        <p className="text-sm font-semibold text-ink dark:text-white leading-snug">
           {inc.shortName}
         </p>
         <span
           className={`shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-bold ${
             item.score >= 7
-              ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+              ? "bg-signal-100 dark:bg-signal-900/40 text-signal-700 dark:text-signal-300"
               : item.score >= 4
-                ? "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100"
-                : "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                ? "bg-ink-100 dark:bg-ink-600/50 text-ink dark:text-ink-100"
+                : "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
           }`}
         >
           {item.score}
         </span>
       </div>
-      <p className="text-xs text-slate dark:text-navy-300 mb-2">
+      <p className="text-xs text-steel-500 dark:text-steel-400 mb-2">
         {inc.dateRange} · {inc.attribution.country}
       </p>
       <div className="flex flex-wrap gap-1 mb-2">
@@ -226,12 +226,12 @@ function AxisTooltip({ item }: { item: PlottedIncident }) {
           {escalationTierLabels[inc.escalation.peakTier]}
         </Badge>
       </div>
-      <p className="text-xs text-slate dark:text-navy-200 leading-relaxed line-clamp-3">
+      <p className="text-xs text-steel-500 dark:text-steel-300 leading-relaxed line-clamp-3">
         {inc.whyThisMatters}
       </p>
       <a
         href={`/cases/${inc.slug}`}
-        className="inline-block mt-2 text-xs text-teal-600 dark:text-teal-400 hover:underline"
+        className="inline-block mt-2 text-xs text-atlas-600 dark:text-atlas-400 hover:underline"
       >
         View case detail →
       </a>
@@ -270,10 +270,10 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
       {/* Section 1: Unpeace axis with all incidents                        */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <h2 className="text-lg font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-lg font-bold text-ink dark:text-white tracking-tight mb-1">
           Unpeace Spectrum
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-6 max-w-2xl">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl">
           Each incident is positioned on a 0–100 unpeace axis reflecting
           escalation severity, threshold crossings, and governance weight.
           Hover or tap an incident to inspect.
@@ -282,12 +282,12 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
         {/* Axis */}
         <div className="relative">
           {/* Zone background */}
-          <div className="flex h-14 rounded-lg overflow-hidden border border-navy-200/20 dark:border-navy-600/30">
+          <div className="flex h-14 rounded-xl overflow-hidden border border-steel-200/20 dark:border-ink-600/30">
             {zones.map((z) => (
               <div
                 key={z.label}
                 className={`h-full ${z.bg} ${
-                  z.label !== "Escalatory" ? "border-r border-navy-200/20 dark:border-navy-600/25" : ""
+                  z.label !== "Escalatory" ? "border-r border-steel-200/20 dark:border-ink-600/25" : ""
                 }`}
                 style={{ width: `${z.end - z.start}%` }}
               />
@@ -324,7 +324,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
           </div>
 
           {/* Tick marks */}
-          <div className="flex justify-between mt-0.5 text-[9px] font-mono text-navy-300 dark:text-navy-500 px-0.5">
+          <div className="flex justify-between mt-0.5 text-[9px] font-mono text-steel-400 dark:text-ink-500 px-0.5">
             <span>0</span>
             <span>10</span>
             <span>20</span>
@@ -355,7 +355,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
             return (
               <div
                 key={z.label}
-                className={`rounded-lg p-4 border ${z.border} ${z.bg}`}
+                className={`rounded-xl p-4 border ${z.border} ${z.bg}`}
               >
                 <p
                   className={`text-xs font-semibold uppercase tracking-wider mb-2 ${z.text}`}
@@ -363,7 +363,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
                   {z.label} ({inZone.length})
                 </p>
                 {inZone.length === 0 ? (
-                  <p className="text-xs text-slate dark:text-navy-400 italic">
+                  <p className="text-xs text-steel-500 dark:text-ink-400 italic">
                     No incidents in this zone.
                   </p>
                 ) : (
@@ -372,14 +372,14 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
                       <li key={p.incident.id}>
                         <a
                           href={`/cases/${p.incident.slug}`}
-                          className="flex items-center justify-between gap-2 text-sm hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                          className="flex items-center justify-between gap-2 text-sm hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
                           onMouseEnter={() => setActiveId(p.incident.id)}
                           onMouseLeave={() => setActiveId(null)}
                         >
-                          <span className="text-navy dark:text-offwhite truncate">
+                          <span className="text-ink dark:text-white truncate">
                             {p.incident.shortName}
                           </span>
-                          <span className="text-xs font-mono text-slate dark:text-navy-400 shrink-0">
+                          <span className="text-xs font-mono text-steel-500 dark:text-ink-400 shrink-0">
                             {p.display}
                           </span>
                         </a>
@@ -397,10 +397,10 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
       {/* Section 2: Escalation category cards                              */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <h2 className="text-lg font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-lg font-bold text-ink dark:text-white tracking-tight mb-1">
           Escalation Categories
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-6 max-w-2xl">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl">
           Cyber operations are classified along a six-tier escalation
           ladder. Each tier describes a qualitative shift in the nature
           and severity of the operation, not a linear progression.
@@ -414,20 +414,20 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
             return (
               <div
                 key={tier}
-                className="p-4 rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/25"
+                className="p-4 rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/25"
               >
                 <div className="flex items-center justify-between mb-2">
                   <Badge variant={escalationTierBadge[tier]}>
                     {escalationTierLabels[tier]}
                   </Badge>
-                  <span className="text-xs font-mono text-slate dark:text-navy-400">
+                  <span className="text-xs font-mono text-steel-500 dark:text-ink-400">
                     Tier {idx + 1}
                   </span>
                 </div>
-                <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
                   {description}
                 </p>
-                <p className="text-xs text-navy-300 dark:text-navy-500 mt-2.5">
+                <p className="text-xs text-steel-400 dark:text-ink-500 mt-2.5">
                   {count} incident{count !== 1 ? "s" : ""} in dataset
                 </p>
               </div>
@@ -440,10 +440,10 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
       {/* Section 3: Schelling compellence vs deterrence split              */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <h2 className="text-lg font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-lg font-bold text-ink dark:text-white tracking-tight mb-1">
           Compellence vs. Deterrence
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-6 max-w-2xl leading-relaxed">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl leading-relaxed">
           Thomas Schelling distinguished two coercive logics: <em>compellence</em> (forcing
           an adversary to change behaviour through imposed costs) and <em>deterrence</em> (dissuading
           action by signalling capability and willingness to retaliate).
@@ -454,30 +454,30 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Compellence column */}
-          <div className="rounded-lg border-2 border-amber-200/50 dark:border-amber-700/30 overflow-hidden">
-            <div className="px-5 py-3.5 bg-amber-50/60 dark:bg-amber-900/10 border-b border-amber-200/40 dark:border-amber-700/25">
-              <h3 className="text-sm font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider">
+          <div className="rounded-xl border-2 border-signal-200/50 dark:border-signal-700/30 overflow-hidden">
+            <div className="px-5 py-3.5 bg-signal-50/60 dark:bg-signal-900/10 border-b border-signal-200/40 dark:border-signal-700/25">
+              <h3 className="text-sm font-bold text-signal-700 dark:text-signal-300 uppercase tracking-wider">
                 Compellence
               </h3>
-              <p className="text-xs text-amber-600/80 dark:text-amber-400/70 mt-0.5">
+              <p className="text-xs text-signal-600/80 dark:text-signal-400/70 mt-0.5">
                 Operations that impose costs to force a change in behaviour
               </p>
             </div>
-            <div className="divide-y divide-amber-200/20 dark:divide-amber-800/20">
+            <div className="divide-y divide-signal-200/20 dark:divide-signal-800/20">
               {compellence.map(({ incident, reasoning }) => (
                 <a
                   key={incident.id}
                   href={`/cases/${incident.slug}`}
-                  className="flex gap-3 px-5 py-3 hover:bg-amber-50/40 dark:hover:bg-amber-900/5 transition-colors"
+                  className="flex gap-3 px-5 py-3 hover:bg-signal-50/40 dark:hover:bg-signal-900/5 transition-colors"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-navy dark:text-offwhite">
+                    <p className="text-sm font-medium text-ink dark:text-white">
                       {incident.shortName}
-                      <span className="text-xs text-slate dark:text-navy-300 ml-1.5 font-normal">
+                      <span className="text-xs text-steel-500 dark:text-steel-400 ml-1.5 font-normal">
                         {incident.dateRange}
                       </span>
                     </p>
-                    <p className="text-xs text-slate dark:text-navy-300 mt-0.5 leading-relaxed">
+                    <p className="text-xs text-steel-500 dark:text-steel-400 mt-0.5 leading-relaxed">
                       {reasoning}
                     </p>
                   </div>
@@ -485,14 +485,14 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
                     <Badge variant={incidentTypeBadge[incident.incidentType]}>
                       {incidentTypeLabels[incident.incidentType]}
                     </Badge>
-                    <span className="text-[10px] font-mono text-slate dark:text-navy-400">
+                    <span className="text-[10px] font-mono text-steel-500 dark:text-ink-400">
                       {unpeaceScore(incident) * 10}
                     </span>
                   </div>
                 </a>
               ))}
               {compellence.length === 0 && (
-                <p className="px-5 py-4 text-sm text-slate dark:text-navy-400 italic">
+                <p className="px-5 py-4 text-sm text-steel-500 dark:text-ink-400 italic">
                   No incidents classified as compellent in this dataset.
                 </p>
               )}
@@ -500,30 +500,30 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
           </div>
 
           {/* Deterrence column */}
-          <div className="rounded-lg border-2 border-teal-200/50 dark:border-teal-700/30 overflow-hidden">
-            <div className="px-5 py-3.5 bg-teal-50/60 dark:bg-teal-900/10 border-b border-teal-200/40 dark:border-teal-700/25">
-              <h3 className="text-sm font-bold text-teal-700 dark:text-teal-300 uppercase tracking-wider">
+          <div className="rounded-xl border-2 border-atlas-200/50 dark:border-atlas-700/30 overflow-hidden">
+            <div className="px-5 py-3.5 bg-atlas-50/60 dark:bg-atlas-900/10 border-b border-atlas-200/40 dark:border-atlas-700/25">
+              <h3 className="text-sm font-bold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider">
                 Deterrence
               </h3>
-              <p className="text-xs text-teal-600/80 dark:text-teal-400/70 mt-0.5">
+              <p className="text-xs text-atlas-600/80 dark:text-atlas-400/70 mt-0.5">
                 Operations that signal capability without imposing irreversible harm
               </p>
             </div>
-            <div className="divide-y divide-teal-200/20 dark:divide-teal-800/20">
+            <div className="divide-y divide-atlas-200/20 dark:divide-atlas-800/20">
               {deterrence.map(({ incident, reasoning }) => (
                 <a
                   key={incident.id}
                   href={`/cases/${incident.slug}`}
-                  className="flex gap-3 px-5 py-3 hover:bg-teal-50/40 dark:hover:bg-teal-900/5 transition-colors"
+                  className="flex gap-3 px-5 py-3 hover:bg-atlas-50/40 dark:hover:bg-atlas-900/5 transition-colors"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-navy dark:text-offwhite">
+                    <p className="text-sm font-medium text-ink dark:text-white">
                       {incident.shortName}
-                      <span className="text-xs text-slate dark:text-navy-300 ml-1.5 font-normal">
+                      <span className="text-xs text-steel-500 dark:text-steel-400 ml-1.5 font-normal">
                         {incident.dateRange}
                       </span>
                     </p>
-                    <p className="text-xs text-slate dark:text-navy-300 mt-0.5 leading-relaxed">
+                    <p className="text-xs text-steel-500 dark:text-steel-400 mt-0.5 leading-relaxed">
                       {reasoning}
                     </p>
                   </div>
@@ -531,14 +531,14 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
                     <Badge variant={incidentTypeBadge[incident.incidentType]}>
                       {incidentTypeLabels[incident.incidentType]}
                     </Badge>
-                    <span className="text-[10px] font-mono text-slate dark:text-navy-400">
+                    <span className="text-[10px] font-mono text-steel-500 dark:text-ink-400">
                       {unpeaceScore(incident) * 10}
                     </span>
                   </div>
                 </a>
               ))}
               {deterrence.length === 0 && (
-                <p className="px-5 py-4 text-sm text-slate dark:text-navy-400 italic">
+                <p className="px-5 py-4 text-sm text-steel-500 dark:text-ink-400 italic">
                   No incidents classified as deterrent in this dataset.
                 </p>
               )}
@@ -547,9 +547,9 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
         </div>
 
         {/* Analytical caveat */}
-        <div className="mt-6 p-4 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-navy-50/30 dark:bg-navy-800/20">
-          <p className="text-xs text-slate dark:text-navy-300 leading-relaxed">
-            <strong className="text-navy dark:text-navy-100">Analytical note:</strong>{" "}
+        <div className="mt-6 p-4 rounded-xl border border-steel-200/20 dark:border-ink-600/25 bg-ink-50/30 dark:bg-ink-800/20">
+          <p className="text-xs text-steel-500 dark:text-steel-400 leading-relaxed">
+            <strong className="text-ink dark:text-ink-100">Analytical note:</strong>{" "}
             This classification uses the operation&apos;s primary coercive
             function as a heuristic. Many operations serve both logics
             simultaneously — an espionage campaign that pre-positions
@@ -565,11 +565,11 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
       {/* Section 4: Governance-aware framing note                          */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <div className="p-5 rounded-lg border-l-4 border-teal-500 bg-teal-50/40 dark:bg-teal-900/10">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+        <div className="p-5 rounded-xl border-l-4 border-atlas-500 bg-atlas-50/40 dark:bg-atlas-900/10">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
             On reading escalation
           </p>
-          <p className="text-sm text-navy dark:text-offwhite leading-relaxed">
+          <p className="text-sm text-ink dark:text-white leading-relaxed">
             Escalation is not a conveyor belt — incidents do not inevitably
             progress from probing to destruction. Restraint is as analytically
             important as escalation. States frequently choose <em>not</em> to
@@ -577,7 +577,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
             governance constraints, norm commitments, and deterrence
             calculations alongside technical capabilities.
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed mt-2">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mt-2">
             The categories and positions shown here are derived from the
             dataset&apos;s incident records. They reflect analytical judgement,
             not predictive modelling. All assessments should be read alongside

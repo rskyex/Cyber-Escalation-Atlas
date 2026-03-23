@@ -16,9 +16,9 @@ interface SourceCardProps {
 
 export function SourceCard({ source }: SourceCardProps) {
   const inner = (
-    <div className="flex items-start gap-3 p-3.5 rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/25 hover:border-teal-300/50 dark:hover:border-teal-600/40 transition-colors">
+    <div className="flex items-start gap-3 p-3.5 rounded-lg border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/25 hover:border-atlas-300/50 dark:hover:border-atlas-600/40 transition-colors">
       {/* Category icon */}
-      <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-md bg-navy-50 dark:bg-navy-600/40 text-xs font-bold text-navy dark:text-navy-200">
+      <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-md bg-ink-50 dark:bg-ink-600/40 text-xs font-bold text-ink dark:text-steel-200">
         {categoryIcon[source.category] ?? "?"}
       </span>
 
@@ -26,8 +26,8 @@ export function SourceCard({ source }: SourceCardProps) {
         <p
           className={`text-sm font-medium leading-snug ${
             source.url
-              ? "text-teal-700 dark:text-teal-400"
-              : "text-navy dark:text-offwhite"
+              ? "text-atlas-700 dark:text-atlas-400"
+              : "text-ink dark:text-white"
           }`}
         >
           {source.title}
@@ -37,7 +37,7 @@ export function SourceCard({ source }: SourceCardProps) {
             {sourceCategoryLabels[source.category]}
           </Badge>
           {source.date && (
-            <span className="text-[11px] font-mono text-slate dark:text-navy-400">
+            <span className="text-[11px] font-mono text-steel-500 dark:text-ink-400">
               {source.date}
             </span>
           )}
@@ -47,7 +47,7 @@ export function SourceCard({ source }: SourceCardProps) {
       {/* External link indicator */}
       {source.url && (
         <svg
-          className="shrink-0 w-3.5 h-3.5 text-navy-300 dark:text-navy-500 mt-0.5"
+          className="shrink-0 w-3.5 h-3.5 text-steel-400 dark:text-ink-500 mt-0.5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

@@ -15,11 +15,11 @@ const confidenceBarWidth: Record<AttributionConfidence, string> = {
 };
 
 const confidenceBarColor: Record<AttributionConfidence, string> = {
-  confirmed: "bg-teal-500",
-  high: "bg-teal-400",
-  moderate: "bg-navy-400",
-  low: "bg-amber-400",
-  contested: "bg-amber-500",
+  confirmed: "bg-atlas-500",
+  high: "bg-atlas-400",
+  moderate: "bg-ink-400",
+  low: "bg-signal-400",
+  contested: "bg-signal-500",
 };
 
 export function AttributionTable({ incident }: AttributionTableProps) {
@@ -40,25 +40,25 @@ export function AttributionTable({ incident }: AttributionTableProps) {
   const hasSanctions = governance.flags.includes("sanctions-imposed");
 
   return (
-    <div className="rounded-lg border-2 border-navy-200/40 dark:border-navy-500/30 overflow-hidden">
+    <div className="rounded-lg border-2 border-steel-200/40 dark:border-ink-500/30 overflow-hidden">
       {/* Confidence header */}
-      <div className="px-5 py-4 bg-navy-50/70 dark:bg-navy-700/40 border-b border-navy-200/30 dark:border-navy-600/30">
+      <div className="px-5 py-4 bg-ink-50/70 dark:bg-white/[0.04] border-b border-transparent dark:border-white/[0.04]">
         <div className="flex items-center justify-between gap-4 mb-3">
           <div className="flex items-center gap-3">
             <Badge variant={attributionBadge[attribution.confidence]}>
               {attributionLabels[attribution.confidence]}
             </Badge>
-            <span className="text-sm font-medium text-navy dark:text-offwhite">
+            <span className="text-sm font-medium text-ink dark:text-white">
               {attribution.attributedTo}
             </span>
           </div>
-          <span className="text-xs text-slate dark:text-navy-300 shrink-0">
+          <span className="text-xs text-steel-500 dark:text-steel-300 shrink-0">
             {attribution.country}
           </span>
         </div>
 
         {/* Confidence bar */}
-        <div className="h-1.5 rounded-full bg-navy-100 dark:bg-navy-600/40 overflow-hidden">
+        <div className="h-1.5 rounded-full bg-ink-100 dark:bg-ink-600/40 overflow-hidden">
           <div
             className={`h-full rounded-full transition-all ${confidenceBarColor[attribution.confidence]}`}
             style={{ width: confidenceBarWidth[attribution.confidence] }}
@@ -70,7 +70,7 @@ export function AttributionTable({ incident }: AttributionTableProps) {
             {attribution.aliases.map((alias) => (
               <span
                 key={alias}
-                className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-navy-100/60 dark:bg-navy-600/30 text-navy dark:text-navy-200"
+                className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-ink-100/60 dark:bg-ink-600/30 text-ink dark:text-steel-200"
               >
                 {alias}
               </span>
@@ -80,20 +80,20 @@ export function AttributionTable({ incident }: AttributionTableProps) {
       </div>
 
       {/* 3-layer rows */}
-      <div className="divide-y divide-navy-200/20 dark:divide-navy-600/25">
+      <div className="divide-y divide-steel-200/20 dark:divide-ink-600/25">
         {/* Layer 1 */}
         <LayerRow
           number={1}
           label="Technical"
           accent="teal"
         >
-          <p className="text-sm text-navy dark:text-offwhite">
+          <p className="text-sm text-ink dark:text-white">
             Threat actor mapped to <strong>{attribution.country}</strong> based
             on infrastructure analysis, malware attribution, and operational
             patterns.
           </p>
           {technicalSources.length > 0 && (
-            <p className="text-xs text-slate dark:text-navy-400 mt-2">
+            <p className="text-xs text-steel-500 dark:text-ink-400 mt-2">
               Evidence: {technicalSources.map((s) => s.title).join("; ")}
             </p>
           )}
@@ -122,16 +122,16 @@ export function AttributionTable({ incident }: AttributionTableProps) {
               {governance.policyResponses.map((r, i) => (
                 <li
                   key={i}
-                  className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                  className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                 >
-                  <span className="text-navy-300 shrink-0">&bull;</span>
+                  <span className="text-steel-400 shrink-0">&bull;</span>
                   {r}
                 </li>
               ))}
             </ul>
           )}
           {politicalSources.length > 0 && (
-            <p className="text-xs text-slate dark:text-navy-400 mt-2">
+            <p className="text-xs text-steel-500 dark:text-ink-400 mt-2">
               Sources: {politicalSources.map((s) => s.title).join("; ")}
             </p>
           )}
@@ -148,11 +148,11 @@ export function AttributionTable({ incident }: AttributionTableProps) {
               {journalisticSources.map((s, i) => (
                 <li
                   key={i}
-                  className="text-sm text-slate dark:text-navy-200"
+                  className="text-sm text-steel-500 dark:text-steel-200"
                 >
                   {s.title}
                   {s.date && (
-                    <span className="text-xs text-navy-300 ml-1">
+                    <span className="text-xs text-steel-400 ml-1">
                       ({s.date})
                     </span>
                   )}
@@ -160,7 +160,7 @@ export function AttributionTable({ incident }: AttributionTableProps) {
               ))}
             </ul>
           ) : (
-            <p className="text-sm text-slate dark:text-navy-300 italic">
+            <p className="text-sm text-steel-500 dark:text-steel-300 italic">
               No dedicated journalistic sources in dataset. See sources
               section for full references.
             </p>
@@ -169,8 +169,8 @@ export function AttributionTable({ incident }: AttributionTableProps) {
       </div>
 
       {/* Confidence caveat */}
-      <div className="px-5 py-3 bg-navy-50/40 dark:bg-navy-800/20 border-t border-navy-200/20 dark:border-navy-600/25">
-        <p className="text-xs text-slate dark:text-navy-400 italic">
+      <div className="px-5 py-3 bg-ink-50/40 dark:bg-ink-800/20 border-t border-transparent dark:border-white/[0.04]">
+        <p className="text-xs text-steel-500 dark:text-ink-400 italic">
           &ldquo;{attributionLabels[attribution.confidence]}&rdquo; reflects
           available public evidence. All assessments carry inherent uncertainty
           and should be read alongside source material.
@@ -193,17 +193,17 @@ function LayerRow({
 }) {
   const accentBorder =
     accent === "teal"
-      ? "border-l-teal-400 dark:border-l-teal-500"
+      ? "border-l-atlas-400 dark:border-l-atlas-500"
       : accent === "navy"
-        ? "border-l-navy-400 dark:border-l-navy-300"
-        : "border-l-navy-200 dark:border-l-navy-500";
+        ? "border-l-ink-400 dark:border-l-steel-400"
+        : "border-l-steel-200 dark:border-l-ink-500";
 
   return (
     <div
-      className={`flex gap-4 px-5 py-4 border-l-[3px] bg-white dark:bg-navy-700/15 ${accentBorder}`}
+      className={`flex gap-4 px-5 py-4 border-l-[3px] bg-white dark:bg-ink-700/15 ${accentBorder}`}
     >
       <div className="shrink-0 w-28">
-        <span className="text-xs font-bold text-navy dark:text-navy-100">
+        <span className="text-xs font-bold text-ink dark:text-ink-100">
           {number}. {label}
         </span>
       </div>

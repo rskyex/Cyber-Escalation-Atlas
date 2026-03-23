@@ -35,16 +35,16 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
       {/* Radar + tier ladder side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Radar chart */}
-        <div className="flex flex-col items-center justify-center p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+        <div className="flex flex-col items-center justify-center p-4 rounded-lg bg-ink-50/50 dark:bg-white/[0.03] border border-transparent dark:border-white/[0.04]">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
             7-Dimension Profile
           </p>
           <EscalationRadar incident={incident} size={260} />
         </div>
 
         {/* Tier ladder */}
-        <div className="p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-3">
+        <div className="p-4 rounded-lg bg-ink-50/50 dark:bg-white/[0.03] border border-transparent dark:border-white/[0.04]">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-3">
             Escalation Ladder
           </p>
           <div className="flex items-end gap-1.5 h-28">
@@ -60,18 +60,18 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
                   <div
                     className={`w-full rounded-t transition-colors ${
                       isPeak
-                        ? "bg-amber-500 dark:bg-amber-400"
+                        ? "bg-signal-500 dark:bg-signal-400"
                         : isActive
-                          ? "bg-teal-400/70 dark:bg-teal-500/70"
-                          : "bg-navy-100 dark:bg-navy-600/40"
+                          ? "bg-atlas-400/70 dark:bg-atlas-500/70"
+                          : "bg-ink-100 dark:bg-ink-600/40"
                     }`}
                     style={{ height }}
                   />
                   <span
                     className={`text-[10px] leading-tight text-center ${
                       isPeak
-                        ? "font-bold text-amber-700 dark:text-amber-300"
-                        : "text-slate dark:text-navy-300"
+                        ? "font-bold text-signal-700 dark:text-signal-300"
+                        : "text-steel-500 dark:text-steel-300"
                     }`}
                   >
                     {escalationTierLabels[tier].split(" ")[0]}
@@ -85,18 +85,18 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
 
       {/* Phase timeline */}
       <div className="mb-6">
-        <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-3">
+        <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-3">
           Phases
         </p>
         <div className="space-y-3">
           {phases.map((phase, idx) => (
             <div
               key={idx}
-              className="flex gap-4 p-3 rounded-md bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30"
+              className="flex gap-4 p-3 rounded-md bg-ink-50/50 dark:bg-white/[0.03] border border-transparent dark:border-white/[0.04]"
             >
               <div className="shrink-0 w-20">
                 {phase.date && (
-                  <span className="text-xs font-mono text-slate dark:text-navy-300">
+                  <span className="text-xs font-mono text-steel-500 dark:text-steel-300">
                     {phase.date}
                   </span>
                 )}
@@ -107,10 +107,10 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
                 </div>
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-navy dark:text-offwhite">
+                <p className="text-sm font-semibold text-ink dark:text-white">
                   {phase.label}
                 </p>
-                <p className="text-sm text-slate dark:text-navy-200 mt-0.5">
+                <p className="text-sm text-steel-500 dark:text-steel-200 mt-0.5">
                   {phase.description}
                 </p>
               </div>
@@ -121,33 +121,33 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
 
       {/* Threshold crossings + restraint */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-4 rounded-lg bg-amber-50/50 dark:bg-amber-900/10 border border-amber-200/30 dark:border-amber-700/30">
-          <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wider mb-2">
+        <div className="p-4 rounded-lg bg-signal-50/50 dark:bg-signal-900/10 border border-signal-200/30 dark:border-signal-700/30">
+          <p className="text-xs font-semibold text-signal-700 dark:text-signal-300 uppercase tracking-wider mb-2">
             Threshold Crossings
           </p>
           <ul className="space-y-1">
             {thresholdCrossings.map((t, i) => (
               <li
                 key={i}
-                className="text-sm text-navy dark:text-offwhite flex gap-2"
+                className="text-sm text-ink dark:text-white flex gap-2"
               >
-                <span className="text-amber-500 shrink-0">&bull;</span>
+                <span className="text-signal-500 shrink-0">&bull;</span>
                 {t}
               </li>
             ))}
           </ul>
         </div>
-        <div className="p-4 rounded-lg bg-teal-50/50 dark:bg-teal-900/10 border border-teal-200/30 dark:border-teal-700/30">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+        <div className="p-4 rounded-lg bg-atlas-50/50 dark:bg-atlas-900/10 border border-atlas-200/30 dark:border-atlas-700/30">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-300 uppercase tracking-wider mb-2">
             Restraint Factors
           </p>
           <ul className="space-y-1">
             {restraintFactors.map((r, i) => (
               <li
                 key={i}
-                className="text-sm text-navy dark:text-offwhite flex gap-2"
+                className="text-sm text-ink dark:text-white flex gap-2"
               >
-                <span className="text-teal-500 shrink-0">&bull;</span>
+                <span className="text-atlas-500 shrink-0">&bull;</span>
                 {r}
               </li>
             ))}

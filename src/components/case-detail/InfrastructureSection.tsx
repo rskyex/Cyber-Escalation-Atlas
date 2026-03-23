@@ -19,8 +19,8 @@ export function InfrastructureSection({ incident }: InfrastructureSectionProps) 
       <div className="space-y-4">
         {/* Malware families */}
         {malwareFamilies.length > 0 && (
-          <div className="p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-            <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+          <div className="p-4 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30">
+            <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
               Malware / tooling
             </p>
             <div className="flex flex-wrap gap-1.5">
@@ -34,16 +34,16 @@ export function InfrastructureSection({ incident }: InfrastructureSectionProps) 
         )}
 
         {/* Technique summary (brief — full ATT&CK mapping is separate) */}
-        <div className="p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+        <div className="p-4 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
             Capability profile
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed mb-3">
+          <p className="text-sm text-steel-500 dark:text-steel-200 leading-relaxed mb-3">
             {impactSummary}
           </p>
-          <p className="text-xs text-slate dark:text-navy-300">
+          <p className="text-xs text-steel-500 dark:text-steel-300">
             {techniques.length} ATT&CK techniques mapped &mdash; see{" "}
-            <a href="#attack" className="text-teal-600 dark:text-teal-400 hover:underline">
+            <a href="#attack" className="text-atlas-600 dark:text-atlas-400 hover:underline">
               ATT&CK mapping
             </a>{" "}
             below.

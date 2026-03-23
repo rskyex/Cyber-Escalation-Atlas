@@ -18,14 +18,14 @@ function Section({
   return (
     <section id={id} className="scroll-mt-24">
       <div className="flex items-baseline gap-3 mb-3">
-        <span className="text-xs font-mono text-teal-600 dark:text-teal-400 shrink-0">
+        <span className="text-xs font-mono text-atlas-600 dark:text-atlas-400 shrink-0">
           {number}
         </span>
-        <h2 className="text-xl font-bold text-navy dark:text-offwhite tracking-tight">
+        <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight">
           {title}
         </h2>
       </div>
-      <div className="pl-8 space-y-3 text-sm text-slate dark:text-navy-200 leading-relaxed">
+      <div className="pl-8 space-y-3 text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
         {children}
       </div>
     </section>
@@ -44,14 +44,14 @@ function FrameworkSection({
   children: React.ReactNode;
 }) {
   return (
-    <div id={id} className="scroll-mt-24 p-5 rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20">
-      <h4 className="text-base font-bold text-navy dark:text-offwhite mb-1">
+    <div id={id} className="scroll-mt-24 p-5 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03]">
+      <h4 className="text-base font-bold text-ink dark:text-white mb-1">
         {name}
       </h4>
-      <p className="text-xs font-mono text-slate dark:text-navy-400 mb-3">
+      <p className="text-xs font-mono text-steel-500 dark:text-ink-400 mb-3">
         {citation}
       </p>
-      <div className="space-y-2.5 text-sm text-slate dark:text-navy-200 leading-relaxed">
+      <div className="space-y-2.5 text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
         {children}
       </div>
     </div>
@@ -88,8 +88,8 @@ export default function MethodologyPage() {
       />
 
       {/* Table of contents */}
-      <nav className="mb-12 p-5 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-navy-50/30 dark:bg-navy-800/15">
-        <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-3">
+      <nav className="mb-12 p-5 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/30 dark:bg-ink-800/15">
+        <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-3">
           Contents
         </p>
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1">
@@ -97,9 +97,9 @@ export default function MethodologyPage() {
             <li key={id}>
               <a
                 href={`#${id}`}
-                className="flex items-baseline gap-2 text-sm text-slate dark:text-navy-200 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                className="flex items-baseline gap-2 text-sm text-steel-500 dark:text-steel-300 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
               >
-                <span className="font-mono text-[10px] text-teal-600 dark:text-teal-400">
+                <span className="font-mono text-[10px] text-atlas-600 dark:text-atlas-400">
                   {number}
                 </span>
                 {title}
@@ -569,7 +569,7 @@ export default function MethodologyPage() {
                 most helpful as a teaching tool for discussing the grey zone;
                 it is less useful as a predictive model.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: Whether &ldquo;unpeace&rdquo; constitutes a
                 genuinely new strategic condition or a relabelling of
                 familiar coercive competition remains debated. See Rid (2013)
@@ -603,7 +603,7 @@ export default function MethodologyPage() {
                 one direction while governments dispute responsibility or
                 decline to attribute formally.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: The Rid–Buchanan model treats attribution as
                 progressively resolvable given enough evidence. Critics note
                 that sophisticated adversaries can deliberately pollute each
@@ -641,7 +641,7 @@ export default function MethodologyPage() {
                 classification reflects the dominant observable logic rather
                 than verified intent.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: Schelling developed his framework for nuclear
                 strategy, where capabilities are demonstrable and costs are
                 existential. Cyber operations differ on both counts — capabilities
@@ -680,7 +680,7 @@ export default function MethodologyPage() {
                 underlies other rules. China, Russia, and several other
                 states have declined to endorse the Manual&apos;s framework.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: The Manual&apos;s state-centric, Western-legal
                 framework has been criticised for marginalising alternative
                 governance traditions and for assuming that existing
@@ -717,7 +717,7 @@ export default function MethodologyPage() {
                 choose not to escalate is as important as understanding when
                 they do.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: Critics argue that Valeriano and Maness
                 undercount significant operations by using a narrow
                 definition of &ldquo;cyber conflict&rdquo; and that their
@@ -756,7 +756,7 @@ export default function MethodologyPage() {
                 infrastructure lens are directly informed by Acton&apos;s
                 analysis of the cyber-nuclear nexus.
               </p>
-              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+              <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: The entanglement thesis rests on assumptions
                 about decision-making under uncertainty that are difficult
                 to test empirically. Critics note that nuclear-armed states
@@ -769,11 +769,11 @@ export default function MethodologyPage() {
           </div>
 
           {/* Synthesis note */}
-          <div className="mt-6 p-4 rounded-lg border border-navy-200/15 dark:border-navy-600/20 bg-navy-50/20 dark:bg-navy-800/15">
-            <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+          <div className="mt-6 p-4 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/20 dark:bg-ink-800/15">
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
               On using these frameworks together
             </p>
-            <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+            <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
               These six bodies of work do not form a unified theory. They
               address different questions (What is the strategic logic? How
               do we know who did it? What does the law say? Do states actually
@@ -791,11 +791,11 @@ export default function MethodologyPage() {
       </div>
 
       {/* Closing note */}
-      <div className="mt-14 max-w-3xl p-5 rounded-lg border-l-4 border-teal-500 bg-teal-50/40 dark:bg-teal-900/10">
-        <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+      <div className="mt-14 max-w-3xl p-5 rounded-xl border-l-4 border-atlas-500 bg-atlas-500/10 dark:bg-atlas-900/10">
+        <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
           On reading this page
         </p>
-        <p className="text-sm text-navy dark:text-offwhite leading-relaxed">
+        <p className="text-sm text-ink dark:text-white leading-relaxed">
           Methodology is not a formality. The choices documented here —
           what to include, how to classify, which frameworks to apply —
           shape every analytical output in the Atlas. Users who disagree

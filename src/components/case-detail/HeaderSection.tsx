@@ -23,7 +23,7 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
       {/* Back link */}
       <a
         href="/cases"
-        className="inline-flex items-center gap-1 text-sm text-teal-600 dark:text-teal-400 hover:underline"
+        className="inline-flex items-center gap-1 text-sm text-atlas-600 dark:text-atlas-400 hover:underline"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -33,10 +33,10 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
 
       {/* Title + date */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-navy dark:text-offwhite tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold text-ink dark:text-white tracking-tight">
           {incident.name}
         </h1>
-        <p className="text-base text-slate dark:text-navy-200 mt-1">
+        <p className="text-base text-steel-500 dark:text-steel-200 mt-1">
           {incident.dateRange}
         </p>
       </div>
@@ -60,7 +60,7 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
       </div>
 
       {/* Quick facts row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-lg bg-navy-50/50 dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-ink-50/50 dark:bg-white/[0.03] border border-transparent dark:border-white/[0.04]">
         <Fact label="Year" value={String(incident.year)} />
         <Fact label="Actor country" value={incident.attribution.country} />
         <Fact
@@ -73,10 +73,10 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
             <span
               className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold ${
                 score >= 7
-                  ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+                  ? "bg-signal-100 dark:bg-signal-900/40 text-signal-700 dark:text-signal-300"
                   : score >= 4
-                    ? "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100"
-                    : "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                    ? "bg-ink-100 dark:bg-ink-600/50 text-ink dark:text-ink-100"
+                    : "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-300"
               }`}
             >
               {score}
@@ -97,10 +97,10 @@ function Fact({
 }) {
   return (
     <div>
-      <dt className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider">
+      <dt className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider">
         {label}
       </dt>
-      <dd className="mt-1 text-sm text-navy dark:text-offwhite">{value}</dd>
+      <dd className="mt-1 text-sm text-ink dark:text-white">{value}</dd>
     </div>
   );
 }

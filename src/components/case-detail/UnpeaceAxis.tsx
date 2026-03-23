@@ -8,9 +8,9 @@ interface UnpeaceAxisProps {
 }
 
 const zones = [
-  { label: "Stable", start: 0, end: 30, bg: "bg-teal-100 dark:bg-teal-900/25" },
-  { label: "Contested", start: 30, end: 60, bg: "bg-navy-100 dark:bg-navy-600/30" },
-  { label: "Escalatory", start: 60, end: 100, bg: "bg-amber-100 dark:bg-amber-900/20" },
+  { label: "Stable", start: 0, end: 30, bg: "bg-atlas-100 dark:bg-atlas-900/25" },
+  { label: "Contested", start: 30, end: 60, bg: "bg-ink-100 dark:bg-ink-600/30" },
+  { label: "Escalatory", start: 60, end: 100, bg: "bg-signal-100 dark:bg-signal-900/20" },
 ];
 
 export function UnpeaceAxis({ score }: UnpeaceAxisProps) {
@@ -24,7 +24,7 @@ export function UnpeaceAxis({ score }: UnpeaceAxisProps) {
         {zones.map((z) => (
           <div
             key={z.label}
-            className="text-center text-slate dark:text-navy-300"
+            className="text-center text-steel-500 dark:text-steel-300"
             style={{ width: `${z.end - z.start}%` }}
           >
             {z.label}
@@ -51,19 +51,19 @@ export function UnpeaceAxis({ score }: UnpeaceAxisProps) {
           style={{ transform: "translateX(-50%)" }}
         >
           <div
-            className={`w-5 h-5 rounded-full border-2 border-white dark:border-navy-800 shadow-sm ${
+            className={`w-5 h-5 rounded-full border-2 border-white dark:border-ink-800 shadow-sm ${
               pct >= 60
-                ? "bg-amber-500"
+                ? "bg-signal-500"
                 : pct >= 30
-                  ? "bg-navy-400"
-                  : "bg-teal-500"
+                  ? "bg-ink-400"
+                  : "bg-atlas-500"
             }`}
           />
         </motion.div>
       </div>
 
       {/* Numeric labels */}
-      <div className="flex justify-between text-[10px] font-mono text-slate dark:text-navy-400">
+      <div className="flex justify-between text-[10px] font-mono text-steel-500 dark:text-ink-400">
         <span>0</span>
         <span>30</span>
         <span>60</span>

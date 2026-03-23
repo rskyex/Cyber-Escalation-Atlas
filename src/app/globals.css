@@ -2,13 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    --color-navy: #1B2A4A;
-    --color-slate: #475569;
-    --color-offwhite: #F1F5F9;
-    --color-teal: #0D7377;
-    --color-amber: #D97706;
+    --color-ink: #0A0F1C;
+    --color-steel: #8493AF;
+    --color-atlas: #2DD4A8;
+    --color-signal: #F59E0B;
+    --grid-color: rgba(45, 212, 168, 0.04);
+    --grid-color-strong: rgba(45, 212, 168, 0.08);
+    --border-subtle: rgba(132, 147, 175, 0.1);
+    --border-medium: rgba(132, 147, 175, 0.15);
   }
 
   html {
@@ -20,16 +25,111 @@
   }
 
   .dark body {
-    @apply bg-navy-800 text-offwhite;
+    @apply bg-ink-800 text-steel-200;
   }
 
   .light body {
-    @apply bg-offwhite text-navy;
+    @apply bg-white text-ink-600;
+  }
+
+  /* Premium selection color */
+  ::selection {
+    background: rgba(45, 212, 168, 0.2);
+    color: inherit;
   }
 }
 
 @layer components {
   .attack-ref {
-    @apply font-mono text-sm text-teal-400 dark:text-teal-300;
+    @apply font-mono text-sm text-atlas-500 dark:text-atlas-400;
+  }
+
+  /* Atlas grid background — cartographic reference lines */
+  .atlas-grid {
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .atlas-grid-dense {
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(var(--grid-color-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color-strong) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 320px 320px, 320px 320px;
+  }
+
+  /* Ambient glow effect for hero */
+  .atlas-glow {
+    position: relative;
+  }
+  .atlas-glow::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(45, 212, 168, 0.06) 0%,
+      rgba(45, 212, 168, 0.02) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Horizontal rule — atlas style */
+  .atlas-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border-subtle) 20%,
+      var(--border-medium) 50%,
+      var(--border-subtle) 80%,
+      transparent
+    );
+    border: none;
+  }
+
+  /* Subtle top-accent bar for cards */
+  .card-accent {
+    position: relative;
+  }
+  .card-accent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-atlas) 50%,
+      transparent
+    );
+    opacity: 0.3;
+  }
+
+  /* Crosshair coordinate marker */
+  .coordinate-mark {
+    @apply text-micro font-mono uppercase tracking-widest text-steel-500 dark:text-steel-600;
+  }
+
+  /* Section label — editorial style */
+  .section-label {
+    @apply text-micro font-semibold uppercase tracking-widest text-atlas-600 dark:text-atlas-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

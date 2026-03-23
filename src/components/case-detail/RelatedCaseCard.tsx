@@ -18,31 +18,31 @@ export function RelatedCaseCard({ incident }: RelatedCaseCardProps) {
   return (
     <a
       href={`/cases/${incident.slug}`}
-      className="group block p-4 rounded-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700/25 hover:border-teal-300/50 dark:hover:border-teal-600/40 hover:shadow-sm transition-all"
+      className="group block p-4 rounded-lg border border-steel-200/30 dark:border-ink-600/40 bg-white dark:bg-ink-700/25 hover:border-atlas-300/50 dark:hover:border-atlas-600/40 hover:shadow-sm transition-all"
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-navy dark:text-offwhite group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors leading-snug">
+          <p className="text-sm font-semibold text-ink dark:text-white group-hover:text-atlas-700 dark:group-hover:text-atlas-400 transition-colors leading-snug">
             {incident.shortName}
           </p>
-          <p className="text-xs text-slate dark:text-navy-300 mt-0.5">
+          <p className="text-xs text-steel-500 dark:text-steel-300 mt-0.5">
             {incident.dateRange} · {incident.attribution.country}
           </p>
         </div>
         <span
           className={`shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${
             score >= 7
-              ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+              ? "bg-signal-100 dark:bg-signal-900/40 text-signal-700 dark:text-signal-300"
               : score >= 4
-                ? "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100"
-                : "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                ? "bg-ink-100 dark:bg-ink-600/50 text-ink dark:text-ink-100"
+                : "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-300"
           }`}
         >
           {score}
         </span>
       </div>
 
-      <p className="text-xs text-slate dark:text-navy-300 mt-2 line-clamp-2 leading-relaxed">
+      <p className="text-xs text-steel-500 dark:text-steel-300 mt-2 line-clamp-2 leading-relaxed">
         {incident.whyThisMatters}
       </p>
 

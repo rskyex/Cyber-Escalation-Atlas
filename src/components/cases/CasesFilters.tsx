@@ -82,13 +82,13 @@ function SelectField({
 }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-slate dark:text-navy-300 mb-1">
+      <label className="block text-xs font-medium text-steel-500 dark:text-steel-400 mb-1">
         {label}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full text-sm rounded-md border border-navy-200/40 dark:border-navy-600/50 bg-white dark:bg-navy-700 text-navy dark:text-offwhite px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-teal-500"
+        className="w-full text-sm rounded-md border border-steel-200/40 dark:border-ink-600/50 bg-white dark:bg-ink-700 text-ink dark:text-white px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-atlas-500"
       >
         <option value="">All</option>
         {options.map((o) => (
@@ -170,7 +170,7 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
       />
 
       {/* Governance flags — visually distinct section */}
-      <div className="pt-2 border-t border-navy-200/20 dark:border-navy-600/30">
+      <div className="pt-2 border-t border-steel-200/20 dark:border-ink-600/30">
         <SelectField
           label="Governance response"
           value={filters.governanceFlag}
@@ -187,8 +187,8 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
       />
 
       {/* Year range */}
-      <div className="pt-2 border-t border-navy-200/20 dark:border-navy-600/30">
-        <label className="block text-xs font-medium text-slate dark:text-navy-300 mb-1">
+      <div className="pt-2 border-t border-steel-200/20 dark:border-ink-600/30">
+        <label className="block text-xs font-medium text-steel-500 dark:text-steel-400 mb-1">
           Year range
         </label>
         <div className="flex items-center gap-2">
@@ -198,23 +198,23 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
             max={2025}
             value={filters.yearMin}
             onChange={(e) => set("yearMin", Number(e.target.value))}
-            className="w-20 text-sm rounded-md border border-navy-200/40 dark:border-navy-600/50 bg-white dark:bg-navy-700 text-navy dark:text-offwhite px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-teal-500"
+            className="w-20 text-sm rounded-md border border-steel-200/40 dark:border-ink-600/50 bg-white dark:bg-ink-700 text-ink dark:text-white px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-atlas-500"
           />
-          <span className="text-xs text-slate dark:text-navy-300">&ndash;</span>
+          <span className="text-xs text-steel-500 dark:text-steel-400">&ndash;</span>
           <input
             type="number"
             min={2000}
             max={2025}
             value={filters.yearMax}
             onChange={(e) => set("yearMax", Number(e.target.value))}
-            className="w-20 text-sm rounded-md border border-navy-200/40 dark:border-navy-600/50 bg-white dark:bg-navy-700 text-navy dark:text-offwhite px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-teal-500"
+            className="w-20 text-sm rounded-md border border-steel-200/40 dark:border-ink-600/50 bg-white dark:bg-ink-700 text-ink dark:text-white px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-atlas-500"
           />
         </div>
       </div>
 
       {/* Entanglement score */}
       <div>
-        <label className="block text-xs font-medium text-slate dark:text-navy-300 mb-1">
+        <label className="block text-xs font-medium text-steel-500 dark:text-steel-400 mb-1">
           Min. entanglement score
         </label>
         <input
@@ -223,9 +223,9 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
           max={10}
           value={filters.entanglement}
           onChange={(e) => set("entanglement", Number(e.target.value))}
-          className="w-full accent-teal-500"
+          className="w-full accent-atlas-500"
         />
-        <div className="flex justify-between text-xs text-slate dark:text-navy-400 mt-0.5">
+        <div className="flex justify-between text-xs text-steel-500 dark:text-ink-400 mt-0.5">
           <span>Any</span>
           <span>{filters.entanglement > 0 ? `≥ ${filters.entanglement}` : "—"}</span>
         </div>
@@ -235,7 +235,7 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
       {hasActive && (
         <button
           onClick={() => onChange(defaultFilters)}
-          className="w-full text-xs text-teal-600 dark:text-teal-400 hover:underline pt-1"
+          className="w-full text-xs text-atlas-600 dark:text-atlas-400 hover:underline pt-1"
         >
           Clear all filters
         </button>

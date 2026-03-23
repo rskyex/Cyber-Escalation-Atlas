@@ -10,16 +10,16 @@ export function SummarySection({ incident }: SummarySectionProps) {
     <section className="space-y-6">
       <div>
         <SectionHeading id="summary">Executive Summary</SectionHeading>
-        <p className="text-base text-slate dark:text-navy-200 leading-relaxed">
+        <p className="text-base text-steel-500 dark:text-steel-200 leading-relaxed">
           {incident.summary}
         </p>
       </div>
 
-      <div className="p-5 rounded-lg border-l-4 border-teal-500 bg-teal-50/50 dark:bg-teal-900/10 dark:border-teal-400">
-        <h3 className="text-sm font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+      <div className="p-5 rounded-lg border-l-4 border-atlas-500 bg-atlas-50/50 dark:bg-atlas-900/10 dark:border-atlas-400">
+        <h3 className="text-sm font-semibold text-atlas-700 dark:text-atlas-300 uppercase tracking-wider mb-2">
           Why This Matters
         </h3>
-        <p className="text-base text-navy dark:text-offwhite leading-relaxed">
+        <p className="text-base text-ink dark:text-white leading-relaxed">
           {incident.whyThisMatters}
         </p>
       </div>
