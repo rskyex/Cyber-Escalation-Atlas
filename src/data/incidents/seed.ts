@@ -1699,4 +1699,190 @@ export const seedIncidents: Incident[] = [
       { title: "Microsoft: Volt Typhoon Targets US Critical Infrastructure", category: "vendor", date: "2023-05-24" },
     ],
   },
+
+  // ---- Incident 19: Industroyer2 (2022) -------------------------------------
+  {
+    id: "industroyer2-2022",
+    slug: "industroyer2",
+    name: "Industroyer2 – Ukraine Grid Attack Attempt",
+    shortName: "Industroyer2",
+    year: 2022,
+    dateRange: "April 2022",
+    incidentType: "sabotage",
+    summary:
+      "Sandworm deployed Industroyer2, an updated variant of the 2016 Industroyer malware, against a Ukrainian regional energy company during Russia's ongoing invasion. The attack aimed to de-energize electrical substations using IEC 104 protocol commands. CERT-UA and ESET detected and neutralized the attack before it could cause a sustained outage, marking a successful wartime cyber defense.",
+    attribution: {
+      confidence: "confirmed",
+      attributedTo: "Sandworm Team, attributed by Ukraine's CERT-UA and corroborated by ESET and allied governments to Russia's GRU",
+      country: "Russia",
+      aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Pre-positioning in energy network",
+          description: "Sandworm established access to a Ukrainian energy company's OT network weeks before the planned attack.",
+          date: "2022-02",
+        },
+        {
+          tier: "disruption",
+          label: "Industroyer2 deployment attempt",
+          description: "Industroyer2 configured to issue IEC 104 commands to open breakers at targeted substations; CaddyWiper deployed on IT systems to hinder forensics.",
+          date: "2022-04-08",
+        },
+      ],
+      peakTier: "disruption",
+      restraintFactors: [
+        "Attack was detected and mitigated before causing sustained outage",
+        "Narrower scope than the 2016 Industroyer attack",
+      ],
+      thresholdCrossings: [
+        "First known use of purpose-built ICS malware during an active conventional war",
+        "Confirmed that Sandworm maintained and updated its grid-attack toolkit across six years",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure"],
+      targetCountries: ["Ukraine"],
+      techniques: [
+        { id: "T0855", name: "Unauthorized Command Message", tactic: "Impact (ICS)" },
+        { id: "T1561", name: "Disk Wipe", tactic: "Impact" },
+        { id: "T1059", name: "Command and Scripting Interpreter", tactic: "Execution" },
+      ],
+      malwareFamilies: ["Industroyer2", "CaddyWiper"],
+      impactSummary: "Attack neutralized before sustained outage; demonstrated continued ICS threat capability during wartime.",
+    },
+    governance: {
+      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      normsInvoked: [
+        "IHL prohibition on attacking civilian objects (electric grid serving civilians)",
+        "UN GGE 2015 norm against damaging critical infrastructure",
+      ],
+      policyResponses: [
+        "CERT-UA public disclosure with ESET technical analysis (Apr 2022)",
+        "Cited in allied governments' ongoing documentation of Russian cyber operations in Ukraine",
+        "Reinforced NATO and EU cyber assistance to Ukraine",
+      ],
+      regulatoryChanges: [
+        "Strengthened international support for Ukrainian energy-sector cyber defense",
+        "Informed EU NIS2 Directive risk scenarios for energy operators",
+      ],
+      impact: "Demonstrated both the persistent threat of ICS-targeted malware in armed conflict and the effectiveness of international cyber defense cooperation in neutralizing it.",
+    },
+    whyThisMatters: "Industroyer2 confirmed that grid-targeting ICS malware is now a recurring feature of armed conflict, while its successful mitigation showed that coordinated cyber defense can work under wartime conditions.",
+    teaching: {
+      keyQuestion: "What does the successful defense against Industroyer2 reveal about effective models for international cyber assistance during armed conflict?",
+      discussionPoints: [
+        "Evolution of ICS attack tools across the 2015–2016–2022 trajectory",
+        "Role of vendor-government partnerships in wartime cyber defense",
+        "IHL application to cyber attacks on civilian power infrastructure during armed conflict",
+      ],
+      furtherReading: [
+        "ESET: Industroyer2 — Sandworm's Cyberwarfare Targets Ukraine's Power Grid Again, 2022.",
+        "CERT-UA: Alert on Industroyer2 and CaddyWiper, 2022.",
+      ],
+    },
+    sources: [
+      { title: "ESET: Industroyer2 — Sandworm Targets Ukraine's Power Grid Again", category: "vendor", date: "2022-04-12" },
+      { title: "CERT-UA Alert #4435: Industroyer2 and CaddyWiper", category: "government", date: "2022-04-12" },
+    ],
+  },
+
+  // ---- Incident 20: Scattered Spider / MGM & Caesars (2023) -----------------
+  {
+    id: "scattered-spider-mgm-2023",
+    slug: "scattered-spider-mgm",
+    name: "Scattered Spider – MGM Resorts & Caesars Entertainment",
+    shortName: "MGM / Scattered Spider",
+    year: 2023,
+    dateRange: "September 2023",
+    incidentType: "ransomware",
+    summary:
+      "The Scattered Spider threat group, composed largely of English-speaking individuals using social engineering and SIM-swapping, compromised MGM Resorts and Caesars Entertainment. Caesars reportedly paid approximately $15M in ransom. MGM refused to pay; the resulting disruption took hotel and casino systems offline for over a week, with estimated losses exceeding $100M. The incidents highlighted the effectiveness of social engineering against helpdesk and identity systems.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Scattered Spider, a loosely organized English-speaking threat group acting as an ALPHV/BlackCat ransomware affiliate",
+      country: "United States / United Kingdom (individuals; not state-sponsored)",
+      aliases: ["Scattered Spider", "UNC3944", "Octo Tempest", "0ktapus"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Social engineering of helpdesk",
+          description: "Attackers impersonated employees to IT helpdesks to obtain credentials and MFA resets, bypassing technical controls through human vectors.",
+          date: "2023-08",
+        },
+        {
+          tier: "disruption",
+          label: "Ransomware deployment and system shutdown",
+          description: "ALPHV/BlackCat ransomware deployed across MGM infrastructure; hotel check-in, slot machines, restaurant POS, and loyalty systems went offline for over a week.",
+          date: "2023-09-10",
+        },
+        {
+          tier: "degradation",
+          label: "Extended operational impact",
+          description: "MGM operated on manual processes for days; estimated losses exceeded $100M. Caesars paid ~$15M ransom to avoid similar disruption.",
+          date: "2023-09",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Financially motivated — no geopolitical or destructive intent",
+        "Attackers offered decryption for payment, consistent with criminal ransomware model",
+      ],
+      thresholdCrossings: [
+        "Demonstrated that social engineering alone can defeat sophisticated technical security at major enterprises",
+        "Highlighted that young, loosely organized groups can cause damage comparable to state-sponsored actors",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["multiple"],
+      targetCountries: ["United States"],
+      techniques: [
+        { id: "T1566.004", name: "Phishing: Spearphishing Voice", tactic: "Initial Access" },
+        { id: "T1199", name: "Trusted Relationship", tactic: "Initial Access" },
+        { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
+        { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
+      ],
+      malwareFamilies: ["ALPHV", "BlackCat"],
+      impactSummary: "MGM systems offline for 10+ days with >$100M in losses; Caesars paid ~$15M ransom; customer data exfiltrated at both companies.",
+    },
+    governance: {
+      flags: ["regulatory-change", "indictment"],
+      normsInvoked: [
+        "Corporate duty of care for customer data and operational resilience",
+        "Debate over ransom payment regulation",
+      ],
+      policyResponses: [
+        "FBI and CISA joint advisory on Scattered Spider (Nov 2023)",
+        "SEC required MGM and Caesars to disclose incidents under new cyber disclosure rules",
+        "Multiple Scattered Spider members subsequently arrested in the US and UK (2024)",
+      ],
+      regulatoryChanges: [
+        "SEC cyber incident disclosure rules (effective Dec 2023) applied to both companies",
+        "Renewed Congressional interest in regulating ransom payments",
+      ],
+      impact: "Accelerated the SEC's practical enforcement of new cyber disclosure requirements and re-centered policy attention on identity security and social engineering as enterprise-critical risks.",
+    },
+    whyThisMatters: "MGM/Caesars showed that social engineering by loosely organized criminal groups can paralyze major enterprises as effectively as sophisticated malware, exposing identity and helpdesk processes as critical policy-relevant attack surfaces.",
+    teaching: {
+      keyQuestion: "Should regulators mandate specific identity-verification and helpdesk security controls, or leave them to market incentives?",
+      discussionPoints: [
+        "Social engineering as the weakest link despite technical security investment",
+        "To pay or not to pay: strategic and ethical dimensions of ransom decisions",
+        "Effectiveness of SEC disclosure rules in improving corporate cyber accountability",
+      ],
+      furtherReading: [
+        "CISA/FBI Advisory AA23-320A: Scattered Spider, 2023.",
+        "SEC Filings: MGM Resorts International 8-K, Oct 2023.",
+      ],
+    },
+    sources: [
+      { title: "CISA/FBI Advisory AA23-320A: Scattered Spider", category: "government", date: "2023-11-16" },
+      { title: "SEC: MGM Resorts International Form 8-K", category: "legal", date: "2023-10-05" },
+      { title: "Bloomberg: Caesars Paid Roughly Half of $30M Ransom Demand", category: "journalistic", date: "2023-09-14" },
+    ],
+  },
 ];
