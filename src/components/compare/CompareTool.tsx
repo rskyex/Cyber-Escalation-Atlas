@@ -57,21 +57,21 @@ function setOverlap(arrays: string[][]): Verdict {
 }
 
 const verdictBg: Record<Verdict, string> = {
-  same: "bg-teal-50/40 dark:bg-teal-900/8",
-  partial: "bg-amber-50/25 dark:bg-amber-900/5",
-  different: "bg-amber-50/40 dark:bg-amber-900/10",
+  same: "bg-atlas-50/40 dark:bg-atlas-900/8",
+  partial: "bg-signal-50/25 dark:bg-signal-900/5",
+  different: "bg-signal-50/40 dark:bg-signal-900/10",
 };
 
 const verdictBorder: Record<Verdict, string> = {
-  same: "border-l-teal-400 dark:border-l-teal-600",
-  partial: "border-l-amber-300 dark:border-l-amber-600",
-  different: "border-l-amber-400 dark:border-l-amber-500",
+  same: "border-l-atlas-400 dark:border-l-atlas-600",
+  partial: "border-l-signal-300 dark:border-l-signal-600",
+  different: "border-l-signal-400 dark:border-l-signal-500",
 };
 
 const verdictLabel: Record<Verdict, { text: string; color: string }> = {
-  same: { text: "Same", color: "text-teal-600 dark:text-teal-400" },
-  partial: { text: "Partial overlap", color: "text-amber-600 dark:text-amber-400" },
-  different: { text: "Different", color: "text-amber-600 dark:text-amber-400" },
+  same: { text: "Same", color: "text-atlas-600 dark:text-atlas-400" },
+  partial: { text: "Partial overlap", color: "text-signal-600 dark:text-signal-400" },
+  different: { text: "Different", color: "text-signal-600 dark:text-signal-400" },
 };
 
 // ---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ function IncidentSelector({
 }) {
   return (
     <div className="space-y-1.5">
-      <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+      <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
         Select 2–{MAX_SELECTIONS} incidents
       </p>
       {incidents.map((inc) => {
@@ -102,15 +102,15 @@ function IncidentSelector({
             disabled={isDisabled}
             className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
               isSelected
-                ? "bg-teal-50 dark:bg-teal-900/20 border border-teal-300/50 dark:border-teal-600/40 text-teal-700 dark:text-teal-300 font-medium"
+                ? "bg-atlas-50 dark:bg-atlas-900/20 border border-atlas-400/50 dark:border-atlas-600/40 text-atlas-700 dark:text-atlas-400 font-medium"
                 : isDisabled
-                  ? "text-navy-300 dark:text-navy-500 cursor-not-allowed"
-                  : "text-navy dark:text-offwhite hover:bg-navy-50/50 dark:hover:bg-navy-700/30"
+                  ? "text-steel-400 dark:text-ink-500 cursor-not-allowed"
+                  : "text-ink dark:text-white hover:bg-ink-50/50 dark:hover:bg-ink-700/30"
             }`}
           >
             <span className="flex items-center justify-between gap-2">
               <span className="truncate">{inc.shortName}</span>
-              <span className="text-[10px] font-mono text-slate dark:text-navy-400 shrink-0">
+              <span className="text-[10px] font-mono text-steel-500 dark:text-ink-400 shrink-0">
                 {inc.year}
               </span>
             </span>
@@ -138,9 +138,9 @@ function CompareRow({
 }) {
   const v = verdict ?? "same";
   return (
-    <div className={`border-b border-navy-200/15 dark:border-navy-600/20 border-l-[3px] ${verdictBorder[v]}`}>
+    <div className={`border-b border-steel-200/15 dark:border-ink-600/20 border-l-[3px] ${verdictBorder[v]}`}>
       <div className={`px-4 py-2 flex items-center justify-between ${verdictBg[v]}`}>
-        <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider">
+        <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider">
           {label}
         </p>
         {verdict && colCount >= 2 && (
@@ -150,7 +150,7 @@ function CompareRow({
         )}
       </div>
       <div
-        className="grid grid-cols-1 divide-y sm:divide-y-0 sm:divide-x divide-navy-200/15 dark:divide-navy-600/20"
+        className="grid grid-cols-1 divide-y sm:divide-y-0 sm:divide-x divide-steel-200/15 dark:divide-ink-600/20"
         style={{ gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))` }}
       >
         {children}
@@ -259,7 +259,7 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Sidebar selector */}
       <aside className="w-full lg:w-56 shrink-0 print:hidden">
-        <div className="sticky top-20 space-y-4 p-4 rounded-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700/50 max-h-[calc(100vh-6rem)] overflow-y-auto">
+        <div className="sticky top-20 space-y-4 p-4 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03] max-h-[calc(100vh-6rem)] overflow-y-auto">
           <IncidentSelector
             incidents={incidents}
             selected={selectedIds}
@@ -272,10 +272,10 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
       <div className="flex-1 min-w-0">
         {selected.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-slate dark:text-navy-200 mb-1">
+            <p className="text-steel-500 dark:text-steel-300 mb-1">
               Select incidents from the sidebar to compare.
             </p>
-            <p className="text-sm text-slate/60 dark:text-navy-400">
+            <p className="text-sm text-steel-600 dark:text-ink-400">
               Choose 2–3 cases to analyse commonalities and divergences across
               escalation, infrastructure, and governance dimensions.
             </p>
@@ -285,26 +285,26 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
             {/* Action bar */}
             {cols >= 2 && (
               <div className="flex items-center justify-between mb-4 print:hidden">
-                <div className="flex items-center gap-4 text-xs text-slate dark:text-navy-300">
+                <div className="flex items-center gap-4 text-xs text-steel-500 dark:text-steel-400">
                   <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-atlas-400" />
                     Same across cases
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-signal-400" />
                     Different or partial
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setShowTable(!showTable)}
-                    className="px-3 py-1.5 text-xs font-medium rounded-md border border-navy-200/30 dark:border-navy-600/40 text-navy dark:text-navy-100 hover:bg-navy-50/50 dark:hover:bg-navy-700/30 transition-colors"
+                    className="px-3 py-1.5 text-xs font-medium rounded-md border border-transparent dark:border-white/[0.04] text-ink dark:text-ink-100 hover:bg-ink-50/50 dark:hover:bg-ink-700/30 transition-colors"
                   >
                     {showTable ? "Rich view" : "Table view"}
                   </button>
                   <button
                     onClick={() => downloadCsv(selected)}
-                    className="px-3 py-1.5 text-xs font-medium rounded-md border border-teal-300/50 dark:border-teal-600/40 text-teal-700 dark:text-teal-300 hover:bg-teal-50/50 dark:hover:bg-teal-900/20 transition-colors"
+                    className="px-3 py-1.5 text-xs font-medium rounded-md border border-atlas-400/50 dark:border-atlas-600/40 text-atlas-700 dark:text-atlas-400 hover:bg-atlas-50/50 dark:hover:bg-atlas-900/20 transition-colors"
                   >
                     Export CSV
                   </button>
@@ -317,10 +317,10 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
               <PrintTable selected={selected} />
             ) : (
               /* ---- Rich comparison view ---- */
-              <div className="rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20 overflow-hidden">
+              <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 overflow-hidden">
                 {/* Header row */}
                 <div
-                  className="grid divide-x divide-navy-200/15 dark:divide-navy-600/20 border-b border-navy-200/20 dark:border-navy-600/25 bg-navy-50/50 dark:bg-navy-800/30"
+                  className="grid divide-x divide-steel-200/15 dark:divide-ink-600/20 border-b border-steel-200/20 dark:border-ink-600/25 bg-ink-50/50 dark:bg-ink-800/30"
                   style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
                 >
                   {selected.map((inc) => (
@@ -329,17 +329,17 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                         <div>
                           <a
                             href={`/cases/${inc.slug}`}
-                            className="text-base font-bold text-navy dark:text-offwhite hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                            className="text-base font-bold text-ink dark:text-white hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
                           >
                             {inc.shortName}
                           </a>
-                          <p className="text-xs text-slate dark:text-navy-300 mt-0.5">
+                          <p className="text-xs text-steel-500 dark:text-steel-400 mt-0.5">
                             {inc.dateRange} · {inc.attribution.country}
                           </p>
                         </div>
                         <button
                           onClick={() => toggle(inc.id)}
-                          className="text-navy-300 dark:text-navy-500 hover:text-red-500 dark:hover:text-red-400 text-sm transition-colors print:hidden"
+                          className="text-steel-400 dark:text-ink-500 hover:text-red-500 dark:hover:text-red-400 text-sm transition-colors print:hidden"
                           title="Remove from comparison"
                         >
                           ×
@@ -376,16 +376,16 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                       <CompareCell key={inc.id}>
                         <div className="grid grid-cols-3 gap-2 text-center">
                           <div>
-                            <p className="text-lg font-bold text-navy dark:text-offwhite">{score * 10}</p>
-                            <p className="text-[10px] text-slate dark:text-navy-400">Unpeace</p>
+                            <p className="text-lg font-bold text-ink dark:text-white">{score * 10}</p>
+                            <p className="text-[10px] text-steel-500 dark:text-ink-400">Unpeace</p>
                           </div>
                           <div>
-                            <p className="text-lg font-bold text-navy dark:text-offwhite">{ent}</p>
-                            <p className="text-[10px] text-slate dark:text-navy-400">Entanglement</p>
+                            <p className="text-lg font-bold text-ink dark:text-white">{ent}</p>
+                            <p className="text-[10px] text-steel-500 dark:text-ink-400">Entanglement</p>
                           </div>
                           <div>
-                            <p className="text-lg font-bold text-navy dark:text-offwhite">{tier}/6</p>
-                            <p className="text-[10px] text-slate dark:text-navy-400">Peak Tier</p>
+                            <p className="text-lg font-bold text-ink dark:text-white">{tier}/6</p>
+                            <p className="text-[10px] text-steel-500 dark:text-ink-400">Peak Tier</p>
                           </div>
                         </div>
                       </CompareCell>
@@ -412,7 +412,7 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                             {attributionLabels[inc.attribution.confidence]}
                           </Badge>
                         </div>
-                        <p className="text-sm text-navy dark:text-offwhite">
+                        <p className="text-sm text-ink dark:text-white">
                           {inc.attribution.attributedTo}
                         </p>
                         {inc.attribution.aliases.length > 0 && (
@@ -420,7 +420,7 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                             {inc.attribution.aliases.map((a) => (
                               <span
                                 key={a}
-                                className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-navy-100/50 dark:bg-navy-600/30 text-navy dark:text-navy-200"
+                                className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-ink-100/50 dark:bg-ink-600/30 text-ink dark:text-steel-300"
                               >
                                 {a}
                               </span>
@@ -453,15 +453,15 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                               key={s}
                               className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium ${
                                 sharedSectors.has(s)
-                                  ? "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 ring-1 ring-teal-300/40 dark:ring-teal-600/30"
-                                  : "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100"
+                                  ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400 ring-1 ring-atlas-400/40 dark:ring-atlas-600/30"
+                                  : "bg-ink-100 dark:bg-ink-600/50 text-ink dark:text-ink-100"
                               }`}
                             >
                               {targetSectorLabels[s]}
                             </span>
                           ))}
                         </div>
-                        <p className="text-xs text-slate dark:text-navy-300 mt-2">
+                        <p className="text-xs text-steel-500 dark:text-steel-400 mt-2">
                           {inc.infrastructure.targetCountries.join(", ")}
                         </p>
                       </CompareCell>
@@ -474,14 +474,14 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                   {selected.map((inc) => (
                     <CompareCell key={inc.id}>
                       {inc.escalation.thresholdCrossings.length === 0 ? (
-                        <p className="text-xs text-slate dark:text-navy-400 italic">
+                        <p className="text-xs text-steel-500 dark:text-ink-400 italic">
                           No threshold crossings recorded.
                         </p>
                       ) : (
                         <ul className="space-y-1">
                           {inc.escalation.thresholdCrossings.map((t, i) => (
-                            <li key={i} className="text-xs text-slate dark:text-navy-200 flex items-start gap-1.5">
-                              <span className="text-amber-500 mt-0.5 shrink-0">·</span>
+                            <li key={i} className="text-xs text-steel-500 dark:text-steel-300 flex items-start gap-1.5">
+                              <span className="text-signal-500 mt-0.5 shrink-0">·</span>
                               {t}
                             </li>
                           ))}
@@ -496,14 +496,14 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                   {selected.map((inc) => (
                     <CompareCell key={inc.id}>
                       {inc.escalation.restraintFactors.length === 0 ? (
-                        <p className="text-xs text-slate dark:text-navy-400 italic">
+                        <p className="text-xs text-steel-500 dark:text-ink-400 italic">
                           No restraint factors recorded.
                         </p>
                       ) : (
                         <ul className="space-y-1">
                           {inc.escalation.restraintFactors.map((r, i) => (
-                            <li key={i} className="text-xs text-slate dark:text-navy-200 flex items-start gap-1.5">
-                              <span className="text-teal-500 mt-0.5 shrink-0">·</span>
+                            <li key={i} className="text-xs text-steel-500 dark:text-steel-300 flex items-start gap-1.5">
+                              <span className="text-atlas-500 mt-0.5 shrink-0">·</span>
                               {r}
                             </li>
                           ))}
@@ -526,17 +526,17 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                 <CompareRow label="Governance Impact" colCount={cols}>
                   {selected.map((inc) => (
                     <CompareCell key={inc.id}>
-                      <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                      <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
                         {inc.governance.impact}
                       </p>
                       {inc.governance.normsInvoked.length > 0 && (
-                        <div className="mt-2 pt-2 border-t border-navy-200/10 dark:border-navy-600/15">
-                          <p className="text-[10px] font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1">
+                        <div className="mt-2 pt-2 border-t border-steel-200/10 dark:border-ink-600/15">
+                          <p className="text-[10px] font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1">
                             Norms invoked
                           </p>
                           <ul className="space-y-0.5">
                             {inc.governance.normsInvoked.map((n, i) => (
-                              <li key={i} className="text-[11px] text-slate dark:text-navy-300 italic">
+                              <li key={i} className="text-[11px] text-steel-500 dark:text-steel-400 italic">
                                 {n}
                               </li>
                             ))}
@@ -551,7 +551,7 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                 <CompareRow label="Key Question" colCount={cols}>
                   {selected.map((inc) => (
                     <CompareCell key={inc.id}>
-                      <p className="text-sm text-navy dark:text-offwhite font-medium italic leading-relaxed">
+                      <p className="text-sm text-ink dark:text-white font-medium italic leading-relaxed">
                         &ldquo;{inc.teaching.keyQuestion}&rdquo;
                       </p>
                     </CompareCell>
@@ -605,21 +605,21 @@ function PrintTable({ selected }: { selected: Incident[] }) {
   ];
 
   return (
-    <div className="rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20 overflow-x-auto">
+    <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 overflow-x-auto">
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="bg-navy-50/50 dark:bg-navy-800/30">
-            <th className="text-left p-3 text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider border-b border-navy-200/20 dark:border-navy-600/25 min-w-[140px]">
+          <tr className="bg-ink-50/50 dark:bg-ink-800/30">
+            <th className="text-left p-3 text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider border-b border-steel-200/20 dark:border-ink-600/25 min-w-[140px]">
               Field
             </th>
             {selected.map((inc) => (
               <th
                 key={inc.id}
-                className="text-left p-3 text-xs font-semibold text-navy dark:text-navy-100 border-b border-navy-200/20 dark:border-navy-600/25 min-w-[200px]"
+                className="text-left p-3 text-xs font-semibold text-ink dark:text-ink-100 border-b border-steel-200/20 dark:border-ink-600/25 min-w-[200px]"
               >
                 <a
                   href={`/cases/${inc.slug}`}
-                  className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                  className="hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
                 >
                   {inc.shortName}
                 </a>
@@ -633,23 +633,23 @@ function PrintTable({ selected }: { selected: Incident[] }) {
             return (
               <tr
                 key={row.label}
-                className={`border-b border-navy-200/10 dark:border-navy-600/15 ${
+                className={`border-b border-steel-200/10 dark:border-ink-600/15 ${
                   isSame
-                    ? "bg-teal-50/30 dark:bg-teal-900/5"
+                    ? "bg-atlas-50/30 dark:bg-atlas-900/5"
                     : ""
                 }`}
               >
                 <td className={`p-3 text-xs font-medium whitespace-nowrap ${
                   isSame
-                    ? "text-teal-700 dark:text-teal-300"
-                    : "text-navy dark:text-navy-100"
+                    ? "text-atlas-700 dark:text-atlas-400"
+                    : "text-ink dark:text-ink-100"
                 }`}>
                   <span className="flex items-center gap-1.5">
                     {!isSame && selected.length >= 2 && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal-400 shrink-0" />
                     )}
                     {isSame && selected.length >= 2 && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-atlas-400 shrink-0" />
                     )}
                     {row.label}
                   </span>
@@ -657,7 +657,7 @@ function PrintTable({ selected }: { selected: Incident[] }) {
                 {row.values.map((val, idx) => (
                   <td
                     key={idx}
-                    className="p-3 text-xs text-slate dark:text-navy-200"
+                    className="p-3 text-xs text-steel-500 dark:text-steel-300"
                   >
                     {val}
                   </td>

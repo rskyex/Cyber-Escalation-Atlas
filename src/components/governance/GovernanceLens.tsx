@@ -118,23 +118,23 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
 const statusConfig: Record<ApplicabilityStatus, { label: string; bg: string; text: string }> = {
   yes: {
     label: "Applicable",
-    bg: "bg-teal-50 dark:bg-teal-900/30",
-    text: "text-teal-700 dark:text-teal-300",
+    bg: "bg-atlas-50 dark:bg-atlas-900/30",
+    text: "text-atlas-700 dark:text-atlas-400",
   },
   contested: {
     label: "Contested",
-    bg: "bg-amber-50 dark:bg-amber-900/25",
-    text: "text-amber-700 dark:text-amber-300",
+    bg: "bg-signal-50 dark:bg-signal-900/25",
+    text: "text-signal-700 dark:text-signal-300",
   },
   no: {
     label: "Not applicable",
-    bg: "bg-navy-100 dark:bg-navy-600/40",
-    text: "text-navy dark:text-navy-200",
+    bg: "bg-ink-100 dark:bg-ink-600/40",
+    text: "text-ink dark:text-steel-300",
   },
   unclear: {
     label: "Unclear",
-    bg: "bg-navy-50 dark:bg-navy-700/30",
-    text: "text-slate dark:text-navy-300",
+    bg: "bg-ink-50 dark:bg-ink-700/30",
+    text: "text-steel-500 dark:text-steel-400",
   },
 };
 
@@ -147,12 +147,12 @@ function StatusBadge({ status }: { status: ApplicabilityStatus }) {
       <span
         className={`w-1.5 h-1.5 rounded-full ${
           status === "yes"
-            ? "bg-teal-500"
+            ? "bg-atlas-500"
             : status === "contested"
-              ? "bg-amber-500"
+              ? "bg-signal-500"
               : status === "no"
-                ? "bg-navy-300 dark:bg-navy-500"
-                : "bg-slate/40 dark:bg-navy-500"
+                ? "bg-steel-400 dark:bg-ink-500"
+                : "bg-steel-500/40 dark:bg-ink-500"
         }`}
       />
       {cfg.label}
@@ -238,27 +238,27 @@ function FlagOverviewGrid({
           <button
             key={flag}
             onClick={() => onSelectFlag(flag)}
-            className={`text-left p-4 rounded-lg border transition-all ${
+            className={`text-left p-4 rounded-xl border transition-all ${
               isSelected
-                ? "border-teal-400 dark:border-teal-500 bg-teal-50/50 dark:bg-teal-900/15 ring-1 ring-teal-400/30 dark:ring-teal-500/20"
-                : "border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20 hover:border-navy-300/40 dark:hover:border-navy-500/40"
+                ? "border-atlas-400 dark:border-atlas-500 bg-atlas-50/50 dark:bg-atlas-900/15 ring-1 ring-atlas-400/30 dark:ring-atlas-500/20"
+                : "border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 hover:border-steel-400/40 dark:hover:border-ink-500/40"
             }`}
           >
             <div className="flex items-start justify-between gap-2 mb-2">
               <h3
                 className={`text-sm font-bold leading-snug ${
                   isSelected
-                    ? "text-teal-700 dark:text-teal-300"
-                    : "text-navy dark:text-offwhite"
+                    ? "text-atlas-700 dark:text-atlas-400"
+                    : "text-ink dark:text-white"
                 }`}
               >
                 {governanceFlagLabels[flag]}
               </h3>
-              <span className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-navy-100/60 dark:bg-navy-600/40 text-xs font-bold text-navy dark:text-navy-100">
+              <span className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-ink-100/60 dark:bg-ink-600/40 text-xs font-bold text-ink dark:text-ink-100">
                 {count}
               </span>
             </div>
-            <p className="text-xs text-slate dark:text-navy-300 leading-relaxed line-clamp-3 mb-3">
+            <p className="text-xs text-steel-500 dark:text-steel-400 leading-relaxed line-clamp-3 mb-3">
               {shortExplanation}
             </p>
             <StatusBadge status={defaultStatus} />
@@ -286,15 +286,15 @@ function FlagDetailPanel({
   );
 
   return (
-    <div className="rounded-lg border-2 border-teal-300/40 dark:border-teal-600/30 bg-white dark:bg-navy-700/20 overflow-hidden">
+    <div className="rounded-xl border-2 border-atlas-400/40 dark:border-atlas-600/30 bg-white dark:bg-ink-700/20 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-5 bg-teal-50/40 dark:bg-teal-900/10 border-b border-teal-200/30 dark:border-teal-700/20">
+      <div className="px-6 py-5 bg-atlas-50/40 dark:bg-atlas-900/10 border-b border-atlas-200/30 dark:border-atlas-700/20">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-xl font-bold text-navy dark:text-offwhite tracking-tight">
+            <h3 className="text-xl font-bold text-ink dark:text-white tracking-tight">
               {governanceFlagLabels[analysis.flag]}
             </h3>
-            <p className="text-sm text-slate dark:text-navy-200 mt-1 leading-relaxed max-w-2xl">
+            <p className="text-sm text-steel-500 dark:text-steel-300 mt-1 leading-relaxed max-w-2xl">
               {analysis.shortExplanation}
             </p>
           </div>
@@ -302,16 +302,16 @@ function FlagDetailPanel({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-navy-200/15 dark:divide-navy-600/20">
+      <div className="grid grid-cols-1 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-steel-200/15 dark:divide-ink-600/20">
         {/* Left: Analysis (3 cols) */}
         <div className="lg:col-span-3 p-6 space-y-6">
           {/* Rule citation */}
           <div>
-            <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+            <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
               Rule Citation
             </p>
-            <div className="p-3.5 rounded-md bg-navy-50/40 dark:bg-navy-800/30 border border-navy-200/15 dark:border-navy-600/20">
-              <p className="text-sm text-navy dark:text-navy-100 leading-relaxed font-serif italic">
+            <div className="p-3.5 rounded-md bg-ink-50/40 dark:bg-ink-800/30 border border-steel-200/15 dark:border-ink-600/20">
+              <p className="text-sm text-ink dark:text-ink-100 leading-relaxed font-serif italic">
                 {analysis.ruleCitation}
               </p>
             </div>
@@ -319,17 +319,17 @@ function FlagDetailPanel({
 
           {/* Political significance */}
           <div>
-            <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+            <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
               Political Significance
             </p>
-            <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+            <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
               {analysis.politicalSignificance}
             </p>
           </div>
 
           {/* Applicability across dataset */}
           <div>
-            <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+            <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
               Status Across Dataset
             </p>
             <div className="flex flex-wrap gap-2">
@@ -342,7 +342,7 @@ function FlagDetailPanel({
                   return (
                     <div key={status} className="flex items-center gap-1.5">
                       <StatusBadge status={status} />
-                      <span className="text-xs text-slate dark:text-navy-400">
+                      <span className="text-xs text-steel-500 dark:text-ink-400">
                         ({count})
                       </span>
                     </div>
@@ -354,14 +354,14 @@ function FlagDetailPanel({
         </div>
 
         {/* Right: Linked cases (2 cols) */}
-        <div className="lg:col-span-2 p-6 bg-navy-50/15 dark:bg-navy-800/15">
+        <div className="lg:col-span-2 p-6 bg-ink-50/15 dark:bg-ink-800/15">
           {/* Triggered cases */}
           <div className="mb-5">
-            <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2.5">
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2.5">
               Flag Triggered ({matchedIncidents.length})
             </p>
             {matchedIncidents.length === 0 ? (
-              <p className="text-xs text-slate dark:text-navy-400 italic">
+              <p className="text-xs text-steel-500 dark:text-ink-400 italic">
                 No incidents in the dataset trigger this flag.
               </p>
             ) : (
@@ -370,10 +370,10 @@ function FlagDetailPanel({
                   <li key={inc.id}>
                     <a
                       href={`/cases/${inc.slug}`}
-                      className="block p-3 rounded-md border border-navy-200/20 dark:border-navy-600/25 bg-white dark:bg-navy-700/30 hover:border-teal-300/50 dark:hover:border-teal-600/40 transition-colors"
+                      className="block p-3 rounded-md border border-steel-200/20 dark:border-ink-600/25 bg-white dark:bg-ink-700/30 hover:border-atlas-400/50 dark:hover:border-atlas-600/40 transition-colors"
                     >
                       <div className="flex items-center justify-between gap-2 mb-1">
-                        <span className="text-sm font-medium text-navy dark:text-offwhite truncate">
+                        <span className="text-sm font-medium text-ink dark:text-white truncate">
                           {inc.shortName}
                         </span>
                         <StatusBadge status="yes" />
@@ -386,7 +386,7 @@ function FlagDetailPanel({
                           {escalationTierLabels[inc.escalation.peakTier]}
                         </Badge>
                       </div>
-                      <p className="text-[11px] text-slate dark:text-navy-300 leading-relaxed">
+                      <p className="text-[11px] text-steel-500 dark:text-steel-400 leading-relaxed">
                         {inc.dateRange} · Unpeace {unpeaceScore(inc) * 10}
                       </p>
                     </a>
@@ -399,7 +399,7 @@ function FlagDetailPanel({
           {/* Contested / related */}
           {relatedIncidents.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2.5">
+              <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2.5">
                 Contested Applicability ({relatedIncidents.length})
               </p>
               <ul className="space-y-1.5">
@@ -407,9 +407,9 @@ function FlagDetailPanel({
                   <li key={inc.id}>
                     <a
                       href={`/cases/${inc.slug}`}
-                      className="flex items-center justify-between gap-2 p-2 rounded-md hover:bg-navy-50/50 dark:hover:bg-navy-700/40 transition-colors"
+                      className="flex items-center justify-between gap-2 p-2 rounded-md hover:bg-ink-50/50 dark:hover:bg-ink-700/40 transition-colors"
                     >
-                      <span className="text-sm text-navy dark:text-navy-100 truncate">
+                      <span className="text-sm text-ink dark:text-ink-100 truncate">
                         {inc.shortName}
                       </span>
                       <StatusBadge status="contested" />
@@ -437,13 +437,13 @@ function GovernanceMatrix({ incidents }: { incidents: Incident[] }) {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="text-left p-2 font-semibold text-navy dark:text-navy-100 border-b border-navy-200/20 dark:border-navy-600/25 min-w-[140px]">
+            <th className="text-left p-2 font-semibold text-ink dark:text-ink-100 border-b border-steel-200/20 dark:border-ink-600/25 min-w-[140px]">
               Incident
             </th>
             {flags.map((f) => (
               <th
                 key={f}
-                className="p-2 font-semibold text-navy dark:text-navy-100 border-b border-navy-200/20 dark:border-navy-600/25 text-center whitespace-nowrap"
+                className="p-2 font-semibold text-ink dark:text-ink-100 border-b border-steel-200/20 dark:border-ink-600/25 text-center whitespace-nowrap"
                 title={governanceFlagLabels[f]}
               >
                 <span className="hidden lg:inline">{governanceFlagLabels[f]}</span>
@@ -456,12 +456,12 @@ function GovernanceMatrix({ incidents }: { incidents: Incident[] }) {
           {incidents.map((inc) => (
             <tr
               key={inc.id}
-              className="border-b border-navy-200/10 dark:border-navy-600/15 hover:bg-navy-50/30 dark:hover:bg-navy-700/20"
+              className="border-b border-steel-200/10 dark:border-ink-600/15 hover:bg-ink-50/30 dark:hover:bg-ink-700/20"
             >
               <td className="p-2">
                 <a
                   href={`/cases/${inc.slug}`}
-                  className="text-navy dark:text-offwhite hover:text-teal-600 dark:hover:text-teal-400 font-medium transition-colors"
+                  className="text-ink dark:text-white hover:text-atlas-600 dark:hover:text-atlas-400 font-medium transition-colors"
                 >
                   {inc.shortName}
                 </a>
@@ -484,10 +484,10 @@ function GovernanceMatrix({ incidents }: { incidents: Incident[] }) {
 
 function MatrixDot({ status }: { status: ApplicabilityStatus }) {
   const colors: Record<ApplicabilityStatus, string> = {
-    yes: "bg-teal-500",
-    contested: "bg-amber-400",
-    no: "bg-navy-200 dark:bg-navy-600",
-    unclear: "bg-navy-100 dark:bg-navy-700",
+    yes: "bg-atlas-500",
+    contested: "bg-signal-400",
+    no: "bg-steel-200 dark:bg-ink-600",
+    unclear: "bg-ink-100 dark:bg-ink-700",
   };
   const labels: Record<ApplicabilityStatus, string> = {
     yes: "Yes",
@@ -550,23 +550,23 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
       {/* Summary statistics                                                */}
       {/* ----------------------------------------------------------------- */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-4 rounded-lg border border-teal-200/30 dark:border-teal-700/25 bg-teal-50/30 dark:bg-teal-900/10">
-          <p className="text-2xl font-bold text-teal-700 dark:text-teal-300">{FLAG_ANALYSES.length}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Governance flags tracked</p>
+        <div className="p-4 rounded-xl border border-atlas-200/30 dark:border-atlas-700/25 bg-atlas-50/30 dark:bg-atlas-900/10">
+          <p className="text-2xl font-bold text-atlas-700 dark:text-atlas-400">{FLAG_ANALYSES.length}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Governance flags tracked</p>
         </div>
-        <div className="p-4 rounded-lg border border-teal-200/30 dark:border-teal-700/25 bg-teal-50/30 dark:bg-teal-900/10">
-          <p className="text-2xl font-bold text-teal-700 dark:text-teal-300">{totalFlagInstances}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Total flag instances</p>
+        <div className="p-4 rounded-xl border border-atlas-200/30 dark:border-atlas-700/25 bg-atlas-50/30 dark:bg-atlas-900/10">
+          <p className="text-2xl font-bold text-atlas-700 dark:text-atlas-400">{totalFlagInstances}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Total flag instances</p>
         </div>
-        <div className="p-4 rounded-lg border border-teal-200/30 dark:border-teal-700/25 bg-teal-50/30 dark:bg-teal-900/10">
-          <p className="text-2xl font-bold text-teal-700 dark:text-teal-300">{avgFlags}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Avg. flags per incident</p>
+        <div className="p-4 rounded-xl border border-atlas-200/30 dark:border-atlas-700/25 bg-atlas-50/30 dark:bg-atlas-900/10">
+          <p className="text-2xl font-bold text-atlas-700 dark:text-atlas-400">{avgFlags}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Avg. flags per incident</p>
         </div>
-        <div className="p-4 rounded-lg border border-teal-200/30 dark:border-teal-700/25 bg-teal-50/30 dark:bg-teal-900/10">
-          <p className="text-2xl font-bold text-teal-700 dark:text-teal-300">
+        <div className="p-4 rounded-xl border border-atlas-200/30 dark:border-atlas-700/25 bg-atlas-50/30 dark:bg-atlas-900/10">
+          <p className="text-2xl font-bold text-atlas-700 dark:text-atlas-400">
             {governanceFlagLabels[mostCommonFlag.flag]}
           </p>
-          <p className="text-xs text-slate dark:text-navy-300">
+          <p className="text-xs text-steel-500 dark:text-steel-400">
             Most frequent flag ({mostCommonFlag.count} cases)
           </p>
         </div>
@@ -576,10 +576,10 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
       {/* Section 1: Flag tag grid                                          */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <h2 className="text-xl font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-1">
           Governance Flags
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-6 max-w-2xl leading-relaxed">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl leading-relaxed">
           The Atlas tracks eight governance dimensions across all documented
           incidents. Each flag indicates whether a specific governance
           mechanism was triggered, contested, or absent. Select a flag to
@@ -609,17 +609,17 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
       {/* Section 3: Cross-flag applicability matrix                        */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <h2 className="text-xl font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-1">
           Applicability Matrix
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-4 max-w-2xl leading-relaxed">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-4 max-w-2xl leading-relaxed">
           How each governance flag applies across all incidents in the dataset.
-          A filled circle indicates direct applicability; amber indicates
+          A filled circle indicates direct applicability; signal indicates
           contested or partial applicability.
         </p>
 
         {/* Legend */}
-        <div className="flex flex-wrap gap-4 mb-4 text-xs text-slate dark:text-navy-300">
+        <div className="flex flex-wrap gap-4 mb-4 text-xs text-steel-500 dark:text-steel-400">
           {(["yes", "contested", "no", "unclear"] as ApplicabilityStatus[]).map((s) => (
             <span key={s} className="flex items-center gap-1.5">
               <MatrixDot status={s} />
@@ -628,7 +628,7 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
           ))}
         </div>
 
-        <div className="rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20 p-4 overflow-hidden">
+        <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 p-4 overflow-hidden">
           <GovernanceMatrix incidents={incidents} />
         </div>
       </section>
@@ -637,11 +637,11 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
       {/* Section 4: Governance framing note                                */}
       {/* ----------------------------------------------------------------- */}
       <section>
-        <div className="p-6 rounded-lg border-l-4 border-teal-500 bg-teal-50/40 dark:bg-teal-900/10">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+        <div className="p-6 rounded-xl border-l-4 border-atlas-500 bg-atlas-50/40 dark:bg-atlas-900/10">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
             Why governance is central
           </p>
-          <p className="text-sm text-navy dark:text-offwhite leading-relaxed">
+          <p className="text-sm text-ink dark:text-white leading-relaxed">
             Cyber operations do not occur in a governance vacuum. Every
             incident in this atlas triggered, tested, or exposed gaps in the
             international rules-based order. The governance lens is not a
@@ -649,7 +649,7 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
             escalation, restraint, and strategic consequence should be
             understood.
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed mt-3">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mt-3">
             The eight flags tracked here correspond to the principal
             mechanisms through which the international community has
             responded to hostile cyber operations: norm invocation, public
@@ -658,7 +658,7 @@ export function GovernanceLens({ incidents }: { incidents: Incident[] }) {
             deterrence signalling. No single mechanism is sufficient; their
             cumulative effect shapes the evolving governance landscape.
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed mt-3">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mt-3">
             Status assessments (applicable, contested, unclear) reflect
             analytical judgement informed by the cited legal frameworks and
             publicly available state practice. They are intended as starting

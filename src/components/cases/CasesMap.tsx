@@ -19,9 +19,9 @@ import {
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const pinColor: Record<string, string> = {
-  teal: "#0D7377",
-  amber: "#D97706",
-  navy: "#485F87",
+  atlas: "#0D7377",
+  signal: "#D97706",
+  ink: "#485F87",
   default: "#7587A5",
 };
 
@@ -37,7 +37,7 @@ export function CasesMap({ incidents }: CasesMapProps) {
   } | null>(null);
 
   return (
-    <div className="relative w-full rounded-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700/50 overflow-hidden">
+    <div className="relative w-full rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03] overflow-hidden">
       <ComposableMap
         projectionConfig={{ rotate: [-10, 0, 0], scale: 147 }}
         width={800}
@@ -53,7 +53,7 @@ export function CasesMap({ incidents }: CasesMapProps) {
                   geography={geo}
                   fill="currentColor"
                   stroke="currentColor"
-                  className="text-navy-100 dark:text-navy-600 stroke-navy-200/40 dark:stroke-navy-500/30"
+                  className="text-ink-100 dark:text-ink-600 stroke-steel-200/40 dark:stroke-ink-500/30"
                   style={{
                     default: { outline: "none" },
                     hover: { outline: "none", opacity: 0.8 },
@@ -104,19 +104,19 @@ export function CasesMap({ incidents }: CasesMapProps) {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="absolute z-10 pointer-events-none px-3 py-2 rounded-md shadow-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700 max-w-xs"
+          className="absolute z-10 pointer-events-none px-3 py-2 rounded-md shadow-lg border border-transparent dark:border-white/[0.04] bg-white dark:bg-ink-700 max-w-xs"
           style={{
             left: Math.min(tooltip.x + 12, 600),
             top: tooltip.y - 8,
           }}
         >
-          <p className="text-sm font-semibold text-navy dark:text-offwhite">
+          <p className="text-sm font-semibold text-ink dark:text-white">
             {tooltip.incident.shortName}
           </p>
-          <p className="text-xs text-slate dark:text-navy-200">
+          <p className="text-xs text-steel-500 dark:text-steel-300">
             {tooltip.incident.dateRange}
           </p>
-          <p className="text-xs text-slate dark:text-navy-300 mt-1">
+          <p className="text-xs text-steel-500 dark:text-steel-400 mt-1">
             {incidentTypeLabels[tooltip.incident.incidentType]} &middot;{" "}
             {escalationTierLabels[tooltip.incident.escalation.peakTier]}
           </p>

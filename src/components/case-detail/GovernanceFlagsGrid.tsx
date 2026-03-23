@@ -31,17 +31,17 @@ interface GovernanceFlagsGridProps {
 }
 
 const activeBg: Record<string, string> = {
-  amber: "bg-amber-50 dark:bg-amber-900/20 border-amber-300/60 dark:border-amber-600/40",
-  teal: "bg-teal-50 dark:bg-teal-900/20 border-teal-300/60 dark:border-teal-600/40",
-  default: "bg-navy-50 dark:bg-navy-700/40 border-navy-200/60 dark:border-navy-500/40",
-  navy: "bg-navy-100 dark:bg-navy-600/40 border-navy-300/60 dark:border-navy-500/40",
+  amber: "bg-signal-50 dark:bg-signal-900/20 border-signal-300/60 dark:border-signal-600/40",
+  teal: "bg-atlas-50 dark:bg-atlas-900/20 border-atlas-300/60 dark:border-atlas-600/40",
+  default: "bg-ink-50 dark:bg-ink-700/40 border-steel-200/60 dark:border-ink-500/40",
+  navy: "bg-ink-100 dark:bg-ink-600/40 border-steel-400/60 dark:border-ink-500/40",
 };
 
 const activeText: Record<string, string> = {
-  amber: "text-amber-700 dark:text-amber-300",
-  teal: "text-teal-700 dark:text-teal-300",
-  default: "text-navy dark:text-navy-100",
-  navy: "text-navy dark:text-navy-100",
+  amber: "text-signal-700 dark:text-signal-300",
+  teal: "text-atlas-700 dark:text-atlas-300",
+  default: "text-ink dark:text-ink-100",
+  navy: "text-ink dark:text-ink-100",
 };
 
 export function GovernanceFlagsGrid({ activeFlags }: GovernanceFlagsGridProps) {
@@ -57,14 +57,14 @@ export function GovernanceFlagsGrid({ activeFlags }: GovernanceFlagsGridProps) {
             className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border transition-opacity ${
               active
                 ? activeBg[variant]
-                : "bg-navy-50/30 dark:bg-navy-800/20 border-navy-200/15 dark:border-navy-700/20 opacity-30"
+                : "bg-ink-50/30 dark:bg-ink-800/20 border-steel-200/15 dark:border-ink-700/20 opacity-30"
             }`}
           >
             <span
               className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold ${
                 active
-                  ? `${activeText[variant]} ${variant === "amber" ? "bg-amber-100 dark:bg-amber-900/40" : variant === "teal" ? "bg-teal-100 dark:bg-teal-900/40" : "bg-navy-100 dark:bg-navy-600/50"}`
-                  : "bg-navy-100/50 dark:bg-navy-700/30 text-navy-300 dark:text-navy-500"
+                  ? `${activeText[variant]} ${variant === "amber" ? "bg-signal-100 dark:bg-signal-900/40" : variant === "teal" ? "bg-atlas-100 dark:bg-atlas-900/40" : "bg-ink-100 dark:bg-ink-600/50"}`
+                  : "bg-ink-100/50 dark:bg-ink-700/30 text-steel-400 dark:text-ink-500"
               }`}
             >
               {flagIcons[flag]}
@@ -73,7 +73,7 @@ export function GovernanceFlagsGrid({ activeFlags }: GovernanceFlagsGridProps) {
               className={`text-[10px] font-medium text-center leading-tight ${
                 active
                   ? activeText[variant]
-                  : "text-navy-300 dark:text-navy-500"
+                  : "text-steel-400 dark:text-ink-500"
               }`}
             >
               {governanceFlagLabels[flag]}

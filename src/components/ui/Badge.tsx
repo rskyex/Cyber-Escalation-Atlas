@@ -1,4 +1,4 @@
-type BadgeVariant = "default" | "teal" | "amber" | "navy";
+type BadgeVariant = "default" | "teal" | "amber" | "navy" | "atlas" | "signal" | "threat";
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -8,17 +8,22 @@ interface BadgeProps {
 
 const variantStyles: Record<BadgeVariant, string> = {
   default:
-    "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100",
-  teal: "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300",
+    "bg-ink-100 dark:bg-white/[0.06] text-steel-600 dark:text-steel-300",
+  atlas: "bg-atlas-50 dark:bg-atlas-900/20 text-atlas-700 dark:text-atlas-400",
+  teal: "bg-atlas-50 dark:bg-atlas-900/20 text-atlas-700 dark:text-atlas-400",
+  signal:
+    "bg-signal-50 dark:bg-signal-800/20 text-signal-700 dark:text-signal-400",
   amber:
-    "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300",
-  navy: "bg-navy-200 dark:bg-navy-600 text-navy dark:text-navy-100",
+    "bg-signal-50 dark:bg-signal-800/20 text-signal-700 dark:text-signal-400",
+  threat:
+    "bg-red-50 dark:bg-threat-600/10 text-threat-600 dark:text-threat-400",
+  navy: "bg-ink-100 dark:bg-white/[0.08] text-ink-600 dark:text-steel-200",
 };
 
 export function Badge({ children, variant = "default", mono }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium ${
+      className={`inline-flex items-center px-2 py-0.5 rounded-md text-micro font-medium ${
         variantStyles[variant]
       } ${mono ? "font-mono" : ""}`}
     >

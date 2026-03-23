@@ -21,8 +21,8 @@ export function Collapsible({
     <div
       className={`rounded-lg border ${
         secondary
-          ? "border-navy-200/20 dark:border-navy-600/30"
-          : "border-navy-200/30 dark:border-navy-600/40"
+          ? "border-steel-200/20 dark:border-ink-600/30"
+          : "border-steel-200/30 dark:border-ink-600/40"
       }`}
     >
       <button
@@ -32,14 +32,14 @@ export function Collapsible({
         <span
           className={`font-semibold ${
             secondary
-              ? "text-sm text-slate dark:text-navy-200"
-              : "text-base text-navy dark:text-offwhite"
+              ? "text-sm text-steel-500 dark:text-steel-200"
+              : "text-base text-ink dark:text-white"
           }`}
         >
           {title}
         </span>
         <svg
-          className={`w-4 h-4 text-slate dark:text-navy-300 transition-transform ${
+          className={`w-4 h-4 text-steel-500 dark:text-steel-300 transition-transform ${
             open ? "rotate-180" : ""
           }`}
           fill="none"
@@ -51,7 +51,7 @@ export function Collapsible({
         </svg>
       </button>
       {open && (
-        <div className="px-5 pb-5 border-t border-navy-200/20 dark:border-navy-600/30 pt-4">
+        <div className="px-5 pb-5 border-t border-steel-200/20 dark:border-ink-600/30 pt-4">
           {children}
         </div>
       )}

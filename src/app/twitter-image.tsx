@@ -18,60 +18,62 @@ export default function TwitterImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#1B2A4A",
+          backgroundColor: "#0A0F1C",
           padding: "72px 80px",
+          position: "relative",
         }}
       >
-        {/* Top accent bar */}
+        {/* Grid overlay */}
         <div
           style={{
-            display: "flex",
-            width: "100%",
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(45,212,168,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(45,212,168,0.04) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
           }}
-        >
+        />
+
+        {/* Top accent bar */}
+        <div style={{ display: "flex", width: "100%" }}>
           <div
             style={{
-              width: 64,
-              height: 4,
-              backgroundColor: "#0D7377",
-              borderRadius: 2,
+              width: 48,
+              height: 2,
+              backgroundColor: "#2DD4A8",
+              borderRadius: 1,
             }}
           />
         </div>
 
         {/* Main content */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div
             style={{
-              fontSize: 56,
+              fontSize: 60,
               fontWeight: 700,
-              color: "#F1F5F9",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
+              color: "#FFFFFF",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              fontFamily: "Georgia, serif",
             }}
           >
             Cyber Escalation Atlas™
           </div>
           <div
             style={{
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: 400,
-              color: "#94A3B8",
-              lineHeight: 1.5,
-              maxWidth: 800,
+              color: "#8493AF",
+              lineHeight: 1.6,
+              maxWidth: 700,
             }}
           >
             Strategic behavior, governance, and infrastructure entanglement
           </div>
         </div>
 
-        {/* Bottom row: attribution + decorative element */}
+        {/* Bottom row */}
         <div
           style={{
             display: "flex",
@@ -82,41 +84,37 @@ export default function TwitterImage() {
         >
           <div
             style={{
-              fontSize: 16,
-              color: "#64748B",
-              letterSpacing: "0.04em",
+              fontSize: 14,
+              color: "#556480",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
             }}
           >
             By Risa Koyanagi
           </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 6,
-            }}
-          >
+          <div style={{ display: "flex", gap: 6 }}>
             <div
               style={{
-                width: 8,
-                height: 8,
-                borderRadius: 4,
-                backgroundColor: "#0D7377",
+                width: 6,
+                height: 6,
+                borderRadius: 3,
+                backgroundColor: "#2DD4A8",
               }}
             />
             <div
               style={{
-                width: 8,
-                height: 8,
-                borderRadius: 4,
-                backgroundColor: "#D97706",
+                width: 6,
+                height: 6,
+                borderRadius: 3,
+                backgroundColor: "#F59E0B",
               }}
             />
             <div
               style={{
-                width: 8,
-                height: 8,
-                borderRadius: 4,
-                backgroundColor: "#475569",
+                width: 6,
+                height: 6,
+                borderRadius: 3,
+                backgroundColor: "#556480",
               }}
             />
           </div>

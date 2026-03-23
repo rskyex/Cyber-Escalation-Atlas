@@ -25,25 +25,25 @@ export function CoerciveSection({ incident }: CoerciveSectionProps) {
   return (
     <section>
       <SectionHeading id="coercive">Coercive Function</SectionHeading>
-      <div className="p-5 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-        <p className="text-sm font-semibold text-navy dark:text-offwhite mb-1">
+      <div className="p-5 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30">
+        <p className="text-sm font-semibold text-ink dark:text-white mb-1">
           {incidentTypeLabels[incident.incidentType]}
         </p>
-        <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+        <p className="text-sm text-steel-500 dark:text-steel-200 leading-relaxed">
           {coerciveDescriptions[incident.incidentType]}
         </p>
         {incident.escalation.thresholdCrossings.length > 0 && (
-          <div className="mt-3 pt-3 border-t border-navy-200/20 dark:border-navy-600/30">
-            <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-1.5">
+          <div className="mt-3 pt-3 border-t border-steel-200/20 dark:border-ink-600/30">
+            <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-1.5">
               Observed coercive effects
             </p>
             <ul className="space-y-1">
               {incident.escalation.thresholdCrossings.map((t, i) => (
                 <li
                   key={i}
-                  className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                  className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                 >
-                  <span className="text-amber-500 shrink-0">&bull;</span>
+                  <span className="text-signal-500 shrink-0">&bull;</span>
                   {t}
                 </li>
               ))}

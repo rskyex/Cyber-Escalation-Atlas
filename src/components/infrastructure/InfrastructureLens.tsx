@@ -248,9 +248,9 @@ const SECTORS: SectorDef[] = [
 // ---------------------------------------------------------------------------
 
 const pronenessColors: Record<SectorDef["escalationProneness"], { bg: string; text: string; label: string }> = {
-  low: { bg: "bg-teal-50 dark:bg-teal-900/30", text: "text-teal-700 dark:text-teal-300", label: "Low" },
-  moderate: { bg: "bg-navy-100 dark:bg-navy-600/40", text: "text-navy dark:text-navy-100", label: "Moderate" },
-  high: { bg: "bg-amber-50 dark:bg-amber-900/25", text: "text-amber-700 dark:text-amber-300", label: "High" },
+  low: { bg: "bg-atlas-50 dark:bg-atlas-900/30", text: "text-atlas-700 dark:text-atlas-400", label: "Low" },
+  moderate: { bg: "bg-ink-100 dark:bg-ink-600/40", text: "text-ink dark:text-ink-100", label: "Moderate" },
+  high: { bg: "bg-signal-50 dark:bg-signal-900/25", text: "text-signal-700 dark:text-signal-300", label: "High" },
   "very-high": { bg: "bg-red-50 dark:bg-red-900/20", text: "text-red-700 dark:text-red-300", label: "Very High" },
 };
 
@@ -304,8 +304,8 @@ function peakTierInSet(incidents: Incident[]): string {
 function StatPill({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="flex items-center justify-between py-1.5">
-      <span className="text-xs text-slate dark:text-navy-300">{label}</span>
-      <span className="text-xs font-semibold text-navy dark:text-offwhite">{value}</span>
+      <span className="text-xs text-steel-500 dark:text-steel-400">{label}</span>
+      <span className="text-xs font-semibold text-ink dark:text-white">{value}</span>
     </div>
   );
 }
@@ -327,31 +327,31 @@ function SectorCard({
   const peak = peakTierInSet(matched);
 
   return (
-    <div className="rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20 overflow-hidden">
+    <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 overflow-hidden">
       {/* Header */}
       <button
         onClick={onToggle}
-        className="w-full text-left px-5 py-4 flex items-start justify-between gap-3 hover:bg-navy-50/30 dark:hover:bg-navy-700/30 transition-colors"
+        className="w-full text-left px-5 py-4 flex items-start justify-between gap-3 hover:bg-ink-50/30 dark:hover:bg-ink-700/30 transition-colors"
       >
         <div className="min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-base font-bold text-navy dark:text-offwhite">
+            <h3 className="text-base font-bold text-ink dark:text-white">
               {sector.label}
             </h3>
             <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider ${proneness.bg} ${proneness.text}`}>
               {proneness.label} escalation risk
             </span>
           </div>
-          <p className="text-sm text-slate dark:text-navy-200 mt-1 leading-relaxed line-clamp-2">
+          <p className="text-sm text-steel-500 dark:text-steel-300 mt-1 leading-relaxed line-clamp-2">
             {sector.strategicImportance}
           </p>
         </div>
         <div className="shrink-0 flex items-center gap-3 pt-1">
-          <span className="text-xs text-navy-300 dark:text-navy-400 font-mono">
+          <span className="text-xs text-steel-400 dark:text-ink-400 font-mono">
             {matched.length} case{matched.length !== 1 ? "s" : ""}
           </span>
           <svg
-            className={`w-4 h-4 text-navy-300 dark:text-navy-500 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+            className={`w-4 h-4 text-steel-400 dark:text-ink-500 transition-transform ${isExpanded ? "rotate-180" : ""}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -364,29 +364,29 @@ function SectorCard({
 
       {/* Expanded content */}
       {isExpanded && (
-        <div className="border-t border-navy-200/15 dark:border-navy-600/25">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:divide-x divide-navy-200/15 dark:divide-navy-600/25">
+        <div className="border-t border-steel-200/15 dark:border-ink-600/25">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:divide-x divide-steel-200/15 dark:divide-ink-600/25">
             {/* Left: Analytical details */}
             <div className="p-5 lg:col-span-2 space-y-5">
               {/* Strategic importance */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
                   Strategic Importance
                 </p>
-                <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
                   {sector.strategicImportance}
                 </p>
               </div>
 
               {/* Dependencies */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
                   Key Dependencies
                 </p>
                 <ul className="space-y-1">
                   {sector.dependencies.map((dep) => (
-                    <li key={dep} className="text-sm text-slate dark:text-navy-200 flex items-start gap-2">
-                      <span className="text-navy-300 dark:text-navy-500 mt-1 shrink-0">·</span>
+                    <li key={dep} className="text-sm text-steel-500 dark:text-steel-300 flex items-start gap-2">
+                      <span className="text-steel-400 dark:text-ink-500 mt-1 shrink-0">·</span>
                       {dep}
                     </li>
                   ))}
@@ -395,13 +395,13 @@ function SectorCard({
 
               {/* Typical cyber effects */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
                   Typical Cyber Effects
                 </p>
                 <ul className="space-y-1">
                   {sector.typicalCyberEffects.map((effect) => (
-                    <li key={effect} className="text-sm text-slate dark:text-navy-200 flex items-start gap-2">
-                      <span className="text-navy-300 dark:text-navy-500 mt-1 shrink-0">·</span>
+                    <li key={effect} className="text-sm text-steel-500 dark:text-steel-300 flex items-start gap-2">
+                      <span className="text-steel-400 dark:text-ink-500 mt-1 shrink-0">·</span>
                       {effect}
                     </li>
                   ))}
@@ -410,23 +410,23 @@ function SectorCard({
 
               {/* Escalation proneness */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
                   Escalation Proneness
                 </p>
-                <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
                   {sector.escalationPronenessReason}
                 </p>
               </div>
 
               {/* Governance vulnerabilities */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-1.5">
                   Governance Vulnerabilities
                 </p>
                 <ul className="space-y-1">
                   {sector.governanceVulnerabilities.map((vuln) => (
-                    <li key={vuln} className="text-sm text-slate dark:text-navy-200 flex items-start gap-2">
-                      <span className="text-amber-400 dark:text-amber-500 mt-1 shrink-0">·</span>
+                    <li key={vuln} className="text-sm text-steel-500 dark:text-steel-300 flex items-start gap-2">
+                      <span className="text-signal-400 dark:text-signal-500 mt-1 shrink-0">·</span>
                       {vuln}
                     </li>
                   ))}
@@ -435,13 +435,13 @@ function SectorCard({
             </div>
 
             {/* Right: Stats + linked cases */}
-            <div className="p-5 space-y-5 bg-navy-50/20 dark:bg-navy-800/20">
+            <div className="p-5 space-y-5 bg-ink-50/20 dark:bg-ink-800/20">
               {/* Quick stats */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
                   Dataset Summary
                 </p>
-                <div className="divide-y divide-navy-200/15 dark:divide-navy-600/20">
+                <div className="divide-y divide-steel-200/15 dark:divide-ink-600/20">
                   <StatPill label="Linked incidents" value={matched.length} />
                   <StatPill label="Avg. entanglement" value={avgEnt > 0 ? `${avgEnt} / 10` : "—"} />
                   <StatPill label="Peak escalation tier" value={peak} />
@@ -451,11 +451,11 @@ function SectorCard({
 
               {/* Linked cases */}
               <div>
-                <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+                <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
                   Relevant Cases
                 </p>
                 {matched.length === 0 ? (
-                  <p className="text-xs text-slate dark:text-navy-400 italic">
+                  <p className="text-xs text-steel-500 dark:text-ink-400 italic">
                     No incidents in the current dataset directly target this sector.
                     Analytical content is derived from the broader threat landscape.
                   </p>
@@ -465,13 +465,13 @@ function SectorCard({
                       <li key={inc.id}>
                         <a
                           href={`/cases/${inc.slug}`}
-                          className="block p-2.5 rounded-md border border-navy-200/20 dark:border-navy-600/25 hover:border-teal-300/50 dark:hover:border-teal-600/40 transition-colors bg-white dark:bg-navy-700/30"
+                          className="block p-2.5 rounded-md border border-steel-200/20 dark:border-ink-600/25 hover:border-atlas-400/50 dark:hover:border-atlas-600/40 transition-colors bg-white dark:bg-ink-700/30"
                         >
                           <div className="flex items-center justify-between gap-2 mb-1">
-                            <span className="text-sm font-medium text-navy dark:text-offwhite truncate">
+                            <span className="text-sm font-medium text-ink dark:text-white truncate">
                               {inc.shortName}
                             </span>
-                            <span className="text-[10px] font-mono text-slate dark:text-navy-400 shrink-0">
+                            <span className="text-[10px] font-mono text-steel-500 dark:text-ink-400 shrink-0">
                               {inc.year}
                             </span>
                           </div>
@@ -483,10 +483,10 @@ function SectorCard({
                               {escalationTierLabels[inc.escalation.peakTier]}
                             </Badge>
                           </div>
-                          <p className="text-[11px] text-slate dark:text-navy-300 leading-relaxed line-clamp-2">
+                          <p className="text-[11px] text-steel-500 dark:text-steel-400 leading-relaxed line-clamp-2">
                             {inc.infrastructure.impactSummary}
                           </p>
-                          <div className="flex items-center gap-3 mt-1.5 text-[10px] text-navy-300 dark:text-navy-500">
+                          <div className="flex items-center gap-3 mt-1.5 text-[10px] text-steel-400 dark:text-ink-500">
                             <span>Unpeace: {unpeaceScore(inc) * 10}</span>
                             <span>Entanglement: {entanglementScore(inc)}/10</span>
                           </div>
@@ -526,30 +526,30 @@ export function InfrastructureLens({ incidents }: { incidents: Incident[] }) {
     <div className="space-y-10">
       {/* Overview stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-3.5 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-white dark:bg-navy-700/20">
-          <p className="text-2xl font-bold text-navy dark:text-offwhite">{SECTORS.length}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Sectors analysed</p>
+        <div className="p-3.5 rounded-xl border border-steel-200/20 dark:border-ink-600/25 bg-white dark:bg-ink-700/20">
+          <p className="text-2xl font-bold text-ink dark:text-white">{SECTORS.length}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Sectors analysed</p>
         </div>
-        <div className="p-3.5 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-white dark:bg-navy-700/20">
-          <p className="text-2xl font-bold text-navy dark:text-offwhite">{incidents.length}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Incidents in dataset</p>
+        <div className="p-3.5 rounded-xl border border-steel-200/20 dark:border-ink-600/25 bg-white dark:bg-ink-700/20">
+          <p className="text-2xl font-bold text-ink dark:text-white">{incidents.length}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Incidents in dataset</p>
         </div>
-        <div className="p-3.5 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-white dark:bg-navy-700/20">
-          <p className="text-2xl font-bold text-amber-600 dark:text-amber-300">{veryHighCount}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Very-high escalation sectors</p>
+        <div className="p-3.5 rounded-xl border border-steel-200/20 dark:border-ink-600/25 bg-white dark:bg-ink-700/20">
+          <p className="text-2xl font-bold text-signal-600 dark:text-signal-300">{veryHighCount}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Very-high escalation sectors</p>
         </div>
-        <div className="p-3.5 rounded-lg border border-navy-200/20 dark:border-navy-600/25 bg-white dark:bg-navy-700/20">
-          <p className="text-2xl font-bold text-teal-600 dark:text-teal-300">{totalLinked}</p>
-          <p className="text-xs text-slate dark:text-navy-300">Sector–case linkages</p>
+        <div className="p-3.5 rounded-xl border border-steel-200/20 dark:border-ink-600/25 bg-white dark:bg-ink-700/20">
+          <p className="text-2xl font-bold text-atlas-600 dark:text-atlas-400">{totalLinked}</p>
+          <p className="text-xs text-steel-500 dark:text-steel-400">Sector–case linkages</p>
         </div>
       </div>
 
       {/* Sector cards */}
       <section>
-        <h2 className="text-lg font-bold text-navy dark:text-offwhite tracking-tight mb-1">
+        <h2 className="text-lg font-bold text-ink dark:text-white tracking-tight mb-1">
           Sector Analysis
         </h2>
-        <p className="text-sm text-slate dark:text-navy-200 mb-6 max-w-2xl leading-relaxed">
+        <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl leading-relaxed">
           Each sector card presents its strategic significance, dependency
           structure, and governance gaps. Linked cases are drawn from the
           existing dataset — sectors without direct matches include
@@ -571,11 +571,11 @@ export function InfrastructureLens({ incidents }: { incidents: Incident[] }) {
 
       {/* Cross-sector note */}
       <section>
-        <div className="p-5 rounded-lg border-l-4 border-teal-500 bg-teal-50/40 dark:bg-teal-900/10">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2">
+        <div className="p-5 rounded-xl border-l-4 border-atlas-500 bg-atlas-50/40 dark:bg-atlas-900/10">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-2">
             On infrastructure interdependence
           </p>
-          <p className="text-sm text-navy dark:text-offwhite leading-relaxed">
+          <p className="text-sm text-ink dark:text-white leading-relaxed">
             Critical infrastructure sectors do not exist in isolation.
             Energy disruption cascades into telecommunications, healthcare,
             and finance. Space system compromise affects navigation, timing,
@@ -583,7 +583,7 @@ export function InfrastructureLens({ incidents }: { incidents: Incident[] }) {
             analysing these interdependencies — an operation targeting one
             sector often produces effects across several.
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed mt-2">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mt-2">
             Governance frameworks remain largely sector-specific, creating
             gaps at the boundaries where cascading effects are most
             dangerous. The entanglement scores shown in each case reflect

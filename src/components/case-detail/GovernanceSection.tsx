@@ -15,10 +15,10 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
       <SectionHeading id="governance">Governance Analysis</SectionHeading>
 
       {/* Prominent governance card with accent border */}
-      <div className="rounded-lg border-2 border-teal-400/60 dark:border-teal-500/40 bg-white dark:bg-navy-700/30 overflow-hidden">
+      <div className="rounded-lg border-2 border-atlas-400/60 dark:border-atlas-500/40 bg-white dark:bg-ink-700/30 overflow-hidden">
         {/* Flags grid header */}
-        <div className="px-5 py-5 bg-teal-50/60 dark:bg-teal-900/15 border-b border-teal-200/40 dark:border-teal-700/30">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-3">
+        <div className="px-5 py-5 bg-atlas-50/60 dark:bg-atlas-900/15 border-b border-atlas-200/40 dark:border-atlas-700/30">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-300 uppercase tracking-wider mb-3">
             Governance Flags
           </p>
           <GovernanceFlagsGrid activeFlags={flags} />
@@ -28,16 +28,16 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
           {/* Norms invoked */}
           {normsInvoked.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
                 Norms invoked
               </p>
               <ul className="space-y-1.5">
                 {normsInvoked.map((n, i) => (
                   <li
                     key={i}
-                    className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                    className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                   >
-                    <span className="text-teal-500 shrink-0">&bull;</span>
+                    <span className="text-atlas-500 shrink-0">&bull;</span>
                     {n}
                   </li>
                 ))}
@@ -48,16 +48,16 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
           {/* Policy responses */}
           {policyResponses.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
                 Policy responses
               </p>
               <ul className="space-y-1.5">
                 {policyResponses.map((r, i) => (
                   <li
                     key={i}
-                    className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                    className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                   >
-                    <span className="text-navy-300 shrink-0">&bull;</span>
+                    <span className="text-steel-400 shrink-0">&bull;</span>
                     {r}
                   </li>
                 ))}
@@ -68,16 +68,16 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
           {/* Regulatory changes */}
           {regulatoryChanges.length > 0 && (
             <div>
-              <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
                 Regulatory changes
               </p>
               <ul className="space-y-1.5">
                 {regulatoryChanges.map((c, i) => (
                   <li
                     key={i}
-                    className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                    className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                   >
-                    <span className="text-navy-300 shrink-0">&bull;</span>
+                    <span className="text-steel-400 shrink-0">&bull;</span>
                     {c}
                   </li>
                 ))}
@@ -86,11 +86,11 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
           )}
 
           {/* Governance impact */}
-          <div className="pt-4 border-t border-navy-200/20 dark:border-navy-600/30">
-            <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+          <div className="pt-4 border-t border-steel-200/20 dark:border-ink-600/30">
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
               Governance impact assessment
             </p>
-            <p className="text-sm text-navy dark:text-offwhite leading-relaxed">
+            <p className="text-sm text-ink dark:text-white leading-relaxed">
               {impact}
             </p>
           </div>

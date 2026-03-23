@@ -14,27 +14,27 @@ export function TeachingSection({ incident }: TeachingSectionProps) {
     <Collapsible title="Teaching Mode">
       <div className="space-y-5">
         {/* Key question */}
-        <div className="p-4 rounded-lg bg-teal-50/50 dark:bg-teal-900/10 border border-teal-200/30 dark:border-teal-700/30">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-1">
+        <div className="p-4 rounded-lg bg-atlas-50/50 dark:bg-atlas-900/10 border border-atlas-200/30 dark:border-atlas-700/30">
+          <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-300 uppercase tracking-wider mb-1">
             Key Question
           </p>
-          <p className="text-base text-navy dark:text-offwhite font-medium">
+          <p className="text-base text-ink dark:text-white font-medium">
             {keyQuestion}
           </p>
         </div>
 
         {/* Discussion points */}
         <div>
-          <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+          <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
             Discussion Points
           </p>
           <ul className="space-y-1.5">
             {discussionPoints.map((d, i) => (
               <li
                 key={i}
-                className="text-sm text-slate dark:text-navy-200 flex gap-2"
+                className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
               >
-                <span className="text-navy-300 shrink-0">
+                <span className="text-steel-400 shrink-0">
                   {i + 1}.
                 </span>
                 {d}
@@ -46,14 +46,14 @@ export function TeachingSection({ incident }: TeachingSectionProps) {
         {/* Further reading */}
         {furtherReading.length > 0 && (
           <div>
-            <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-2">
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
               Further Reading
             </p>
             <ul className="space-y-1">
               {furtherReading.map((r, i) => (
                 <li
                   key={i}
-                  className="text-sm text-slate dark:text-navy-200"
+                  className="text-sm text-steel-500 dark:text-steel-200"
                 >
                   {r}
                 </li>

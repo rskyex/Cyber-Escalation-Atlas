@@ -5,11 +5,11 @@ interface FilterShellProps {
 
 export function FilterShell({ children, filters }: FilterShellProps) {
   return (
-    <div className="flex flex-col lg:flex-row gap-8">
+    <div className="flex flex-col lg:flex-row gap-10">
       {filters && (
-        <aside className="w-full lg:w-64 shrink-0">
-          <div className="sticky top-20 space-y-4 p-4 rounded-lg border border-navy-200/30 dark:border-navy-600/40 bg-white dark:bg-navy-700/50">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate dark:text-navy-300">
+        <aside className="w-full lg:w-60 shrink-0">
+          <div className="sticky top-20 space-y-4 p-5 rounded-xl bg-ink-50/50 dark:bg-white/[0.02] border border-transparent dark:border-white/[0.04]">
+            <h3 className="text-micro font-semibold uppercase tracking-widest text-steel-600 dark:text-steel-500">
               Filters
             </h3>
             {filters}

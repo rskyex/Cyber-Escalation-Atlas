@@ -45,7 +45,7 @@ export default function SourcesPage() {
       <div className="space-y-6">
         {sourceCategories.map((cat) => (
           <Card key={cat.category}>
-            <h3 className="font-semibold text-navy dark:text-offwhite mb-3">
+            <h3 className="font-semibold text-ink dark:text-white mb-3">
               {cat.category}
             </h3>
             <div className="flex flex-wrap gap-2">

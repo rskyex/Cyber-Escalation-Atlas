@@ -15,18 +15,18 @@ export function EntanglementSection({ incident }: EntanglementSectionProps) {
   return (
     <section>
       <SectionHeading id="entanglement">Entanglement Risk</SectionHeading>
-      <div className="p-5 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30 space-y-4">
+      <div className="p-5 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30 space-y-4">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider">
+          <span className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider">
             Entanglement score
           </span>
           <span
             className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold ${
               score >= 7
-                ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+                ? "bg-signal-100 dark:bg-signal-900/40 text-signal-700 dark:text-signal-300"
                 : score >= 4
-                  ? "bg-navy-100 dark:bg-navy-600/50 text-navy dark:text-navy-100"
-                  : "bg-teal-50 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                  ? "bg-ink-100 dark:bg-ink-600/50 text-ink dark:text-ink-100"
+                  : "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-300"
             }`}
           >
             {score}
@@ -34,7 +34,7 @@ export function EntanglementSection({ incident }: EntanglementSectionProps) {
         </div>
 
         <div>
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
             Sectors affected
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -47,7 +47,7 @@ export function EntanglementSection({ incident }: EntanglementSectionProps) {
         </div>
 
         <div>
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
             Countries / regions
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -60,10 +60,10 @@ export function EntanglementSection({ incident }: EntanglementSectionProps) {
         </div>
 
         <div>
-          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-1">
+          <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-1">
             Impact summary
           </p>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <p className="text-sm text-steel-500 dark:text-steel-200 leading-relaxed">
             {impactSummary}
           </p>
         </div>

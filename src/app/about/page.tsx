@@ -9,10 +9,10 @@ export default function AboutPage() {
       />
       <div className="space-y-6 max-w-3xl">
         <Card>
-          <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
+          <h3 className="font-semibold text-ink dark:text-white mb-2">
             Purpose
           </h3>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
             The Atlas serves as an interactive reference for policymakers,
             analysts, educators, and students seeking to understand how cyber
             operations unfold, how they relate to broader geopolitical dynamics,
@@ -21,10 +21,10 @@ export default function AboutPage() {
           </p>
         </Card>
         <Card>
-          <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
+          <h3 className="font-semibold text-ink dark:text-white mb-2">
             Approach
           </h3>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
             Each case is analyzed through three complementary lenses —
             Escalation, Infrastructure, and Governance — that together provide
             a comprehensive picture of how cyber operations create strategic
@@ -36,10 +36,10 @@ export default function AboutPage() {
 
         {/* ── Why This Atlas Exists ── */}
         <section className="pt-4">
-          <h2 className="text-xl font-bold text-navy dark:text-offwhite tracking-tight mb-6">
+          <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-6">
             Why This Atlas Exists
           </h2>
-          <div className="space-y-5 text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <div className="space-y-5 text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
             <p>
               The single most consequential security challenge of the current
               decade is not a particular adversary or a single category of
@@ -59,7 +59,7 @@ export default function AboutPage() {
               governance frameworks were not designed to manage.
             </p>
 
-            <h3 className="text-base font-semibold text-navy dark:text-offwhite pt-2">
+            <h3 className="text-base font-semibold text-ink dark:text-white pt-2">
               The Entanglement Problem
             </h3>
             <p>
@@ -79,7 +79,7 @@ export default function AboutPage() {
               uncertainty is itself destabilising, independent of intent.
             </p>
 
-            <h3 className="text-base font-semibold text-navy dark:text-offwhite pt-2">
+            <h3 className="text-base font-semibold text-ink dark:text-white pt-2">
               A Concrete Illustration
             </h3>
             <p>
@@ -100,7 +100,7 @@ export default function AboutPage() {
               demands has never been wider.
             </p>
 
-            <h3 className="text-base font-semibold text-navy dark:text-offwhite pt-2">
+            <h3 className="text-base font-semibold text-ink dark:text-white pt-2">
               Why This Problem Is Primary
             </h3>
             <p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
               Entanglement risk is a real-time one.
             </p>
 
-            <h3 className="text-base font-semibold text-navy dark:text-offwhite pt-2">
+            <h3 className="text-base font-semibold text-ink dark:text-white pt-2">
               The Governance Task
             </h3>
             <p>
@@ -143,17 +143,17 @@ export default function AboutPage() {
 
         {/* ── Author ── */}
         <Card>
-          <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
+          <h3 className="font-semibold text-ink dark:text-white mb-2">
             Author &amp; Builder
           </h3>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
             The Cyber Escalation Atlas&trade; is designed, researched, and built
             by{" "}
             <a
               href="https://risakoyanagi.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal dark:text-teal-300 hover:text-teal-600 dark:hover:text-teal-200 transition-colors underline underline-offset-2"
+              className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors underline underline-offset-2"
             >
               Risa Koyanagi
             </a>
@@ -165,10 +165,10 @@ export default function AboutPage() {
         </Card>
 
         <Card>
-          <h3 className="font-semibold text-navy dark:text-offwhite mb-2">
+          <h3 className="font-semibold text-ink dark:text-white mb-2">
             Contact
           </h3>
-          <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
             For inquiries about the project, data corrections, or collaboration
             opportunities, please reach out through the project repository or
             via{" "}
@@ -176,7 +176,7 @@ export default function AboutPage() {
               href="https://risakoyanagi.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal dark:text-teal-300 hover:text-teal-600 dark:hover:text-teal-200 transition-colors underline underline-offset-2"
+              className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors underline underline-offset-2"
             >
               risakoyanagi.com
             </a>

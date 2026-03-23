@@ -17,7 +17,7 @@ export function SourcesSection({ incident }: SourcesSectionProps) {
         ))}
       </div>
 
-      <p className="text-xs text-slate dark:text-navy-400 mt-3 italic">
+      <p className="text-xs text-steel-500 dark:text-ink-400 mt-3 italic">
         Sources listed reflect publicly available materials used to construct
         this case entry. Inclusion does not imply endorsement. Where no URL is
         provided, the source may be found via its title and date.
