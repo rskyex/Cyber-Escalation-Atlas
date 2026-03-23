@@ -192,4 +192,389 @@ export const seedIncidents: Incident[] = [
       { title: "Executive Order 14028", category: "government", date: "2021-05-12" },
     ],
   },
+
+  // ---- Incident 3: Stuxnet --------------------------------------------------
+  {
+    id: "stuxnet-2010",
+    slug: "stuxnet",
+    name: "Stuxnet",
+    shortName: "Stuxnet",
+    year: 2010,
+    dateRange: "circa 2007 – 2010",
+    incidentType: "sabotage",
+    summary:
+      "A precision cyber weapon that targeted Siemens SCADA systems controlling uranium-enrichment centrifuges at Iran's Natanz facility. It caused physical destruction of centrifuges while reporting normal telemetry to operators. Widely regarded as the first publicly known cyber operation to cause physical damage to industrial equipment.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Widely attributed to a joint US–Israeli operation",
+      country: "United States / Israel",
+      aliases: ["Olympic Games"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Air-gapped network penetration",
+          description: "Malware introduced via removable media into an air-gapped industrial control network.",
+          date: "2007",
+        },
+        {
+          tier: "degradation",
+          label: "Centrifuge manipulation",
+          description: "Altered PLC code caused centrifuges to spin outside safe parameters while masking anomalies from monitoring systems.",
+          date: "2008",
+        },
+        {
+          tier: "destruction",
+          label: "Physical equipment damage",
+          description: "Approximately 1,000 IR-1 centrifuges destroyed, temporarily setting back Iran's enrichment program.",
+          date: "2009-2010",
+        },
+      ],
+      peakTier: "destruction",
+      restraintFactors: [
+        "Highly targeted — designed to affect only specific Siemens S7-315/417 configurations",
+        "No broader disruption to Iranian civilian infrastructure intended",
+      ],
+      thresholdCrossings: [
+        "First known cyber operation to cause physical destruction of industrial equipment",
+        "Demonstrated that cyber means can achieve strategic effects previously requiring kinetic action",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure"],
+      targetCountries: ["Iran"],
+      techniques: [
+        { id: "T1091", name: "Replication Through Removable Media", tactic: "Initial Access" },
+        { id: "T1068", name: "Exploitation for Privilege Escalation", tactic: "Privilege Escalation" },
+        { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
+        { id: "T0856", name: "Spoof Reporting Message", tactic: "Evasion (ICS)" },
+      ],
+      malwareFamilies: ["Stuxnet"],
+      impactSummary: "~1,000 IR-1 centrifuges destroyed at Natanz; temporary disruption to Iran's uranium enrichment timeline.",
+    },
+    governance: {
+      flags: ["norm-violation", "deterrence-signal"],
+      normsInvoked: [
+        "Sovereignty and non-intervention (UN Charter Art. 2(4) by analogy)",
+        "Debate over whether cyber sabotage constitutes a use of force",
+      ],
+      policyResponses: [
+        "Accelerated international discussion of cyber norms (UN GGE 2013 mandate)",
+        "Iran expanded its own offensive cyber program in the years following",
+      ],
+      regulatoryChanges: [
+        "Increased ICS/SCADA security guidance from NIST and ICS-CERT",
+        "Heightened focus on air-gap integrity in critical infrastructure policy",
+      ],
+      impact: "Opened the global debate on whether cyber operations can constitute acts of force under international law, and catalyzed both defensive and offensive cyber investment worldwide.",
+    },
+    whyThisMatters: "Stuxnet proved that software alone can destroy physical infrastructure, fundamentally changing how states, lawyers, and strategists think about the threshold between cyber operations and armed conflict.",
+    teaching: {
+      keyQuestion: "Does a cyber operation that causes physical destruction cross the use-of-force threshold under international law?",
+      discussionPoints: [
+        "Legitimacy of covert cyber sabotage as a non-kinetic alternative to military strikes",
+        "Proliferation risk: Stuxnet's code became publicly available after discovery",
+        "Precedent-setting effects on other states' cyber doctrines",
+      ],
+      furtherReading: [
+        "Zetter, K. 'Countdown to Zero Day.' Crown, 2014.",
+        "Langner, R. 'To Kill a Centrifuge.' The Langner Group, 2013.",
+      ],
+    },
+    sources: [
+      { title: "Symantec: W32.Stuxnet Dossier", category: "vendor", date: "2011-02" },
+      { title: "Langner, R. 'To Kill a Centrifuge'", category: "academic", date: "2013-11" },
+      { title: "ICS-CERT Advisory ICSA-10-272-01", category: "government", date: "2010-09" },
+    ],
+  },
+
+  // ---- Incident 4: Sony Pictures --------------------------------------------
+  {
+    id: "sony-pictures-2014",
+    slug: "sony-pictures",
+    name: "Sony Pictures Entertainment Hack",
+    shortName: "Sony Pictures",
+    year: 2014,
+    dateRange: "November – December 2014",
+    incidentType: "destructive",
+    summary:
+      "Destructive intrusion into Sony Pictures Entertainment that exfiltrated confidential data and deployed wiper malware, rendering thousands of workstations inoperable. Accompanied by coercive threats linked to the film 'The Interview,' prompting an unprecedented US public attribution to a state actor.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Lazarus Group, attributed by the US government to North Korea's RGB",
+      country: "North Korea",
+      aliases: ["Lazarus Group", "HIDDEN COBRA", "Guardians of Peace"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Network compromise",
+          description: "Attackers gained persistent access to Sony's corporate network and conducted extensive data exfiltration over several weeks.",
+          date: "2014-09",
+        },
+        {
+          tier: "destruction",
+          label: "Wiper deployment and data leak",
+          description: "Destover wiper malware destroyed data on workstations; stolen emails, unreleased films, and employee records published online.",
+          date: "2014-11-24",
+        },
+        {
+          tier: "disruption",
+          label: "Coercive threats",
+          description: "Threats of violence against theaters led Sony to temporarily cancel the theatrical release of 'The Interview.'",
+          date: "2014-12",
+        },
+      ],
+      peakTier: "destruction",
+      restraintFactors: [
+        "Targeted a single corporation, not government or critical infrastructure",
+        "No reported physical harm to individuals",
+      ],
+      thresholdCrossings: [
+        "State-sponsored destructive attack against a private company over expressive content",
+        "First US presidential public attribution of a cyber attack to a specific state",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["media"],
+      targetCountries: ["United States"],
+      techniques: [
+        { id: "T1566.001", name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" },
+        { id: "T1485", name: "Data Destruction", tactic: "Impact" },
+        { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
+        { id: "T1537", name: "Transfer Data to Cloud Account", tactic: "Exfiltration" },
+      ],
+      malwareFamilies: ["Destover", "WhiskeyAlfa"],
+      impactSummary: "Massive data breach and destruction of IT infrastructure at a major studio; temporary suppression of a film release.",
+    },
+    governance: {
+      flags: ["attribution-public", "sanctions-imposed", "indictment"],
+      normsInvoked: [
+        "Freedom of expression and non-interference with media",
+        "Proportionality debate: cyber destruction as retaliation for a film",
+      ],
+      policyResponses: [
+        "FBI public attribution statement (Dec 2014)",
+        "Executive Order 13687 imposing sanctions on North Korean entities (Jan 2015)",
+        "US DOJ indictment of Park Jin Hyok (Sep 2018)",
+      ],
+      regulatoryChanges: [
+        "Elevated private-sector cyber threat awareness for entertainment and media industries",
+      ],
+      impact: "Established the precedent that the US would publicly name state sponsors of cyber attacks against private companies, signaling that corporate targets are within the scope of national security response.",
+    },
+    whyThisMatters: "Sony Pictures showed that a state can weaponize cyber operations to coerce a private company and suppress speech, raising urgent questions about where corporate cybersecurity meets national security.",
+    teaching: {
+      keyQuestion: "When does a cyber attack on a private company become a matter of national security?",
+      discussionPoints: [
+        "State coercion of private-sector speech through cyber means",
+        "Effectiveness and risks of public attribution",
+        "Proportionality of state response to attacks on non-government targets",
+      ],
+      furtherReading: [
+        "Sanger, D.E. & Perlroth, N. 'U.S. Said to Find North Korea Ordered Cyberattack on Sony.' NYT, 2014.",
+        "US DOJ: Criminal Complaint, United States v. Park Jin Hyok, 2018.",
+      ],
+    },
+    sources: [
+      { title: "FBI: Update on Sony Investigation", category: "government", date: "2014-12-19" },
+      { title: "US DOJ: North Korean Regime-Backed Programmer Charged", category: "legal", date: "2018-09-06" },
+      { title: "Novetta: Operation Blockbuster Report", category: "vendor", date: "2016-02" },
+    ],
+  },
+
+  // ---- Incident 5: Ukraine Power Grid I (2015) ------------------------------
+  {
+    id: "ukraine-grid-2015",
+    slug: "ukraine-power-grid-2015",
+    name: "Ukraine Power Grid Attack (2015)",
+    shortName: "Ukraine Grid I",
+    year: 2015,
+    dateRange: "December 2015",
+    incidentType: "sabotage",
+    summary:
+      "Coordinated cyber attack against three Ukrainian regional power distribution companies that caused power outages affecting approximately 230,000 customers. Attackers used spearphishing for initial access, then leveraged stolen credentials to remotely operate SCADA systems and open breakers, followed by destructive actions to delay restoration.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
+      country: "Russia",
+      aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Spearphishing and credential theft",
+          description: "BlackEnergy 3 malware delivered via spearphishing enabled persistent access to corporate networks of three power distributors.",
+          date: "2015-03",
+        },
+        {
+          tier: "disruption",
+          label: "Remote SCADA manipulation",
+          description: "Operators used VPN access and stolen credentials to remotely open circuit breakers at ~30 substations, cutting power to ~230,000 customers.",
+          date: "2015-12-23",
+        },
+        {
+          tier: "degradation",
+          label: "Restoration sabotage",
+          description: "KillDisk wiper deployed on operator workstations; UPS firmware overwritten; call-center telephone lines flooded to hinder response.",
+          date: "2015-12-23",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Outages lasted ~6 hours; manual restoration was possible",
+        "Limited to distribution-level systems, not generation or transmission",
+      ],
+      thresholdCrossings: [
+        "First publicly confirmed cyber attack to cause a power outage",
+        "Demonstrated end-to-end attack chain from IT network to physical grid impact",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure"],
+      targetCountries: ["Ukraine"],
+      techniques: [
+        { id: "T1566.001", name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" },
+        { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
+        { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
+        { id: "T1561", name: "Disk Wipe", tactic: "Impact" },
+      ],
+      malwareFamilies: ["BlackEnergy 3", "KillDisk"],
+      impactSummary: "Power outages for ~230,000 customers across three regions; manual restoration required ~6 hours.",
+    },
+    governance: {
+      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      normsInvoked: [
+        "UN GGE 2015 norm against attacking critical infrastructure",
+        "Tallinn Manual rules on attacks against civilian objects",
+      ],
+      policyResponses: [
+        "DHS ICS-CERT technical assistance and joint analysis with Ukrainian CERT",
+        "Increased NATO cyber cooperation with Ukraine",
+      ],
+      regulatoryChanges: [
+        "Spurred US grid-security reviews (NERC CIP awareness campaigns)",
+        "Informed EU NIS Directive discussions on energy-sector resilience",
+      ],
+      impact: "Provided the first real-world proof that cyber operations can disrupt civilian power infrastructure, materially shaping ICS security standards and NATO cyber policy.",
+    },
+    whyThisMatters: "Ukraine 2015 was the first confirmed cyber-caused power outage, turning a theoretical risk into an operational reality that reshaped how governments defend energy grids.",
+    teaching: {
+      keyQuestion: "How should states protect civilian critical infrastructure from cyber attacks during geopolitical conflict?",
+      discussionPoints: [
+        "Value of manual override capability as a resilience measure",
+        "IT/OT convergence as an attack surface",
+        "Applicability of the UN GGE critical-infrastructure norm",
+      ],
+      furtherReading: [
+        "Lee, R.M. et al. 'Analysis of the Cyber Attack on the Ukrainian Power Grid.' SANS ICS, 2016.",
+        "Greenberg, A. 'Sandworm.' Doubleday, 2019.",
+      ],
+    },
+    sources: [
+      { title: "ICS-CERT Alert IR-ALERT-H-16-056-01", category: "government", date: "2016-02-25" },
+      { title: "SANS ICS: Analysis of the Cyber Attack on the Ukrainian Power Grid", category: "academic", date: "2016-03-18" },
+      { title: "ESET: BlackEnergy by the SSHBearDoor", category: "vendor", date: "2016-01" },
+    ],
+  },
+
+  // ---- Incident 6: Ukraine Power Grid II (2016) -----------------------------
+  {
+    id: "ukraine-grid-2016",
+    slug: "ukraine-power-grid-2016",
+    name: "Ukraine Power Grid Attack (2016 / Industroyer)",
+    shortName: "Ukraine Grid II",
+    year: 2016,
+    dateRange: "December 2016",
+    incidentType: "sabotage",
+    summary:
+      "A more sophisticated follow-up to the 2015 grid attack, this operation used purpose-built ICS malware (Industroyer/CrashOverride) capable of directly speaking industrial protocols to open circuit breakers. It caused a localized outage in Kyiv lasting approximately one hour.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
+      country: "Russia",
+      aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Network pre-positioning",
+          description: "Attackers established persistent access to Ukrenergo's network months before the attack.",
+          date: "2016-01",
+        },
+        {
+          tier: "disruption",
+          label: "Automated protocol-level attack",
+          description: "Industroyer malware issued commands via IEC 101, IEC 104, OPC DA, and IEC 61850 protocols to trip breakers at a Kyiv-area transmission substation.",
+          date: "2016-12-17",
+        },
+        {
+          tier: "degradation",
+          label: "Attempted recovery sabotage",
+          description: "Wiper component targeted Windows workstations; a denial-of-service module aimed at Siemens SIPROTEC relays to hinder manual restoration.",
+          date: "2016-12-17",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Outage lasted ~1 hour; scope limited to one transmission substation",
+        "Relay DoS module did not achieve widespread effect",
+      ],
+      thresholdCrossings: [
+        "First known malware purpose-built to attack electric grid protocols",
+        "Demonstrated automated ICS attack capability without operator interaction",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure"],
+      targetCountries: ["Ukraine"],
+      techniques: [
+        { id: "T0855", name: "Unauthorized Command Message", tactic: "Impact (ICS)" },
+        { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
+        { id: "T1059", name: "Command and Scripting Interpreter", tactic: "Execution" },
+        { id: "T1561", name: "Disk Wipe", tactic: "Impact" },
+      ],
+      malwareFamilies: ["Industroyer", "CrashOverride"],
+      impactSummary: "~1-hour power outage in part of Kyiv via automated ICS malware; limited physical damage.",
+    },
+    governance: {
+      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      normsInvoked: [
+        "UN GGE 2015 norm against attacking critical infrastructure",
+        "Tallinn Manual rules on proportionality and civilian objects",
+      ],
+      policyResponses: [
+        "Joint ESET/Dragos technical disclosure to support global ICS defense",
+        "US DHS and CISA advisories on Industroyer threat",
+        "Deepened NATO–Ukraine cyber defense cooperation",
+      ],
+      regulatoryChanges: [
+        "Accelerated ICS protocol security research globally",
+        "Informed IEC 62351 security standard adoption discussions",
+      ],
+      impact: "Industroyer proved that adversaries are investing in reusable, modular ICS attack frameworks — raising the bar for grid defense and influencing ICS security standards worldwide.",
+    },
+    whyThisMatters: "Industroyer represented a generational leap in ICS malware sophistication — a modular, protocol-aware weapon that signaled the industrialization of grid-targeted cyber capabilities.",
+    teaching: {
+      keyQuestion: "What are the policy implications of reusable, modular cyber weapons designed for industrial control systems?",
+      discussionPoints: [
+        "Escalation trajectory from 2015 (manual SCADA access) to 2016 (automated ICS malware)",
+        "Arms-race dynamics in offensive ICS capability development",
+        "Role of private-sector threat intelligence in public defense",
+      ],
+      furtherReading: [
+        "Dragos: CrashOverride — Analysis of the Threat to Electric Grid Operations, 2017.",
+        "ESET: Industroyer — A New Threat for Industrial Control Systems, 2017.",
+      ],
+    },
+    sources: [
+      { title: "ESET: Industroyer — A New Threat for Industrial Control Systems", category: "vendor", date: "2017-06-12" },
+      { title: "Dragos: CrashOverride Report", category: "vendor", date: "2017-06-12" },
+      { title: "US-CERT Alert TA17-163A", category: "government", date: "2017-06-12" },
+    ],
+  },
 ];
