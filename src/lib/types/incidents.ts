@@ -132,6 +132,7 @@ export interface Incident {
   escalation: EscalationProfile;
   infrastructure: InfrastructureProfile;
   governance: GovernanceProfile;
+  whyThisMatters: string;
   teaching: TeachingBlock;
   sources: SourceRef[];
 }

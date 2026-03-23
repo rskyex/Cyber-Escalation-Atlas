@@ -77,6 +77,7 @@ export const seedIncidents: Incident[] = [
       ],
       impact: "Established precedent for multilateral public attribution of destructive cyber operations and highlighted supply chain risk as a policy priority.",
     },
+    whyThisMatters: "NotPetya demonstrated that a cyber weapon aimed at one country can inflict billions in collateral damage worldwide, making it a landmark case for debating proportionality, state responsibility, and the limits of deniability in cyber conflict.",
     teaching: {
       keyQuestion: "When does a cyber operation targeting one country become a matter of international concern?",
       discussionPoints: [
@@ -172,6 +173,7 @@ export const seedIncidents: Incident[] = [
       ],
       impact: "Catalyzed the most significant US cybersecurity policy overhaul in a decade, establishing zero-trust mandates and supply chain security requirements across the federal government.",
     },
+    whyThisMatters: "SolarWinds exposed systemic supply chain risk in government IT and triggered the most sweeping US cybersecurity executive order in a decade, reshaping federal procurement and zero-trust policy.",
     teaching: {
       keyQuestion: "Is large-scale cyber espionage an accepted norm of state behavior, or does its scale change its character?",
       discussionPoints: [
