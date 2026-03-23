@@ -32,21 +32,28 @@ function Section({
   );
 }
 
-function FrameworkCard({
+function FrameworkSection({
+  id,
   name,
-  placeholder,
+  citation,
+  children,
 }: {
+  id: string;
   name: string;
-  placeholder: string;
+  citation: string;
+  children: React.ReactNode;
 }) {
   return (
-    <div className="p-4 rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20">
-      <h4 className="text-sm font-bold text-navy dark:text-offwhite mb-1">
+    <div id={id} className="scroll-mt-24 p-5 rounded-lg border border-navy-200/25 dark:border-navy-600/35 bg-white dark:bg-navy-700/20">
+      <h4 className="text-base font-bold text-navy dark:text-offwhite mb-1">
         {name}
       </h4>
-      <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
-        {placeholder}
+      <p className="text-xs font-mono text-slate dark:text-navy-400 mb-3">
+        {citation}
       </p>
+      <div className="space-y-2.5 text-sm text-slate dark:text-navy-200 leading-relaxed">
+        {children}
+      </div>
     </div>
   );
 }
@@ -267,35 +274,257 @@ export default function MethodologyPage() {
             The Atlas draws on several bodies of scholarship to structure its
             analysis. These frameworks inform how incidents are categorised,
             compared, and interpreted — but none of them fully settles the
-            analytical questions at stake. The following sections will expand
-            on each.
+            analytical questions at stake. Where a framework is useful, we say
+            so; where contestation remains, we note that too.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-            <FrameworkCard
-              name="Kello — The Virtual Weapon"
-              placeholder="On the strategic logic of cyber operations and why they resist traditional escalation models. Forthcoming section."
-            />
-            <FrameworkCard
+          <div className="space-y-5 mt-5">
+            {/* Kello */}
+            <FrameworkSection
+              id="fw-kello"
+              name="Kello — The Virtual Weapon and International Order"
+              citation="Kello, L. The Virtual Weapon and International Order. Yale University Press, 2017."
+            >
+              <p>
+                Lucas Kello argues that cyber operations occupy an analytically
+                distinct space between peace and war — what he terms
+                &ldquo;unpeace.&rdquo; In this framing, states can impose
+                significant strategic costs on one another through cyber means
+                without crossing the threshold of armed conflict as
+                traditionally understood. The concept is useful because it
+                names a condition that existing international law and
+                strategic theory struggle to categorise: sustained,
+                consequential hostility that falls below the use-of-force
+                threshold.
+              </p>
+              <p>
+                The Atlas adopts the &ldquo;unpeace&rdquo; concept as the
+                basis for its 0–100 scoring axis. This is a deliberate
+                analytical choice, not an endorsement of every claim in
+                Kello&apos;s argument. His work has been criticised for
+                understating the degree to which existing legal frameworks can
+                accommodate cyber operations, and for overstating the novelty
+                of the strategic problems they pose. The unpeace framing is
+                most helpful as a teaching tool for discussing the grey zone;
+                it is less useful as a predictive model.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: Whether &ldquo;unpeace&rdquo; constitutes a
+                genuinely new strategic condition or a relabelling of
+                familiar coercive competition remains debated. See Rid (2013)
+                for a sceptical view.
+              </p>
+            </FrameworkSection>
+
+            {/* Rid & Buchanan */}
+            <FrameworkSection
+              id="fw-rid-buchanan"
               name="Rid & Buchanan — Attributing Cyber Attacks"
-              placeholder="On the epistemology of attribution and the layers of evidence required. Forthcoming section."
-            />
-            <FrameworkCard
+              citation="Rid, T. & Buchanan, B. 'Attributing Cyber Attacks.' Journal of Strategic Studies, 38(1–2), 2015, pp. 4–37."
+            >
+              <p>
+                Thomas Rid and Ben Buchanan propose a layered model of
+                attribution that distinguishes technical attribution (linking
+                an operation to infrastructure and tools), operational
+                attribution (linking it to an organisation or unit), and
+                political attribution (a government&apos;s public decision to
+                name a responsible state). This layered approach helps explain
+                why attribution is simultaneously more feasible than early
+                sceptics claimed and more politically fraught than technical
+                analysts sometimes acknowledge.
+              </p>
+              <p>
+                The Atlas uses this framework to structure its attribution
+                confidence scale. &ldquo;Confirmed&rdquo; attribution
+                typically means all three layers are supported by public
+                evidence. &ldquo;Contested&rdquo; often reflects disagreement
+                at the political layer — the technical evidence may point in
+                one direction while governments dispute responsibility or
+                decline to attribute formally.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: The Rid–Buchanan model treats attribution as
+                progressively resolvable given enough evidence. Critics note
+                that sophisticated adversaries can deliberately pollute each
+                layer (false flags, shared tooling, borrowed infrastructure),
+                making confident attribution a matter of analytic judgement
+                rather than forensic proof.
+              </p>
+            </FrameworkSection>
+
+            {/* Schelling */}
+            <FrameworkSection
+              id="fw-schelling"
               name="Schelling — Arms and Influence"
-              placeholder="On compellence, deterrence, and the signalling logic that underpins coercive cyber operations. Forthcoming section."
-            />
-            <FrameworkCard
-              name="Tallinn Manual 2.0"
-              placeholder="On the application of international law to cyber operations — sovereignty, due diligence, and use of force. Forthcoming section."
-            />
-            <FrameworkCard
+              citation="Schelling, T.C. Arms and Influence. Yale University Press, 1966."
+            >
+              <p>
+                Thomas Schelling&apos;s distinction between compellence
+                (using force to change an adversary&apos;s behaviour) and
+                deterrence (threatening force to prevent it) provides the
+                analytical backbone for the Atlas&apos;s escalation lens.
+                Schelling&apos;s insight that coercive power depends on
+                credible communication of capability and resolve — not on
+                the force itself — translates directly to cyber operations,
+                where the relationship between capability, demonstration,
+                and restraint is central.
+              </p>
+              <p>
+                The Atlas applies this framework in the compellence-versus-deterrence
+                split view, classifying operations by their primary
+                coercive function. Destructive operations that impose costs
+                lean toward compellence; espionage campaigns that
+                demonstrate access without exercising it lean toward
+                deterrence. This is a heuristic, not a binary: many
+                operations serve both functions simultaneously, and the
+                classification reflects the dominant observable logic rather
+                than verified intent.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: Schelling developed his framework for nuclear
+                strategy, where capabilities are demonstrable and costs are
+                existential. Cyber operations differ on both counts — capabilities
+                are consumed on use, and costs are often ambiguous. Whether
+                Schelling&apos;s escalation logic transfers cleanly to cyberspace
+                is one of the central open questions in the field.
+              </p>
+            </FrameworkSection>
+
+            {/* Tallinn Manual 2.0 */}
+            <FrameworkSection
+              id="fw-tallinn"
+              name="Tallinn Manual 2.0 on the International Law Applicable to Cyber Operations"
+              citation="Schmitt, M.N. (ed.). Tallinn Manual 2.0 on the International Law Applicable to Cyber Operations. Cambridge University Press, 2017."
+            >
+              <p>
+                The Tallinn Manual 2.0, produced by an international group
+                of legal experts convened by the NATO Cooperative Cyber
+                Defence Centre of Excellence, represents the most
+                comprehensive attempt to map existing international law onto
+                cyber operations. Its 154 rules cover sovereignty, due
+                diligence, jurisdiction, the law of armed conflict, and state
+                responsibility. The Atlas references specific Tallinn rules
+                in its governance flag citations — particularly Rule 4
+                (sovereignty), Rule 6 (due diligence), Rule 20
+                (countermeasures), and Rule 32 (intervention).
+              </p>
+              <p>
+                The Manual is useful because it provides a shared vocabulary
+                for debating the legality of cyber operations. It is not,
+                however, binding international law. It reflects the views of
+                its expert group, and several of its positions are contested
+                by states — most notably on whether sovereignty constitutes
+                a primary rule of international law that can be independently
+                violated by cyber operations, or merely a principle that
+                underlies other rules. China, Russia, and several other
+                states have declined to endorse the Manual&apos;s framework.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: The Manual&apos;s state-centric, Western-legal
+                framework has been criticised for marginalising alternative
+                governance traditions and for assuming that existing
+                international humanitarian law applies to cyber operations
+                without adaptation. The sovereignty question remains
+                genuinely unresolved in state practice.
+              </p>
+            </FrameworkSection>
+
+            {/* Valeriano & Maness */}
+            <FrameworkSection
+              id="fw-valeriano-maness"
               name="Valeriano & Maness — Cyber War versus Cyber Realities"
-              placeholder="On the empirical restraint observed in interstate cyber conflict and the gap between rhetoric and behaviour. Forthcoming section."
-            />
-            <FrameworkCard
-              name="Acton — Cyber Escalation Dynamics"
-              placeholder="On entanglement, inadvertent escalation, and the nuclear-cyber nexus. Forthcoming section."
-            />
+              citation="Valeriano, B. & Maness, R.C. Cyber War versus Cyber Realities: Cyber Conflict in the International System. Oxford University Press, 2015."
+            >
+              <p>
+                Brandon Valeriano and Ryan Maness provide the most
+                systematic empirical challenge to the &ldquo;cyber
+                doom&rdquo; narrative. Drawing on a dataset of interstate
+                cyber incidents, they demonstrate that states overwhelmingly
+                exercise restraint in cyberspace — most operations remain at
+                low severity, escalation to destructive effects is rare, and
+                cyber operations have not triggered kinetic military
+                responses. Their concept of &ldquo;cyber restraint&rdquo;
+                informs the Atlas&apos;s treatment of restraint factors as
+                analytically important data, not merely the absence of
+                escalation.
+              </p>
+              <p>
+                The Atlas incorporates this perspective by tracking restraint
+                factors alongside threshold crossings in every case. The
+                escalation ladder is not a conveyor belt — most incidents
+                cluster at the lower tiers, and understanding why states
+                choose not to escalate is as important as understanding when
+                they do.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: Critics argue that Valeriano and Maness
+                undercount significant operations by using a narrow
+                definition of &ldquo;cyber conflict&rdquo; and that their
+                dataset ends before several of the most consequential
+                incidents in the Atlas (NotPetya, SolarWinds, Viasat). The
+                restraint thesis may also reflect the period studied rather
+                than an enduring strategic pattern.
+              </p>
+            </FrameworkSection>
+
+            {/* Acton */}
+            <FrameworkSection
+              id="fw-acton"
+              name="Acton — Cyber Weapons and Nuclear Stability"
+              citation="Acton, J.M. 'Cyber Weapons and Precision-Guided Munitions.' In Cross-Domain Deterrence, ed. Lindsay & Gartzke. Oxford University Press, 2019. See also: 'Escalation through Entanglement.' International Security, 43(1), 2018, pp. 56–99."
+            >
+              <p>
+                James Acton introduces the concept of &ldquo;entanglement&rdquo;
+                to describe how cyber capabilities create inadvertent
+                escalation pathways — particularly between conventional and
+                nuclear domains. When cyber intrusions target dual-use
+                systems (satellite communications used by both conventional
+                forces and nuclear command-and-control, for instance), the
+                defender cannot easily distinguish between espionage,
+                conventional preparation, and a strategic first-strike
+                enabler. This ambiguity can compress decision timelines and
+                increase the risk of miscalculated escalation.
+              </p>
+              <p>
+                The Atlas draws on this framework for its entanglement score,
+                which measures how many sectors, countries, and collateral
+                dimensions an incident touches. Operations that span multiple
+                sectors or affect dual-use infrastructure score higher,
+                reflecting the greater risk of unintended escalation
+                dynamics. The space and nuclear sector cards in the
+                infrastructure lens are directly informed by Acton&apos;s
+                analysis of the cyber-nuclear nexus.
+              </p>
+              <p className="text-xs text-navy-400 dark:text-navy-500 italic">
+                Contestation: The entanglement thesis rests on assumptions
+                about decision-making under uncertainty that are difficult
+                to test empirically. Critics note that nuclear-armed states
+                have strong institutional incentives to avoid miscalculation,
+                and that the entanglement risk may be overstated relative to
+                the stabilising effects of mutual vulnerability. The debate
+                is ongoing and unresolved.
+              </p>
+            </FrameworkSection>
+          </div>
+
+          {/* Synthesis note */}
+          <div className="mt-6 p-4 rounded-lg border border-navy-200/15 dark:border-navy-600/20 bg-navy-50/20 dark:bg-navy-800/15">
+            <p className="text-xs font-semibold text-navy dark:text-navy-100 uppercase tracking-wider mb-1.5">
+              On using these frameworks together
+            </p>
+            <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+              These six bodies of work do not form a unified theory. They
+              address different questions (What is the strategic logic? How
+              do we know who did it? What does the law say? Do states actually
+              escalate? Where are the inadvertent risks?) and sometimes
+              reach incompatible conclusions. The Atlas uses them as
+              complementary lenses, not as a single coherent model. Where
+              they disagree — on whether cyber operations are genuinely
+              novel, on whether existing law is adequate, on whether
+              restraint is durable — the Atlas presents the disagreement
+              rather than resolving it. Analytical honesty requires
+              acknowledging that the field has not settled these questions.
+            </p>
           </div>
         </Section>
       </div>
