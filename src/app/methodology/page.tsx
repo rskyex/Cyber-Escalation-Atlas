@@ -71,7 +71,8 @@ const TOC = [
   { id: "limitations", number: "06", title: "Limitations" },
   { id: "attribution", number: "07", title: "Analytic Caution on Attribution" },
   { id: "behavior-vs-law", number: "08", title: "Operational Behaviour vs. Legal Interpretation" },
-  { id: "foundations", number: "09", title: "Theoretical Foundations" },
+  { id: "strategic-behaviours", number: "09", title: "Strategic Behaviours, Not Spectacles" },
+  { id: "foundations", number: "10", title: "Theoretical Foundations" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -120,10 +121,22 @@ export default function MethodologyPage() {
             intelligence.
           </p>
           <p>
-            The platform interprets incidents as strategic behaviours — actions
-            taken by states and state-affiliated actors within a political
-            context — rather than as isolated technical events or spectacles of
-            disruption.
+            Three commitments shape the platform. First, cyber operations are
+            treated as political acts embedded in interstate relationships, not
+            as standalone technical incidents. Second, governance is not a
+            secondary layer added after technical analysis — it is the central
+            frame through which escalation and restraint should be understood.
+            Third, analytical uncertainty is stated openly rather than hidden
+            behind false precision.
+          </p>
+          <p>
+            The Atlas does not aim to provide real-time situational awareness
+            or to serve as a threat dashboard. Its value lies in structured
+            comparison across cases, not in speed of reporting. Users looking
+            for breaking-news coverage of cyber incidents should consult
+            dedicated threat intelligence services; users seeking to understand
+            how those incidents fit into broader patterns of escalation,
+            restraint, and governance response will find the Atlas more useful.
           </p>
         </Section>
 
@@ -135,12 +148,33 @@ export default function MethodologyPage() {
             triggered governance responses, tested international norms, or
             produced effects beyond the immediate target. Purely criminal
             activity without state nexus is excluded unless it provoked a
-            state-level response.
+            state-level response (as in the case of ransomware operations
+            that prompted executive-level policy changes or international
+            summitry).
           </p>
           <p>
             Geographic and temporal scope is determined by data availability
             and analytical value, not by an attempt to be exhaustive. The
-            dataset is selective by design.
+            dataset is selective by design. It does not aspire to catalogue
+            every reported cyber incident — such an effort would sacrifice
+            analytical depth for breadth and would rapidly become a list
+            rather than a tool for structured comparison.
+          </p>
+          <p>
+            The current dataset spans operations from 2010 to the present,
+            across multiple geographic regions and actor types. Coverage is
+            stronger for operations involving NATO-aligned states, reflecting
+            the availability of English-language open sources. This is an
+            acknowledged bias, not a deliberate editorial choice. Operations
+            involving non-Western actors are included where public
+            documentation is sufficient for structured analysis.
+          </p>
+          <p>
+            The platform analyses cyber operations through three lenses —
+            escalation, infrastructure, and governance — each with its own
+            methodology documented in subsequent sections. Not every incident
+            is equally well-documented across all three; the Atlas notes where
+            evidence is thinner rather than filling gaps with speculation.
           </p>
         </Section>
 
@@ -160,7 +194,25 @@ export default function MethodologyPage() {
           <p>
             These criteria are applied with analytical judgement, not
             mechanically. Borderline cases are included when they offer
-            distinctive teaching value.
+            distinctive teaching value — for example, an operation with
+            moderate technical impact but unusual governance consequences
+            may be more instructive than a technically sophisticated
+            operation that provoked no policy response.
+          </p>
+          <p>
+            Cases are excluded when documentation is insufficient for
+            structured analysis across multiple lenses, when attribution
+            remains too uncertain to support meaningful comparison, or when
+            the operation does not rise to the level of strategic
+            significance defined above. Exclusion is not a judgement that the
+            operation was unimportant — it reflects the practical limits of
+            open-source analysis.
+          </p>
+          <p>
+            The three-of-five threshold is a guideline, not a rule. The
+            purpose of the criteria is to ensure that every included case can
+            be meaningfully analysed and compared, not to create a mechanical
+            filter that might exclude important edge cases.
           </p>
         </Section>
 
@@ -168,81 +220,232 @@ export default function MethodologyPage() {
         <Section id="sources" number="04" title="Source Hierarchy">
           <p>
             Sources are weighted by category. The hierarchy reflects
-            reliability and proximity to evidence, not a claim that any single
-            category is sufficient:
+            proximity to primary evidence and institutional accountability,
+            not a claim that any single category is sufficient or free from
+            bias:
           </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li><strong>Government advisories and legal documents</strong> — CISA alerts, DOJ indictments, court filings, official attribution statements</li>
-            <li><strong>Vendor and technical reports</strong> — threat intelligence publications from established cybersecurity firms with direct forensic access</li>
-            <li><strong>Academic and policy analysis</strong> — peer-reviewed research, policy institute publications, structured case analyses</li>
-            <li><strong>Investigative journalism</strong> — long-form reporting from outlets with established track records in cyber and national security</li>
+          <ol className="list-decimal pl-5 space-y-1.5">
+            <li>
+              <strong>Government advisories and legal documents</strong> —
+              CISA alerts, DOJ indictments, court filings, official
+              attribution statements, UN reports. These carry institutional
+              weight and legal accountability, but they also reflect policy
+              priorities. Governments may attribute selectively, and
+              advisory quality varies across jurisdictions.
+            </li>
+            <li>
+              <strong>Vendor and technical reports</strong> — threat
+              intelligence publications from established cybersecurity firms
+              with direct forensic access to affected systems. These are
+              typically the strongest source for technical detail (IOCs,
+              malware analysis, lateral movement chains), but vendors have
+              commercial incentives that can shape which incidents receive
+              public reporting and how findings are framed.
+            </li>
+            <li>
+              <strong>Academic and policy analysis</strong> — peer-reviewed
+              research, policy institute publications, structured case
+              studies. These provide the most careful analytical framing but
+              are often published with significant delay and may lack access
+              to primary technical data.
+            </li>
+            <li>
+              <strong>Investigative journalism</strong> — long-form
+              reporting from outlets with established track records in cyber
+              and national security. Journalism fills gaps that other
+              categories miss — particularly on the political context of
+              operations — but varies widely in rigour and sourcing
+              transparency.
+            </li>
           </ol>
           <p>
             No single source is treated as definitive. Assessments are built
-            from corroboration across categories.
+            from corroboration across categories. Where only one category of
+            source is available, the Atlas notes this limitation explicitly.
+          </p>
+          <p>
+            The hierarchy is not a ranking of truth. A well-sourced
+            journalistic investigation may be more informative than a
+            thinly-reasoned government advisory. The weighting reflects
+            default reliability in the absence of case-specific reasons to
+            adjust.
           </p>
         </Section>
 
         {/* 05 — Classification logic */}
         <Section id="classification" number="05" title="Classification Logic">
           <p>
-            Incidents are classified along several dimensions: incident type,
-            escalation tier, attribution confidence, target sectors, governance
-            flags, and derived scores (unpeace, entanglement). Each dimension
-            uses a controlled vocabulary defined in the type system.
+            Incidents are classified along several dimensions, each using a
+            controlled vocabulary:
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5">
+            <li>
+              <strong>Incident type</strong> (espionage, destructive,
+              ransomware, influence, sabotage, hybrid) — describes the
+              primary operational character. Some operations span multiple
+              types; the label reflects the dominant observed function.
+            </li>
+            <li>
+              <strong>Escalation tier</strong> (probing, intrusion,
+              disruption, degradation, destruction, strategic impact) —
+              describes peak observed severity. These tiers represent
+              qualitative shifts in effect, not a linear progression.
+              An operation classified as &ldquo;disruption&rdquo; is not
+              necessarily a precursor to &ldquo;destruction&rdquo; — most
+              operations do not escalate beyond their initial tier.
+            </li>
+            <li>
+              <strong>Attribution confidence</strong> (confirmed, high,
+              moderate, low, contested) — reflects the weight of publicly
+              available evidence, structured by the Rid–Buchanan layered
+              model. See section 07 for caveats.
+            </li>
+            <li>
+              <strong>Target sectors and countries</strong> — drawn from a
+              fixed taxonomy. An incident may target multiple sectors; all
+              are recorded.
+            </li>
+            <li>
+              <strong>Governance flags</strong> — eight binary indicators
+              recording whether specific governance mechanisms were
+              triggered (norm violation, public attribution, sanctions,
+              indictment, UN discussion, regulatory change, international
+              cooperation, deterrence signal). Flags indicate that a
+              mechanism was invoked, not that it was effective or
+              appropriate.
+            </li>
+          </ul>
+          <p>
+            Two derived scores provide additional comparative dimensions.
+            The <strong>unpeace score</strong> (0–100) combines escalation
+            tier, threshold crossings, and governance weight into a single
+            composite indicator. The <strong>entanglement score</strong>
+            (1–10) measures how many sectors, countries, and collateral
+            dimensions an incident touches. Both are heuristics designed for
+            comparison and teaching. They are not measurements, and they
+            should not be cited as if they carried the precision of
+            quantitative data. Their formulas are documented in the
+            codebase and can be inspected directly.
           </p>
           <p>
-            The six-tier escalation ladder (probing, intrusion, disruption,
-            degradation, destruction, strategic impact) describes qualitative
-            shifts in severity, not a linear progression. Assignment to a tier
-            reflects peak observed effect, not intent.
-          </p>
-          <p>
-            Derived scores (unpeace 0–100, entanglement 1–10) are composite
-            heuristics, not measurements. They are designed to support
-            comparison and teaching, not to substitute for case-level analysis.
+            Classification decisions involve analytical judgement.
+            Reasonable analysts may assign different tiers or types to the
+            same operation. The Atlas aims for consistency and transparency
+            in its choices, not for claims of definitive correctness.
           </p>
         </Section>
 
         {/* 06 — Limitations */}
         <Section id="limitations" number="06" title="Limitations">
           <p>
-            This platform has significant limitations that users should bear in
-            mind:
+            This platform has significant limitations that users should
+            understand before drawing conclusions from its content:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>The dataset is selective, not comprehensive. Important incidents may be absent due to data availability or scope constraints.</li>
-            <li>All information is derived from open sources. Classified or non-public evidence is not available to this analysis.</li>
-            <li>Attribution assessments reflect the weight of publicly available evidence. They are not intelligence judgements and carry inherent uncertainty.</li>
-            <li>Escalation tiers and derived scores involve analytical judgement. Reasonable analysts may disagree on classification.</li>
-            <li>Governance flag assessments indicate whether a mechanism was triggered, not whether it was effective or appropriate.</li>
-            <li>The platform does not model intent. Observed effects and documented responses are the basis for analysis.</li>
+          <ul className="list-disc pl-5 space-y-1.5">
+            <li>
+              <strong>Selective dataset.</strong> The Atlas is not a census
+              of cyber incidents. Important operations may be absent because
+              they are poorly documented in open sources, fall outside the
+              scope criteria, or occurred in contexts where English-language
+              reporting is sparse.
+            </li>
+            <li>
+              <strong>Open-source constraint.</strong> All information is
+              derived from publicly available material. Classified
+              intelligence, private-sector incident data shared under NDA,
+              and diplomatic communications are not accessible to this
+              analysis. The picture is necessarily incomplete.
+            </li>
+            <li>
+              <strong>Attribution uncertainty.</strong> Attribution
+              assessments reflect the balance of publicly available
+              evidence. They are not intelligence community judgements and
+              carry inherent uncertainty. Even &ldquo;confirmed&rdquo;
+              attributions rest on evidence that could, in principle, be
+              incomplete or misleading.
+            </li>
+            <li>
+              <strong>Classification subjectivity.</strong> Escalation
+              tiers, incident types, and derived scores involve analytical
+              judgement. Two competent analysts given the same evidence
+              might reasonably assign different classifications. The Atlas
+              aims for transparency in its reasoning, not for claims of
+              objectivity.
+            </li>
+            <li>
+              <strong>Governance flags are descriptive, not evaluative.</strong>{" "}
+              A flag indicates that a governance mechanism was triggered —
+              not that it was appropriate, proportionate, or effective. The
+              presence of a &ldquo;sanctions imposed&rdquo; flag does not
+              imply that sanctions were warranted or successful.
+            </li>
+            <li>
+              <strong>No intent modelling.</strong> The platform analyses
+              observed effects and documented responses. It does not claim
+              to know what states intended, only what they did and how the
+              international community reacted.
+            </li>
+            <li>
+              <strong>Temporal decay.</strong> Open-source information about
+              older incidents is often thinner and less reliable than for
+              recent ones. The quality of analysis varies across the
+              dataset as a consequence.
+            </li>
           </ul>
           <p>
-            These limitations are features of the problem, not deficiencies
-            of the platform. Cyber conflict analysis operates under
-            irreducible uncertainty.
+            These limitations are features of the problem domain, not
+            deficiencies unique to this platform. Any open-source analysis
+            of cyber conflict operates under irreducible uncertainty. The
+            appropriate response is to state that uncertainty clearly — as
+            this page attempts to do — rather than to project false
+            confidence.
           </p>
         </Section>
 
         {/* 07 — Attribution caution */}
         <Section id="attribution" number="07" title="Analytic Caution on Attribution">
           <p>
-            Attribution of cyber operations to state actors is one of the most
-            contested areas in cybersecurity. The Atlas uses a structured
-            confidence scale (confirmed, high, moderate, low, contested) but
-            this should not be mistaken for certainty.
+            Attribution of cyber operations to specific state actors is one
+            of the most epistemologically fraught tasks in security analysis.
+            The Atlas uses a structured confidence scale — confirmed, high,
+            moderate, low, contested — but this scale describes the weight
+            of available public evidence, not ground truth. Every level of
+            the scale carries residual uncertainty.
           </p>
           <p>
-            Public attribution by governments reflects policy decisions as much
-            as technical evidence. States may attribute for deterrence purposes,
-            may decline to attribute for diplomatic reasons, or may attribute
-            with varying standards of evidence. The Atlas records these
-            attributions as data points, not as verified truths.
+            Following the Rid–Buchanan framework (see section 10), the Atlas
+            distinguishes between technical indicators (infrastructure,
+            tooling, tradecraft patterns), operational linkage (tying those
+            indicators to a specific unit or organisation), and political
+            attribution (a government&apos;s public decision to name a
+            responsible state). &ldquo;Confirmed&rdquo; in the Atlas means
+            that all three layers are supported by publicly available
+            evidence — typically through a combination of vendor forensics,
+            government attribution statements, and legal action. It does
+            not mean that the attribution is beyond doubt.
           </p>
           <p>
-            Users should treat all attribution assessments as provisional and
-            read them alongside the cited source material.
+            Public attribution by governments is a policy act as much as an
+            analytical one. States may attribute to deter, to rally
+            alliances, to justify sanctions, or to signal resolve. They may
+            decline to attribute when diplomatic equities outweigh
+            accountability interests. The timing, framing, and coalition
+            structure of attribution statements all carry political
+            significance that the Atlas records but does not adjudicate.
+          </p>
+          <p>
+            False-flag operations, shared tooling across threat actors,
+            and the deliberate contamination of forensic evidence are all
+            documented phenomena. The Atlas does not assume that technical
+            indicators are immune to manipulation. Where the source
+            material acknowledges these risks, the Atlas reflects them in
+            a lower confidence assessment.
+          </p>
+          <p>
+            Users should treat all attribution assessments in the Atlas as
+            provisional, read them alongside the cited source material, and
+            recognise that the most honest statement about many attributions
+            is that they are well-evidenced but not conclusively proven.
           </p>
         </Section>
 
@@ -251,25 +454,83 @@ export default function MethodologyPage() {
           <p>
             The Atlas describes what states did and how the international
             community responded. It does not offer legal opinions on whether
-            specific operations constituted violations of international law.
+            specific operations violated international law. This is a
+            deliberate methodological choice, not an evasion.
           </p>
           <p>
-            Terms like &ldquo;norm violation&rdquo; refer to assessments made
-            by governments, international bodies, or legal scholars — not to
-            findings by this platform. Where legal interpretation is
-            contested, the Atlas notes the contestation rather than resolving
-            it.
+            The legal status of most cyber operations is genuinely contested.
+            Whether a given intrusion violates sovereignty depends on
+            unresolved questions about whether sovereignty is a primary rule
+            of international law or merely a principle. Whether destructive
+            malware constitutes a use of force under Article 2(4) of the UN
+            Charter depends on threshold arguments that legal scholars and
+            states have not settled. Whether espionage is lawful under
+            international law is itself debated — most states practice it,
+            few acknowledge a legal right to do so.
           </p>
           <p>
-            This distinction matters because the same operation can be
-            described as lawful espionage, a sovereignty violation, or a use
-            of force depending on the legal framework applied. The Atlas
-            presents the operation and the debate, not a verdict.
+            Terms like &ldquo;norm violation&rdquo; in the Atlas refer to
+            assessments made by governments, international bodies, or legal
+            scholars — not to findings by this platform. When the Atlas
+            records a governance flag of &ldquo;norm violation,&rdquo; it
+            means that a credible authority assessed the operation as
+            violating an established norm, not that the Atlas has
+            independently reached that conclusion.
+          </p>
+          <p>
+            This distinction matters practically. An educator using the Atlas
+            should be able to present the same incident as a case study in
+            norm enforcement <em>and</em> as a case study in the limits of
+            the norm framework — depending on the pedagogical objective. The
+            Atlas supplies the structured data and the documented
+            assessments; the interpretive work belongs to the user.
           </p>
         </Section>
 
-        {/* 09 — Theoretical foundations */}
-        <Section id="foundations" number="09" title="Theoretical Foundations">
+        {/* 09 — Strategic behaviours */}
+        <Section id="strategic-behaviours" number="09" title="Strategic Behaviours, Not Spectacles">
+          <p>
+            Public discourse about cyber operations tends toward two poles:
+            breathless alarm (&ldquo;cyber Pearl Harbor,&rdquo; &ldquo;cyber
+            war&rdquo;) or dismissive minimisation (&ldquo;just espionage,&rdquo;
+            &ldquo;no one died&rdquo;). Neither framing serves analysis.
+            The Atlas is built on the premise that cyber operations are
+            strategic behaviours — deliberate actions by states pursuing
+            political objectives within the constraints of capability, risk
+            tolerance, and international norms.
+          </p>
+          <p>
+            This framing has specific analytical consequences. It means that
+            an espionage campaign is not merely a data breach but a signal
+            about what a state values, what access it has developed, and
+            what options it is preserving for the future. A destructive
+            wiper is not merely a technical event but a choice about
+            proportionality, deniability, and acceptable collateral damage.
+            A ransomware operation that prompts a presidential summit is
+            not merely a crime but a governance failure that reshaped policy.
+          </p>
+          <p>
+            The Atlas deliberately avoids the aesthetics of threat
+            dashboards — real-time counters, red-and-black colour schemes,
+            alarm iconography. These design choices serve threat monitoring;
+            they do not serve analysis. The visual language of the platform
+            is restrained because the analytical posture is restrained:
+            careful assessment of evidence, explicit acknowledgement of
+            uncertainty, and structured comparison rather than dramatic
+            narration.
+          </p>
+          <p>
+            This does not mean the platform minimises severity. Operations
+            that caused billions of dollars in damage, disrupted hospitals,
+            or degraded military communications are presented with the
+            gravity they warrant. But gravity is conveyed through precise
+            description and structured analysis, not through theatrical
+            presentation.
+          </p>
+        </Section>
+
+        {/* 10 — Theoretical foundations */}
+        <Section id="foundations" number="10" title="Theoretical Foundations">
           <p>
             The Atlas draws on several bodies of scholarship to structure its
             analysis. These frameworks inform how incidents are categorised,
