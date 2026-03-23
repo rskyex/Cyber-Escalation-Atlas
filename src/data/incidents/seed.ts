@@ -577,4 +577,381 @@ export const seedIncidents: Incident[] = [
       { title: "US-CERT Alert TA17-163A", category: "government", date: "2017-06-12" },
     ],
   },
+
+  // ---- Incident 7: WannaCry -------------------------------------------------
+  {
+    id: "wannacry-2017",
+    slug: "wannacry",
+    name: "WannaCry Ransomware",
+    shortName: "WannaCry",
+    year: 2017,
+    dateRange: "May 2017",
+    incidentType: "ransomware",
+    summary:
+      "Self-propagating ransomware that exploited the EternalBlue SMB vulnerability to spread across ~150 countries in hours. The UK's National Health Service was among the hardest hit, with hospitals diverting ambulances and cancelling surgeries. A researcher-activated kill switch slowed propagation, but not before substantial global disruption.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Lazarus Group, attributed by the US, UK, and allied governments to North Korea's RGB",
+      country: "North Korea",
+      aliases: ["Lazarus Group", "HIDDEN COBRA"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Weaponization of leaked exploit",
+          description: "EternalBlue (leaked from NSA tooling by Shadow Brokers) integrated into a worm-capable ransomware payload.",
+          date: "2017-04",
+        },
+        {
+          tier: "disruption",
+          label: "Global worm propagation",
+          description: "WannaCry spread autonomously via SMBv1, encrypting systems in hospitals, telecoms, railways, and factories across ~150 countries.",
+          date: "2017-05-12",
+        },
+        {
+          tier: "degradation",
+          label: "Healthcare impact",
+          description: "NHS England diverted ambulances from at least 5 emergency departments; ~19,000 appointments cancelled in one week.",
+          date: "2017-05-12",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Kill switch domain limited further spread once activated",
+        "Ransomware payment mechanism was poorly designed, suggesting profit was not the primary motive",
+      ],
+      thresholdCrossings: [
+        "First state-linked ransomware to cause widespread disruption to healthcare services",
+        "Demonstrated risk of weaponized vulnerability stockpiles entering the wild",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["healthcare", "telecommunications", "transportation", "manufacturing", "multiple"],
+      targetCountries: ["Global"],
+      techniques: [
+        { id: "T1210", name: "Exploitation of Remote Services", tactic: "Lateral Movement" },
+        { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
+        { id: "T1570", name: "Lateral Tool Transfer", tactic: "Lateral Movement" },
+      ],
+      malwareFamilies: ["WannaCry", "EternalBlue"],
+      impactSummary: "~200,000 systems encrypted in ~150 countries; major disruption to UK NHS, Telefónica, Deutsche Bahn, and others.",
+    },
+    governance: {
+      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment"],
+      normsInvoked: [
+        "UN GGE 2015 norm against damaging critical infrastructure",
+        "Duty of care toward healthcare systems in peacetime",
+      ],
+      policyResponses: [
+        "Five Eyes + Japan joint attribution to North Korea (Dec 2017)",
+        "US DOJ indictment of Park Jin Hyok (Sep 2018)",
+        "Renewed debate over intelligence agency vulnerability equities processes",
+      ],
+      regulatoryChanges: [
+        "NHS mandated cyber-resilience upgrades and patching requirements",
+        "Accelerated global patch-management awareness campaigns",
+      ],
+      impact: "Forced governments to confront the tension between stockpiling vulnerabilities for intelligence and protecting public health infrastructure from the same exploits.",
+    },
+    whyThisMatters: "WannaCry exposed how a leaked intelligence exploit can cascade into a global healthcare crisis, sharpening the policy debate on vulnerability disclosure and the duty to protect civilian systems.",
+    teaching: {
+      keyQuestion: "Should states disclose vulnerabilities they discover, or stockpile them for intelligence purposes?",
+      discussionPoints: [
+        "Vulnerability equities process: intelligence value vs. public safety",
+        "Healthcare as a uniquely vulnerable sector in cyber conflict",
+        "Attribution challenges when criminal tools serve state objectives",
+      ],
+      furtherReading: [
+        "NAO: Investigation: WannaCry Cyber Attack and the NHS. 2018.",
+        "Bossert, T. 'It's Official: North Korea Is Behind WannaCry.' WSJ, 2017.",
+      ],
+    },
+    sources: [
+      { title: "NHS England: Lessons Learned Review of WannaCry", category: "government", date: "2018-02" },
+      { title: "Microsoft: Customer Guidance for WannaCrypt Attacks", category: "vendor", date: "2017-05-12" },
+      { title: "White House Press Briefing: Attribution of WannaCry", category: "government", date: "2017-12-19" },
+    ],
+  },
+
+  // ---- Incident 8: Colonial Pipeline ----------------------------------------
+  {
+    id: "colonial-pipeline-2021",
+    slug: "colonial-pipeline",
+    name: "Colonial Pipeline Ransomware Attack",
+    shortName: "Colonial Pipeline",
+    year: 2021,
+    dateRange: "May 2021",
+    incidentType: "ransomware",
+    summary:
+      "DarkSide ransomware group encrypted IT systems at Colonial Pipeline, operator of the largest refined-fuel pipeline in the US. The company preemptively shut down OT pipeline operations for six days, triggering fuel shortages and panic buying across the US East Coast. A $4.4M ransom was paid, of which the DOJ later recovered roughly $2.3M.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "DarkSide ransomware-as-a-service group, assessed to be a Russian-speaking criminal organization",
+      country: "Russia (criminal, not directly state-sponsored per US assessment)",
+      aliases: ["DarkSide", "BlackMatter"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "VPN credential compromise",
+          description: "Initial access via a compromised VPN account lacking multi-factor authentication.",
+          date: "2021-05-06",
+        },
+        {
+          tier: "disruption",
+          label: "IT encryption and OT shutdown",
+          description: "DarkSide encrypted IT billing systems; Colonial preemptively shut OT pipeline operations to contain potential spread.",
+          date: "2021-05-07",
+        },
+        {
+          tier: "degradation",
+          label: "Fuel supply disruption",
+          description: "Six-day pipeline shutdown caused fuel shortages, price spikes, and emergency declarations in 17 US states.",
+          date: "2021-05-07",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Attackers targeted IT, not OT directly — pipeline shutdown was a precautionary business decision",
+        "DarkSide issued a public statement claiming they did not intend societal disruption",
+      ],
+      thresholdCrossings: [
+        "Ransomware caused a national-level fuel supply disruption for the first time",
+        "Demonstrated that IT-side attacks can have cascading OT and societal effects",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure", "transportation"],
+      targetCountries: ["United States"],
+      techniques: [
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
+        { id: "T1021.001", name: "Remote Services: Remote Desktop Protocol", tactic: "Lateral Movement" },
+      ],
+      malwareFamilies: ["DarkSide"],
+      impactSummary: "Six-day shutdown of 5,500-mile pipeline supplying ~45% of US East Coast fuel; 17-state emergency declarations.",
+    },
+    governance: {
+      flags: ["regulatory-change", "sanctions-imposed", "deterrence-signal"],
+      normsInvoked: [
+        "Responsible state behavior: harboring cybercriminals targeting critical infrastructure",
+        "Biden–Putin Geneva summit discussion on ransomware safe harbors (Jun 2021)",
+      ],
+      policyResponses: [
+        "DOJ Recovery of ~$2.3M in Bitcoin ransom (Jun 2021)",
+        "Executive Order 14028: Improving the Nation's Cybersecurity (May 2021)",
+        "TSA Security Directives mandating pipeline cybersecurity controls (Jul 2021)",
+      ],
+      regulatoryChanges: [
+        "TSA pipeline cybersecurity requirements (first-ever mandatory controls)",
+        "CISA ransomware reporting guidance",
+        "Strengthened Cyber Incident Reporting for Critical Infrastructure Act (CIRCIA) momentum",
+      ],
+      impact: "Transformed pipeline cybersecurity from voluntary to mandatory and accelerated federal ransomware strategy, including offensive operations against ransomware infrastructure.",
+    },
+    whyThisMatters: "Colonial Pipeline proved that criminal ransomware can trigger national-level infrastructure disruptions, collapsing the boundary between cybercrime and national security and forcing mandatory regulation of pipeline cyber defenses.",
+    teaching: {
+      keyQuestion: "Should critical infrastructure cybersecurity be regulated, or left to market incentives?",
+      discussionPoints: [
+        "Cascading effects: IT compromise leading to precautionary OT shutdown",
+        "State responsibility for criminal groups operating within borders",
+        "Ransom payment policy: pay to restore vs. refuse to deter",
+      ],
+      furtherReading: [
+        "CISA: DarkSide Ransomware Alert AA21-131A, 2021.",
+        "Testimony of Colonial Pipeline CEO before US Senate, Jun 2021.",
+      ],
+    },
+    sources: [
+      { title: "CISA Alert AA21-131A: DarkSide Ransomware", category: "government", date: "2021-05-11" },
+      { title: "DOJ: Department of Justice Seizes $2.3 Million in Cryptocurrency", category: "legal", date: "2021-06-07" },
+      { title: "TSA Security Directive Pipeline-2021-01", category: "government", date: "2021-07-20" },
+    ],
+  },
+
+  // ---- Incident 9: Oldsmar Water Plant --------------------------------------
+  {
+    id: "oldsmar-water-2021",
+    slug: "oldsmar-water",
+    name: "Oldsmar Water Treatment Plant Intrusion",
+    shortName: "Oldsmar Water",
+    year: 2021,
+    dateRange: "February 2021",
+    incidentType: "sabotage",
+    summary:
+      "An unauthorized actor remotely accessed the SCADA system at the Oldsmar, Florida water treatment plant via TeamViewer and attempted to increase sodium hydroxide (lye) levels to potentially dangerous concentrations. An operator observed the cursor movement in real time and immediately reversed the change. No public harm resulted.",
+    attribution: {
+      confidence: "low",
+      attributedTo: "Unknown; initial reports suggested a remote intruder, though subsequent investigation raised the possibility of insider involvement",
+      country: "Unknown",
+      aliases: [],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Remote access via TeamViewer",
+          description: "Attacker accessed the plant's HMI through TeamViewer software using shared credentials on an internet-facing system.",
+          date: "2021-02-05",
+        },
+        {
+          tier: "disruption",
+          label: "Chemical setpoint manipulation",
+          description: "Sodium hydroxide level changed from ~100 ppm to ~11,100 ppm — an operator noticed and reversed the change within minutes.",
+          date: "2021-02-05",
+        },
+      ],
+      peakTier: "disruption",
+      restraintFactors: [
+        "Operator observation enabled immediate reversal",
+        "Multiple downstream safety checks would likely have caught the change before it reached consumers",
+      ],
+      thresholdCrossings: [
+        "Demonstrated that remote access to water treatment SCADA can enable potentially harmful chemical manipulation",
+        "Highlighted systemic weaknesses: shared passwords, unpatched remote-access software, flat networks",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["critical-infrastructure"],
+      targetCountries: ["United States"],
+      techniques: [
+        { id: "T1133", name: "External Remote Services", tactic: "Initial Access" },
+        { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
+        { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
+      ],
+      malwareFamilies: [],
+      impactSummary: "No public harm; chemical change reversed within minutes by an alert operator.",
+    },
+    governance: {
+      flags: ["regulatory-change"],
+      normsInvoked: [
+        "Safe drinking water as a protected civilian necessity",
+        "Duty to secure public health infrastructure",
+      ],
+      policyResponses: [
+        "CISA, FBI, and EPA joint advisory on water/wastewater sector cybersecurity",
+        "Congressional attention to water-sector cyber resilience funding gaps",
+      ],
+      regulatoryChanges: [
+        "EPA increased focus on cybersecurity in sanitary surveys (later challenged in court)",
+        "CISA launched water-sector specific vulnerability scanning services",
+      ],
+      impact: "Exposed the severe under-investment in water-sector cybersecurity and became a catalyst for federal efforts to extend cyber standards to small utilities — though regulatory authority remains contested.",
+    },
+    whyThisMatters: "Oldsmar made water-system cyber risk tangible for policymakers and the public, revealing how small utilities with minimal security budgets can become targets with public-health consequences.",
+    teaching: {
+      keyQuestion: "How should governments secure thousands of small, under-resourced water utilities against cyber threats?",
+      discussionPoints: [
+        "Resource asymmetry: small utilities vs. sophisticated threats",
+        "Attribution uncertainty and its effect on policy response",
+        "Role of human-in-the-loop as a last line of defense in ICS",
+      ],
+      furtherReading: [
+        "CISA Advisory AA21-042A: Compromise of U.S. Water Treatment Facility, 2021.",
+        "EPA: Cybersecurity for the Water Sector, 2023.",
+      ],
+    },
+    sources: [
+      { title: "CISA/FBI/EPA Advisory AA21-042A", category: "government", date: "2021-02-11" },
+      { title: "Pinellas County Sheriff press conference transcript", category: "government", date: "2021-02-08" },
+    ],
+  },
+
+  // ---- Incident 10: Viasat KA-SAT -------------------------------------------
+  {
+    id: "viasat-kasat-2022",
+    slug: "viasat-kasat",
+    name: "Viasat KA-SAT (AcidRain)",
+    shortName: "Viasat KA-SAT",
+    year: 2022,
+    dateRange: "February 2022",
+    incidentType: "destructive",
+    summary:
+      "Destructive cyber attack against Viasat's KA-SAT satellite broadband network, timed to coincide with Russia's invasion of Ukraine on 24 February 2022. AcidRain wiper malware bricked tens of thousands of satellite modems across Europe, disrupting Ukrainian military and government communications and causing collateral outages to wind turbines in Germany and broadband users in multiple EU states.",
+    attribution: {
+      confidence: "confirmed",
+      attributedTo: "Attributed by the EU, UK, US, and allied governments to Russia's GRU",
+      country: "Russia",
+      aliases: ["Sandworm"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "VPN appliance exploitation",
+          description: "Attackers exploited a misconfigured VPN appliance in the KA-SAT management network to reach modem provisioning infrastructure.",
+          date: "2022-02-24",
+        },
+        {
+          tier: "destruction",
+          label: "Mass modem wipe",
+          description: "AcidRain wiper pushed to tens of thousands of SurfBeam2 modems, overwriting flash storage and rendering them permanently inoperable.",
+          date: "2022-02-24",
+        },
+        {
+          tier: "strategic",
+          label: "Collateral disruption across Europe",
+          description: "Beyond Ukraine, the attack disrupted ~5,800 Enercon wind turbines in Germany and broadband for users in France, Italy, and Central Europe.",
+          date: "2022-02-24",
+        },
+      ],
+      peakTier: "strategic",
+      restraintFactors: [
+        "Attack targeted communications infrastructure, not life-safety systems",
+        "Physical satellite constellation was not damaged",
+      ],
+      thresholdCrossings: [
+        "First confirmed cyber attack synchronized with the opening of a conventional military invasion",
+        "Cross-border collateral impact on NATO-member critical infrastructure",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["telecommunications", "defense", "energy", "critical-infrastructure"],
+      targetCountries: ["Ukraine", "Germany", "France", "Italy", "Central Europe"],
+      techniques: [
+        { id: "T1133", name: "External Remote Services", tactic: "Initial Access" },
+        { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
+        { id: "T1498", name: "Network Denial of Service", tactic: "Impact" },
+      ],
+      malwareFamilies: ["AcidRain"],
+      impactSummary: "Tens of thousands of satellite modems bricked; disruption to Ukrainian military comms and collateral outages across multiple EU states.",
+    },
+    governance: {
+      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "international-cooperation"],
+      normsInvoked: [
+        "UN GGE 2015 norm against attacking critical infrastructure",
+        "International humanitarian law: proportionality and distinction in armed conflict",
+      ],
+      policyResponses: [
+        "EU, UK, and US formal attribution to Russia (May 2022)",
+        "NATO recognized cyberspace as an operational domain with renewed emphasis",
+        "Viasat coordinated with NSA and allied agencies on incident response",
+      ],
+      regulatoryChanges: [
+        "EU NIS2 Directive implementation accelerated, partly citing Viasat as a motivating case",
+        "Increased focus on satellite and space-system cybersecurity in US National Cyber Strategy (2023)",
+      ],
+      impact: "Demonstrated that cyber operations are now integrated into conventional military campaigns and that collateral effects readily cross borders — reinforcing momentum behind the EU NIS2 Directive and NATO cyber commitments.",
+    },
+    whyThisMatters: "Viasat KA-SAT was the clearest example yet of cyber attack as an opening act of war, with cross-border collateral damage that forced NATO and the EU to treat satellite infrastructure as a shared security concern.",
+    teaching: {
+      keyQuestion: "How does the integration of cyber operations into conventional warfare change the rules of armed conflict?",
+      discussionPoints: [
+        "Cyber as a precursor to kinetic operations: legal and strategic implications",
+        "Collateral damage across borders and the distinction principle in IHL",
+        "Resilience of commercial satellite infrastructure as a security dependency",
+      ],
+      furtherReading: [
+        "SentinelOne: AcidRain — A Modem Wiper Rains Down on Europe, 2022.",
+        "Viasat Incident Report: KA-SAT Network Cyber Attack Overview, 2022.",
+      ],
+    },
+    sources: [
+      { title: "Viasat: KA-SAT Network Cyber Attack Overview", category: "vendor", date: "2022-03-30" },
+      { title: "SentinelOne: AcidRain — A Modem Wiper Rains Down on Europe", category: "vendor", date: "2022-03-31" },
+      { title: "EU Council: Declaration on Viasat Cyber Attack Attribution", category: "government", date: "2022-05-10" },
+    ],
+  },
 ];
