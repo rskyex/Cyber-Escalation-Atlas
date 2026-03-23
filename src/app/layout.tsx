@@ -8,6 +8,20 @@ export const metadata: Metadata = {
   title: "Cyber Escalation Atlas\u2122",
   description:
     "A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks.",
+  openGraph: {
+    title: "Cyber Escalation Atlas\u2122",
+    description:
+      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
+    siteName: "Cyber Escalation Atlas\u2122",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cyber Escalation Atlas\u2122",
+    description:
+      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
+  },
 };
 
 export default function RootLayout({
