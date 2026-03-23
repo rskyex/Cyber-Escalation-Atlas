@@ -8,15 +8,8 @@ import {
   targetSectorLabels,
   incidentTypeBadge,
   escalationTierBadge,
+  unpeaceScore,
 } from "@/lib/utils/incidents";
-import { tierIndex } from "@/lib/utils/incidents";
-
-function unpeaceScore(incident: Incident): number {
-  const base = tierIndex(incident.escalation.peakTier) + 1; // 1-6
-  const crossings = incident.escalation.thresholdCrossings.length;
-  const govWeight = incident.governance.flags.length;
-  return Math.min(10, Math.round(((base * 1.2 + crossings + govWeight * 0.5) / 10) * 10));
-}
 
 interface CaseCardProps {
   incident: Incident;
@@ -27,12 +20,13 @@ export function CaseCard({ incident }: CaseCardProps) {
   const sectors = incident.infrastructure.targetSectors.slice(0, 3);
 
   return (
+    <a href={`/cases/${incident.slug}`} className="block">
     <Card hover className="group">
       <div className="flex flex-col gap-3">
         {/* Header row */}
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h3 className="font-semibold text-navy dark:text-offwhite leading-tight">
+            <h3 className="font-semibold text-navy dark:text-offwhite leading-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
               {incident.name}
             </h3>
             <p className="text-sm text-slate dark:text-navy-200 mt-0.5">
@@ -87,5 +81,6 @@ export function CaseCard({ incident }: CaseCardProps) {
         </div>
       </div>
     </Card>
+    </a>
   );
 }

@@ -2,25 +2,11 @@
 
 import { useState, useMemo } from "react";
 import type { Incident } from "@/lib/types/incidents";
-import { tierIndex } from "@/lib/utils/incidents";
+import { unpeaceScore } from "@/lib/utils/incidents";
 import { CasesFilters, defaultFilters } from "./CasesFilters";
 import type { CasesFilterState } from "./CasesFilters";
 import { CaseCard } from "./CaseCard";
 import { CasesMap } from "./CasesMap";
-
-// ---------------------------------------------------------------------------
-// Entanglement / Unpeace score (duplicated from CaseCard for filtering)
-// ---------------------------------------------------------------------------
-
-function unpeaceScore(incident: Incident): number {
-  const base = tierIndex(incident.escalation.peakTier) + 1;
-  const crossings = incident.escalation.thresholdCrossings.length;
-  const govWeight = incident.governance.flags.length;
-  return Math.min(
-    10,
-    Math.round(((base * 1.2 + crossings + govWeight * 0.5) / 10) * 10),
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Filter logic

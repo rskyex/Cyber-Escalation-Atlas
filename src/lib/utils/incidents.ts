@@ -250,3 +250,58 @@ export function yearRange(
   const years = incidents.map((i) => i.year);
   return { min: Math.min(...years), max: Math.max(...years) };
 }
+
+// ---- Derived scores ---------------------------------------------------------
+
+/**
+ * Compute a 1–10 "unpeace" score reflecting escalation severity,
+ * threshold crossings, and governance impact weight.
+ */
+export function unpeaceScore(incident: Incident): number {
+  const base = tierIndex(incident.escalation.peakTier) + 1; // 1-6
+  const crossings = incident.escalation.thresholdCrossings.length;
+  const govWeight = incident.governance.flags.length;
+  return Math.min(
+    10,
+    Math.round(((base * 1.2 + crossings + govWeight * 0.5) / 10) * 10),
+  );
+}
+
+/**
+ * Compute entanglement risk score (how many sectors, countries, and
+ * collateral dimensions an incident touches). Range 1–10.
+ */
+export function entanglementScore(incident: Incident): number {
+  const sectors = incident.infrastructure.targetSectors.length;
+  const countries = incident.infrastructure.targetCountries.length;
+  const crossings = incident.escalation.thresholdCrossings.length;
+  return Math.min(10, Math.max(1, sectors + countries + crossings - 1));
+}
+
+/**
+ * Find related incidents by shared sector, actor country, or incident type.
+ * Returns up to `limit` incidents sorted by overlap count.
+ */
+export function findRelated(
+  target: Incident,
+  all: Incident[],
+  limit = 4,
+): Incident[] {
+  const scored = all
+    .filter((i) => i.id !== target.id)
+    .map((i) => {
+      let overlap = 0;
+      if (i.incidentType === target.incidentType) overlap += 2;
+      if (i.attribution.country === target.attribution.country) overlap += 2;
+      if (i.escalation.peakTier === target.escalation.peakTier) overlap += 1;
+      const sharedSectors = i.infrastructure.targetSectors.filter((s) =>
+        target.infrastructure.targetSectors.includes(s),
+      ).length;
+      overlap += sharedSectors;
+      return { incident: i, overlap };
+    })
+    .filter((s) => s.overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap);
+
+  return scored.slice(0, limit).map((s) => s.incident);
+}
