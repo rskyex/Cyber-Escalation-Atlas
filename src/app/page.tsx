@@ -6,6 +6,60 @@ import { SectionWrapper } from "@/components/ui";
 import { Card } from "@/components/ui";
 import { Badge } from "@/components/ui";
 
+const featuredCases = [
+  {
+    slug: "notpetya",
+    name: "NotPetya",
+    year: 2017,
+    type: "Destructive",
+    badge: "amber" as const,
+    summary:
+      "Supply-chain wiper disguised as ransomware caused $10B+ in global damages, demonstrating how cyber operations can produce strategic-scale economic disruption.",
+  },
+  {
+    slug: "solarwinds",
+    name: "SolarWinds",
+    year: 2020,
+    type: "Espionage",
+    badge: "navy" as const,
+    summary:
+      "Nine-month undetected compromise of ~18,000 organizations via software supply chain, reshaping assumptions about persistent access at scale.",
+  },
+  {
+    slug: "viasat-kasat",
+    name: "Viasat KA-SAT",
+    year: 2022,
+    type: "Destructive",
+    badge: "amber" as const,
+    summary:
+      "Satellite modem wiper timed to Russia's invasion of Ukraine disrupted military comms and caused collateral outages across NATO states — the entanglement problem in miniature.",
+  },
+];
+
+const frameworks = [
+  {
+    name: "Kello",
+    label: "Virtual Weapon Framework",
+    description:
+      "Lucas Kello's framework for classifying cyber operations by their strategic weight — distinguishing disruption from degradation and destruction.",
+    badge: "Strategic Theory",
+  },
+  {
+    name: "Rid & Buchanan",
+    label: "Escalation Dynamics",
+    description:
+      "Thomas Rid and Ben Buchanan's analysis of how cyber operations interact with conventional escalation ladders and crisis stability.",
+    badge: "Escalation Logic",
+  },
+  {
+    name: "Tallinn Manual",
+    label: "International Law",
+    description:
+      "The NATO-affiliated legal analysis applying international humanitarian law and the law of armed conflict to state-conducted cyber operations.",
+    badge: "Legal Framework",
+  },
+];
+
 const lenses = [
   {
     title: "Escalation Lens",
@@ -35,7 +89,7 @@ const lenses = [
 ];
 
 const stats = [
-  { label: "Documented Cases", value: "20", note: "coming soon" },
+  { label: "Documented Cases", value: "20", note: "across state-linked operations" },
   { label: "Analytical Lenses", value: "3", note: "Escalation, Infrastructure, Governance" },
   { label: "ATT&CK Techniques", value: "100+", note: "mapped per case" },
 ];
@@ -51,16 +105,17 @@ export default function HomePage() {
           transition={{ duration: 0.4 }}
           className="max-w-3xl"
         >
+          <p className="text-sm font-medium uppercase tracking-widest text-teal dark:text-teal-300 mb-3">
+            Structured Analysis of Cyber Conflict
+          </p>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-navy dark:text-offwhite leading-tight">
-            Mapping Cyber Conflict
-            <br />
-            for Policy and Practice
+            Cyber Escalation Atlas
           </h1>
           <p className="mt-6 text-lg text-slate dark:text-navy-200 leading-relaxed max-w-2xl">
-            The Cyber Escalation Atlas is a structured, policy-grade reference
-            for understanding how state-linked cyber operations unfold, escalate,
-            and reshape governance. Built for analysts, educators, and
-            policymakers.
+            A policy-grade interactive reference mapping how state-linked cyber
+            operations unfold, escalate, and reshape governance. Built for
+            analysts, educators, and policymakers navigating the intersection of
+            cyber, space, and nuclear risk.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -70,16 +125,16 @@ export default function HomePage() {
               Explore Cases
             </Link>
             <Link
-              href="/governance-lens"
+              href="/escalation-lens"
               className="inline-flex items-center px-5 py-2.5 rounded-md border border-teal text-teal dark:text-teal-300 text-sm font-medium hover:bg-teal/10 transition-colors"
             >
-              Governance Lens
+              View Escalation Lens
             </Link>
             <Link
-              href="/methodology"
+              href="/compare"
               className="inline-flex items-center px-5 py-2.5 rounded-md border border-navy-200/40 dark:border-navy-600/40 text-slate dark:text-navy-200 text-sm font-medium hover:bg-navy-100/40 dark:hover:bg-navy-600/20 transition-colors"
             >
-              Methodology
+              Compare Incidents
             </Link>
           </div>
         </motion.div>
@@ -110,7 +165,37 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      {/* Lenses */}
+      {/* Featured Cases */}
+      <SectionWrapper>
+        <h2 className="text-2xl font-semibold text-navy dark:text-offwhite mb-2">
+          Featured Cases
+        </h2>
+        <p className="text-sm text-slate dark:text-navy-200 mb-6">
+          Key incidents that illustrate the Atlas&apos;s analytical approach.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featuredCases.map((c) => (
+            <Link key={c.slug} href={`/cases/${c.slug}`}>
+              <Card hover>
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-lg font-semibold text-navy dark:text-offwhite">
+                    {c.name}
+                    <span className="ml-2 text-sm font-normal text-slate dark:text-navy-300">
+                      {c.year}
+                    </span>
+                  </h3>
+                  <Badge variant={c.badge}>{c.type}</Badge>
+                </div>
+                <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                  {c.summary}
+                </p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Analytical Lenses */}
       <SectionWrapper>
         <h2 className="text-2xl font-semibold text-navy dark:text-offwhite mb-6">
           Analytical Lenses
@@ -144,6 +229,47 @@ export default function HomePage() {
               </Card>
             </Link>
           ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Framework Teasers */}
+      <SectionWrapper>
+        <h2 className="text-2xl font-semibold text-navy dark:text-offwhite mb-2">
+          Theoretical Frameworks
+        </h2>
+        <p className="text-sm text-slate dark:text-navy-200 mb-6">
+          The analytical scaffolding underpinning each case assessment.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {frameworks.map((fw) => (
+            <Card key={fw.name}>
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-lg font-semibold text-navy dark:text-offwhite">
+                  {fw.name}
+                </h3>
+                <Badge variant="teal">{fw.badge}</Badge>
+              </div>
+              <p className="text-xs font-medium uppercase tracking-wider text-teal dark:text-teal-300 mb-2">
+                {fw.label}
+              </p>
+              <p className="text-sm text-slate dark:text-navy-200 leading-relaxed">
+                {fw.description}
+              </p>
+            </Card>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Closing Principle */}
+      <SectionWrapper className="pb-16">
+        <div className="max-w-3xl mx-auto border-l-2 border-teal/40 dark:border-teal/30 pl-6 py-2">
+          <p className="text-base text-slate dark:text-navy-200 leading-relaxed italic">
+            &ldquo;This platform does not catalogue threats to be feared. It
+            interprets incidents as strategic behaviors to be understood. The
+            question is not &lsquo;what attacked us&rsquo; but &lsquo;what does
+            this behavior mean, strategically, legally, and
+            institutionally?&rsquo;&rdquo;
+          </p>
         </div>
       </SectionWrapper>
     </>
