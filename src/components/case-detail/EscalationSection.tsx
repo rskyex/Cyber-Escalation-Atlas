@@ -1,3 +1,5 @@
+"use client";
+
 import type { Incident, EscalationTier } from "@/lib/types/incidents";
 import { Badge } from "@/components/ui";
 import {
@@ -6,6 +8,7 @@ import {
   tierIndex,
 } from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
+import { EscalationRadar } from "./EscalationRadar";
 
 const allTiers: EscalationTier[] = [
   "probing",
@@ -29,40 +32,54 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
     <section>
       <SectionHeading id="escalation">Escalation Profile</SectionHeading>
 
-      {/* 7-dimension tier ladder */}
-      <div className="mb-6">
-        <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-3">
-          Escalation Ladder
-        </p>
-        <div className="flex items-end gap-1 h-24">
-          {allTiers.map((tier, idx) => {
-            const isActive = idx <= peakIdx;
-            const isPeak = tier === peakTier;
-            const height = `${((idx + 1) / allTiers.length) * 100}%`;
-            return (
-              <div key={tier} className="flex-1 flex flex-col items-center gap-1">
+      {/* Radar + tier ladder side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Radar chart */}
+        <div className="flex flex-col items-center justify-center p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
+          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-2">
+            7-Dimension Profile
+          </p>
+          <EscalationRadar incident={incident} size={260} />
+        </div>
+
+        {/* Tier ladder */}
+        <div className="p-4 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
+          <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-3">
+            Escalation Ladder
+          </p>
+          <div className="flex items-end gap-1.5 h-28">
+            {allTiers.map((tier, idx) => {
+              const isActive = idx <= peakIdx;
+              const isPeak = tier === peakTier;
+              const height = `${((idx + 1) / allTiers.length) * 100}%`;
+              return (
                 <div
-                  className={`w-full rounded-t transition-colors ${
-                    isPeak
-                      ? "bg-amber-500 dark:bg-amber-400"
-                      : isActive
-                        ? "bg-teal-400 dark:bg-teal-500"
-                        : "bg-navy-100 dark:bg-navy-600/40"
-                  }`}
-                  style={{ height }}
-                />
-                <span
-                  className={`text-[10px] leading-tight text-center ${
-                    isPeak
-                      ? "font-bold text-amber-700 dark:text-amber-300"
-                      : "text-slate dark:text-navy-300"
-                  }`}
+                  key={tier}
+                  className="flex-1 flex flex-col items-center gap-1.5"
                 >
-                  {escalationTierLabels[tier].split(" ")[0]}
-                </span>
-              </div>
-            );
-          })}
+                  <div
+                    className={`w-full rounded-t transition-colors ${
+                      isPeak
+                        ? "bg-amber-500 dark:bg-amber-400"
+                        : isActive
+                          ? "bg-teal-400/70 dark:bg-teal-500/70"
+                          : "bg-navy-100 dark:bg-navy-600/40"
+                    }`}
+                    style={{ height }}
+                  />
+                  <span
+                    className={`text-[10px] leading-tight text-center ${
+                      isPeak
+                        ? "font-bold text-amber-700 dark:text-amber-300"
+                        : "text-slate dark:text-navy-300"
+                    }`}
+                  >
+                    {escalationTierLabels[tier].split(" ")[0]}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -110,7 +127,10 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
           </p>
           <ul className="space-y-1">
             {thresholdCrossings.map((t, i) => (
-              <li key={i} className="text-sm text-navy dark:text-offwhite flex gap-2">
+              <li
+                key={i}
+                className="text-sm text-navy dark:text-offwhite flex gap-2"
+              >
                 <span className="text-amber-500 shrink-0">&bull;</span>
                 {t}
               </li>
@@ -123,7 +143,10 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
           </p>
           <ul className="space-y-1">
             {restraintFactors.map((r, i) => (
-              <li key={i} className="text-sm text-navy dark:text-offwhite flex gap-2">
+              <li
+                key={i}
+                className="text-sm text-navy dark:text-offwhite flex gap-2"
+              >
                 <span className="text-teal-500 shrink-0">&bull;</span>
                 {r}
               </li>

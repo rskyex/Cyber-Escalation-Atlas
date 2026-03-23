@@ -1,3 +1,5 @@
+"use client";
+
 import type { Incident } from "@/lib/types/incidents";
 import {
   unpeaceScore,
@@ -5,6 +7,7 @@ import {
   tierIndex,
 } from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
+import { UnpeaceAxis } from "./UnpeaceAxis";
 
 interface UnpeaceSectionProps {
   incident: Incident;
@@ -53,11 +56,11 @@ export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
     <section>
       <SectionHeading id="unpeace">Unpeace Position</SectionHeading>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {/* Score display */}
-        <div className="flex flex-col items-center justify-center p-6 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
+      {/* Main axis visualization */}
+      <div className="p-5 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30 mb-6">
+        <div className="flex items-center gap-4 mb-4">
           <span
-            className={`inline-flex items-center justify-center w-16 h-16 rounded-full text-2xl font-bold ${
+            className={`inline-flex items-center justify-center w-14 h-14 rounded-full text-xl font-bold ${
               score >= 7
                 ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
                 : score >= 4
@@ -67,53 +70,59 @@ export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
           >
             {score}
           </span>
-          <span className="text-sm font-medium text-navy dark:text-offwhite mt-2">
-            Unpeace Score
-          </span>
-          <span className="text-xs text-slate dark:text-navy-300 mt-0.5">
-            Composite severity (1–10)
-          </span>
+          <div>
+            <p className="text-sm font-semibold text-navy dark:text-offwhite">
+              Unpeace Score
+            </p>
+            <p className="text-xs text-slate dark:text-navy-300">
+              Composite severity rating on the peace–conflict spectrum
+            </p>
+          </div>
         </div>
+        <UnpeaceAxis score={score} />
+      </div>
 
-        {/* Dimension breakdown */}
-        <div className="space-y-3 p-5 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
-          <DimensionBar
-            label="Escalation peak"
-            value={escalation}
-            max={6}
-            color="bg-amber-400 dark:bg-amber-500"
-          />
-          <DimensionBar
-            label="Threshold crossings"
-            value={thresholds}
-            max={4}
-            color="bg-amber-400 dark:bg-amber-500"
-          />
-          <DimensionBar
-            label="Governance flags"
-            value={govFlags}
-            max={8}
-            color="bg-teal-400 dark:bg-teal-500"
-          />
-          <DimensionBar
-            label="Sectors affected"
-            value={sectors}
-            max={6}
-            color="bg-navy-400 dark:bg-navy-300"
-          />
-          <DimensionBar
-            label="Entanglement"
-            value={entanglement}
-            max={10}
-            color="bg-navy-400 dark:bg-navy-300"
-          />
-          <DimensionBar
-            label="Country scope"
-            value={countries}
-            max={6}
-            color="bg-navy-400 dark:bg-navy-300"
-          />
-        </div>
+      {/* Dimension breakdown */}
+      <div className="space-y-3 p-5 rounded-lg bg-white dark:bg-navy-700/30 border border-navy-200/20 dark:border-navy-600/30">
+        <p className="text-xs font-medium text-slate dark:text-navy-300 uppercase tracking-wider mb-1">
+          Contributing Dimensions
+        </p>
+        <DimensionBar
+          label="Escalation peak"
+          value={escalation}
+          max={6}
+          color="bg-amber-400 dark:bg-amber-500"
+        />
+        <DimensionBar
+          label="Threshold crossings"
+          value={thresholds}
+          max={4}
+          color="bg-amber-400 dark:bg-amber-500"
+        />
+        <DimensionBar
+          label="Governance flags"
+          value={govFlags}
+          max={8}
+          color="bg-teal-400 dark:bg-teal-500"
+        />
+        <DimensionBar
+          label="Sectors affected"
+          value={sectors}
+          max={6}
+          color="bg-navy-400 dark:bg-navy-300"
+        />
+        <DimensionBar
+          label="Entanglement"
+          value={entanglement}
+          max={10}
+          color="bg-navy-400 dark:bg-navy-300"
+        />
+        <DimensionBar
+          label="Country scope"
+          value={countries}
+          max={6}
+          color="bg-navy-400 dark:bg-navy-300"
+        />
       </div>
     </section>
   );

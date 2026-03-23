@@ -1,10 +1,6 @@
 import type { Incident } from "@/lib/types/incidents";
-import { Badge } from "@/components/ui";
-import {
-  governanceFlagLabels,
-  governanceFlagBadge,
-} from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
+import { GovernanceFlagsGrid } from "./GovernanceFlagsGrid";
 
 interface GovernanceSectionProps {
   incident: Incident;
@@ -20,18 +16,12 @@ export function GovernanceSection({ incident }: GovernanceSectionProps) {
 
       {/* Prominent governance card with accent border */}
       <div className="rounded-lg border-2 border-teal-400/60 dark:border-teal-500/40 bg-white dark:bg-navy-700/30 overflow-hidden">
-        {/* Governance flags header */}
-        <div className="px-5 py-4 bg-teal-50/60 dark:bg-teal-900/15 border-b border-teal-200/40 dark:border-teal-700/30">
-          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-2.5">
+        {/* Flags grid header */}
+        <div className="px-5 py-5 bg-teal-50/60 dark:bg-teal-900/15 border-b border-teal-200/40 dark:border-teal-700/30">
+          <p className="text-xs font-semibold text-teal-700 dark:text-teal-300 uppercase tracking-wider mb-3">
             Governance Flags
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {flags.map((f) => (
-              <Badge key={f} variant={governanceFlagBadge[f]}>
-                {governanceFlagLabels[f]}
-              </Badge>
-            ))}
-          </div>
+          <GovernanceFlagsGrid activeFlags={flags} />
         </div>
 
         <div className="p-5 space-y-5">
