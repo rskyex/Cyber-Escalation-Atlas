@@ -1244,4 +1244,459 @@ export const seedIncidents: Incident[] = [
       { title: "FBI/CISA Advisory AA22-264A: Iranian State Actors Conduct Cyber Operations Against Albania", category: "government", date: "2022-09-21" },
     ],
   },
+
+  // ---- Incident 14: Saudi Aramco / Shamoon (2012) ---------------------------
+  {
+    id: "shamoon-aramco-2012",
+    slug: "shamoon-aramco",
+    name: "Saudi Aramco Shamoon Attack",
+    shortName: "Shamoon / Aramco",
+    year: 2012,
+    dateRange: "August 2012",
+    incidentType: "destructive",
+    summary:
+      "The Shamoon wiper malware destroyed data on approximately 35,000 workstations at Saudi Aramco, the world's largest oil company. The attack overwrote master boot records with an image of a burning US flag. Aramco was forced to operate on paper for weeks while rebuilding its IT fleet. A group calling itself the 'Cutting Sword of Justice' claimed responsibility, citing Saudi foreign policy.",
+    attribution: {
+      confidence: "moderate",
+      attributedTo: "Widely assessed by US officials and researchers to be linked to Iran, though direct attribution remains circumstantial",
+      country: "Iran (assessed)",
+      aliases: ["APT33", "Elfin", "Cutting Sword of Justice"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Initial access and staging",
+          description: "Attackers gained access to Aramco's corporate network and pre-positioned the Shamoon wiper across thousands of endpoints.",
+          date: "2012-08",
+        },
+        {
+          tier: "destruction",
+          label: "Mass wiper deployment",
+          description: "Shamoon activated during a holiday period, wiping ~35,000 workstations and overwriting MBRs. Corporate IT was rendered inoperable.",
+          date: "2012-08-15",
+        },
+        {
+          tier: "disruption",
+          label: "Operational recovery",
+          description: "Aramco operated core business on paper and fax for approximately two weeks while sourcing replacement hardware globally.",
+          date: "2012-08",
+        },
+      ],
+      peakTier: "destruction",
+      restraintFactors: [
+        "OT and production control systems were air-gapped and unaffected",
+        "Oil production and export operations continued without interruption",
+      ],
+      thresholdCrossings: [
+        "Largest destructive cyber attack against a single enterprise at that time",
+        "Targeted the crown jewel of a major economy's resource sector",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy"],
+      targetCountries: ["Saudi Arabia"],
+      techniques: [
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
+        { id: "T1485", name: "Data Destruction", tactic: "Impact" },
+      ],
+      malwareFamilies: ["Shamoon", "Disttrack"],
+      impactSummary: "~35,000 workstations wiped; weeks of degraded corporate IT operations; no impact on oil production.",
+    },
+    governance: {
+      flags: ["norm-violation", "deterrence-signal"],
+      normsInvoked: [
+        "Protection of critical economic infrastructure",
+        "Proportionality: destructive response to policy grievances",
+      ],
+      policyResponses: [
+        "Then-US Defense Secretary Panetta cited Shamoon in 'Cyber Pearl Harbor' speech (Oct 2012)",
+        "Heightened US–Saudi cybersecurity cooperation",
+      ],
+      regulatoryChanges: [
+        "Saudi Arabia established the National Cybersecurity Authority (NCA) in subsequent years",
+        "Accelerated OT/IT network segmentation in the global energy sector",
+      ],
+      impact: "Made energy-sector cyber risk tangible for policymakers and drove early momentum toward mandatory OT security standards in the oil and gas industry.",
+    },
+    whyThisMatters: "Shamoon was the first large-scale destructive attack against a critical energy company, demonstrating that states could use wiper malware to inflict strategic economic signaling without kinetic force.",
+    teaching: {
+      keyQuestion: "How should energy-dependent economies defend against destructive cyber attacks on their resource sectors?",
+      discussionPoints: [
+        "Value of OT/IT segmentation as a resilience measure",
+        "Strategic signaling through cyber destruction vs. espionage",
+        "Challenges of attributing attacks when hacktivist fronts are used",
+      ],
+      furtherReading: [
+        "Bronk, C. & Tikk-Ringas, E. 'The Cyber Attack on Saudi Aramco.' Survival, 2013.",
+        "Symantec: The Shamoon Attacks, 2012.",
+      ],
+    },
+    sources: [
+      { title: "Symantec: The Shamoon Attacks", category: "vendor", date: "2012-08-16" },
+      { title: "Panetta, L. 'Defending the Nation from Cyber Attack' (speech)", category: "government", date: "2012-10-11" },
+      { title: "Kaspersky: Shamoon the Wiper — Copycats at Work", category: "vendor", date: "2012-08-16" },
+    ],
+  },
+
+  // ---- Incident 15: Bangladesh Bank SWIFT (2016) ----------------------------
+  {
+    id: "bangladesh-bank-swift-2016",
+    slug: "bangladesh-bank-swift",
+    name: "Bangladesh Bank SWIFT Heist",
+    shortName: "Bangladesh Bank",
+    year: 2016,
+    dateRange: "February 2016",
+    incidentType: "hybrid",
+    summary:
+      "Attackers compromised Bangladesh Bank's SWIFT terminal and issued fraudulent transfer requests totaling $951M from its account at the Federal Reserve Bank of New York. Most transactions were blocked, but $81M was successfully routed to accounts in the Philippines. The operation demonstrated that the global interbank messaging system could be exploited for state-linked financial theft.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Lazarus Group, attributed by the US DOJ and multiple researchers to North Korea's RGB",
+      country: "North Korea",
+      aliases: ["Lazarus Group", "APT38", "BlueNoroff"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "SWIFT environment compromise",
+          description: "Attackers gained access to Bangladesh Bank's network and SWIFT terminal, studying transfer workflows over several weeks.",
+          date: "2016-01",
+        },
+        {
+          tier: "disruption",
+          label: "Fraudulent SWIFT messages",
+          description: "35 fraudulent transfer requests totaling $951M sent via SWIFT to the NY Fed. Timing exploited the weekend gap between Dhaka and New York.",
+          date: "2016-02-04",
+        },
+        {
+          tier: "degradation",
+          label: "Partial fund exfiltration",
+          description: "$81M successfully transferred to Philippine bank accounts and laundered through casinos. Remaining $870M blocked by correspondent banks due to anomalies.",
+          date: "2016-02-05",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "A typo in a transfer request triggered manual review, limiting losses",
+        "SWIFT infrastructure itself was not technically compromised — the endpoint was",
+      ],
+      thresholdCrossings: [
+        "First confirmed state-linked operation targeting the global interbank financial system",
+        "Demonstrated that SWIFT endpoint security was a systemic risk across central banks",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["finance"],
+      targetCountries: ["Bangladesh", "Philippines"],
+      techniques: [
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1565.001", name: "Data Manipulation: Stored Data Manipulation", tactic: "Impact" },
+        { id: "T1070", name: "Indicator Removal", tactic: "Defense Evasion" },
+      ],
+      malwareFamilies: ["NESTEGG", "DYEPACK", "custom SWIFT manipulation tools"],
+      impactSummary: "$81M stolen; $870M in additional transfers blocked; systemic confidence in SWIFT endpoint security shaken.",
+    },
+    governance: {
+      flags: ["indictment", "norm-violation", "sanctions-imposed", "regulatory-change"],
+      normsInvoked: [
+        "Protection of financial infrastructure and the international banking system",
+        "UN sanctions framework: DPRK revenue generation through illicit cyber means",
+      ],
+      policyResponses: [
+        "US DOJ indictment of Park Jin Hyok (Sep 2018, alongside Sony and WannaCry charges)",
+        "SWIFT implemented mandatory Customer Security Programme (CSP) for member institutions",
+        "UN Panel of Experts documented DPRK cyber-enabled theft as sanctions evasion",
+      ],
+      regulatoryChanges: [
+        "SWIFT Customer Security Programme with mandatory security controls",
+        "Enhanced central bank cybersecurity standards globally",
+      ],
+      impact: "Forced a fundamental upgrade to global interbank security and established that state-sponsored financial cyber theft could fund weapons programs in violation of UN sanctions.",
+    },
+    whyThisMatters: "The Bangladesh Bank heist revealed that the global financial messaging system's security depended on its weakest endpoint, and that state actors would exploit that gap to fund sanctioned programs.",
+    teaching: {
+      keyQuestion: "How should the international community respond when a state uses cyber operations to steal from the global financial system?",
+      discussionPoints: [
+        "Systemic risk in federated trust systems like SWIFT",
+        "North Korea's cyber-enabled revenue model as sanctions evasion",
+        "Responsibilities of correspondent banks and messaging system operators",
+      ],
+      furtherReading: [
+        "Kaspersky: Lazarus Under the Hood, 2017.",
+        "UN Security Council Panel of Experts DPRK Reports, 2019–2023.",
+      ],
+    },
+    sources: [
+      { title: "Reuters: How the New York Fed fumbled over the Bangladesh Bank cyber-heist", category: "journalistic", date: "2016-07-21" },
+      { title: "US DOJ: North Korean Regime-Backed Programmer Charged", category: "legal", date: "2018-09-06" },
+      { title: "SWIFT: Customer Security Programme overview", category: "vendor", date: "2017-01" },
+    ],
+  },
+
+  // ---- Incident 16: Australia Parliament (2019) -----------------------------
+  {
+    id: "australia-parliament-2019",
+    slug: "australia-parliament",
+    name: "Australian Parliament and Political Party Intrusions",
+    shortName: "Australia Parliament",
+    year: 2019,
+    dateRange: "January – February 2019",
+    incidentType: "espionage",
+    summary:
+      "Intrusions into the Australian Parliament House network and the networks of three major political parties, discovered weeks before a federal election. Australia's Prime Minister publicly attributed the activity to a 'sophisticated state actor' without naming the responsible country. Reporting widely assessed China as the likely sponsor, though this was never officially confirmed.",
+    attribution: {
+      confidence: "moderate",
+      attributedTo: "Described by the Australian government as a 'sophisticated state actor'; widely assessed in reporting to be China-linked, but never officially confirmed",
+      country: "Unknown (officially); China (widely assessed)",
+      aliases: [],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Parliamentary network compromise",
+          description: "Unauthorized access detected on the Parliament House network, prompting a forced password reset for all users.",
+          date: "2019-02-01",
+        },
+        {
+          tier: "intrusion",
+          label: "Political party network access",
+          description: "Investigation revealed the same actor had also compromised networks of the Liberal, Labor, and National parties.",
+          date: "2019-02-18",
+        },
+      ],
+      peakTier: "intrusion",
+      restraintFactors: [
+        "No destructive or disruptive actions taken — activity consistent with intelligence collection",
+        "No public evidence of data weaponization or influence operations",
+      ],
+      thresholdCrossings: [
+        "Compromise of a national legislature and ruling/opposition parties during an election period",
+        "Blurred line between traditional espionage and potential election interference",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["government"],
+      targetCountries: ["Australia"],
+      techniques: [
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1114", name: "Email Collection", tactic: "Collection" },
+        { id: "T1071.001", name: "Application Layer Protocol: Web Protocols", tactic: "Command and Control" },
+      ],
+      malwareFamilies: [],
+      impactSummary: "Unauthorized access to parliamentary and political party networks; scope of data exfiltration not publicly disclosed.",
+    },
+    governance: {
+      flags: ["attribution-public", "deterrence-signal"],
+      normsInvoked: [
+        "Non-interference in democratic processes",
+        "UN GGE norms on responsible state behavior in ICT use",
+      ],
+      policyResponses: [
+        "Prime Minister Morrison public statement attributing to a 'sophisticated state actor' (Feb 2019)",
+        "Australian Signals Directorate led incident response",
+        "Accelerated Australian Cyber Security Strategy 2020 development",
+      ],
+      regulatoryChanges: [
+        "Strengthened political party cybersecurity guidance from the Australian Cyber Security Centre",
+        "Informed the Critical Infrastructure Security Act 2022 (SOCI Act) expansion",
+      ],
+      impact: "Elevated political-party cybersecurity as a democratic integrity issue and contributed to Australia's broader critical infrastructure security reforms.",
+    },
+    whyThisMatters: "The compromise of a parliament and major parties during an election cycle demonstrated that cyber espionage against democratic institutions is a live risk, even when the collected intelligence is never publicly weaponized.",
+    teaching: {
+      keyQuestion: "Should espionage against political parties during election periods be treated differently from ordinary state-on-state intelligence collection?",
+      discussionPoints: [
+        "Distinction between intelligence collection and election interference",
+        "Strategic ambiguity in attribution: naming the act but not the actor",
+        "Resilience of democratic institutions to pre-election cyber intrusions",
+      ],
+      furtherReading: [
+        "Australian PM Morrison: Statement on Parliament House cyber incident, Feb 2019.",
+        "Australian Cyber Security Strategy 2020.",
+      ],
+    },
+    sources: [
+      { title: "Australian PM Morrison: Statement on Cyber Incident Affecting Parliament", category: "government", date: "2019-02-18" },
+      { title: "Australian Cyber Security Centre: Advisory on Parliament Compromise", category: "government", date: "2019-02" },
+    ],
+  },
+
+  // ---- Incident 17: Iran Nuclear Facilities – Ongoing Cyber Campaign --------
+  {
+    id: "iran-nuclear-cyber-various",
+    slug: "iran-nuclear-cyber",
+    name: "Iran Nuclear Facilities – Cyber Incidents (2020–2021)",
+    shortName: "Iran Nuclear Cyber",
+    year: 2020,
+    dateRange: "2020 – 2021",
+    incidentType: "sabotage",
+    summary:
+      "A series of reported cyber-enabled incidents at Iranian nuclear and industrial facilities, including an explosion and fire at the Natanz enrichment plant (July 2020), a power distribution disruption at Natanz (April 2021), and other suspected sabotage events. Iran attributed several incidents to Israel. Details remain opaque, with much information coming from Iranian state media and unconfirmed reporting.",
+    attribution: {
+      confidence: "moderate",
+      attributedTo: "Iran publicly attributed several incidents to Israel; independent confirmation is limited and details remain sparse",
+      country: "Israel (attributed by Iran; not officially confirmed)",
+      aliases: [],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "degradation",
+          label: "Natanz centrifuge assembly explosion",
+          description: "An explosion and fire damaged a centrifuge assembly building at Natanz. Some reports suggest a cyber-enabled or remotely triggered device.",
+          date: "2020-07-02",
+        },
+        {
+          tier: "disruption",
+          label: "Natanz power system disruption",
+          description: "An incident disrupted the electrical distribution system at Natanz, reportedly damaging centrifuges. Iran called it 'nuclear terrorism.'",
+          date: "2021-04-11",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Incidents were narrowly targeted at specific nuclear facilities",
+        "No broader civilian infrastructure affected",
+      ],
+      thresholdCrossings: [
+        "If confirmed as cyber-enabled, represents continued willingness to physically damage nuclear infrastructure through non-kinetic means",
+        "Occurs against the backdrop of active diplomatic negotiations (JCPOA)",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["energy", "critical-infrastructure"],
+      targetCountries: ["Iran"],
+      techniques: [
+        { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
+      ],
+      malwareFamilies: [],
+      impactSummary: "Reported physical damage at Natanz enrichment facility; scope and technical details not independently verified.",
+    },
+    governance: {
+      flags: ["norm-violation", "deterrence-signal"],
+      normsInvoked: [
+        "Sovereignty and non-intervention",
+        "Nuclear safety and security obligations (IAEA framework)",
+      ],
+      policyResponses: [
+        "Iran accused Israel publicly and vowed retaliation",
+        "Incidents complicated JCPOA revival negotiations",
+        "No multilateral attribution or formal international response",
+      ],
+      regulatoryChanges: [
+        "Renewed international discussion on cyber risks to nuclear facilities (IAEA context)",
+      ],
+      impact: "Reinforced the precedent set by Stuxnet that nuclear facilities are considered legitimate cyber targets by some states, complicating arms-control diplomacy.",
+    },
+    whyThisMatters: "These incidents illustrate that cyber-enabled sabotage of nuclear facilities did not end with Stuxnet — the pattern persists, with implications for nonproliferation, deterrence, and the stability of diplomatic negotiations.",
+    teaching: {
+      keyQuestion: "Does covert cyber sabotage of nuclear facilities help or hinder nonproliferation diplomacy?",
+      discussionPoints: [
+        "Sabotage as an alternative to military strikes vs. sabotage as a diplomatic spoiler",
+        "Verification and transparency challenges when incidents are opaque",
+        "Risk of escalation between covert cyber operations and overt military responses",
+      ],
+      furtherReading: [
+        "Sanger, D.E. & Bergman, R. 'Israel's Shadow War with Iran.' NYT, various.",
+        "IAEA Board of Governors Reports on Iran, 2020–2021.",
+      ],
+    },
+    sources: [
+      { title: "NYT: Explosion at Iran's Natanz Nuclear Facility", category: "journalistic", date: "2020-07-02" },
+      { title: "Iran AEOI Statement on Natanz Electrical Incident", category: "government", date: "2021-04-11" },
+    ],
+  },
+
+  // ---- Incident 18: Taiwan Telecom Intrusions (2023) ------------------------
+  {
+    id: "taiwan-telecom-2023",
+    slug: "taiwan-telecom",
+    name: "Taiwan Telecommunications Intrusions",
+    shortName: "Taiwan Telecom",
+    year: 2023,
+    dateRange: "2022 – 2023 (disclosed 2023)",
+    incidentType: "espionage",
+    summary:
+      "Sustained intrusions into Taiwanese telecommunications providers attributed to China-linked threat groups, part of a broader pattern of pre-positioning in critical infrastructure. The campaigns, overlapping with activity Microsoft tracks as Volt Typhoon and Flax Typhoon, focused on persistent access rather than immediate disruption, raising concerns about preparation for contingency operations.",
+    attribution: {
+      confidence: "moderate",
+      attributedTo: "Attributed by researchers and the US government to China-linked groups; Taiwan's government has acknowledged the threat without detailed public attribution",
+      country: "China (assessed)",
+      aliases: ["Volt Typhoon", "Flax Typhoon"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Persistent access to telecom infrastructure",
+          description: "China-linked actors established long-term access in Taiwanese ISPs and telecom providers using living-off-the-land techniques to avoid detection.",
+          date: "2022",
+        },
+        {
+          tier: "probing",
+          label: "Pre-positioning for contingency",
+          description: "Activity consistent with infrastructure mapping and access maintenance rather than data exfiltration — assessed as preparation for potential future disruption.",
+          date: "2023",
+        },
+      ],
+      peakTier: "intrusion",
+      restraintFactors: [
+        "No disruptive or destructive actions observed",
+        "Activity consistent with intelligence preparation rather than immediate attack",
+      ],
+      thresholdCrossings: [
+        "Pre-positioning in telecom infrastructure of a potential military contingency target",
+        "Part of a broader pattern including US critical infrastructure (Volt Typhoon)",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["telecommunications", "critical-infrastructure"],
+      targetCountries: ["Taiwan"],
+      techniques: [
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1218", name: "System Binary Proxy Execution", tactic: "Defense Evasion" },
+        { id: "T1071.001", name: "Application Layer Protocol: Web Protocols", tactic: "Command and Control" },
+      ],
+      malwareFamilies: [],
+      impactSummary: "Persistent access to telecom networks; no disruption observed, but pre-positioning raises contingency concerns.",
+    },
+    governance: {
+      flags: ["attribution-public", "deterrence-signal", "international-cooperation"],
+      normsInvoked: [
+        "Responsible state behavior in ICT use (UN OEWG)",
+        "Pre-positioning in critical infrastructure as a potentially destabilizing activity",
+      ],
+      policyResponses: [
+        "US CISA, NSA, and FBI joint advisory on Volt Typhoon (May 2023)",
+        "Five Eyes joint advisory on living-off-the-land threats to critical infrastructure",
+        "Taiwan strengthened telecom cybersecurity regulations",
+      ],
+      regulatoryChanges: [
+        "Taiwan amended telecommunications management regulations to include cybersecurity requirements",
+        "US critical infrastructure pre-positioning elevated as a strategic intelligence priority",
+      ],
+      impact: "Crystallized the policy debate about whether pre-positioning in critical infrastructure during peacetime constitutes a violation of international norms — a question with no consensus answer.",
+    },
+    whyThisMatters: "These intrusions highlight the emerging norm challenge of peacetime pre-positioning: states embedding access in adversary infrastructure for potential future use, blurring the line between espionage and preparation for attack.",
+    teaching: {
+      keyQuestion: "Is peacetime pre-positioning in another state's critical infrastructure a form of threatening behavior under international law?",
+      discussionPoints: [
+        "Distinction between espionage, pre-positioning, and preparation for armed conflict",
+        "Strategic stability implications of mutual infrastructure access",
+        "Living-off-the-land: how legitimate tools complicate detection and attribution",
+      ],
+      furtherReading: [
+        "Microsoft: Volt Typhoon targets US critical infrastructure, 2023.",
+        "CISA Advisory AA23-144A: PRC State-Sponsored Actors, 2023.",
+      ],
+    },
+    sources: [
+      { title: "CISA/NSA/FBI Advisory AA23-144A: PRC State-Sponsored Cyber Actor Living off the Land", category: "government", date: "2023-05-24" },
+      { title: "Microsoft: Volt Typhoon Targets US Critical Infrastructure", category: "vendor", date: "2023-05-24" },
+    ],
+  },
 ];
