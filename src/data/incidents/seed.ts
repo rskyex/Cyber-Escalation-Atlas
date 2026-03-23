@@ -954,4 +954,294 @@ export const seedIncidents: Incident[] = [
       { title: "EU Council: Declaration on Viasat Cyber Attack Attribution", category: "government", date: "2022-05-10" },
     ],
   },
+
+  // ---- Incident 11: Microsoft Exchange / Hafnium (2021) ---------------------
+  {
+    id: "exchange-hafnium-2021",
+    slug: "exchange-hafnium",
+    name: "Microsoft Exchange Server Exploitation (Hafnium)",
+    shortName: "Exchange/Hafnium",
+    year: 2021,
+    dateRange: "January – March 2021",
+    incidentType: "espionage",
+    summary:
+      "Mass exploitation of four zero-day vulnerabilities in on-premises Microsoft Exchange Server by a China-based group, later followed by indiscriminate exploitation by multiple actors after patches were released. At least 30,000 US organizations and many more worldwide were compromised, with web shells left for persistent access.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Hafnium, attributed by the US and allied governments to actors affiliated with China's Ministry of State Security",
+      country: "China",
+      aliases: ["Hafnium", "Silk Typhoon"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Targeted zero-day exploitation",
+          description: "Hafnium exploited ProxyLogon vulnerabilities (CVE-2021-26855 et al.) for targeted espionage against select organizations.",
+          date: "2021-01",
+        },
+        {
+          tier: "disruption",
+          label: "Mass exploitation wave",
+          description: "Exploitation broadened dramatically in late February, compromising tens of thousands of Exchange servers worldwide with web shells before patches were available.",
+          date: "2021-02-27",
+        },
+        {
+          tier: "degradation",
+          label: "Persistent access and secondary actors",
+          description: "Multiple unrelated threat groups began exploiting the same vulnerabilities, complicating triage. Ransomware operators leveraged web shells left behind.",
+          date: "2021-03",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Initial phase was narrowly targeted espionage",
+        "No destructive payload deployed by the primary actor",
+      ],
+      thresholdCrossings: [
+        "Shift from targeted espionage to indiscriminate mass exploitation at scale",
+        "Created attack surface subsequently exploited by criminal ransomware groups",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["government", "defense", "healthcare", "education", "technology", "multiple"],
+      targetCountries: ["United States", "Global"],
+      techniques: [
+        { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
+        { id: "T1505.003", name: "Server Software Component: Web Shell", tactic: "Persistence" },
+        { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
+      ],
+      malwareFamilies: ["China Chopper", "ASPXSpy"],
+      impactSummary: "At least 30,000 US organizations compromised; web shells provided persistent access exploitable by any subsequent attacker.",
+    },
+    governance: {
+      flags: ["attribution-public", "indictment", "international-cooperation", "norm-violation"],
+      normsInvoked: [
+        "Responsible disclosure and restraint in vulnerability exploitation",
+        "UN GGE norm on responsible state behavior in ICT use",
+      ],
+      policyResponses: [
+        "Unprecedented joint attribution by US, EU, NATO, Five Eyes, and Japan (Jul 2021)",
+        "US DOJ indictment of four MSS-affiliated individuals (Jul 2021)",
+        "CISA Emergency Directive 21-02 ordering federal agencies to patch or disconnect",
+      ],
+      regulatoryChanges: [
+        "Strengthened CISA authority for emergency directives on private-sector software",
+        "Accelerated US push for coordinated vulnerability disclosure norms",
+      ],
+      impact: "The broadest multilateral cyber attribution to date — including NATO's first explicit attribution to China — established a template for coalition-based diplomatic response to state-sponsored cyber campaigns.",
+    },
+    whyThisMatters: "Hafnium demonstrated how a targeted espionage operation can metastasize into a mass-compromise event affecting tens of thousands, and prompted the widest coalition cyber attribution ever directed at China.",
+    teaching: {
+      keyQuestion: "What obligations do states have to limit collateral damage from their own cyber espionage operations?",
+      discussionPoints: [
+        "Responsible vulnerability exploitation vs. indiscriminate access",
+        "Cascading risk when espionage infrastructure is discovered by criminal actors",
+        "Effectiveness of multilateral attribution coalitions",
+      ],
+      furtherReading: [
+        "Microsoft Threat Intelligence: Hafnium Targeting Exchange Servers, 2021.",
+        "White House: Attribution Statement on Microsoft Exchange Exploitation, Jul 2021.",
+      ],
+    },
+    sources: [
+      { title: "Microsoft: Hafnium Targeting Exchange Servers with 0-Day Exploits", category: "vendor", date: "2021-03-02" },
+      { title: "CISA Emergency Directive 21-02", category: "government", date: "2021-03-03" },
+      { title: "White House: PRC Cyber Attribution Statement", category: "government", date: "2021-07-19" },
+    ],
+  },
+
+  // ---- Incident 12: Costa Rica Government (2022) ----------------------------
+  {
+    id: "costa-rica-conti-2022",
+    slug: "costa-rica-conti",
+    name: "Costa Rica Government Ransomware Attack",
+    shortName: "Costa Rica / Conti",
+    year: 2022,
+    dateRange: "April – May 2022",
+    incidentType: "ransomware",
+    summary:
+      "Conti ransomware group attacked multiple Costa Rican government ministries, encrypting systems at the Ministry of Finance, disabling tax and customs platforms, and demanding a $20M ransom (later reduced to $10M). Costa Rica declared a national emergency — the first country to do so in response to a ransomware attack. A follow-on attack attributed to HIVE targeted the social security healthcare system weeks later.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Conti ransomware group (Russian-speaking criminal organization); follow-on attack attributed to HIVE",
+      country: "Russia (criminal, not directly state-sponsored per public assessments)",
+      aliases: ["Conti", "Wizard Spider", "HIVE"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Initial government network compromise",
+          description: "Conti gained access to the Ministry of Finance network, exfiltrating data and pre-positioning for encryption.",
+          date: "2022-04-12",
+        },
+        {
+          tier: "disruption",
+          label: "Multi-ministry encryption",
+          description: "Tax collection, customs, and import/export systems taken offline; ~672 GB of government data exfiltrated and partially leaked.",
+          date: "2022-04-18",
+        },
+        {
+          tier: "degradation",
+          label: "National emergency declaration",
+          description: "President Chaves declared a national emergency; HIVE subsequently attacked the social security health system (CCSS), disrupting hospital operations.",
+          date: "2022-05-08",
+        },
+      ],
+      peakTier: "degradation",
+      restraintFactors: [
+        "Attackers offered decryption for ransom — coercive but not purely destructive",
+        "No reported impact on life-safety systems",
+      ],
+      thresholdCrossings: [
+        "First country to declare a national emergency over ransomware",
+        "Demonstrated that ransomware can functionally incapacitate the fiscal apparatus of a nation-state",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["government", "finance", "healthcare"],
+      targetCountries: ["Costa Rica"],
+      techniques: [
+        { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
+        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
+        { id: "T1048", name: "Exfiltration Over Alternative Protocol", tactic: "Exfiltration" },
+      ],
+      malwareFamilies: ["Conti", "HIVE"],
+      impactSummary: "Tax and customs systems offline for weeks; national emergency declared; healthcare disrupted by follow-on attack.",
+    },
+    governance: {
+      flags: ["norm-violation", "international-cooperation", "sanctions-imposed"],
+      normsInvoked: [
+        "Protection of government services and public welfare infrastructure",
+        "Responsible state behavior: preventing criminal groups from operating with impunity",
+      ],
+      policyResponses: [
+        "US offered $10M reward for information on Conti leadership",
+        "US and allied assistance to Costa Rica for incident response",
+        "Counter Ransomware Initiative (CRI) coalition cited Costa Rica as motivating case",
+      ],
+      regulatoryChanges: [
+        "Costa Rica accelerated national cybersecurity strategy and institutional reforms",
+        "Reinforced international momentum for the Counter Ransomware Initiative",
+      ],
+      impact: "Made the strategic threat of ransomware to sovereign governance undeniable, strengthening the case for treating ransomware groups as national security threats rather than mere criminal nuisances.",
+    },
+    whyThisMatters: "Costa Rica showed that ransomware can effectively disable a nation's fiscal and health systems, forcing the first-ever national emergency declaration over a cyber attack and elevating ransomware to a sovereign-level threat.",
+    teaching: {
+      keyQuestion: "When ransomware incapacitates core government functions, does it cross the threshold from crime to national security threat?",
+      discussionPoints: [
+        "Capacity gaps: small and mid-size states facing sophisticated criminal groups",
+        "International assistance frameworks for ransomware emergencies",
+        "Strategic relationship between ransomware crews and state tolerance",
+      ],
+      furtherReading: [
+        "BleepingComputer: Costa Rica declares national emergency after Conti ransomware attacks, 2022.",
+        "Counter Ransomware Initiative Joint Statement, 2022.",
+      ],
+    },
+    sources: [
+      { title: "Costa Rica Presidential Decree of National Emergency", category: "government", date: "2022-05-08" },
+      { title: "US State Department: Reward Offer for Conti Leadership", category: "government", date: "2022-05-06" },
+      { title: "CISA: Conti Ransomware Advisory AA21-265A (updated)", category: "government", date: "2022-04" },
+    ],
+  },
+
+  // ---- Incident 13: Albania Government (2022) -------------------------------
+  {
+    id: "albania-iran-2022",
+    slug: "albania-iran",
+    name: "Albania Government Cyber Attack",
+    shortName: "Albania / Iran",
+    year: 2022,
+    dateRange: "July – September 2022",
+    incidentType: "destructive",
+    summary:
+      "Iran-linked actors launched destructive cyber attacks against Albanian government systems, deploying wiper malware and ransomware that took e-government services offline for weeks. Albania attributed the attack to Iran and took the unprecedented step of severing diplomatic relations — the first known rupture of diplomatic ties over a cyber operation.",
+    attribution: {
+      confidence: "high",
+      attributedTo: "Attributed by Albania, the US, and allied governments to Iranian state actors affiliated with MOIS",
+      country: "Iran",
+      aliases: ["Homeland Justice", "DEV-0861", "DEV-0166"],
+    },
+    escalation: {
+      phases: [
+        {
+          tier: "intrusion",
+          label: "Persistent access established",
+          description: "Iranian actors maintained access to Albanian government networks for over a year prior to the destructive phase.",
+          date: "2021-05",
+        },
+        {
+          tier: "destruction",
+          label: "Wiper and ransomware deployment",
+          description: "Wiper malware and ransomware deployed against government IT systems, taking down e-services including border control and tax platforms.",
+          date: "2022-07-15",
+        },
+        {
+          tier: "disruption",
+          label: "Second wave and data leaks",
+          description: "A follow-on attack in September targeted law enforcement systems; stolen data leaked online as part of an influence operation.",
+          date: "2022-09",
+        },
+      ],
+      peakTier: "destruction",
+      restraintFactors: [
+        "Attacks targeted government IT, not civilian critical infrastructure",
+        "No reported physical harm",
+      ],
+      thresholdCrossings: [
+        "First known severance of diplomatic relations over a cyber attack",
+        "State-sponsored destructive attack against a NATO member's government systems",
+      ],
+    },
+    infrastructure: {
+      targetSectors: ["government"],
+      targetCountries: ["Albania"],
+      techniques: [
+        { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
+        { id: "T1485", name: "Data Destruction", tactic: "Impact" },
+        { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
+        { id: "T1530", name: "Data from Cloud Storage", tactic: "Collection" },
+      ],
+      malwareFamilies: ["ZeroCleare variant", "Chimneysweep"],
+      impactSummary: "E-government services offline for weeks; border control, tax, and law enforcement systems disrupted; diplomatic break with Iran.",
+    },
+    governance: {
+      flags: ["attribution-public", "sanctions-imposed", "norm-violation", "deterrence-signal", "international-cooperation"],
+      normsInvoked: [
+        "Sovereignty and non-intervention",
+        "UN GGE norm on responsible state behavior in ICT",
+      ],
+      policyResponses: [
+        "Albania severed diplomatic relations with Iran (Sep 2022)",
+        "NATO issued a statement of allied solidarity",
+        "US imposed sanctions on Iran's MOIS and senior officials",
+        "CISA issued joint advisory with FBI on Iranian threat activity",
+      ],
+      regulatoryChanges: [
+        "Albania accelerated e-government security overhaul with allied support",
+        "NATO reinforced cyber defense commitment to member states",
+      ],
+      impact: "Established that cyber attacks can trigger real diplomatic rupture and NATO solidarity, expanding the practical consequences states may face for destructive cyber operations against alliance members.",
+    },
+    whyThisMatters: "Albania's decision to sever diplomatic ties over a cyber attack — backed by NATO solidarity — set a new precedent for treating destructive cyber operations as grounds for the most serious peacetime diplomatic consequences.",
+    teaching: {
+      keyQuestion: "What diplomatic and alliance responses are appropriate when a state conducts destructive cyber operations against another state's government?",
+      discussionPoints: [
+        "Proportionality of diplomatic severance as a response to cyber attack",
+        "NATO's evolving posture on collective cyber defense",
+        "Iran's use of cyber operations as a coercive tool beyond its immediate region",
+      ],
+      furtherReading: [
+        "Microsoft Threat Intelligence: Microsoft investigates Iranian attacks against the Albanian government, 2022.",
+        "Albanian PM Rama: Statement on severance of diplomatic relations with Iran, Sep 2022.",
+      ],
+    },
+    sources: [
+      { title: "Microsoft: Iranian Attacks Against the Albanian Government", category: "vendor", date: "2022-09-08" },
+      { title: "White House: Statement on Iran's Cyberattack Against Albania", category: "government", date: "2022-09-07" },
+      { title: "FBI/CISA Advisory AA22-264A: Iranian State Actors Conduct Cyber Operations Against Albania", category: "government", date: "2022-09-21" },
+    ],
+  },
 ];
