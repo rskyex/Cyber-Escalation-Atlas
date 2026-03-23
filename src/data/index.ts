@@ -3,4 +3,4 @@
  */
 
 export type { Incident, CaseStudy } from "./types";
-export { seedIncidents as incidents } from "./incidents/seed";
+export { seedIncidents, seedIncidents as incidents } from "./incidents";
