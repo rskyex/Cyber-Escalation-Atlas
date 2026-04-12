@@ -44,12 +44,18 @@ const lenses = [
     href: "/escalation-lens",
     description: "How cyber operations climb the escalation ladder from access to strategic impact.",
     coordinate: "ESC",
+    detail:
+      "Interactive Unpeace scoring plots all 30 cases across Stable / Contested / Escalatory zones. Filter by operation type, peak tier, and restraint factors. Each case shows phase-by-phase escalation trajectories and threshold crossings.",
+    features: ["Unpeace Score Plot", "Three-Zone Classification", "Restraint Factor Analysis"],
   },
   {
     title: "Infrastructure",
     href: "/infrastructure-lens",
     description: "Technical systems targeted and exploited across state-linked campaigns.",
     coordinate: "INF",
+    detail:
+      "Eight critical sectors — Energy, Finance, Government, Healthcare, Telecommunications, Transportation, Defence, Technology — each with strategic importance assessments, dependency maps, typical cyber effects, escalation proneness ratings, and governance vulnerabilities.",
+    features: ["Sector Dependency Maps", "Entanglement Scoring", "ICS/OT Analysis"],
   },
   {
     title: "Governance",
@@ -57,12 +63,84 @@ const lenses = [
     description: "Policy responses, international norms, and regulatory frameworks shaped by incidents.",
     coordinate: "GOV",
     highlight: true,
+    detail:
+      "Tracks seven governance flags — norm violations, public attribution, sanctions, indictments, regulatory responses, international coordination, and precedent-setting — with rule citations from the Tallinn Manual 2.0, UN GGE, and ILC Articles on State Responsibility.",
+    features: ["Governance Flag Matrix", "Rule Citations", "Policy Response Tracking"],
   },
   {
     title: "Attribution",
     href: "/attribution-lens",
     description: "Who attributed, in what sequence, with what evidence, and to what political consequence.",
     coordinate: "ATT",
+    detail:
+      "Attribution Confidence Matrix cross-referencing cases against six attributing actors. Expandable attribution chain timelines showing who attributed, when, with what evidence basis. Cases grouped by consequence type: Sanctions, Indictment, Diplomatic Expulsion, Public Naming Only, No Formal Response.",
+    features: ["Confidence Matrix", "Chain Timelines", "Consequence Grouping"],
+  },
+];
+
+const dataTools = [
+  {
+    title: "Timeline",
+    href: "/timeline",
+    coordinate: "TML",
+    description:
+      "All 30 cases plotted chronologically from 2007 to 2025, sized by Unpeace score and coloured by operation type. Governance milestones — UN GGE consensus, OEWG mandates, Tallinn Manual adoption — overlaid as reference markers.",
+    detail:
+      "Reveals three distinct clustering periods: pre-norm pioneering (2007\u20132014), contested norm emergence (2015\u20132019), and escalatory industrialisation (2020\u2013present). The 2017 GGE consensus failure correlates with observable acceleration in destructive operations.",
+  },
+  {
+    title: "Threat Actor Profiles",
+    href: "/actors",
+    coordinate: "ACT",
+    description:
+      "7 named threat actors — Sandworm, Lazarus Group, SVR/APT29, Hafnium, and more — each with state nexus, mission classification, primary sectors targeted, operational period, TTPs, behavioural signatures, and governance footprint.",
+    detail:
+      "Dominant operation type analysis, case linkage, and temporal activity range for each actor. Profiles connect technical capability to strategic intent and policy implications.",
+  },
+  {
+    title: "Sector Risk Dashboard",
+    href: "/sectors",
+    coordinate: "SEC",
+    description:
+      "Incident distribution across 11 critical infrastructure sectors. Each sector card shows incident count, most recent attack year, dominant operation type, and average Unpeace score.",
+    detail:
+      "Drill into any sector for case-level detail, TTP concentration analysis (top MITRE ATT&CK tactics), and governance response pattern mapping across implicated cases.",
+  },
+  {
+    title: "Cross-Case Comparison",
+    href: "/compare",
+    coordinate: "CMP",
+    description:
+      "Side-by-side comparison of two or more cases across escalation, infrastructure, and governance dimensions. Identify commonalities, divergences, and structural patterns.",
+    detail:
+      "Select any combination of the 30 cases to compare escalation trajectories, target sectors, governance flags, attribution timelines, and policy outcomes in a unified view.",
+  },
+];
+
+const researchTools = [
+  {
+    title: "Norm Evolution Tracker",
+    href: "/norms",
+    coordinate: "NRM",
+    description:
+      "Six key international cyber norms tracked across all cases — their current status (Emerging, Contested, Partially Accepted, Violated Repeatedly), anchor instruments, and whether each case reinforced, violated, or exposed gaps.",
+    stats: "6 norms \u00b7 30 case interactions tracked",
+  },
+  {
+    title: "Legal Framework Mapper",
+    href: "/legal",
+    coordinate: "LEG",
+    description:
+      "International legal frameworks — UN Charter, IHL, Tallinn Manual 2.0, ILC Articles on State Responsibility — mapped rule-by-rule to cases in the dataset. Explores analytical controversies around sovereignty, due diligence, and countermeasures.",
+    stats: "4 frameworks \u00b7 rule-level analysis",
+  },
+  {
+    title: "Brief Generator",
+    href: "/brief",
+    coordinate: "BRF",
+    description:
+      "Generate structured analytical briefs — Executive Summary (500 words), Technical Assessment (800 words), or Governance Analysis (800 words) — filtered by threat actor, target sector, and region.",
+    stats: "3 brief types \u00b7 actor/sector/region filters",
   },
 ];
 
@@ -227,7 +305,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ ANALYTICAL LENSES ═══ */}
+      {/* ═══ ANALYTICAL LENSES (Enhanced) ═══ */}
       <section className="relative">
         <div className="atlas-rule" />
         <div className="atlas-grid absolute inset-0 opacity-50" />
@@ -243,13 +321,14 @@ export default function HomePage() {
             <h2 className="text-heading font-display text-ink dark:text-white mb-4">
               Four Dimensions of Analysis
             </h2>
-            <p className="text-body text-steel-500 dark:text-steel-400 max-w-lg mx-auto">
+            <p className="text-body text-steel-500 dark:text-steel-400 max-w-2xl mx-auto">
               Each lens offers a distinct perspective on the same underlying incidents,
-              revealing patterns invisible from any single vantage point.
+              revealing patterns invisible from any single vantage point. Every case is
+              analyzed through all four dimensions simultaneously.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {lenses.map((lens, i) => (
               <motion.div
                 key={lens.href}
@@ -265,7 +344,7 @@ export default function HomePage() {
                       : "bg-ink-50/40 dark:bg-white/[0.02] border border-transparent dark:border-white/[0.04] hover:bg-ink-100/60 dark:hover:bg-white/[0.05] hover:shadow-depth"
                   }`}>
                     {/* Coordinate marker */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-4">
                       <span className="text-micro font-mono font-semibold text-atlas-500 dark:text-atlas-400 tracking-widest">
                         {lens.coordinate}
                       </span>
@@ -276,15 +355,153 @@ export default function HomePage() {
                       )}
                     </div>
 
-                    <h3 className="text-subheading font-display text-ink dark:text-white mb-3 group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
-                      {lens.title}
+                    <h3 className="text-subheading font-display text-ink dark:text-white mb-2 group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                      {lens.title} Lens
                     </h3>
-                    <p className="text-caption text-steel-500 dark:text-steel-400 leading-relaxed">
+                    <p className="text-caption text-steel-500 dark:text-steel-400 leading-relaxed mb-4">
                       {lens.description}
                     </p>
 
-                    <div className="mt-6 flex items-center gap-1.5 text-micro font-medium text-atlas-600 dark:text-atlas-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Detailed description */}
+                    <p className="text-xs text-steel-400 dark:text-steel-500 leading-relaxed mb-5">
+                      {lens.detail}
+                    </p>
+
+                    {/* Feature tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {lens.features.map((f) => (
+                        <span
+                          key={f}
+                          className="text-[10px] font-medium px-2 py-0.5 rounded bg-ink-100/60 dark:bg-white/[0.04] text-steel-500 dark:text-steel-400 border border-transparent dark:border-white/[0.04]"
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-1.5 text-micro font-medium text-atlas-600 dark:text-atlas-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       Enter lens
+                      <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ DATA & TOOLS ═══ */}
+      <section className="relative">
+        <div className="atlas-rule" />
+        <div className="mx-auto max-w-content px-6 lg:px-8 py-20 sm:py-26">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            className="mb-14"
+          >
+            <p className="section-label mb-2">Data &amp; Tools</p>
+            <h2 className="text-heading font-display text-ink dark:text-white mb-4">
+              Explore the Dataset
+            </h2>
+            <p className="text-body text-steel-500 dark:text-steel-400 max-w-2xl">
+              Interactive tools for navigating 30 structured case studies across time,
+              actors, sectors, and cross-case comparison.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {dataTools.map((tool, i) => (
+              <motion.div
+                key={tool.href}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+              >
+                <Link href={tool.href} className="group block h-full">
+                  <div className="relative h-full p-7 rounded-xl bg-ink-50/40 dark:bg-white/[0.02] border border-transparent dark:border-white/[0.04] hover:bg-ink-100/60 dark:hover:bg-white/[0.05] hover:shadow-depth transition-all duration-300">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-micro font-mono font-semibold text-atlas-500 dark:text-atlas-400 tracking-widest">
+                        {tool.coordinate}
+                      </span>
+                    </div>
+                    <h3 className="text-subheading font-display text-ink dark:text-white mb-2 group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-caption text-steel-500 dark:text-steel-400 leading-relaxed mb-3">
+                      {tool.description}
+                    </p>
+                    <p className="text-xs text-steel-400 dark:text-steel-500 leading-relaxed">
+                      {tool.detail}
+                    </p>
+                    <div className="mt-5 flex items-center gap-1.5 text-micro font-medium text-atlas-600 dark:text-atlas-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Open tool
+                      <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ RESEARCH & GOVERNANCE ═══ */}
+      <section className="relative">
+        <div className="atlas-rule" />
+        <div className="atlas-grid absolute inset-0 opacity-30" />
+        <div className="relative mx-auto max-w-content px-6 lg:px-8 py-20 sm:py-26">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            className="mb-14"
+          >
+            <p className="section-label mb-2">Research &amp; Governance</p>
+            <h2 className="text-heading font-display text-ink dark:text-white mb-4">
+              Norms, Law &amp; Analytical Output
+            </h2>
+            <p className="text-body text-steel-500 dark:text-steel-400 max-w-2xl">
+              Track the evolution of international cyber norms, map legal frameworks
+              to real-world incidents, and generate structured analytical briefs.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            {researchTools.map((tool, i) => (
+              <motion.div
+                key={tool.href}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+              >
+                <Link href={tool.href} className="group block h-full">
+                  <div className="relative h-full p-7 rounded-xl bg-ink-50/40 dark:bg-white/[0.02] border border-transparent dark:border-white/[0.04] hover:bg-ink-100/60 dark:hover:bg-white/[0.05] hover:shadow-depth transition-all duration-300">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-micro font-mono font-semibold text-atlas-500 dark:text-atlas-400 tracking-widest">
+                        {tool.coordinate}
+                      </span>
+                      <span className="text-[10px] font-medium text-steel-500 dark:text-steel-500">
+                        {tool.stats}
+                      </span>
+                    </div>
+                    <h3 className="text-subheading font-display text-ink dark:text-white mb-2 group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-caption text-steel-500 dark:text-steel-400 leading-relaxed">
+                      {tool.description}
+                    </p>
+                    <div className="mt-5 flex items-center gap-1.5 text-micro font-medium text-atlas-600 dark:text-atlas-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Open tool
                       <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
                         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
