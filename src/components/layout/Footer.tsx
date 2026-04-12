@@ -103,7 +103,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://space-mandate-atlas.vercel.app/"
+                  href="https://lunar-mandate-atlas.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-caption text-steel-500 dark:text-steel-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"

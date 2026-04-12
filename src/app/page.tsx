@@ -662,7 +662,7 @@ export default function HomePage() {
                   { name: "Cyber Escalation Atlas", href: "https://cyber-escalation-atlas.vercel.app/" },
                   { name: "Global Nuclear Infrastructure Atlas", href: "https://globalnuclearinfrastructureatlas.vercel.app/" },
                   { name: "Orbital Risk Tracker", href: "https://orbitalrisktracker.vercel.app/" },
-                  { name: "Space Mandate Atlas", href: "https://space-mandate-atlas.vercel.app/" },
+                  { name: "Space Mandate Atlas", href: "https://lunar-mandate-atlas.vercel.app/" },
                 ].map((p) => (
                   <a
                     key={p.href}

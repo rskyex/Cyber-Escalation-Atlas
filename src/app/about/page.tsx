@@ -22,7 +22,7 @@ const faultlineProjects = [
   },
   {
     name: "Space Mandate Atlas",
-    href: "https://space-mandate-atlas.vercel.app/",
+    href: "https://lunar-mandate-atlas.vercel.app/",
     description:
       "Mapping space governance mandates, treaties, and institutional authority across jurisdictions.",
   },
