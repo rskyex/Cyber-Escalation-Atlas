@@ -1,4 +1,32 @@
+import Image from "next/image";
 import { PageHeader, SectionWrapper, Card } from "@/components/ui";
+
+const faultlineProjects = [
+  {
+    name: "Cyber Escalation Atlas",
+    href: "https://cyber-escalation-atlas.vercel.app/",
+    description:
+      "Policy-grade reference mapping state-linked cyber operations, escalation dynamics, and governance frameworks.",
+  },
+  {
+    name: "Global Nuclear Infrastructure Atlas",
+    href: "https://globalnuclearinfrastructureatlas.vercel.app/",
+    description:
+      "Interactive mapping of global nuclear infrastructure, facilities, and strategic dependencies.",
+  },
+  {
+    name: "Orbital Risk Tracker",
+    href: "https://orbitalrisktracker.vercel.app/",
+    description:
+      "Monitoring and analysis of orbital risks, space debris, and dual-use satellite systems.",
+  },
+  {
+    name: "Space Mandate Atlas",
+    href: "https://space-mandate-atlas.vercel.app/",
+    description:
+      "Mapping space governance mandates, treaties, and institutional authority across jurisdictions.",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -141,29 +169,176 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Author ── */}
-        <Card>
-          <h3 className="font-semibold text-ink dark:text-white mb-2">
-            Author &amp; Builder
-          </h3>
-          <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
-            The Cyber Escalation Atlas&trade; is designed, researched, and built
-            by{" "}
-            <a
-              href="https://risakoyanagi.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors underline underline-offset-2"
-            >
-              Risa Koyanagi
-            </a>
-            . The project reflects an ongoing research interest in the
-            intersection of cyber operations, space security, and nuclear risk
-            governance — and the analytical infrastructure required to make
-            those entanglements legible to policymakers.
-          </p>
-        </Card>
+        {/* ── Author & Creator ── */}
+        <section className="pt-4">
+          <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-6">
+            Author &amp; Creator
+          </h2>
+          <Card>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/profile.jpg"
+                  alt="Risa Koyanagi"
+                  width={120}
+                  height={120}
+                  className="rounded-xl object-cover w-[120px] h-[120px]"
+                />
+              </div>
+              <div className="flex-1 space-y-3">
+                <div>
+                  <h3 className="font-semibold text-ink dark:text-white text-lg">
+                    Risa Koyanagi
+                  </h3>
+                  <p className="text-xs font-medium uppercase tracking-widest text-atlas-600 dark:text-atlas-400 mt-1">
+                    Cambridge Future Scholar
+                  </p>
+                </div>
+                <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
+                  Risa Koyanagi is a Cambridge Future Scholar and researcher
+                  working across space, nuclear, and emerging technology
+                  governance and strategic risk. Her work focuses on
+                  legitimation, dual-use systems, and authority architecture.
+                  She also designs public-facing research platforms on AI
+                  governance, strategic infrastructure risk, and interpretive
+                  systems.
+                </p>
+                <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
+                  The Cyber Escalation Atlas&trade; is designed, researched, and
+                  built as part of an ongoing research programme examining the
+                  intersection of cyber operations, space security, and nuclear
+                  risk governance — and the analytical infrastructure required
+                  to make those entanglements legible to policymakers.
+                </p>
+                <div className="pt-1">
+                  <a
+                    href="https://risakoyanagi.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-300 transition-colors underline underline-offset-2"
+                  >
+                    risakoyanagi.com
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      className="ml-0.5"
+                    >
+                      <path
+                        d="M6 3h7v7M13 3L5 11"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
 
+        {/* ── Faultline Ecosystem ── */}
+        <section className="pt-4">
+          <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-6">
+            Part of Faultline
+          </h2>
+          <Card>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-atlas/10 dark:bg-atlas/15 flex items-center justify-center mt-0.5">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="text-atlas-500 dark:text-atlas-400"
+                  >
+                    <path
+                      d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-ink dark:text-white mb-1">
+                    Faultline
+                  </h3>
+                  <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
+                    The Cyber Escalation Atlas is part of{" "}
+                    <a
+                      href="https://faultline-nqmm.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-300 transition-colors underline underline-offset-2"
+                    >
+                      Faultline
+                    </a>
+                    , a research ecosystem designed by Risa Koyanagi that maps
+                    structural risk across interconnected strategic domains —
+                    cyber, space, nuclear, and emerging technology governance.
+                    Each platform within Faultline provides a distinct analytical
+                    lens on the same underlying problem: how dual-use
+                    infrastructure, contested authority, and governance gaps
+                    create systemic escalation risk.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <div className="mt-4 space-y-3">
+            <p className="text-xs font-medium uppercase tracking-widest text-steel-600 dark:text-steel-500 px-1">
+              Faultline Projects
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {faultlineProjects.map((project) => (
+                <a
+                  key={project.href}
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <Card>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-sm font-semibold text-ink dark:text-white group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                          {project.name}
+                        </h4>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          className="text-steel-400 dark:text-steel-500 group-hover:text-atlas-500 dark:group-hover:text-atlas-400 transition-colors"
+                        >
+                          <path
+                            d="M6 3h7v7M13 3L5 11"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-xs text-steel-500 dark:text-steel-400 leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Contact ── */}
         <Card>
           <h3 className="font-semibold text-ink dark:text-white mb-2">
             Contact

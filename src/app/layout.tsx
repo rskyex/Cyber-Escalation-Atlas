@@ -7,20 +7,30 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Cyber Escalation Atlas™",
   description:
-    "A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks.",
+    "A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks. Part of the Faultline research ecosystem by Risa Koyanagi.",
+  authors: [{ name: "Risa Koyanagi", url: "https://risakoyanagi.com" }],
   openGraph: {
     title: "Cyber Escalation Atlas™",
     description:
-      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
-    siteName: "Cyber Escalation Atlas™",
+      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis. A Faultline project by Risa Koyanagi.",
+    siteName: "Cyber Escalation Atlas™ · Faultline",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/faultline-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Faultline — Strategic research ecosystem by Risa Koyanagi",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cyber Escalation Atlas™",
     description:
       "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
+    images: ["/faultline-og.png"],
   },
 };
 
