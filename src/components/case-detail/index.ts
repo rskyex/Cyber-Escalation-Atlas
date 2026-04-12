@@ -19,3 +19,4 @@ export { SourcesSection } from "./SourcesSection";
 export { SourceCard } from "./SourceCard";
 export { RelatedSection } from "./RelatedSection";
 export { RelatedCaseCard } from "./RelatedCaseCard";
+export { CaseExportButton } from "./CaseExportButton";

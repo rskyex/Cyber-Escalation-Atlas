@@ -117,6 +117,38 @@ export interface SourceRef {
   date?: string;
 }
 
+// ---- Attribution Lens types (Upgrade 1) ------------------------------------
+
+export type AttributionActor =
+  | "US Government"
+  | "UK Government"
+  | "EU"
+  | "Allied Coalition"
+  | "Academic/Private Sector"
+  | "Contested/Unknown";
+
+export type AttributionCoordinationType = "joint" | "unilateral" | "none";
+
+export type AttributionConsequenceType =
+  | "Sanctions"
+  | "Indictment"
+  | "Diplomatic Expulsion"
+  | "Public Naming Only"
+  | "No Formal Response";
+
+export interface AttributionClaimant {
+  actor: AttributionActor | string;
+  date: string;
+  confidenceLevel: string;
+  evidenceBasis: string;
+}
+
+export interface AttributionDetail {
+  claimants: AttributionClaimant[];
+  coordinationType: AttributionCoordinationType;
+  consequences: AttributionConsequenceType[];
+}
+
 // ---- Core Incident type -----------------------------------------------------
 
 export interface Incident {
@@ -135,4 +167,8 @@ export interface Incident {
   whyThisMatters: string;
   teaching: TeachingBlock;
   sources: SourceRef[];
+  /** Attribution Lens detail (Upgrade 1) */
+  attributionDetail?: AttributionDetail;
+  /** Threat actor profile slug (Upgrade 3) */
+  actorSlug?: string;
 }

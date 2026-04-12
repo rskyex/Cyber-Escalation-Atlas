@@ -17,6 +17,7 @@ import {
   TeachingSection,
   SourcesSection,
   RelatedSection,
+  CaseExportButton,
 } from "@/components/case-detail";
 
 // ---------------------------------------------------------------------------
@@ -61,6 +62,11 @@ export default function CaseDetailPage({
   return (
     <SectionWrapper>
       <div className="max-w-4xl mx-auto space-y-10">
+        {/* Export */}
+        <div className="flex justify-end">
+          <CaseExportButton incident={incident} />
+        </div>
+
         {/* 1. Header fields */}
         <HeaderSection incident={incident} />
 
