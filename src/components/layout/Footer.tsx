@@ -65,20 +65,53 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Status */}
+          {/* Faultline Ecosystem */}
           <div className="lg:col-span-2">
             <h4 className="text-micro font-semibold uppercase tracking-widest text-steel-600 dark:text-steel-600 mb-4">
-              Status
+              Faultline
             </h4>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-atlas-400 animate-pulse-slow" />
-              <span className="text-caption text-steel-500 dark:text-steel-400">Active Research</span>
-            </div>
-            <p className="text-micro text-steel-600 dark:text-steel-600">
-              20 documented cases<br />
-              3 analytical lenses<br />
-              100+ ATT&CK mappings
-            </p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href="https://faultline-nqmm.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-caption text-atlas-600 dark:text-atlas-400 hover:text-atlas-500 dark:hover:text-atlas-300 transition-colors"
+                >
+                  Faultline Hub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://globalnuclearinfrastructureatlas.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-caption text-steel-500 dark:text-steel-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
+                >
+                  Nuclear Infrastructure Atlas
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://orbitalrisktracker.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-caption text-steel-500 dark:text-steel-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
+                >
+                  Orbital Risk Tracker
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://space-mandate-atlas.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-caption text-steel-500 dark:text-steel-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
+                >
+                  Space Mandate Atlas
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -89,7 +122,16 @@ export function Footer() {
             &copy; 2026 Risa Koyanagi. All rights reserved.
           </p>
           <p className="text-micro text-steel-600 dark:text-steel-600">
-            Built by{" "}
+            A{" "}
+            <a
+              href="https://faultline-nqmm.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-atlas-600 dark:text-atlas-400 hover:text-atlas-500 dark:hover:text-atlas-300 transition-colors"
+            >
+              Faultline
+            </a>
+            {" "}project by{" "}
             <a
               href="https://risakoyanagi.com"
               target="_blank"
