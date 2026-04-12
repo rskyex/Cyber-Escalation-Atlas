@@ -57,6 +57,12 @@ const lenses = [
     coordinate: "GOV",
     highlight: true,
   },
+  {
+    title: "Attribution",
+    href: "/attribution-lens",
+    description: "Who attributed, in what sequence, with what evidence, and to what political consequence.",
+    coordinate: "ATT",
+  },
 ];
 
 const stagger = {
@@ -132,9 +138,10 @@ export default function HomePage() {
             {/* Compact stats — integrated into hero */}
             <motion.div variants={stagger.item} className="mt-16 flex items-center gap-8 sm:gap-12">
               {[
-                { value: "20", label: "Cases" },
-                { value: "3", label: "Lenses" },
-                { value: "100+", label: "ATT&CK Techniques" },
+                { value: "30", label: "Cases" },
+                { value: "4", label: "Lenses" },
+                { value: "7", label: "Actor Profiles" },
+                { value: "6", label: "Norms Tracked" },
               ].map((stat) => (
                 <div key={stat.label} className="flex items-baseline gap-2">
                   <span className="text-heading font-display text-ink dark:text-white">{stat.value}</span>
@@ -233,7 +240,7 @@ export default function HomePage() {
           >
             <p className="section-label mb-2">Analytical Lenses</p>
             <h2 className="text-heading font-display text-ink dark:text-white mb-4">
-              Three Dimensions of Analysis
+              Four Dimensions of Analysis
             </h2>
             <p className="text-body text-steel-500 dark:text-steel-400 max-w-lg mx-auto">
               Each lens offers a distinct perspective on the same underlying incidents,
@@ -241,7 +248,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {lenses.map((lens, i) => (
               <motion.div
                 key={lens.href}

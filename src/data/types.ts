@@ -25,4 +25,9 @@ export type {
   TeachingBlock,
   SourceRef,
   SourceCategory,
+  AttributionActor,
+  AttributionCoordinationType,
+  AttributionConsequenceType,
+  AttributionClaimant,
+  AttributionDetail,
 } from "@/lib/types/incidents";

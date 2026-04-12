@@ -58,6 +58,12 @@ const REGIONS = [
   "Costa Rica",
   "Bangladesh",
   "Australia",
+  "India",
+  "Pakistan",
+  "Israel",
+  "Thailand",
+  "Ecuador",
+  "Guam",
 ];
 
 // ---------------------------------------------------------------------------
