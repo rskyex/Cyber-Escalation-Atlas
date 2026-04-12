@@ -16,21 +16,12 @@ export const metadata: Metadata = {
     siteName: "Cyber Escalation Atlas™ · Faultline",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/faultline-og.png",
-        width: 1200,
-        height: 630,
-        alt: "Faultline — Strategic research ecosystem by Risa Koyanagi",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cyber Escalation Atlas™",
     description:
       "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
-    images: ["/faultline-og.png"],
   },
 };
 

@@ -174,6 +174,26 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-6">
             Author &amp; Creator
           </h2>
+
+          {/* Portfolio OG banner */}
+          <a
+            href="https://risakoyanagi.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mb-4 group"
+          >
+            <div className="relative rounded-xl overflow-hidden border border-white/[0.06]">
+              <Image
+                src="/risa-koyanagi-og.png"
+                alt="Risa Koyanagi — 小柳璃紗"
+                width={1536}
+                height={768}
+                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                priority
+              />
+            </div>
+          </a>
+
           <Card>
             <div className="flex flex-col sm:flex-row gap-6">
               <div className="flex-shrink-0">
@@ -245,51 +265,44 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-ink dark:text-white tracking-tight mb-6">
             Part of Faultline
           </h2>
-          <Card>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-atlas/10 dark:bg-atlas/15 flex items-center justify-center mt-0.5">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-atlas-500 dark:text-atlas-400"
-                  >
-                    <path
-                      d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-ink dark:text-white mb-1">
-                    Faultline
-                  </h3>
-                  <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
-                    The Cyber Escalation Atlas is part of{" "}
-                    <a
-                      href="https://faultline-nqmm.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-300 transition-colors underline underline-offset-2"
-                    >
-                      Faultline
-                    </a>
-                    , a research ecosystem designed by Risa Koyanagi that maps
-                    structural risk across interconnected strategic domains —
-                    cyber, space, nuclear, and emerging technology governance.
-                    Each platform within Faultline provides a distinct analytical
-                    lens on the same underlying problem: how dual-use
-                    infrastructure, contested authority, and governance gaps
-                    create systemic escalation risk.
-                  </p>
-                </div>
-              </div>
+
+          {/* Faultline OG banner */}
+          <a
+            href="https://faultline-nqmm.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mb-4 group"
+          >
+            <div className="relative rounded-xl overflow-hidden border border-white/[0.06]">
+              <Image
+                src="/faultline-og.png"
+                alt="Faultline — Strategic research ecosystem"
+                width={1200}
+                height={630}
+                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+              />
             </div>
+          </a>
+
+          <Card>
+            <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
+              The Cyber Escalation Atlas is part of{" "}
+              <a
+                href="https://faultline-nqmm.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-atlas dark:text-atlas-400 hover:text-atlas-600 dark:hover:text-atlas-300 transition-colors underline underline-offset-2"
+              >
+                Faultline
+              </a>
+              , a research ecosystem designed by Risa Koyanagi that maps
+              structural risk across interconnected strategic domains —
+              cyber, space, nuclear, and emerging technology governance.
+              Each platform within Faultline provides a distinct analytical
+              lens on the same underlying problem: how dual-use
+              infrastructure, contested authority, and governance gaps
+              create systemic escalation risk.
+            </p>
           </Card>
 
           <div className="mt-4 space-y-3">

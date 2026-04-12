@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui";
 
@@ -334,6 +335,136 @@ export default function HomePage() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ CREATOR & FAULTLINE ═══ */}
+      <section className="relative">
+        <div className="atlas-rule" />
+        <div className="mx-auto max-w-content px-6 lg:px-8 py-20 sm:py-26">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Creator */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="section-label mb-4">Creator</p>
+              <a
+                href="https://risakoyanagi.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mb-5 group"
+              >
+                <div className="relative rounded-xl overflow-hidden border border-transparent dark:border-white/[0.06]">
+                  <Image
+                    src="/risa-koyanagi-og.png"
+                    alt="Risa Koyanagi — 小柳璃紗"
+                    width={1536}
+                    height={768}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              </a>
+              <div className="flex items-start gap-4">
+                <Image
+                  src="/profile.jpg"
+                  alt="Risa Koyanagi"
+                  width={56}
+                  height={56}
+                  className="rounded-lg object-cover w-14 h-14 flex-shrink-0"
+                />
+                <div>
+                  <h3 className="text-subheading font-display text-ink dark:text-white">
+                    Risa Koyanagi
+                  </h3>
+                  <p className="text-micro font-medium uppercase tracking-widest text-atlas-600 dark:text-atlas-400 mt-0.5">
+                    Cambridge Future Scholar
+                  </p>
+                  <p className="mt-3 text-caption text-steel-500 dark:text-steel-400 leading-relaxed">
+                    Researcher working across space, nuclear, and emerging
+                    technology governance and strategic risk. Her work focuses
+                    on legitimation, dual-use systems, and authority
+                    architecture.
+                  </p>
+                  <a
+                    href="https://risakoyanagi.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-3 text-caption font-medium text-atlas-600 dark:text-atlas-400 hover:text-atlas-500 dark:hover:text-atlas-300 transition-colors"
+                  >
+                    risakoyanagi.com
+                    <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 3h7v7M13 3L5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Faultline */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <p className="section-label mb-4">Research Ecosystem</p>
+              <a
+                href="https://faultline-nqmm.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mb-5 group"
+              >
+                <div className="relative rounded-xl overflow-hidden border border-transparent dark:border-white/[0.06]">
+                  <Image
+                    src="/faultline-og.png"
+                    alt="Faultline — Strategic research ecosystem"
+                    width={1200}
+                    height={630}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              </a>
+              <p className="text-caption text-steel-500 dark:text-steel-400 leading-relaxed mb-5">
+                This Atlas is part of{" "}
+                <a
+                  href="https://faultline-nqmm.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-atlas-600 dark:text-atlas-400 hover:text-atlas-500 dark:hover:text-atlas-300 transition-colors underline underline-offset-2"
+                >
+                  Faultline
+                </a>
+                &nbsp;&mdash; a research ecosystem mapping structural risk across
+                cyber, space, nuclear, and emerging technology governance.
+              </p>
+              <div className="space-y-2">
+                {[
+                  { name: "Cyber Escalation Atlas", href: "https://cyber-escalation-atlas.vercel.app/" },
+                  { name: "Global Nuclear Infrastructure Atlas", href: "https://globalnuclearinfrastructureatlas.vercel.app/" },
+                  { name: "Orbital Risk Tracker", href: "https://orbitalrisktracker.vercel.app/" },
+                  { name: "Space Mandate Atlas", href: "https://space-mandate-atlas.vercel.app/" },
+                ].map((p) => (
+                  <a
+                    key={p.href}
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between py-2.5 px-4 rounded-lg bg-ink-50/40 dark:bg-white/[0.02] border border-transparent dark:border-white/[0.04] hover:bg-ink-100/60 dark:hover:bg-white/[0.05] transition-all duration-200"
+                  >
+                    <span className="text-caption font-medium text-ink dark:text-steel-200 group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                      {p.name}
+                    </span>
+                    <svg width="10" height="10" viewBox="0 0 16 16" fill="none" className="text-steel-400 dark:text-steel-500 group-hover:text-atlas-500 dark:group-hover:text-atlas-400 transition-colors">
+                      <path d="M6 3h7v7M13 3L5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>
