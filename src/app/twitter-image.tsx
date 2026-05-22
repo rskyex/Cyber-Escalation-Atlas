@@ -237,7 +237,7 @@ export default function TwitterImage() {
             {[
               { value: "36", label: "Cases" },
               { value: "4", label: "Lenses" },
-              { value: "7", label: "Actors" },
+              { value: "8", label: "Actors" },
             ].map((s) => (
               <div
                 key={s.label}
