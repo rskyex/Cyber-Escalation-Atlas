@@ -7,6 +7,8 @@ import { CasesFilters, defaultFilters } from "./CasesFilters";
 import type { CasesFilterState } from "./CasesFilters";
 import { CaseCard } from "./CaseCard";
 import { CasesMap } from "./CasesMap";
+import { ExcelDownloadButton } from "@/components/ui";
+import { exportAllDataExcel, exportIncidentsExcel } from "@/lib/utils/excel";
 
 // ---------------------------------------------------------------------------
 // Filter logic
@@ -99,31 +101,45 @@ export function CasesExplorer({ incidents }: CasesExplorerProps) {
       {/* ---- Main content ---- */}
       <div className="flex-1 min-w-0">
         {/* Toolbar */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
           <p className="text-sm text-steel-500 dark:text-steel-400">
             {filtered.length} of {incidents.length} cases
           </p>
-          <div className="flex items-center rounded-md border border-transparent dark:border-white/[0.04] overflow-hidden">
-            <button
-              onClick={() => setView("list")}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                view === "list"
-                  ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
-                  : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
-              }`}
-            >
-              List
-            </button>
-            <button
-              onClick={() => setView("map")}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                view === "map"
-                  ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
-                  : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
-              }`}
-            >
-              Map
-            </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <ExcelDownloadButton
+              label={
+                filtered.length === incidents.length
+                  ? "Download all (Excel)"
+                  : `Download ${filtered.length} filtered (Excel)`
+              }
+              onClick={() =>
+                filtered.length === incidents.length
+                  ? exportAllDataExcel(incidents)
+                  : exportIncidentsExcel(filtered)
+              }
+            />
+            <div className="flex items-center rounded-md border border-transparent dark:border-white/[0.04] overflow-hidden">
+              <button
+                onClick={() => setView("list")}
+                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                  view === "list"
+                    ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
+                    : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
+                }`}
+              >
+                List
+              </button>
+              <button
+                onClick={() => setView("map")}
+                className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                  view === "map"
+                    ? "bg-atlas-50 dark:bg-atlas-900/40 text-atlas-700 dark:text-atlas-400"
+                    : "text-steel-500 dark:text-steel-400 hover:bg-ink-50 dark:hover:bg-ink-600/30"
+                }`}
+              >
+                Map
+              </button>
+            </div>
           </div>
         </div>
 
