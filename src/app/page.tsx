@@ -93,7 +93,7 @@ const dataTools = [
     href: "/actors",
     coordinate: "ACT",
     description:
-      "7 named threat actors — Sandworm, Lazarus Group, SVR/APT29, Hafnium, and more — each with state nexus, mission classification, primary sectors targeted, operational period, TTPs, behavioural signatures, and governance footprint.",
+      "8 named threat actors — Sandworm, Lazarus Group, SVR/APT29, Hafnium, PLA Unit 61398, and more — each with state nexus, mission classification, primary sectors targeted, operational period, TTPs, behavioural signatures, and governance footprint.",
     detail:
       "Dominant operation type analysis, case linkage, and temporal activity range for each actor. Profiles connect technical capability to strategic intent and policy implications.",
   },
@@ -219,7 +219,7 @@ export default function HomePage() {
               {[
                 { value: "36", label: "Cases" },
                 { value: "4", label: "Lenses" },
-                { value: "7", label: "Actor Profiles" },
+                { value: "8", label: "Actor Profiles" },
                 { value: "6", label: "Norms Tracked" },
               ].map((stat) => (
                 <div key={stat.label} className="flex items-baseline gap-2">

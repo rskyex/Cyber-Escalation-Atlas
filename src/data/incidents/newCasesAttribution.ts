@@ -210,15 +210,23 @@ export const newCasesAttribution: Incident[] = [
   },
 
   // ---- 2. OPM data breach --------------------------------------------------
-  // Calibration anchor: SolarWinds. Both are large-scale espionage against
-  // the US federal government, both attributed with high confidence, both
-  // produced massive intelligence loss. SolarWinds drew sanctions and
-  // diplomatic expulsions; OPM was characterised by senior US officials as
-  // legitimate espionage and drew no formal foreign-policy consequence. OPM
-  // sits below SolarWinds on governance flags (no sanctions, no indictment)
-  // but matches it on threshold crossings (scale of access, foundational
-  // dataset compromised). This is the China-side matched pair to
+  // Calibration anchor: SolarWinds (U=8, E=7, peakTier=disruption).
+  // Both are large-scale espionage against the US federal government, both
+  // attributed with high confidence, both produced massive intelligence loss.
+  // SolarWinds drew sanctions and diplomatic expulsions; OPM was characterised
+  // by senior US officials as legitimate espionage and drew no formal
+  // foreign-policy consequence. OPM lands at U=8 (matched on unpeace) and
+  // E=5 (lower entanglement — single victim agency vs SolarWinds's ~18k
+  // organisations across the supply chain). The matched-pair contrast sits
+  // in attributionDetail.consequences: SolarWinds Sanctions+Public Naming,
+  // OPM Public Naming Only. This is the China-side matched pair to
   // SolarWinds.
+  //
+  // Actor-slug note: Deep Panda's service-level attribution (MSS vs PLA) is
+  // contested in public sources; this case maps to "hafnium-apt40" (MSS
+  // bucket) as the slight majority view in vendor reporting, but the
+  // mapping is coarse and should be revisited if a more authoritative
+  // service-level attribution emerges. TODO for human review.
   {
     id: "opm-breach-2015",
     slug: "opm-breach",
@@ -271,6 +279,7 @@ export const newCasesAttribution: Incident[] = [
       restraintFactors: [
         "Activity confined to data exfiltration; no destructive payload, no manipulation, no public release of the stolen data",
         "DNI Clapper publicly framed the operation as conventional espionage that the United States itself conducts, signalling a deliberate decision not to treat it as crossing a norm threshold",
+        "Sanctions authority was available — Executive Order 13694 (April 2015) authorised cyber sanctions and pre-existed the public disclosure — but was deliberately not invoked against OPM-linked actors. The withholding was a discretionary political choice, not a tooling gap.",
       ],
       thresholdCrossings: [
         "Largest compromise of US federal personnel data in history",
@@ -340,7 +349,7 @@ export const newCasesAttribution: Incident[] = [
       furtherReading: [
         "US House of Representatives, Committee on Oversight and Government Reform. 'The OPM Data Breach: How the Government Jeopardized Our National Security for More than a Generation.' Majority staff report, September 2016.",
         "GAO Reports on OPM information security (GAO-15-714T, GAO-16-501).",
-        "Sanger, D.E. & Schmitt, E. 'Spy Agency Consensus Grows That Russia Hacked D.N.C.' New York Times, July 2016 — referenced for Clapper's comparative remarks on OPM.",
+        "Clapper, J.R. Remarks at AFCEA Defense Intelligence Senior Executive Service Forum, Washington DC, 25 June 2015 — the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
       ],
     },
     sources: [
@@ -363,7 +372,7 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "Washington Post: 'Director of National Intelligence Clapper: \"You have to kind of salute the Chinese for what they did\"'",
+          "AP / Reuters wire reporting on DNI James Clapper's remarks at the AFCEA Defense Intelligence Senior Executive Service Forum — the 'you have to kind of salute the Chinese' characterisation of the OPM breach",
         category: "journalistic",
         date: "2015-06-25",
       },
@@ -593,7 +602,7 @@ export const newCasesAttribution: Incident[] = [
       coordinationType: "unilateral",
       consequences: ["Indictment", "Public Naming Only"],
     },
-    actorSlug: "hafnium-apt40",
+    actorSlug: "pla-cyber",
   },
 
   // ---- 4. Salt Typhoon ------------------------------------------------------
@@ -605,6 +614,12 @@ export const newCasesAttribution: Incident[] = [
   // demonstrate the asymmetry axis runs through the perpetrator's political
   // relationship to the attributing coalition, not through the technical
   // facts of the operation.
+  //
+  // Aliases note: Microsoft maps Salt Typhoon ↔ Earth Estries (Trend Micro)
+  // explicitly. GhostEmperor (Kaspersky 2021) and FamousSparrow (ESET) are
+  // separately-tracked PRC clusters with vendor-dependent links to Salt
+  // Typhoon that are not fully confirmed in public sources, so excluded
+  // from the aliases list.
   {
     id: "salt-typhoon-2024",
     slug: "salt-typhoon",
@@ -623,8 +638,6 @@ export const newCasesAttribution: Incident[] = [
       country: "China",
       aliases: [
         "Salt Typhoon",
-        "GhostEmperor",
-        "FamousSparrow",
         "Earth Estries",
       ],
     },
@@ -1016,7 +1029,7 @@ export const newCasesAttribution: Incident[] = [
     dateRange: "Active circa 2014 – publicly disclosed April 2017; indictment December 2018",
     incidentType: "espionage",
     summary:
-      "Multi-year campaign of intrusions against managed IT service providers (MSPs) in at least a dozen countries, pivoting through MSP credentials and infrastructure to reach the providers' downstream client networks. PwC UK, BAE Systems, and the UK NCSC publicly disclosed the campaign as Operation Cloud Hopper in April 2017, attributing it to APT10 (a.k.a. Stone Panda, MenuPass). The US Department of Justice indicted two PRC nationals — Zhu Hua and Zhang Shilong — alleged to be acting in association with the Ministry of State Security's Tianjin State Security Bureau, on 20 December 2018, in coordination with allied public-naming statements from the UK, Australia, Canada, New Zealand, Japan, and others. The indictment was not accompanied by US sanctions at the time of filing.",
+      "Multi-year campaign of intrusions against managed IT service providers (MSPs) in at least a dozen countries, pivoting through MSP credentials and infrastructure to reach the providers' downstream client networks. PwC UK, BAE Systems, and the UK NCSC publicly disclosed the campaign as Operation Cloud Hopper in April 2017, attributing it to APT10 (a.k.a. Stone Panda, MenuPass). The US Department of Justice indicted two PRC nationals — Zhu Hua and Zhang Shilong — alleged to be acting in association with the Ministry of State Security's Tianjin State Security Bureau, on 20 December 2018, in coordination with allied public-naming statements from the UK, Australia, Canada, New Zealand, Japan, Germany, and the Netherlands. The indictment was not accompanied by US sanctions at the time of filing.",
     attribution: {
       confidence: "confirmed",
       attributedTo:
@@ -1044,7 +1057,7 @@ export const newCasesAttribution: Incident[] = [
           tier: "intrusion",
           label: "Coordinated DOJ indictment and allied naming",
           description:
-            "US DOJ indicted Zhu Hua and Zhang Shilong (Dec 2018) in coordination with public-naming statements from the UK, Australia, Canada, New Zealand, Japan, Germany, the Netherlands, Norway, Sweden, and Finland. No US sanctions were imposed in conjunction with the indictment.",
+            "US DOJ indicted Zhu Hua and Zhang Shilong (Dec 2018) in coordination with public-naming statements from the UK, Australia, Canada, New Zealand, Japan, Germany, and the Netherlands. Additional allied statements followed in early 2019 (Norway's NSM, others). No US sanctions were imposed in conjunction with the indictment.",
           date: "2018-12-20",
         },
       ],
@@ -1055,7 +1068,7 @@ export const newCasesAttribution: Incident[] = [
       ],
       thresholdCrossings: [
         "First public attribution of MSP-pivot tradecraft at global scale, demonstrating the systemic risk of concentrated managed-service trust relationships",
-        "First broadly coordinated allied public-naming statement against a PRC cyber espionage campaign (10+ jurisdictions in December 2018)",
+        "First broadly coordinated allied public-naming statement against a PRC cyber espionage campaign (Five Eyes + Japan + Germany + Netherlands in December 2018, with additional statements in early 2019)",
         "Reinforced the indictment-without-sanctions pattern previously established by APT1",
       ],
     },
@@ -1136,7 +1149,7 @@ export const newCasesAttribution: Incident[] = [
       policyResponses: [
         "Operation Cloud Hopper joint report by PwC UK, BAE Systems, and UK NCSC (Apr 2017)",
         "US DOJ indictment of Zhu Hua and Zhang Shilong (Dec 2018)",
-        "Coordinated allied public-naming statements from 10+ jurisdictions (Dec 2018)",
+        "Coordinated allied public-naming statements from Five Eyes, Japan, Germany, and the Netherlands (Dec 2018); additional allied statements followed in early 2019",
         "No US sanctions issued in conjunction with the 2018 indictment — TODO: confirm subsequent Treasury actions touching APT10-linked entities for human review",
       ],
       regulatoryChanges: [
@@ -1148,7 +1161,7 @@ export const newCasesAttribution: Incident[] = [
         "Cloud Hopper reinforced the indictment-without-sanctions pattern at allied scale: the breadth of coordinated public-naming statements was unprecedented for a PRC cyber campaign in 2018, but no US sanctions accompanied the indictment. The case sits in the same governance band as APT1 and provides the temporal bridge to the Salt Typhoon / Flax Typhoon / Sichuan Silence sanctions wave of 2024–2025.",
     },
     whyThisMatters:
-      "Cloud Hopper is the strongest pre-2024 data point on the indictment-without-sanctions cell at allied scale. It shows that even a coordinated 10-jurisdiction public-naming exercise against a PRC MSS contractor model did not, in 2018, escalate to OFAC sanctions. Read forward to Salt Typhoon (Jan 2025 OFAC sanctions on a comparable PRC contractor), it provides the time-series evidence that the consequence baseline for China-attributed espionage shifted in the 2024–2025 window — and that the shift was a political choice rather than a response to new technical facts.",
+      "Cloud Hopper is the strongest pre-2024 data point on the indictment-without-sanctions cell at allied scale. It shows that even a broadly coordinated Five-Eyes-plus public-naming exercise against a PRC MSS contractor model did not, in 2018, escalate to OFAC sanctions. Read forward to Salt Typhoon (Jan 2025 OFAC sanctions on a comparable PRC contractor), it provides the time-series evidence that the consequence baseline for China-attributed espionage shifted in the 2024–2025 window — and that the shift was a political choice rather than a response to new technical facts.",
     teaching: {
       keyQuestion:
         "What does the 2018 Cloud Hopper indictment-without-sanctions outcome — and its 2024–2025 contrast with the Salt Typhoon sanctions — reveal about the discretionary nature of the indictment-to-sanctions escalation step?",
@@ -1224,7 +1237,7 @@ export const newCasesAttribution: Incident[] = [
           date: "2018-12-20",
           confidenceLevel: "Confirmed",
           evidenceBasis:
-            "Coordinated public-naming statements from UK, Australia, Canada, New Zealand, Japan, Germany, Netherlands, Norway, Sweden, and Finland",
+            "Coordinated public-naming statements on 20 December 2018 from UK, Australia, Canada, New Zealand, Japan, Germany, and the Netherlands; further allied statements (including Norway's NSM) followed in early 2019",
         },
       ],
       coordinationType: "joint",
