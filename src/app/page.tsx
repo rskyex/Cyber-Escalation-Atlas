@@ -45,7 +45,7 @@ const lenses = [
     description: "How cyber operations climb the escalation ladder from access to strategic impact.",
     coordinate: "ESC",
     detail:
-      "Interactive Unpeace scoring plots all 30 cases across Stable / Contested / Escalatory zones. Filter by operation type, peak tier, and restraint factors. Each case shows phase-by-phase escalation trajectories and threshold crossings.",
+      "Interactive Unpeace scoring plots all 36 cases across Stable / Contested / Escalatory zones. Filter by operation type, peak tier, and restraint factors. Each case shows phase-by-phase escalation trajectories and threshold crossings.",
     features: ["Unpeace Score Plot", "Three-Zone Classification", "Restraint Factor Analysis"],
   },
   {
@@ -84,7 +84,7 @@ const dataTools = [
     href: "/timeline",
     coordinate: "TML",
     description:
-      "All 30 cases plotted chronologically from 2007 to 2025, sized by Unpeace score and coloured by operation type. Governance milestones — UN GGE consensus, OEWG mandates, Tallinn Manual adoption — overlaid as reference markers.",
+      "All 36 cases plotted chronologically from 2007 to 2025, sized by Unpeace score and coloured by operation type. Governance milestones — UN GGE consensus, OEWG mandates, Tallinn Manual adoption — overlaid as reference markers.",
     detail:
       "Reveals three distinct clustering periods: pre-norm pioneering (2007\u20132014), contested norm emergence (2015\u20132019), and escalatory industrialisation (2020\u2013present). The 2017 GGE consensus failure correlates with observable acceleration in destructive operations.",
   },
@@ -113,7 +113,7 @@ const dataTools = [
     description:
       "Side-by-side comparison of two or more cases across escalation, infrastructure, and governance dimensions. Identify commonalities, divergences, and structural patterns.",
     detail:
-      "Select any combination of the 30 cases to compare escalation trajectories, target sectors, governance flags, attribution timelines, and policy outcomes in a unified view.",
+      "Select any combination of the 36 cases to compare escalation trajectories, target sectors, governance flags, attribution timelines, and policy outcomes in a unified view.",
   },
 ];
 
@@ -124,7 +124,7 @@ const researchTools = [
     coordinate: "NRM",
     description:
       "Six key international cyber norms tracked across all cases — their current status (Emerging, Contested, Partially Accepted, Violated Repeatedly), anchor instruments, and whether each case reinforced, violated, or exposed gaps.",
-    stats: "6 norms \u00b7 30 case interactions tracked",
+    stats: "6 norms \u00b7 36 case interactions tracked",
   },
   {
     title: "Legal Framework Mapper",
@@ -217,7 +217,7 @@ export default function HomePage() {
             {/* Compact stats — integrated into hero */}
             <motion.div variants={stagger.item} className="mt-16 flex items-center gap-8 sm:gap-12">
               {[
-                { value: "30", label: "Cases" },
+                { value: "36", label: "Cases" },
                 { value: "4", label: "Lenses" },
                 { value: "7", label: "Actor Profiles" },
                 { value: "6", label: "Norms Tracked" },
@@ -409,7 +409,7 @@ export default function HomePage() {
               Explore the Dataset
             </h2>
             <p className="text-body text-steel-500 dark:text-steel-400 max-w-2xl">
-              Interactive tools for navigating 30 structured case studies across time,
+              Interactive tools for navigating 36 structured case studies across time,
               actors, sectors, and cross-case comparison.
             </p>
           </motion.div>

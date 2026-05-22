@@ -34,6 +34,8 @@ export const normsData: NormEntry[] = [
       "colonial-pipeline",
       "industroyer2",
       "kyivstar",
+      "belgacom-operation-socialist",
+      "salt-typhoon",
     ],
     normEffects: [
       { caseSlug: "notpetya", effect: "violated" },
@@ -44,6 +46,8 @@ export const normsData: NormEntry[] = [
       { caseSlug: "colonial-pipeline", effect: "exposed gap in" },
       { caseSlug: "industroyer2", effect: "violated" },
       { caseSlug: "kyivstar", effect: "violated" },
+      { caseSlug: "belgacom-operation-socialist", effect: "exposed gap in" },
+      { caseSlug: "salt-typhoon", effect: "exposed gap in" },
     ],
   },
   {
@@ -61,12 +65,16 @@ export const normsData: NormEntry[] = [
       "costa-rica-conti",
       "scattered-spider-mgm",
       "wannacry",
+      "salt-typhoon",
+      "cloud-hopper-apt10",
     ],
     normEffects: [
       { caseSlug: "colonial-pipeline", effect: "exposed gap in" },
       { caseSlug: "costa-rica-conti", effect: "exposed gap in" },
       { caseSlug: "scattered-spider-mgm", effect: "exposed gap in" },
       { caseSlug: "wannacry", effect: "reinforced" },
+      { caseSlug: "salt-typhoon", effect: "reinforced" },
+      { caseSlug: "cloud-hopper-apt10", effect: "exposed gap in" },
     ],
   },
   {
