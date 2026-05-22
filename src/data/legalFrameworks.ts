@@ -26,6 +26,9 @@ export const legalFrameworks: LegalFramework[] = [
           { caseSlug: "colonial-pipeline", note: "Criminal group operating from Russian territory raises questions about state tolerance as a basis for responsibility" },
           { caseSlug: "costa-rica-conti", note: "Conti's Russian nexus tested the boundary between criminal autonomy and state acquiescence" },
           { caseSlug: "wannacry", note: "State-linked group (Lazarus) using criminal ransomware tools blurs the state/non-state distinction" },
+          { caseSlug: "cloud-hopper-apt10", note: "MSS Tianjin State Security Bureau association in the 2018 DOJ indictment tested 'direction or control' applied to a contractor model at allied scale" },
+          { caseSlug: "salt-typhoon", note: "Jan 2025 OFAC designation of Sichuan Juxinhe Network Technology operationalised attribution of contractor activity to PRC state responsibility through sanctions rather than indictment" },
+          { caseSlug: "belgacom-operation-socialist", note: "High-confidence technical attribution to a Five Eyes service produced no political-attribution chain; tests Rule 4 in the absence of victim-state willingness to invoke it against an ally" },
         ],
       },
       {
@@ -36,6 +39,8 @@ export const legalFrameworks: LegalFramework[] = [
         cases: [
           { caseSlug: "colonial-pipeline", note: "Russia's failure to act against DarkSide operating from its territory tested due diligence limits" },
           { caseSlug: "volt-typhoon", note: "Pre-positioning from Chinese infrastructure raises due diligence questions about both origin and target states" },
+          { caseSlug: "salt-typhoon", note: "PRC tolerance of contractor (Sichuan Juxinhe) operating from its territory against US telecommunications backbone tested due diligence; OFAC sanctions reframed the response as targeting the contractor directly rather than invoking PRC due-diligence obligations" },
+          { caseSlug: "cloud-hopper-apt10", note: "MSS Tianjin contractor model raised due diligence questions across the 10+ jurisdictions whose downstream MSP clients were compromised" },
         ],
       },
       {
@@ -169,6 +174,8 @@ export const legalFrameworks: LegalFramework[] = [
           { caseSlug: "notpetya", note: "Global collateral damage to critical infrastructure across 65+ countries" },
           { caseSlug: "colonial-pipeline", note: "Criminal ransomware disrupting critical fuel infrastructure; 13(f) applicability to non-state actors debated" },
           { caseSlug: "kyivstar", note: "Destruction of civilian telecom infrastructure during armed conflict" },
+          { caseSlug: "salt-typhoon", note: "PRC compromise of US lawful-intercept and core telecom systems tested 13(f) coverage of espionage-without-disruption against critical infrastructure" },
+          { caseSlug: "belgacom-operation-socialist", note: "Allied compromise of EU member state's telecom backbone predates the 2015 norm but is widely retro-applied as the paradigm case of 13(f) ambiguity when the operator is itself a 13(f) drafter" },
         ],
       },
       {

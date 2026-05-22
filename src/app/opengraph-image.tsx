@@ -235,7 +235,7 @@ export default function OgImage() {
           {/* Stats badges */}
           <div style={{ display: "flex", gap: 12 }}>
             {[
-              { value: "30", label: "Cases" },
+              { value: "36", label: "Cases" },
               { value: "4", label: "Lenses" },
               { value: "7", label: "Actors" },
             ].map((s) => (
