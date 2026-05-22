@@ -4,3 +4,4 @@ export { Card } from "./Card";
 export { Badge } from "./Badge";
 export { FilterShell } from "./FilterShell";
 export { ExportButton } from "./ExportButton";
+export { ExcelDownloadButton } from "./ExcelDownloadButton";
