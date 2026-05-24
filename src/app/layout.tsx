@@ -5,23 +5,23 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Cyber Escalation Atlas™",
+  title: "Cyber Escalation Atlas™ · Escalation Observatory",
   description:
-    "A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks. Part of the Faultline research ecosystem by Risa Koyanagi.",
+    "A living atlas of machine-speed geopolitical escalation. Interactive observatory mapping AI-mediated escalation, attribution uncertainty, machine-speed governance, and cross-domain conflict propagation. Part of the Faultline research ecosystem by Risa Koyanagi.",
   authors: [{ name: "Risa Koyanagi", url: "https://risakoyanagi.com" }],
   openGraph: {
-    title: "Cyber Escalation Atlas™",
+    title: "Cyber Escalation Atlas™ · Escalation Observatory",
     description:
-      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis. A Faultline project by Risa Koyanagi.",
+      "Seven interactive layers tracing how cyber operations now propagate through AI command systems, satellite infrastructure, nuclear signaling, and political authority — at speeds that outpace human deliberation.",
     siteName: "Cyber Escalation Atlas™ · Faultline",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cyber Escalation Atlas™",
+    title: "Cyber Escalation Atlas™ · Escalation Observatory",
     description:
-      "Strategic behavior, governance, and infrastructure entanglement — a policy-grade interactive reference for cyber conflict analysis.",
+      "A living atlas of machine-speed geopolitical escalation. Seven interactive layers + live simulator.",
   },
 };
 
