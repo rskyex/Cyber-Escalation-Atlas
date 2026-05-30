@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -10,6 +10,11 @@
     --color-steel: #8493AF;
     --color-atlas: #2DD4A8;
     --color-signal: #F59E0B;
+    --color-amber: #E6A55C;
+    --color-plasma: #FF6B5B;
+    --color-violet: #8B6BFF;
+    --color-silver: #C5CBD6;
+    --color-graphite: #1A1F2E;
     --grid-color: rgba(45, 212, 168, 0.04);
     --grid-color-strong: rgba(45, 212, 168, 0.08);
     --border-subtle: rgba(132, 147, 175, 0.1);
@@ -61,6 +66,32 @@
     background-size: 80px 80px, 80px 80px, 320px 320px, 320px 320px;
   }
 
+  /* Observatory grid — finer, brighter for command interfaces */
+  .obs-grid {
+    background-image:
+      linear-gradient(rgba(45, 212, 168, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 212, 168, 0.025) 1px, transparent 1px),
+      linear-gradient(rgba(230, 165, 92, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(230, 165, 92, 0.018) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
+  }
+
+  /* Volumetric backdrop — soft cinematic lighting */
+  .vol-backdrop {
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(45, 212, 168, 0.08), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(139, 107, 255, 0.05), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 50% 100%, rgba(230, 165, 92, 0.04), transparent 70%);
+  }
+
+  .vol-backdrop-deep {
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(45, 212, 168, 0.12), transparent 65%),
+      radial-gradient(ellipse 80% 60% at 0% 50%, rgba(139, 107, 255, 0.07), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 100% 50%, rgba(230, 165, 92, 0.06), transparent 60%),
+      radial-gradient(ellipse 100% 50% at 50% 100%, rgba(255, 107, 91, 0.04), transparent 70%);
+  }
+
   /* Ambient glow effect for hero */
   .atlas-glow {
     position: relative;
@@ -97,6 +128,36 @@
     border: none;
   }
 
+  /* Animated scanline rule for observatory pages */
+  .obs-rule {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(45, 212, 168, 0.25) 20%,
+      rgba(45, 212, 168, 0.6) 50%,
+      rgba(45, 212, 168, 0.25) 80%,
+      transparent
+    );
+    overflow: hidden;
+  }
+  .obs-rule::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(230, 165, 92, 0.9), transparent);
+    animation: scanrule 6s linear infinite;
+  }
+
+  @keyframes scanrule {
+    0% { left: -30%; }
+    100% { left: 130%; }
+  }
+
   /* Subtle top-accent bar for cards */
   .card-accent {
     position: relative;
@@ -126,10 +187,206 @@
   .section-label {
     @apply text-micro font-semibold uppercase tracking-widest text-atlas-600 dark:text-atlas-400;
   }
+
+  /* Observatory panel — glassmorphism with depth */
+  .obs-panel {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.018) 0%, rgba(255, 255, 255, 0.005) 100%),
+      rgba(10, 15, 28, 0.6);
+    border: 1px solid rgba(132, 147, 175, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .obs-panel-strong {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(45, 212, 168, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(0, 0, 0, 0.1) 100%);
+    border: 1px solid rgba(45, 212, 168, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 24px 60px -24px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Hairline corner ticks for technical UI */
+  .corner-ticks {
+    position: relative;
+  }
+  .corner-ticks::before,
+  .corner-ticks::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(45, 212, 168, 0.5);
+  }
+  .corner-ticks::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  .corner-ticks::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Stationary status pulse */
+  .status-dot {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-atlas);
+    box-shadow: 0 0 0 2px rgba(45, 212, 168, 0.15);
+  }
+  .status-dot::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    border: 1px solid rgba(45, 212, 168, 0.4);
+    animation: dotpulse 2.6s ease-out infinite;
+  }
+  .status-dot-amber {
+    background: var(--color-amber);
+    box-shadow: 0 0 0 2px rgba(230, 165, 92, 0.15);
+  }
+  .status-dot-amber::after { border-color: rgba(230, 165, 92, 0.4); }
+  .status-dot-plasma {
+    background: var(--color-plasma);
+    box-shadow: 0 0 0 2px rgba(255, 107, 91, 0.18);
+  }
+  .status-dot-plasma::after { border-color: rgba(255, 107, 91, 0.5); }
+
+  @keyframes dotpulse {
+    0% { transform: scale(0.6); opacity: 0.9; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+
+  /* Vertical telemetry tick column */
+  .telemetry-ticks {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(132, 147, 175, 0.12) 0,
+      rgba(132, 147, 175, 0.12) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    background-size: 100% 8px;
+  }
+
+  /* Display label tiny */
+  .tag-mono {
+    @apply text-[10px] font-mono uppercase tracking-[0.16em] text-steel-500 dark:text-steel-500;
+  }
+
+  /* Slow drifting gradient backdrop */
+  .drift-bg {
+    background: linear-gradient(
+      125deg,
+      #060914 0%,
+      #0A0F1C 25%,
+      #0F1422 45%,
+      #0A0F1C 70%,
+      #060914 100%
+    );
+    background-size: 200% 200%;
+    animation: drift 24s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Slow rotating conic for "ambient compass" effects */
+  .ambient-compass {
+    background: conic-gradient(
+      from 0deg,
+      rgba(45, 212, 168, 0) 0deg,
+      rgba(45, 212, 168, 0.06) 90deg,
+      rgba(230, 165, 92, 0.05) 180deg,
+      rgba(139, 107, 255, 0.05) 270deg,
+      rgba(45, 212, 168, 0) 360deg
+    );
+    animation: spinslow 60s linear infinite;
+  }
+  @keyframes spinslow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Edge fade for canvas regions */
+  .edge-fade-x {
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+  .edge-fade-y {
+    mask-image: linear-gradient(180deg, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black 6%, black 94%, transparent);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-editorial {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 24px rgba(45, 212, 168, 0.35);
+  }
+  .text-shadow-amber {
+    text-shadow: 0 0 24px rgba(230, 165, 92, 0.35);
+  }
+
+  /* Particle/noise overlay for atmospheric depth */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.83  0 0 0 0 0.66  0 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Slow pulse */
+  .animate-soft-pulse {
+    animation: softpulse 4.6s ease-in-out infinite;
+  }
+  @keyframes softpulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* Edge propagation pulse for graph edges */
+  .edge-pulse {
+    stroke-dasharray: 6 14;
+    animation: edgemove 3.4s linear infinite;
+  }
+  @keyframes edgemove {
+    to { stroke-dashoffset: -200; }
+  }
+
+  /* Compression bar — used in tempo visualizations */
+  .compress-bar {
+    background: linear-gradient(
+      90deg,
+      rgba(45, 212, 168, 0.4) 0%,
+      rgba(230, 165, 92, 0.7) 50%,
+      rgba(255, 107, 91, 0.9) 100%
+    );
   }
 }

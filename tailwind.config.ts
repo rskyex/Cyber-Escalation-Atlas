@@ -77,6 +77,41 @@ const config: Config = {
           raised: "#1F2937",
           overlay: "#1A2332",
         },
+        // Strategic accents — amber dusk, plasma alert, violet uncertainty
+        amber: {
+          DEFAULT: "#E6A55C",
+          300: "#F2C788",
+          400: "#E6A55C",
+          500: "#D08A3F",
+          600: "#A86A28",
+        },
+        plasma: {
+          DEFAULT: "#FF6B5B",
+          300: "#FF9388",
+          400: "#FF6B5B",
+          500: "#E94B3B",
+          600: "#B83828",
+        },
+        violet: {
+          DEFAULT: "#8B6BFF",
+          300: "#AE93FF",
+          400: "#8B6BFF",
+          500: "#6E4FE0",
+          600: "#5635C0",
+        },
+        silver: {
+          DEFAULT: "#C5CBD6",
+          300: "#E0E4EC",
+          400: "#C5CBD6",
+          500: "#9CA3B4",
+        },
+        graphite: {
+          DEFAULT: "#1A1F2E",
+          400: "#252A3B",
+          500: "#1A1F2E",
+          600: "#11151F",
+          700: "#0B0E16",
+        },
       },
       fontFamily: {
         display: [
@@ -143,6 +178,9 @@ const config: Config = {
         "fade-in": "fadeIn 0.6s ease-out",
         "fade-up": "fadeUp 0.6s ease-out",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "spin-slow": "spin 60s linear infinite",
+        "spin-slower": "spin 120s linear infinite",
+        "float": "float 6s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -152,6 +190,10 @@ const config: Config = {
         fadeUp: {
           "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
         },
       },
     },
