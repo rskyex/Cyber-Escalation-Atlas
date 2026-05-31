@@ -7,7 +7,7 @@ export default function EscalationLensPage() {
     <SectionWrapper>
       <PageHeader
         title="Escalation Lens"
-        subtitle="Analyze how cyber operations move through phases of escalation — from initial access to strategic consequences — and how states signal, restrain, or intensify."
+        subtitle="Analyze how cyber operations move through phases of escalation, from initial access to strategic consequences, and how states signal, restrain, or intensify."
       />
       <EscalationLens incidents={seedIncidents} />
     </SectionWrapper>

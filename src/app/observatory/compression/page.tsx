@@ -97,7 +97,7 @@ export default function DecisionCompressionPage() {
         coordinate="47.4° N · 8.5° E"
         title="Decision Compression Layer"
         tagline="The collapse of deliberative time."
-        description="As decision-making migrates from human deliberation to autonomous response, retaliation latency collapses by six orders of magnitude — while attribution certainty degrades and override windows narrow toward zero. Hover or select a tier."
+        description="As decision-making migrates from human deliberation to autonomous response, retaliation latency collapses by six orders of magnitude, while attribution certainty degrades and override windows narrow toward zero. Hover or select a tier."
         status="modeled"
       />
 
@@ -396,8 +396,7 @@ function CompressionLatencyVisual({ stages, activeId }: { stages: Stage[]; activ
 
       <p className="mt-6 text-caption text-steel-400 leading-relaxed">
         <span className="text-amber-300">Reading:</span> Compression spans nearly six orders of magnitude.
-        The transition from Tier 1 (augmented) to Tier 3 (autonomous) is not a continuous slope —
-        it is a phase-shift in <span className="text-atlas-300">who, structurally, can be held accountable</span> for what occurred.
+        The transition from Tier 1 (augmented) to Tier 3 (autonomous) is not a continuous slope; it is a phase-shift in <span className="text-atlas-300">who, structurally, can be held accountable</span> for what occurred.
       </p>
     </div>
   );

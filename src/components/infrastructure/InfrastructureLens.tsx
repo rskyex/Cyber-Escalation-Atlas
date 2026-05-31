@@ -14,7 +14,7 @@ import {
 } from "@/lib/utils/incidents";
 
 // ---------------------------------------------------------------------------
-// Sector definitions — static analytical content for each of the 8 sectors
+// Sector definitions, static analytical content for each of the 8 sectors
 // ---------------------------------------------------------------------------
 
 interface SectorDef {
@@ -78,7 +78,7 @@ const SECTORS: SectorDef[] = [
     ],
     escalationProneness: "high",
     escalationPronenessReason:
-      "Telecom compromise is often treated as strategic espionage — tolerated until discovered, then intensely destabilising because it reveals the depth of adversary access.",
+      "Telecom compromise is often treated as strategic espionage, tolerated until discovered, then intensely destabilising because it reveals the depth of adversary access.",
     governanceVulnerabilities: [
       "Global supply chain for network equipment (vendor trust issues)",
       "Fragmented regulation across jurisdictions",
@@ -104,7 +104,7 @@ const SECTORS: SectorDef[] = [
     ],
     escalationProneness: "moderate",
     escalationPronenessReason:
-      "Financial attacks cause significant economic harm but are less likely to trigger kinetic responses than critical-infrastructure attacks — unless attributed to a state pursuing strategic economic coercion.",
+      "Financial attacks cause significant economic harm but are less likely to trigger kinetic responses than critical-infrastructure attacks, unless attributed to a state pursuing strategic economic coercion.",
     governanceVulnerabilities: [
       "Cross-border regulatory gaps (national vs. international banking rules)",
       "Cryptocurrency as a sanctions-evasion channel",
@@ -156,7 +156,7 @@ const SECTORS: SectorDef[] = [
     ],
     escalationProneness: "moderate",
     escalationPronenessReason:
-      "Healthcare attacks generate strong normative condemnation but are rarely attributed to states — making escalation less likely even when harm is severe.",
+      "Healthcare attacks generate strong normative condemnation but are rarely attributed to states, making escalation less likely even when harm is severe.",
     governanceVulnerabilities: [
       "WHO and ICRC norms against targeting healthcare lack enforcement mechanisms",
       "HIPAA and equivalents focus on privacy, not operational resilience",
@@ -208,7 +208,7 @@ const SECTORS: SectorDef[] = [
     ],
     escalationProneness: "very-high",
     escalationPronenessReason:
-      "Space assets are strategic military infrastructure. Interference with satellites — even via cyber means — is increasingly viewed through a deterrence lens by major space-faring states.",
+      "Space assets are strategic military infrastructure. Interference with satellites, even via cyber means, is increasingly viewed through a deterrence lens by major space-faring states.",
     governanceVulnerabilities: [
       "Outer Space Treaty (1967) pre-dates cyber threats; no cyber-specific provisions",
       "Commercial satellite operators subject to minimal security regulation",
@@ -234,7 +234,7 @@ const SECTORS: SectorDef[] = [
     ],
     escalationProneness: "very-high",
     escalationPronenessReason:
-      "Any cyber operation against nuclear facilities is treated as a potential red-line crossing. The Stuxnet precedent established that cyber sabotage of nuclear programmes is a viable coercive tool — but one that risks severe retaliation.",
+      "Any cyber operation against nuclear facilities is treated as a potential red-line crossing. The Stuxnet precedent established that cyber sabotage of nuclear programmes is a viable coercive tool, but one that risks severe retaliation.",
     governanceVulnerabilities: [
       "IAEA Computer Security Guidelines are non-binding recommendations",
       "Air-gapping assumptions have been repeatedly violated in practice",
@@ -552,7 +552,7 @@ export function InfrastructureLens({ incidents }: { incidents: Incident[] }) {
         <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl leading-relaxed">
           Each sector card presents its strategic significance, dependency
           structure, and governance gaps. Linked cases are drawn from the
-          existing dataset — sectors without direct matches include
+          existing dataset, sectors without direct matches include
           analytical context derived from the broader incident landscape.
         </p>
 
@@ -580,7 +580,7 @@ export function InfrastructureLens({ incidents }: { incidents: Incident[] }) {
             Energy disruption cascades into telecommunications, healthcare,
             and finance. Space system compromise affects navigation, timing,
             and financial settlement. Understanding cyber escalation requires
-            analysing these interdependencies — an operation targeting one
+            analysing these interdependencies, an operation targeting one
             sector often produces effects across several.
           </p>
           <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mt-2">

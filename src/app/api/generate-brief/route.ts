@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     summary: c.summary,
   }));
 
-  const systemPrompt = `You are a senior cyber policy analyst producing a structured intelligence brief for a policy audience. Write in precise, non-sensational, analytically grounded language. Use the following section structure: ${structure}. Target approximately ${wordCount} words. Format section headers with ## markdown. Do not include a title — the platform will add it.`;
+  const systemPrompt = `You are a senior cyber policy analyst producing a structured intelligence brief for a policy audience. Write in precise, non-sensational, analytically grounded language. Use the following section structure: ${structure}. Target approximately ${wordCount} words. Format section headers with ## markdown. Do not include a title, the platform will add it.`;
 
   const userMessage = `Produce a ${briefType} brief based on the following ${cases.length} cases from the Cyber Escalation Atlas dataset.
 

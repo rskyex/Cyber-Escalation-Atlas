@@ -120,7 +120,7 @@ export default function AuthorityPage() {
         coordinate="Authority · Σ"
         title="Human-Machine Authority Layer"
         tagline="Authority transfers faster than accountability."
-        description="Across the lifecycle of any incident, interpretive and executive authority migrates between six actors — analyst, AI system, command, autonomous executor, political leadership, public. Where authority lives at each phase shapes who can be answerable later."
+        description="Across the lifecycle of any incident, interpretive and executive authority migrates between six actors, analyst, AI system, command, autonomous executor, political leadership, public. Where authority lives at each phase shapes who can be answerable later."
         status="modeled"
       />
 
@@ -226,13 +226,13 @@ export default function AuthorityPage() {
               &ldquo;Authority migrates. Accountability does not.&rdquo;
             </p>
             <p className="text-caption text-steel-300 leading-relaxed">
-              The autonomous executor holds 60% of operational authority during the Execution phase — and zero percent in the Accountability phase. Authority that cannot be answerable is structural impunity, not delegation.
+              The autonomous executor holds 60% of operational authority during the Execution phase, and zero percent in the Accountability phase. Authority that cannot be answerable is structural impunity, not delegation.
             </p>
           </div>
           <div>
             <p className="tag-mono mb-2 text-atlas-400">DESIGN QUESTION</p>
             <p className="text-caption text-steel-300 leading-relaxed">
-              The central design question facing machine-speed institutions is not <span className="text-amber-300">whether</span> AI systems should hold authority — they already do — but <span className="text-atlas-300">at which phases authority should transfer back</span> to actors who can be examined retrospectively.
+              The central design question facing machine-speed institutions is not <span className="text-amber-300">whether</span> AI systems should hold authority; they already do, but <span className="text-atlas-300">at which phases authority should transfer back</span> to actors who can be examined retrospectively.
             </p>
           </div>
           <div>

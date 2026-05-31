@@ -8,17 +8,17 @@ interface CoerciveSectionProps {
 
 const coerciveDescriptions: Record<string, string> = {
   espionage:
-    "Intelligence collection — coercive value lies in the information advantage gained and the implicit signal that the adversary can access sensitive systems.",
+    "Intelligence collection, coercive value lies in the information advantage gained and the implicit signal that the adversary can access sensitive systems.",
   destructive:
-    "Destruction of data or systems — coercive value through denial, punishment, or deterrence signaling.",
+    "Destruction of data or systems, coercive value through denial, punishment, or deterrence signaling.",
   ransomware:
-    "Denial of access through encryption — coercive value through economic extortion and operational disruption.",
+    "Denial of access through encryption, coercive value through economic extortion and operational disruption.",
   influence:
-    "Manipulation of information or perception — coercive value through shaping public discourse, sowing confusion, or undermining institutional trust.",
+    "Manipulation of information or perception, coercive value through shaping public discourse, sowing confusion, or undermining institutional trust.",
   sabotage:
-    "Physical or functional disruption of systems — coercive value through demonstrating capability to cause real-world harm.",
+    "Physical or functional disruption of systems, coercive value through demonstrating capability to cause real-world harm.",
   hybrid:
-    "Combination of multiple coercive functions — blends intelligence, disruption, and economic pressure.",
+    "Combination of multiple coercive functions, blends intelligence, disruption, and economic pressure.",
 };
 
 export function CoerciveSection({ incident }: CoerciveSectionProps) {

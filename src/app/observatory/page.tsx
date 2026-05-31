@@ -23,7 +23,7 @@ const layers = [
     tagline: "Who has authority to define responsibility?",
     href: "/observatory/attribution-field",
     description:
-      "Beyond binary attribution. Five fragmented attribution streams — technical, intelligence, political, public, alliance — each with independent confidence and contested timing.",
+      "Beyond binary attribution. Five fragmented attribution streams: technical, intelligence, political, public, alliance; each with independent confidence and contested timing.",
     metric: "5",
     metricLabel: "contested attribution streams",
     tone: "violet",
@@ -119,7 +119,7 @@ export default function ObservatoryHome() {
           transition={{ duration: 0.6 }}
           className="font-editorial italic text-amber-400/70 text-body-lg mb-3"
         >
-          A living atlas of machine-speed geopolitical escalation.
+          An atlas of machine-speed geopolitical escalation.
         </motion.p>
 
         <motion.h1
@@ -141,7 +141,7 @@ export default function ObservatoryHome() {
         >
           Seven interactive layers tracing how cyber operations now propagate
           through AI command systems, satellite infrastructure, nuclear signaling,
-          and political authority — at speeds that outpace human deliberation.
+          and political authority, at speeds that outpace human deliberation.
         </motion.p>
 
         <motion.p
@@ -150,7 +150,7 @@ export default function ObservatoryHome() {
           transition={{ duration: 0.6, delay: 0.18 }}
           className="mt-4 text-body text-steel-400 max-w-2xl leading-relaxed"
         >
-          The central question is not <span className="text-amber-300/90">what did the system do</span> — it is <span className="text-atlas-300">who held authority to define meaning and response</span>.
+          The central question is not <span className="text-amber-300/90">what did the system do</span>; it is <span className="text-atlas-300">who held authority to define meaning and response</span>.
         </motion.p>
 
         <div className="obs-rule mt-14" />

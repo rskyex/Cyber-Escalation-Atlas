@@ -24,7 +24,7 @@ export const newCasesGlobal: Incident[] = [
       ],
       peakTier: "intrusion",
       restraintFactors: [
-        "Operations remained within espionage parameters — no destructive payloads documented",
+        "Operations remained within espionage parameters, no destructive payloads documented",
         "Both sides maintained deniability through proxy groups",
       ],
       thresholdCrossings: [
@@ -260,7 +260,7 @@ export const newCasesGlobal: Incident[] = [
     dateRange: "September 2019 (disclosed)",
     incidentType: "hybrid",
     summary:
-      "An exposed Elasticsearch database operated by a state-contracted analytics firm contained personal data of virtually the entire Ecuadorian population — approximately 20.8 million records including children and deceased individuals. The exposure included national identity numbers, financial information, and family relationships. This governance-priority case examines state responsibility for civilian data protection rather than offensive cyber operations.",
+      "An exposed Elasticsearch database operated by a state-contracted analytics firm contained personal data of virtually the entire Ecuadorian population, approximately 20.8 million records including children and deceased individuals. The exposure included national identity numbers, financial information, and family relationships. This governance-priority case examines state responsibility for civilian data protection rather than offensive cyber operations.",
     attribution: {
       confidence: "confirmed",
       attributedTo: "Non-state negligence: Novaestrat, an Ecuadorian data analytics firm operating a state-contracted database without adequate security controls",
@@ -274,7 +274,7 @@ export const newCasesGlobal: Incident[] = [
       ],
       peakTier: "disruption",
       restraintFactors: [
-        "Not an offensive cyber operation — exposure resulted from negligent security practices",
+        "Not an offensive cyber operation, exposure resulted from negligent security practices",
         "No evidence the exposed data was exploited for malicious purposes before discovery",
       ],
       thresholdCrossings: [
@@ -306,7 +306,7 @@ export const newCasesGlobal: Incident[] = [
         "Ecuador enacted Organic Law on Personal Data Protection (May 2021)",
         "Strengthened oversight requirements for state data contractors",
       ],
-      impact: "Catalyzed Ecuador's first comprehensive data protection legislation, demonstrating that mass civilian data exposure events — even without malicious intent — can drive fundamental governance reform in states previously lacking data protection frameworks.",
+      impact: "Catalyzed Ecuador's first comprehensive data protection legislation, demonstrating that mass civilian data exposure events, even without malicious intent, can drive fundamental governance reform in states previously lacking data protection frameworks.",
     },
     whyThisMatters: "The Ecuador data exposure demonstrates that state failure to secure contracted civilian data systems can produce population-scale privacy crises, illustrating data sovereignty as a governance challenge distinct from but parallel to offensive cyber threats.",
     teaching: {
@@ -322,7 +322,7 @@ export const newCasesGlobal: Incident[] = [
       ],
     },
     sources: [
-      { title: "vpnMentor: Report — Ecuadorian Breach", category: "vendor", date: "2019-09-11" },
+      { title: "vpnMentor: Report, Ecuadorian Breach", category: "vendor", date: "2019-09-11" },
       { title: "Ecuador Government: Statement on Data Exposure Investigation", category: "government", date: "2019-09-16" },
     ],
     attributionDetail: {

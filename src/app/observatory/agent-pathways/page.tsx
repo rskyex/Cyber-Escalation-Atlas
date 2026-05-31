@@ -98,7 +98,7 @@ export default function AgentPathwaysPage() {
         coordinate="37.4° N · 122.1° W"
         title="AI-Agent Escalation Pathways"
         tagline="When tool-use becomes infrastructure impact."
-        description="Agentic AI systems compose attack surfaces no traditional adversary needed. A single prompt injection can branch through tool misuse, exfiltration, propagation, recursion — emerging as authority drift in production systems. Hover any node to trace forward propagation."
+        description="Agentic AI systems compose attack surfaces no traditional adversary needed. A single prompt injection can branch through tool misuse, exfiltration, propagation, recursion, emerging as authority drift in production systems. Hover any node to trace forward propagation."
         status="speculative"
       />
 
@@ -286,7 +286,7 @@ export default function AgentPathwaysPage() {
                     );
                   })}
                 {edges.filter((e) => e.from === active.id).length === 0 && (
-                  <span className="text-caption text-steel-500">Terminal node — propagation exits the modeled surface.</span>
+                  <span className="text-caption text-steel-500">Terminal node, propagation exits the modeled surface.</span>
                 )}
               </div>
             </motion.div>
@@ -300,19 +300,19 @@ export default function AgentPathwaysPage() {
               <ul className="space-y-2 text-caption text-steel-300 leading-relaxed">
                 <li className="flex items-start gap-2">
                   <span className="text-atlas-400 mt-1">▸</span>
-                  <span><span className="text-white">Inherited authorization</span> — sub-agents act under root agent's permissions.</span>
+                  <span><span className="text-white">Inherited authorization</span>, sub-agents act under root agent's permissions.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-400 mt-1">▸</span>
-                  <span><span className="text-white">Trust transitivity</span> — federated systems re-execute manipulated output as authoritative.</span>
+                  <span><span className="text-white">Trust transitivity</span>, federated systems re-execute manipulated output as authoritative.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-plasma-400 mt-1">▸</span>
-                  <span><span className="text-white">Recursive amplification</span> — model output entering its own context window scales injection severity.</span>
+                  <span><span className="text-white">Recursive amplification</span>, model output entering its own context window scales injection severity.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-violet-300 mt-1">▸</span>
-                  <span><span className="text-white">Audit blindness</span> — actions logged as human-authorized; injection origin opaque to defenders.</span>
+                  <span><span className="text-white">Audit blindness</span>, actions logged as human-authorized; injection origin opaque to defenders.</span>
                 </li>
               </ul>
             </div>
@@ -322,7 +322,7 @@ export default function AgentPathwaysPage() {
             <div>
               <p className="tag-mono mb-2 text-amber-400">DOCTRINAL IMPLICATION</p>
               <p className="text-caption text-steel-300 leading-relaxed">
-                Traditional perimeter defense assumes attackers cross identifiable boundaries. Agentic propagation can occur entirely within trusted authorization envelopes — making the attacker, the agent, and the operator nominally the same actor.
+                Traditional perimeter defense assumes attackers cross identifiable boundaries. Agentic propagation can occur entirely within trusted authorization envelopes, making the attacker, the agent, and the operator nominally the same actor.
               </p>
             </div>
           </div>

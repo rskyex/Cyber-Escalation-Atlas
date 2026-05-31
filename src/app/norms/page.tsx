@@ -26,7 +26,7 @@ export default function NormsPage() {
     <SectionWrapper>
       <PageHeader
         title="Norm Evolution Tracker"
-        subtitle="Tracking six key international cyber norms across the dataset — their status, the cases that test them, and whether each incident reinforced, violated, or exposed gaps in the normative framework."
+        subtitle="Tracking six key international cyber norms across the dataset, their status, the cases that test them, and whether each incident reinforced, violated, or exposed gaps in the normative framework."
       />
 
       {/* Norm cards */}

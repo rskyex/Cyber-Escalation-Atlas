@@ -125,7 +125,7 @@ export default function HomePage() {
               variants={stagger.item}
               className="font-editorial italic text-amber-400/80 text-body-lg mb-4"
             >
-              A living atlas of machine-speed geopolitical escalation.
+              An atlas of machine-speed geopolitical escalation.
             </motion.p>
 
             <motion.h1
@@ -134,7 +134,6 @@ export default function HomePage() {
             >
               Cyber Escalation<br />
               <span className="text-atlas-400">Atlas</span>
-              <sup className="text-[0.35em] ml-1 text-steel-500 font-sans">&trade;</sup>
             </motion.h1>
 
             <motion.p
@@ -143,14 +142,14 @@ export default function HomePage() {
             >
               Cyber, AI, space, nuclear, information, financial systems no longer escalate in isolation.
               This atlas maps their structural interdependencies, the compression of decision time, and
-              the migration of authority between humans and machines — at speeds that outpace deliberation.
+              the migration of authority between humans and machines, at speeds that outpace deliberation.
             </motion.p>
 
             <motion.p
               variants={stagger.item}
               className="mt-5 text-body text-steel-400 max-w-2xl leading-relaxed"
             >
-              The central question is not <span className="text-amber-300/90">what did the system do</span> — it is{" "}
+              The central question is not <span className="text-amber-300/90">what did the system do</span>; it is{" "}
               <span className="text-atlas-300">who held authority to define meaning and response</span>.
             </motion.p>
 
@@ -227,7 +226,7 @@ export default function HomePage() {
               Seven interactive layers of escalation.
             </h2>
             <p className="text-body text-steel-400 leading-relaxed">
-              The Observatory is the strategic layer of the atlas — interactive visualizations
+              The Observatory is the strategic layer of the atlas: interactive visualizations
               of AI-mediated escalation, attribution uncertainty, machine-speed governance, and
               cross-domain conflict propagation.
             </p>
@@ -457,7 +456,7 @@ export default function HomePage() {
                 <div className="relative rounded-xl overflow-hidden border border-transparent dark:border-white/[0.06]">
                   <Image
                     src="/risa-koyanagi-og.png"
-                    alt="Risa Koyanagi — 小柳璃紗"
+                    alt="Risa Koyanagi, 小柳璃紗"
                     width={1536}
                     height={768}
                     className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
@@ -516,7 +515,7 @@ export default function HomePage() {
                 <div className="relative rounded-xl overflow-hidden border border-transparent dark:border-white/[0.06]">
                   <Image
                     src="/faultline-og.png"
-                    alt="Faultline — Strategic research ecosystem"
+                    alt="Faultline: Strategic research ecosystem"
                     width={1200}
                     height={630}
                     className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"

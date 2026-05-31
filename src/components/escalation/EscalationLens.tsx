@@ -61,7 +61,7 @@ const zones = [
     dot: "bg-signal-500",
     text: "text-signal-700 dark:text-signal-300",
     description:
-      "Destructive or strategic-impact operations that cross established thresholds — causing physical damage, mass economic disruption, or triggering multilateral governance responses.",
+      "Destructive or strategic-impact operations that cross established thresholds, causing physical damage, mass economic disruption, or triggering multilateral governance responses.",
   },
 ];
 
@@ -94,7 +94,7 @@ const tierDefinitions: { tier: EscalationTier; description: string }[] = [
   {
     tier: "strategic",
     description:
-      "Operations with national-security or international significance — affecting critical infrastructure, economic stability, or interstate relations.",
+      "Operations with national-security or international significance, affecting critical infrastructure, economic stability, or interstate relations.",
   },
 ];
 
@@ -153,7 +153,7 @@ function buildDeterrenceReasoning(inc: Incident): string {
   if (restraints.length > 0) {
     return `Restraint observed: ${restraints[0]}.`;
   }
-  return "Demonstrated capability without imposing irreversible damage — signalling potential rather than exercising it.";
+  return "Demonstrated capability without imposing irreversible damage, signalling potential rather than exercising it.";
 }
 
 // ---------------------------------------------------------------------------
@@ -447,7 +447,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
           Thomas Schelling distinguished two coercive logics: <em>compellence</em> (forcing
           an adversary to change behaviour through imposed costs) and <em>deterrence</em> (dissuading
           action by signalling capability and willingness to retaliate).
-          Cyber operations often blur this distinction — the same intrusion
+          Cyber operations often blur this distinction, the same intrusion
           can serve as intelligence collection <em>and</em> a latent threat.
           This split offers an analytical lens, not a definitive classification.
         </p>
@@ -552,7 +552,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
             <strong className="text-ink dark:text-ink-100">Analytical note:</strong>{" "}
             This classification uses the operation&apos;s primary coercive
             function as a heuristic. Many operations serve both logics
-            simultaneously — an espionage campaign that pre-positions
+            simultaneously, an espionage campaign that pre-positions
             destructive capabilities deters through demonstrated access
             while also enabling future compellence. The distinction is
             most useful as a teaching tool for examining how states
@@ -570,7 +570,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
             On reading escalation
           </p>
           <p className="text-sm text-ink dark:text-white leading-relaxed">
-            Escalation is not a conveyor belt — incidents do not inevitably
+            Escalation is not a conveyor belt, incidents do not inevitably
             progress from probing to destruction. Restraint is as analytically
             important as escalation. States frequently choose <em>not</em> to
             escalate, and understanding those choices requires examining

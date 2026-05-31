@@ -19,7 +19,7 @@ export const legalFrameworks: LegalFramework[] = [
     rules: [
       {
         ruleId: "tallinn-r4",
-        name: "Rule 4 — State Responsibility",
+        name: "Rule 4, State Responsibility",
         description: "A state bears international responsibility for a cyber operation attributable to it that constitutes a breach of an international obligation. Attribution requires that the operation was conducted by state organs or by persons acting under the direction or control of the state.",
         cyberControversy: "The threshold for 'direction or control' remains contested. States increasingly use proxy groups, contractors, and criminal organisations for cyber operations, making attribution under Rule 4 analytically complex. The 'effective control' vs. 'overall control' debate from ICJ and ICTY jurisprudence has no settled cyber-specific interpretation.",
         cases: [
@@ -33,7 +33,7 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "tallinn-r14",
-        name: "Rule 14 — Due Diligence",
+        name: "Rule 14, Due Diligence",
         description: "A state must not knowingly allow its territory to be used for cyber operations that adversely affect the rights of other states. The duty extends to taking feasible measures to halt ongoing operations and prevent future ones.",
         cyberControversy: "The scope of due diligence in cyberspace is deeply contested. Questions remain about what constitutes 'knowledge' of malicious activity originating from a state's territory, what 'feasible measures' are required, and whether the obligation is one of conduct or result.",
         cases: [
@@ -45,9 +45,9 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "tallinn-r30",
-        name: "Rule 30 — Distinction",
+        name: "Rule 30, Distinction",
         description: "Parties to an armed conflict must distinguish between civilian objects and military objectives. Cyber attacks may only be directed at military objectives.",
-        cyberControversy: "Dual-use infrastructure — telecommunications networks, power grids, cloud platforms serving both military and civilian users — makes distinction in cyberspace exceptionally difficult. A cyber operation targeting a military communication channel hosted on civilian infrastructure may inevitably affect civilian services.",
+        cyberControversy: "Dual-use infrastructure, telecommunications networks, power grids, cloud platforms serving both military and civilian users, makes distinction in cyberspace exceptionally difficult. A cyber operation targeting a military communication channel hosted on civilian infrastructure may inevitably affect civilian services.",
         cases: [
           { caseSlug: "viasat-kasat", note: "Satellite network serving both Ukrainian military and European civilians challenged distinction principle" },
           { caseSlug: "kyivstar", note: "Civilian telecom network destroyed during wartime; dual-use argument contested" },
@@ -56,7 +56,7 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "tallinn-r32",
-        name: "Rule 32 — Proportionality",
+        name: "Rule 32, Proportionality",
         description: "A cyber attack that may be expected to cause incidental civilian harm must not be excessive in relation to the concrete and direct military advantage anticipated.",
         cyberControversy: "Proportionality assessment in cyber operations is complicated by the difficulty of predicting cascading effects. Worm-like propagation (NotPetya), supply chain compromise (SolarWinds), and cross-border collateral damage challenge the ability to assess proportionality ex ante.",
         cases: [
@@ -66,7 +66,7 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "tallinn-r69",
-        name: "Rule 69 — Countermeasures",
+        name: "Rule 69, Countermeasures",
         description: "An injured state may take proportionate countermeasures against a responsible state for the purpose of inducing compliance with the latter's international obligations.",
         cyberControversy: "Cyber countermeasures face unique challenges: the speed of cyber operations may not allow time for the prior notification traditionally required, and the reversibility of cyber effects complicates proportionality assessment. States disagree on whether 'hack back' constitutes a legitimate countermeasure.",
         cases: [
@@ -76,7 +76,7 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "tallinn-r80",
-        name: "Rule 80 — Intervention",
+        name: "Rule 80, Intervention",
         description: "A state may not intervene, including by cyber means, in the internal or external affairs of another state regarding matters in which the state is permitted to decide freely.",
         cyberControversy: "The boundary between espionage (generally not prohibited) and intervention (prohibited) in cyberspace is unclear. Cyber operations that compromise electoral infrastructure or government decision-making systems may constitute intervention even without data manipulation, if they coerce or dictate outcomes in the target state's internal affairs.",
         cases: [
@@ -92,9 +92,9 @@ export const legalFrameworks: LegalFramework[] = [
     rules: [
       {
         ruleId: "un-2-4",
-        name: "Article 2(4) — Prohibition on the Use of Force",
+        name: "Article 2(4), Prohibition on the Use of Force",
         description: "All Members shall refrain from the threat or use of force against the territorial integrity or political independence of any state. The prohibition is a cornerstone of the international legal order.",
-        cyberControversy: "Whether cyber operations can constitute a 'use of force' remains the most consequential unresolved question in international cyber law. Most scholars agree that cyber operations causing physical damage or death cross the threshold, but operations causing massive economic disruption without physical damage — like NotPetya — occupy a gray zone.",
+        cyberControversy: "Whether cyber operations can constitute a 'use of force' remains the most consequential unresolved question in international cyber law. Most scholars agree that cyber operations causing physical damage or death cross the threshold, but operations causing massive economic disruption without physical damage, like NotPetya, occupy a gray zone.",
         cases: [
           { caseSlug: "stuxnet", note: "Physical destruction of centrifuges is the strongest candidate for a cyber 'use of force' in the dataset" },
           { caseSlug: "notpetya", note: "$10B in economic destruction without physical casualties tests whether non-kinetic harm can constitute force" },
@@ -103,7 +103,7 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "un-51",
-        name: "Article 51 — Self-Defence",
+        name: "Article 51, Self-Defence",
         description: "Nothing in the Charter shall impair the inherent right of individual or collective self-defence if an armed attack occurs against a Member of the United Nations.",
         cyberControversy: "The 'armed attack' threshold for triggering self-defence in response to a cyber operation is unresolved. If a cyber operation does not constitute an armed attack, the victim state cannot invoke Article 51 for a kinetic response, leaving it limited to countermeasures, retorsion, and diplomatic responses.",
         cases: [
@@ -142,7 +142,7 @@ export const legalFrameworks: LegalFramework[] = [
         ruleId: "ihl-precaution",
         name: "Precaution in Attack",
         description: "Those who plan or decide upon an attack shall take all feasible precautions to avoid or minimize incidental civilian harm.",
-        cyberControversy: "The obligation to take precautions is particularly challenging for cyber operations with autonomous propagation capabilities. Once deployed, worm-like malware cannot be recalled, and operators may have limited ability to constrain its spread — raising questions about whether deployment itself violates the precaution obligation.",
+        cyberControversy: "The obligation to take precautions is particularly challenging for cyber operations with autonomous propagation capabilities. Once deployed, worm-like malware cannot be recalled, and operators may have limited ability to constrain its spread, raising questions about whether deployment itself violates the precaution obligation.",
         cases: [
           { caseSlug: "stuxnet", note: "Designed with targeting constraints but still spread beyond Natanz, testing precautionary obligations" },
           { caseSlug: "notpetya", note: "No apparent precautionary measures to limit global propagation, suggesting precaution was not adequately considered" },
@@ -156,7 +156,7 @@ export const legalFrameworks: LegalFramework[] = [
     rules: [
       {
         ruleId: "gge-13a",
-        name: "Norm 13(a) — Cooperation on Security",
+        name: "Norm 13(a), Cooperation on Security",
         description: "States should cooperate in developing and applying measures to increase stability and security in the use of ICTs, and to prevent ICT practices that are harmful or may pose threats to international peace and security.",
         cyberControversy: "The voluntary nature of GGE norms means cooperation remains discretionary. States invoke this norm selectively, cooperating on threats that align with their interests while declining cooperation on operations they sponsor or benefit from.",
         cases: [
@@ -166,11 +166,11 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "gge-13f",
-        name: "Norm 13(f) — Critical Infrastructure Protection",
+        name: "Norm 13(f), Critical Infrastructure Protection",
         description: "A state should not conduct or knowingly support ICT activity that intentionally damages critical infrastructure or otherwise impairs the use and operation of critical infrastructure to provide services to the public.",
         cyberControversy: "This is the most frequently cited and most frequently violated norm in the dataset. Its voluntary status means there are no enforcement mechanisms beyond political pressure and countermeasures. Repeated violations without meaningful consequences risk rendering the norm aspirational rather than operative.",
         cases: [
-          { caseSlug: "ukraine-power-grid-2015", note: "First confirmed violation of 13(f) — cyber attack causing civilian power outage" },
+          { caseSlug: "ukraine-power-grid-2015", note: "First confirmed violation of 13(f), cyber attack causing civilian power outage" },
           { caseSlug: "notpetya", note: "Global collateral damage to critical infrastructure across 65+ countries" },
           { caseSlug: "colonial-pipeline", note: "Criminal ransomware disrupting critical fuel infrastructure; 13(f) applicability to non-state actors debated" },
           { caseSlug: "kyivstar", note: "Destruction of civilian telecom infrastructure during armed conflict" },
@@ -180,11 +180,11 @@ export const legalFrameworks: LegalFramework[] = [
       },
       {
         ruleId: "gge-13j",
-        name: "Norm 13(j) — Vulnerability Disclosure",
+        name: "Norm 13(j), Vulnerability Disclosure",
         description: "States should encourage responsible reporting of ICT vulnerabilities and share associated information on available remedies to limit and possibly eliminate potential threats.",
         cyberControversy: "Tensions between intelligence collection value and public safety create persistent pressure to stockpile rather than disclose vulnerabilities. WannaCry's use of a leaked NSA exploit dramatically illustrated the risks of vulnerability hoarding, but no state has committed to full disclosure practices.",
         cases: [
-          { caseSlug: "wannacry", note: "Used leaked NSA exploit — the defining case for vulnerability equities debate" },
+          { caseSlug: "wannacry", note: "Used leaked NSA exploit, the defining case for vulnerability equities debate" },
           { caseSlug: "exchange-hafnium", note: "Zero-day exploitation at scale before patches were available raised disclosure timeline questions" },
           { caseSlug: "storm-0558", note: "Forged signing key exploit highlighted cloud authentication vulnerability disclosure gaps" },
         ],
