@@ -18,11 +18,11 @@ export function Footer() {
                 </svg>
               </div>
               <span className="text-body font-semibold text-ink dark:text-white tracking-tight">
-                Cyber Escalation Atlas&trade;
+                Cyber Escalation Atlas
               </span>
             </div>
             <p className="text-caption text-steel-500 dark:text-steel-500 leading-relaxed max-w-sm">
-              A policy-grade interactive reference for understanding cyber operations,
+              A research reference for understanding cyber operations,
               escalation dynamics, and governance frameworks.
             </p>
           </div>

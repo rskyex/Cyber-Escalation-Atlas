@@ -22,7 +22,7 @@ const stages: Stage[] = [
     title: "Signal Detected",
     short: "Sensor activation",
     what: "An indicator is observed: network anomaly, satellite return, intelligence cue, financial irregularity.",
-    failure: "Detection thresholds calibrated for absence of false alarms — true signals discarded as noise.",
+    failure: "Detection thresholds calibrated for absence of false alarms, true signals discarded as noise.",
     example: "1983: false missile-launch alert from sun-on-cloud reflection.",
     tone: "atlas",
   },
@@ -41,7 +41,7 @@ const stages: Stage[] = [
     index: 3,
     title: "Authority Ambiguity",
     short: "No clear decision owner",
-    what: "Multiple institutions claim — or deny — jurisdiction. Decision authority becomes contested.",
+    what: "Multiple institutions claim, or deny, jurisdiction. Decision authority becomes contested.",
     failure: "Inter-agency seams paralyze response. Authority defaults to whichever body has automated capability.",
     example: "Cross-domain incidents (cyber + space + financial) lacking single accountable command.",
     tone: "amber",
@@ -72,7 +72,7 @@ const stages: Stage[] = [
     title: "Crisis",
     short: "Compounding ambiguity",
     what: "Multiple cascading failures interact. Each new event is misread through the lens of the prior misclassification.",
-    failure: "No institutional pathway exists for graceful retraction — public posture freezes hostile interpretation.",
+    failure: "No institutional pathway exists for graceful retraction, public posture freezes hostile interpretation.",
     example: "Doctrinal lock-in: positions taken during 24-hour news cycle become 6-month policy.",
     tone: "plasma",
   },
@@ -105,7 +105,7 @@ export default function GovernanceCascadePage() {
         coordinate="Institutional · Δ"
         title="Governance Cascade"
         tagline="Where institutions fail in slow motion."
-        description="Crisis rarely arrives from a single catastrophic decision. It arrives through six smaller failures stacked atop one another — each plausible in isolation, each compounding the last. The cascade is the most-observed and least-prevented pattern in modern incident escalation."
+        description="Crisis rarely arrives from a single catastrophic decision. It arrives through six smaller failures stacked atop one another, each plausible in isolation, each compounding the last. The cascade is the most-observed and least-prevented pattern in modern incident escalation."
         status="modeled"
       />
 
@@ -273,7 +273,7 @@ export default function GovernanceCascadePage() {
         </p>
         <p className="text-caption text-steel-300 leading-relaxed max-w-3xl">
           Every observed major escalation in the dataset followed some variant of this sequence. The intervention point is rarely Stage 6.
-          It is the institutional design of Stages 2 and 3 — taxonomies and authority architectures — where most cascades are still
+          It is the institutional design of Stages 2 and 3, taxonomies and authority architectures, where most cascades are still
           quietly preventable.
         </p>
       </Panel>

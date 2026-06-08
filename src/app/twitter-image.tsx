@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export const alt =
-  "Cyber Escalation Atlas™ — A policy-grade interactive reference for understanding cyber operations, escalation dynamics, and governance frameworks.";
+  "Cyber Escalation Atlas. A research reference for understanding cyber operations, escalation dynamics, and governance frameworks.";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -188,8 +188,8 @@ export default function TwitterImage() {
               maxWidth: 650,
             }}
           >
-            Strategic behavior, governance, and infrastructure entanglement — a
-            policy-grade interactive reference for cyber conflict analysis.
+            Strategic behavior, governance, and infrastructure entanglement: a
+            research reference for cyber conflict analysis.
           </div>
         </div>
 

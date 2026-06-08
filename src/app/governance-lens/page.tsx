@@ -7,7 +7,7 @@ export default function GovernanceLensPage() {
     <SectionWrapper>
       <PageHeader
         title="Governance Lens"
-        subtitle="The governance dimension is central to the Atlas. This lens evaluates how international norms, attribution practices, sanctions, regulatory frameworks, and accountability mechanisms shape — and are shaped by — major cyber incidents."
+        subtitle="The governance dimension is central to the Atlas. This lens evaluates how international norms, attribution practices, sanctions, regulatory frameworks, and accountability mechanisms shape, and are shaped by, major cyber incidents."
         accent
       />
       <GovernanceLens incidents={seedIncidents} />

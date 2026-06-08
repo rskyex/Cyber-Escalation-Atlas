@@ -33,7 +33,7 @@ export function InfrastructureSection({ incident }: InfrastructureSectionProps) 
           </div>
         )}
 
-        {/* Technique summary (brief — full ATT&CK mapping is separate) */}
+        {/* Technique summary (brief, full ATT&CK mapping is separate) */}
         <div className="p-4 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30">
           <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-2">
             Capability profile

@@ -84,7 +84,7 @@ export default function SimulatorPage() {
         coordinate="Interactive · Live"
         title="Live Escalation Simulator"
         tagline="Where every layer meets a slider."
-        description="The simulator composes all seven layers into a single interactive surface. Modulate five parameters and observe how escalation risk responds — phase-shifts occur when low attribution confidence meets high automation."
+        description="The simulator composes all seven layers into a single interactive surface. Modulate five parameters and observe how escalation risk responds, phase-shifts occur when low attribution confidence meets high automation."
         status="live"
       />
 
@@ -251,7 +251,7 @@ export default function SimulatorPage() {
                 : "Stable posture. Authority, ambiguity, and tempo are within institutional tolerance."}
         </p>
         <p className="text-caption text-steel-300 leading-relaxed max-w-3xl">
-          The simulator is descriptive, not prescriptive. It models the structural interactions between five doctrinal variables that recur across the dataset. Real-world decisions involve additional variables — domestic politics, regime type, prior signaling, technical surprise — that no scalar parameter set can adequately encode.
+          The simulator is descriptive, not prescriptive. It models the structural interactions between five doctrinal variables that recur across the dataset. Real-world decisions involve additional variables, domestic politics, regime type, prior signaling, technical surprise, that no scalar parameter set can adequately encode.
         </p>
       </Panel>
     </>

@@ -103,7 +103,7 @@ export default function SectorsPage() {
       {selected && (
         <section className="rounded-xl border-2 border-atlas-400/40 dark:border-atlas-600/30 bg-white dark:bg-ink-700/20 p-6">
           <h2 className="text-xl font-bold text-ink dark:text-white mb-4">
-            {targetSectorLabels[selected]} — Detail
+            {targetSectorLabels[selected]}, Detail
           </h2>
 
           {/* Cases list */}

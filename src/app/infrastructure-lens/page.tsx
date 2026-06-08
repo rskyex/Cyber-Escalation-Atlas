@@ -7,7 +7,7 @@ export default function InfrastructureLensPage() {
     <SectionWrapper>
       <PageHeader
         title="Infrastructure Lens"
-        subtitle="Examine how cyber operations target critical infrastructure sectors — their strategic importance, interdependencies, governance gaps, and escalation potential."
+        subtitle="Examine how cyber operations target critical infrastructure sectors, their strategic importance, interdependencies, governance gaps, and escalation potential."
       />
       <InfrastructureLens incidents={seedIncidents} />
     </SectionWrapper>

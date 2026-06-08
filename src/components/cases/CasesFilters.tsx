@@ -175,7 +175,7 @@ export function CasesFilters({ filters, onChange }: CasesFiltersProps) {
         onChange={(v) => set("attribution", v as AttributionConfidence | "")}
       />
 
-      {/* Governance flags — visually distinct section */}
+      {/* Governance flags, visually distinct section */}
       <div className="pt-2 border-t border-steel-200/20 dark:border-ink-600/30">
         <SelectField
           label="Governance response"

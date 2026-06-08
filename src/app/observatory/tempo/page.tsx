@@ -61,7 +61,7 @@ export default function TempoPage() {
         coordinate="Temporal · Δt"
         title="Escalation Tempo Comparator"
         tagline="Machine-speed becomes physically visible."
-        description="Eight strategic processes plotted on a logarithmic time axis spanning seven orders of magnitude — from autonomous AI agents (sub-second) to international norm formation (years). The gap between tempo classes is the gap that machine-speed actors exploit."
+        description="Eight strategic processes plotted on a logarithmic time axis spanning seven orders of magnitude, from autonomous AI agents (sub-second) to international norm formation (years). The gap between tempo classes is the gap that machine-speed actors exploit."
         status="live"
       />
 
@@ -78,7 +78,7 @@ export default function TempoPage() {
                     ? "rgb(255, 107, 91)"
                     : "rgb(174, 147, 255)";
 
-            // animated clock — synced to cycle, capped
+            // animated clock, synced to cycle, capped
             const cycleMs = p.cycleSeconds * 1000;
             const t = (now % Math.min(cycleMs, 60000)) / Math.min(cycleMs, 60000);
             const rotation = t * 360;
@@ -214,7 +214,7 @@ export default function TempoPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
             <p className="font-editorial italic text-body-lg text-amber-300/80 leading-snug mb-3">
-              &ldquo;Governance speed has not slowed — operations have accelerated past it.&rdquo;
+              &ldquo;Governance speed has not slowed, operations have accelerated past it.&rdquo;
             </p>
             <p className="text-caption text-steel-300 leading-relaxed">
               International norm formation cycles around <span className="text-amber-300">five-year horizons</span>. Autonomous AI systems make decisions in <span className="text-plasma-300">fractions of a second</span>. That is a factor of ten-to-the-eighth gap. Every doctrinal escalation review must now contend with the temporal arbitrage actors gain by operating in faster classes than the institutions tasked with constraining them.
@@ -225,15 +225,15 @@ export default function TempoPage() {
             <ul className="space-y-2 text-caption text-steel-300 leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-plasma-400 mt-1">▸</span>
-                <span><span className="text-white">Pre-delegation pressure</span> — political authorities pushed to pre-authorize machine response.</span>
+                <span><span className="text-white">Pre-delegation pressure</span>, political authorities pushed to pre-authorize machine response.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-amber-400 mt-1">▸</span>
-                <span><span className="text-white">Narrative pre-emption</span> — public attribution races ahead of intelligence consensus.</span>
+                <span><span className="text-white">Narrative pre-emption</span>, public attribution races ahead of intelligence consensus.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-atlas-400 mt-1">▸</span>
-                <span><span className="text-white">Norm decay</span> — slow norms become unenforceable against fast operations.</span>
+                <span><span className="text-white">Norm decay</span>, slow norms become unenforceable against fast operations.</span>
               </li>
             </ul>
           </div>

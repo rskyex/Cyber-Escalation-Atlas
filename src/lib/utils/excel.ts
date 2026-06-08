@@ -15,11 +15,6 @@ import {
 import { actorProfiles } from "@/data/actors";
 import { normsData } from "@/data/norms";
 import { legalFrameworks } from "@/data/legalFrameworks";
-import {
-  aiAttributionExploratory,
-  aiAttributionExploratoryBanner,
-  aiAttributionRejectedBorderlines,
-} from "@/data/aiAttributionExploratory";
 
 async function loadXLSX(): Promise<typeof XLSXType> {
   return await import("xlsx");
@@ -182,85 +177,6 @@ function buildLegalRulesSheet() {
   );
 }
 
-const categoryLabel: Record<string, string> = {
-  A_DiscreteIncident: "A — Discrete incident",
-  B_Capability: "B — Capability",
-};
-
-function buildAIAttributionExploratoryRows() {
-  return aiAttributionExploratory.map((e) => ({
-    Name: e.name,
-    Year: e.year,
-    Category: categoryLabel[e.category] ?? e.category,
-    "System / AI": e.system,
-    "Judgment Entered": e.judgmentEntered,
-    "Authority Augmented": e.authorityAugmented,
-    "AI Role Disclosed Publicly": e.publicDisclosure,
-    Verifiability: e.verifiability,
-    Sources: e.sources
-      .map((s) => `${s.title} — ${s.url}${s.fetched ? "" : " (not directly fetched)"}`)
-      .join(" | "),
-    "Accountability Note": e.accountabilityNote,
-  }));
-}
-
-function buildAIAttributionRejectedRows() {
-  return aiAttributionRejectedBorderlines.map((b) => ({
-    "Rejected Borderline": b.name,
-    "Reason Rejected": b.reason,
-    Source: b.source ?? "",
-  }));
-}
-
-/**
- * Custom sheet builder for the exploratory AI-in-Attribution sheet.
- * Lays down a banner block at the top (scope + empty-Category-A finding),
- * blank row, the data table, blank rows, then a rejected-borderlines table.
- * Uses aoa_to_sheet + sheet_add_json so the banner sits outside the data
- * grid and cannot be mistaken for headers.
- */
-function appendAIAttributionExploratorySheet(
-  XLSX: typeof XLSXType,
-  wb: XLSXType.WorkBook,
-) {
-  const bannerAOA: string[][] = aiAttributionExploratoryBanner.map((line) => [line]);
-  const ws = XLSX.utils.aoa_to_sheet(bannerAOA);
-
-  const dataRows = buildAIAttributionExploratoryRows();
-  const dataStartRow = bannerAOA.length + 1;
-  XLSX.utils.sheet_add_json(ws, dataRows, {
-    origin: { r: dataStartRow, c: 0 },
-    skipHeader: false,
-  });
-
-  const rejectedRows = buildAIAttributionRejectedRows();
-  const rejectedHeaderRow = dataStartRow + dataRows.length + 3;
-  XLSX.utils.sheet_add_aoa(
-    ws,
-    [["REJECTED BORDERLINE CASES (not included above; recorded for audit trail)"]],
-    { origin: { r: rejectedHeaderRow - 1, c: 0 } },
-  );
-  XLSX.utils.sheet_add_json(ws, rejectedRows, {
-    origin: { r: rejectedHeaderRow, c: 0 },
-    skipHeader: false,
-  });
-
-  ws["!cols"] = [
-    { wch: 48 },
-    { wch: 18 },
-    { wch: 22 },
-    { wch: 60 },
-    { wch: 60 },
-    { wch: 40 },
-    { wch: 16 },
-    { wch: 14 },
-    { wch: 80 },
-    { wch: 80 },
-  ];
-
-  XLSX.utils.book_append_sheet(wb, ws, "AI-in-Attribution (Exploratory)");
-}
-
 function buildLegalRuleCasesSheet() {
   return legalFrameworks.flatMap((fw) =>
     fw.rules.flatMap((r) =>
@@ -330,7 +246,6 @@ export async function exportAllDataExcel(incidents: Incident[]) {
   appendSheet(XLSX, wb, "Norm Effects", buildNormEffectsSheet());
   appendSheet(XLSX, wb, "Legal Rules", buildLegalRulesSheet());
   appendSheet(XLSX, wb, "Legal Rule Cases", buildLegalRuleCasesSheet());
-  appendAIAttributionExploratorySheet(XLSX, wb);
 
   const date = new Date().toISOString().slice(0, 10);
   XLSX.writeFile(wb, `cyber-escalation-atlas-${date}.xlsx`);

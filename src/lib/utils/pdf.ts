@@ -22,7 +22,7 @@ function addFooter(doc: jsPDF) {
   const h = doc.internal.pageSize.height;
   doc.setFontSize(7);
   doc.setTextColor(132, 147, 175);
-  doc.text("Cyber Escalation Atlas — Policy-grade intelligence platform", 14, h - 8);
+  doc.text("Cyber Escalation Atlas, research reference", 14, h - 8);
   doc.text(`Generated ${new Date().toISOString().slice(0, 10)}`, 196, h - 8, { align: "right" });
 }
 
@@ -98,7 +98,7 @@ export function exportCasePdf(incident: Incident) {
     doc.setTextColor(80, 90, 110);
     incident.infrastructure.techniques.forEach((t) => {
       if (y > 270) { doc.addPage(); addHeader(doc); y = 20; }
-      doc.text(`${t.id} — ${t.name} (${t.tactic})`, 14, y);
+      doc.text(`${t.id}: ${t.name} (${t.tactic})`, 14, y);
       y += 4;
     });
   }

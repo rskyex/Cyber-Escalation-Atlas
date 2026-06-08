@@ -112,7 +112,7 @@ export default function AttributionFieldPage() {
         coordinate="38.9° N · 77.0° W"
         title="Attribution Confidence Field"
         tagline="Who has authority to define responsibility?"
-        description="Attribution is never singular. Five independent streams converge — or contest — on the question of state responsibility, each with its own evidentiary logic, audience, and political weight. The variance between them is where authority gets allocated."
+        description="Attribution is never singular. Five independent streams converge, or contest, on the question of state responsibility, each with its own evidentiary logic, audience, and political weight. The variance between them is where authority gets allocated."
         status="modeled"
       />
 
@@ -145,7 +145,7 @@ export default function AttributionFieldPage() {
         <Panel label="FIVE-AXIS ATTRIBUTION POLYGON" status="contested" statusTone="violet" ticks>
           <AttributionPolygon streams={streams} values={streams.map((s) => getValue(s.id))} />
           <p className="mt-4 text-caption text-steel-400 leading-relaxed">
-            <span className="text-amber-300">Reading:</span> A symmetric polygon signals consensus. Asymmetry exposes contested terrain — where one authority claims certainty another has not validated.
+            <span className="text-amber-300">Reading:</span> A symmetric polygon signals consensus. Asymmetry exposes contested terrain, where one authority claims certainty another has not validated.
           </p>
         </Panel>
 
@@ -188,7 +188,7 @@ export default function AttributionFieldPage() {
       {/* ═══ STREAM SLIDERS ═══ */}
       <Panel label="STREAM MODULATION · DRAG TO RE-WEIGHT" status="interactive" className="mb-8">
         <p className="text-caption text-steel-400 mb-5">
-          The question is not which stream is correct, but who is heard. Adjust each stream and watch the polygon — and the authority gap — reshape.
+          The question is not which stream is correct, but who is heard. Adjust each stream and watch the polygon, and the authority gap, reshape.
         </p>
         <div className="space-y-5">
           {streams.map((s) => {

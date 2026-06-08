@@ -100,7 +100,7 @@ export default function CrossDomainPage() {
         coordinate="Cross-Domain · Global"
         title="Cross-Domain Escalation Map"
         tagline="Escalation refuses domain boundaries."
-        description="Eight interlocked operational domains. An action in one — cyber, space, AI command, nuclear C3, information, financial, autonomous weapons — propagates through structural entanglements that no single ministry, command, or doctrine wholly governs. Select a scenario to trace propagation."
+        description="Eight interlocked operational domains. An action in one, cyber, space, AI command, nuclear C3, information, financial, autonomous weapons, propagates through structural entanglements that no single ministry, command, or doctrine wholly governs. Select a scenario to trace propagation."
         status="modeled"
       />
 

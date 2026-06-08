@@ -1,7 +1,7 @@
 import { PageHeader, SectionWrapper } from "@/components/ui";
 
 // ---------------------------------------------------------------------------
-// Section shell component — consistent heading + placeholder prose container
+// Section shell component, consistent heading + placeholder prose container
 // ---------------------------------------------------------------------------
 
 function Section({
@@ -111,20 +111,20 @@ export default function MethodologyPage() {
 
       {/* Sections */}
       <div className="space-y-12 max-w-3xl">
-        {/* 01 — Purpose */}
+        {/* 01, Purpose */}
         <Section id="purpose" number="01" title="Purpose Statement">
           <p>
             The Cyber Escalation Atlas is a structured analytical platform for
             examining how cyber operations escalate, what restraint looks like,
             and how governance frameworks respond. It is designed for teaching,
-            policy analysis, and research — not threat monitoring or operational
+            policy analysis, and research, not threat monitoring or operational
             intelligence.
           </p>
           <p>
             Three commitments shape the platform. First, cyber operations are
             treated as political acts embedded in interstate relationships, not
             as standalone technical incidents. Second, governance is not a
-            secondary layer added after technical analysis — it is the central
+            secondary layer added after technical analysis; it is the central
             frame through which escalation and restraint should be understood.
             Third, analytical uncertainty is stated openly rather than hidden
             behind false precision.
@@ -140,7 +140,7 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 02 — Scope */}
+        {/* 02, Scope */}
         <Section id="scope" number="02" title="Scope of the Platform">
           <p>
             The Atlas covers state and state-affiliated cyber operations that
@@ -156,7 +156,7 @@ export default function MethodologyPage() {
             Geographic and temporal scope is determined by data availability
             and analytical value, not by an attempt to be exhaustive. The
             dataset is selective by design. It does not aspire to catalogue
-            every reported cyber incident — such an effort would sacrifice
+            every reported cyber incident, such an effort would sacrifice
             analytical depth for breadth and would rapidly become a list
             rather than a tool for structured comparison.
           </p>
@@ -170,15 +170,14 @@ export default function MethodologyPage() {
             documentation is sufficient for structured analysis.
           </p>
           <p>
-            The platform analyses cyber operations through three lenses —
-            escalation, infrastructure, and governance — each with its own
+            The platform analyses cyber operations through three lenses, escalation, infrastructure, and governance, each with its own
             methodology documented in subsequent sections. Not every incident
             is equally well-documented across all three; the Atlas notes where
             evidence is thinner rather than filling gaps with speculation.
           </p>
         </Section>
 
-        {/* 03 — Inclusion criteria */}
+        {/* 03, Inclusion criteria */}
         <Section id="inclusion" number="03" title="Inclusion Criteria">
           <p>
             Each incident in the dataset must satisfy at least three of the
@@ -194,7 +193,7 @@ export default function MethodologyPage() {
           <p>
             These criteria are applied with analytical judgement, not
             mechanically. Borderline cases are included when they offer
-            distinctive teaching value — for example, an operation with
+            distinctive teaching value, for example, an operation with
             moderate technical impact but unusual governance consequences
             may be more instructive than a technically sophisticated
             operation that provoked no policy response.
@@ -205,7 +204,7 @@ export default function MethodologyPage() {
             remains too uncertain to support meaningful comparison, or when
             the operation does not rise to the level of strategic
             significance defined above. Exclusion is not a judgement that the
-            operation was unimportant — it reflects the practical limits of
+            operation was unimportant; it reflects the practical limits of
             open-source analysis.
           </p>
           <p>
@@ -216,7 +215,7 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 04 — Source hierarchy */}
+        {/* 04, Source hierarchy */}
         <Section id="sources" number="04" title="Source Hierarchy">
           <p>
             Sources are weighted by category. The hierarchy reflects
@@ -226,15 +225,14 @@ export default function MethodologyPage() {
           </p>
           <ol className="list-decimal pl-5 space-y-1.5">
             <li>
-              <strong>Government advisories and legal documents</strong> —
-              CISA alerts, DOJ indictments, court filings, official
+              <strong>Government advisories and legal documents</strong>, CISA alerts, DOJ indictments, court filings, official
               attribution statements, UN reports. These carry institutional
               weight and legal accountability, but they also reflect policy
               priorities. Governments may attribute selectively, and
               advisory quality varies across jurisdictions.
             </li>
             <li>
-              <strong>Vendor and technical reports</strong> — threat
+              <strong>Vendor and technical reports</strong>, threat
               intelligence publications from established cybersecurity firms
               with direct forensic access to affected systems. These are
               typically the strongest source for technical detail (IOCs,
@@ -243,18 +241,18 @@ export default function MethodologyPage() {
               public reporting and how findings are framed.
             </li>
             <li>
-              <strong>Academic and policy analysis</strong> — peer-reviewed
+              <strong>Academic and policy analysis</strong>, peer-reviewed
               research, policy institute publications, structured case
               studies. These provide the most careful analytical framing but
               are often published with significant delay and may lack access
               to primary technical data.
             </li>
             <li>
-              <strong>Investigative journalism</strong> — long-form
+              <strong>Investigative journalism</strong>, long-form
               reporting from outlets with established track records in cyber
               and national security. Journalism fills gaps that other
-              categories miss — particularly on the political context of
-              operations — but varies widely in rigour and sourcing
+              categories miss, particularly on the political context of
+              operations, but varies widely in rigour and sourcing
               transparency.
             </li>
           </ol>
@@ -272,7 +270,7 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 05 — Classification logic */}
+        {/* 05, Classification logic */}
         <Section id="classification" number="05" title="Classification Logic">
           <p>
             Incidents are classified along several dimensions, each using a
@@ -281,32 +279,31 @@ export default function MethodologyPage() {
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
               <strong>Incident type</strong> (espionage, destructive,
-              ransomware, influence, sabotage, hybrid) — describes the
+              ransomware, influence, sabotage, hybrid), describes the
               primary operational character. Some operations span multiple
               types; the label reflects the dominant observed function.
             </li>
             <li>
               <strong>Escalation tier</strong> (probing, intrusion,
-              disruption, degradation, destruction, strategic impact) —
-              describes peak observed severity. These tiers represent
+              disruption, degradation, destruction, strategic impact), describes peak observed severity. These tiers represent
               qualitative shifts in effect, not a linear progression.
               An operation classified as &ldquo;disruption&rdquo; is not
-              necessarily a precursor to &ldquo;destruction&rdquo; — most
+              necessarily a precursor to &ldquo;destruction&rdquo;, most
               operations do not escalate beyond their initial tier.
             </li>
             <li>
               <strong>Attribution confidence</strong> (confirmed, high,
-              moderate, low, contested) — reflects the weight of publicly
+              moderate, low, contested), reflects the weight of publicly
               available evidence, structured by the Rid–Buchanan layered
               model. See section 07 for caveats.
             </li>
             <li>
-              <strong>Target sectors and countries</strong> — drawn from a
+              <strong>Target sectors and countries</strong>, drawn from a
               fixed taxonomy. An incident may target multiple sectors; all
               are recorded.
             </li>
             <li>
-              <strong>Governance flags</strong> — eight binary indicators
+              <strong>Governance flags</strong>, eight binary indicators
               recording whether specific governance mechanisms were
               triggered (norm violation, public attribution, sanctions,
               indictment, UN discussion, regulatory change, international
@@ -335,7 +332,7 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 06 — Limitations */}
+        {/* 06, Limitations */}
         <Section id="limitations" number="06" title="Limitations">
           <p>
             This platform has significant limitations that users should
@@ -374,8 +371,7 @@ export default function MethodologyPage() {
             </li>
             <li>
               <strong>Governance flags are descriptive, not evaluative.</strong>{" "}
-              A flag indicates that a governance mechanism was triggered —
-              not that it was appropriate, proportionate, or effective. The
+              A flag indicates that a governance mechanism was triggered, not that it was appropriate, proportionate, or effective. The
               presence of a &ldquo;sanctions imposed&rdquo; flag does not
               imply that sanctions were warranted or successful.
             </li>
@@ -396,19 +392,19 @@ export default function MethodologyPage() {
             These limitations are features of the problem domain, not
             deficiencies unique to this platform. Any open-source analysis
             of cyber conflict operates under irreducible uncertainty. The
-            appropriate response is to state that uncertainty clearly — as
-            this page attempts to do — rather than to project false
+            appropriate response is to state that uncertainty clearly, as
+            this page attempts to do, rather than to project false
             confidence.
           </p>
         </Section>
 
-        {/* 07 — Attribution caution */}
+        {/* 07, Attribution caution */}
         <Section id="attribution" number="07" title="Analytic Caution on Attribution">
           <p>
             Attribution of cyber operations to specific state actors is one
             of the most epistemologically fraught tasks in security analysis.
-            The Atlas uses a structured confidence scale — confirmed, high,
-            moderate, low, contested — but this scale describes the weight
+            The Atlas uses a structured confidence scale, confirmed, high,
+            moderate, low, contested, but this scale describes the weight
             of available public evidence, not ground truth. Every level of
             the scale carries residual uncertainty.
           </p>
@@ -420,7 +416,7 @@ export default function MethodologyPage() {
             attribution (a government&apos;s public decision to name a
             responsible state). &ldquo;Confirmed&rdquo; in the Atlas means
             that all three layers are supported by publicly available
-            evidence — typically through a combination of vendor forensics,
+            evidence, typically through a combination of vendor forensics,
             government attribution statements, and legal action. It does
             not mean that the attribution is beyond doubt.
           </p>
@@ -449,7 +445,7 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 08 — Behaviour vs. law */}
+        {/* 08, Behaviour vs. law */}
         <Section id="behavior-vs-law" number="08" title="Operational Behaviour vs. Legal Interpretation">
           <p>
             The Atlas describes what states did and how the international
@@ -465,13 +461,13 @@ export default function MethodologyPage() {
             malware constitutes a use of force under Article 2(4) of the UN
             Charter depends on threshold arguments that legal scholars and
             states have not settled. Whether espionage is lawful under
-            international law is itself debated — most states practice it,
+            international law is itself debated, most states practice it,
             few acknowledge a legal right to do so.
           </p>
           <p>
             Terms like &ldquo;norm violation&rdquo; in the Atlas refer to
             assessments made by governments, international bodies, or legal
-            scholars — not to findings by this platform. When the Atlas
+            scholars, not to findings by this platform. When the Atlas
             records a governance flag of &ldquo;norm violation,&rdquo; it
             means that a credible authority assessed the operation as
             violating an established norm, not that the Atlas has
@@ -481,13 +477,13 @@ export default function MethodologyPage() {
             This distinction matters practically. An educator using the Atlas
             should be able to present the same incident as a case study in
             norm enforcement <em>and</em> as a case study in the limits of
-            the norm framework — depending on the pedagogical objective. The
+            the norm framework, depending on the pedagogical objective. The
             Atlas supplies the structured data and the documented
             assessments; the interpretive work belongs to the user.
           </p>
         </Section>
 
-        {/* 09 — Strategic behaviours */}
+        {/* 09, Strategic behaviours */}
         <Section id="strategic-behaviours" number="09" title="Strategic Behaviours, Not Spectacles">
           <p>
             Public discourse about cyber operations tends toward two poles:
@@ -495,7 +491,7 @@ export default function MethodologyPage() {
             war&rdquo;) or dismissive minimisation (&ldquo;just espionage,&rdquo;
             &ldquo;no one died&rdquo;). Neither framing serves analysis.
             The Atlas is built on the premise that cyber operations are
-            strategic behaviours — deliberate actions by states pursuing
+            strategic behaviours, deliberate actions by states pursuing
             political objectives within the constraints of capability, risk
             tolerance, and international norms.
           </p>
@@ -511,7 +507,7 @@ export default function MethodologyPage() {
           </p>
           <p>
             The Atlas deliberately avoids the aesthetics of threat
-            dashboards — real-time counters, red-and-black colour schemes,
+            dashboards, real-time counters, red-and-black colour schemes,
             alarm iconography. These design choices serve threat monitoring;
             they do not serve analysis. The visual language of the platform
             is restrained because the analytical posture is restrained:
@@ -529,12 +525,12 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 10 — Theoretical foundations */}
+        {/* 10, Theoretical foundations */}
         <Section id="foundations" number="10" title="Theoretical Foundations">
           <p>
             The Atlas draws on several bodies of scholarship to structure its
             analysis. These frameworks inform how incidents are categorised,
-            compared, and interpreted — but none of them fully settles the
+            compared, and interpreted, but none of them fully settles the
             analytical questions at stake. Where a framework is useful, we say
             so; where contestation remains, we note that too.
           </p>
@@ -543,12 +539,12 @@ export default function MethodologyPage() {
             {/* Kello */}
             <FrameworkSection
               id="fw-kello"
-              name="Kello — The Virtual Weapon and International Order"
+              name="Kello, The Virtual Weapon and International Order"
               citation="Kello, L. The Virtual Weapon and International Order. Yale University Press, 2017."
             >
               <p>
                 Lucas Kello argues that cyber operations occupy an analytically
-                distinct space between peace and war — what he terms
+                distinct space between peace and war, what he terms
                 &ldquo;unpeace.&rdquo; In this framing, states can impose
                 significant strategic costs on one another through cyber means
                 without crossing the threshold of armed conflict as
@@ -580,7 +576,7 @@ export default function MethodologyPage() {
             {/* Rid & Buchanan */}
             <FrameworkSection
               id="fw-rid-buchanan"
-              name="Rid & Buchanan — Attributing Cyber Attacks"
+              name="Rid & Buchanan, Attributing Cyber Attacks"
               citation="Rid, T. & Buchanan, B. 'Attributing Cyber Attacks.' Journal of Strategic Studies, 38(1–2), 2015, pp. 4–37."
             >
               <p>
@@ -599,7 +595,7 @@ export default function MethodologyPage() {
                 confidence scale. &ldquo;Confirmed&rdquo; attribution
                 typically means all three layers are supported by public
                 evidence. &ldquo;Contested&rdquo; often reflects disagreement
-                at the political layer — the technical evidence may point in
+                at the political layer, the technical evidence may point in
                 one direction while governments dispute responsibility or
                 decline to attribute formally.
               </p>
@@ -616,7 +612,7 @@ export default function MethodologyPage() {
             {/* Schelling */}
             <FrameworkSection
               id="fw-schelling"
-              name="Schelling — Arms and Influence"
+              name="Schelling, Arms and Influence"
               citation="Schelling, T.C. Arms and Influence. Yale University Press, 1966."
             >
               <p>
@@ -625,8 +621,8 @@ export default function MethodologyPage() {
                 deterrence (threatening force to prevent it) provides the
                 analytical backbone for the Atlas&apos;s escalation lens.
                 Schelling&apos;s insight that coercive power depends on
-                credible communication of capability and resolve — not on
-                the force itself — translates directly to cyber operations,
+                credible communication of capability and resolve, not on
+                the force itself, translates directly to cyber operations,
                 where the relationship between capability, demonstration,
                 and restraint is central.
               </p>
@@ -644,7 +640,7 @@ export default function MethodologyPage() {
               <p className="text-xs text-ink-400 dark:text-ink-500 italic">
                 Contestation: Schelling developed his framework for nuclear
                 strategy, where capabilities are demonstrable and costs are
-                existential. Cyber operations differ on both counts — capabilities
+                existential. Cyber operations differ on both counts, capabilities
                 are consumed on use, and costs are often ambiguous. Whether
                 Schelling&apos;s escalation logic transfers cleanly to cyberspace
                 is one of the central open questions in the field.
@@ -665,7 +661,7 @@ export default function MethodologyPage() {
                 cyber operations. Its 154 rules cover sovereignty, due
                 diligence, jurisdiction, the law of armed conflict, and state
                 responsibility. The Atlas references specific Tallinn rules
-                in its governance flag citations — particularly Rule 4
+                in its governance flag citations, particularly Rule 4
                 (sovereignty), Rule 6 (due diligence), Rule 20
                 (countermeasures), and Rule 32 (intervention).
               </p>
@@ -674,7 +670,7 @@ export default function MethodologyPage() {
                 for debating the legality of cyber operations. It is not,
                 however, binding international law. It reflects the views of
                 its expert group, and several of its positions are contested
-                by states — most notably on whether sovereignty constitutes
+                by states, most notably on whether sovereignty constitutes
                 a primary rule of international law that can be independently
                 violated by cyber operations, or merely a principle that
                 underlies other rules. China, Russia, and several other
@@ -693,7 +689,7 @@ export default function MethodologyPage() {
             {/* Valeriano & Maness */}
             <FrameworkSection
               id="fw-valeriano-maness"
-              name="Valeriano & Maness — Cyber War versus Cyber Realities"
+              name="Valeriano & Maness, Cyber War versus Cyber Realities"
               citation="Valeriano, B. & Maness, R.C. Cyber War versus Cyber Realities: Cyber Conflict in the International System. Oxford University Press, 2015."
             >
               <p>
@@ -701,7 +697,7 @@ export default function MethodologyPage() {
                 systematic empirical challenge to the &ldquo;cyber
                 doom&rdquo; narrative. Drawing on a dataset of interstate
                 cyber incidents, they demonstrate that states overwhelmingly
-                exercise restraint in cyberspace — most operations remain at
+                exercise restraint in cyberspace, most operations remain at
                 low severity, escalation to destructive effects is rare, and
                 cyber operations have not triggered kinetic military
                 responses. Their concept of &ldquo;cyber restraint&rdquo;
@@ -712,7 +708,7 @@ export default function MethodologyPage() {
               <p>
                 The Atlas incorporates this perspective by tracking restraint
                 factors alongside threshold crossings in every case. The
-                escalation ladder is not a conveyor belt — most incidents
+                escalation ladder is not a conveyor belt, most incidents
                 cluster at the lower tiers, and understanding why states
                 choose not to escalate is as important as understanding when
                 they do.
@@ -731,13 +727,13 @@ export default function MethodologyPage() {
             {/* Acton */}
             <FrameworkSection
               id="fw-acton"
-              name="Acton — Cyber Weapons and Nuclear Stability"
+              name="Acton, Cyber Weapons and Nuclear Stability"
               citation="Acton, J.M. 'Cyber Weapons and Precision-Guided Munitions.' In Cross-Domain Deterrence, ed. Lindsay & Gartzke. Oxford University Press, 2019. See also: 'Escalation through Entanglement.' International Security, 43(1), 2018, pp. 56–99."
             >
               <p>
                 James Acton introduces the concept of &ldquo;entanglement&rdquo;
                 to describe how cyber capabilities create inadvertent
-                escalation pathways — particularly between conventional and
+                escalation pathways, particularly between conventional and
                 nuclear domains. When cyber intrusions target dual-use
                 systems (satellite communications used by both conventional
                 forces and nuclear command-and-control, for instance), the
@@ -780,9 +776,9 @@ export default function MethodologyPage() {
               escalate? Where are the inadvertent risks?) and sometimes
               reach incompatible conclusions. The Atlas uses them as
               complementary lenses, not as a single coherent model. Where
-              they disagree — on whether cyber operations are genuinely
+              they disagree, on whether cyber operations are genuinely
               novel, on whether existing law is adequate, on whether
-              restraint is durable — the Atlas presents the disagreement
+              restraint is durable, the Atlas presents the disagreement
               rather than resolving it. Analytical honesty requires
               acknowledging that the field has not settled these questions.
             </p>
@@ -796,9 +792,7 @@ export default function MethodologyPage() {
           On reading this page
         </p>
         <p className="text-sm text-ink dark:text-white leading-relaxed">
-          Methodology is not a formality. The choices documented here —
-          what to include, how to classify, which frameworks to apply —
-          shape every analytical output in the Atlas. Users who disagree
+          Methodology is not a formality. The choices documented here, what to include, how to classify, which frameworks to apply, shape every analytical output in the Atlas. Users who disagree
           with these choices should be able to trace them here and form
           their own judgements accordingly.
         </p>

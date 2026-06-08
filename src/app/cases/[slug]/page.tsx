@@ -21,7 +21,7 @@ import {
 } from "@/components/case-detail";
 
 // ---------------------------------------------------------------------------
-// Static params — generate all slug pages at build time
+// Static params, generate all slug pages at build time
 // ---------------------------------------------------------------------------
 
 export function generateStaticParams() {
@@ -40,7 +40,7 @@ export function generateMetadata({
   const incident = findBySlug(seedIncidents, params.slug);
   if (!incident) return { title: "Case Not Found" };
   return {
-    title: `${incident.shortName} — Cyber Escalation Atlas`,
+    title: `${incident.shortName}, Cyber Escalation Atlas`,
     description: incident.summary.slice(0, 160),
   };
 }

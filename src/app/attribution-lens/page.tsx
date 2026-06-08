@@ -192,7 +192,7 @@ export default function AttributionLensPage() {
                               </span>
                               <span className="text-steel-500 dark:text-steel-400">
                                 {" "}
-                                [{c.confidenceLevel}] — {c.evidenceBasis}
+                                [{c.confidenceLevel}], {c.evidenceBasis}
                               </span>
                             </div>
                           </div>
@@ -212,7 +212,7 @@ export default function AttributionLensPage() {
           Attribution Consequences
         </h2>
         <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl">
-          Cases grouped by what the attribution claim produced — from formal
+          Cases grouped by what the attribution claim produced, from formal
           sanctions and indictments to public naming with no further response.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -6,7 +6,7 @@ const faultlineProjects = [
     name: "Cyber Escalation Atlas",
     href: "https://cyber-escalation-atlas.vercel.app/",
     description:
-      "Policy-grade reference mapping state-linked cyber operations, escalation dynamics, and governance frameworks.",
+      "Research reference mapping state-linked cyber operations, escalation dynamics, and governance frameworks.",
   },
   {
     name: "Global Nuclear Infrastructure Atlas",
@@ -33,7 +33,7 @@ export default function AboutPage() {
     <SectionWrapper>
       <PageHeader
         title="About"
-        subtitle="The Cyber Escalation Atlas is an independent research project that provides structured, policy-grade analysis of significant cyber operations."
+        subtitle="The Cyber Escalation Atlas is an independent research project that provides structured analysis of significant cyber operations."
       />
       <div className="space-y-6 max-w-3xl">
         <Card>
@@ -41,7 +41,7 @@ export default function AboutPage() {
             Purpose
           </h3>
           <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
-            The Atlas serves as an interactive reference for policymakers,
+            The Atlas serves as a research reference for policymakers,
             analysts, educators, and students seeking to understand how cyber
             operations unfold, how they relate to broader geopolitical dynamics,
             and what governance responses have been developed. It bridges the
@@ -53,8 +53,7 @@ export default function AboutPage() {
             Approach
           </h3>
           <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
-            Each case is analyzed through three complementary lenses —
-            Escalation, Infrastructure, and Governance — that together provide
+            Each case is analyzed through three complementary lenses, Escalation, Infrastructure, and Governance, that together provide
             a comprehensive picture of how cyber operations create strategic
             effects. The tool is designed to be a teaching instrument as much
             as a reference, with structured data enabling cross-case comparison
@@ -79,7 +78,7 @@ export default function AboutPage() {
               The command, control, and early-warning systems that underpin
               nuclear deterrence now depend on satellite infrastructure that
               is itself vulnerable to cyber operations. Those satellite
-              systems are increasingly dual-use — the same orbital assets
+              systems are increasingly dual-use, the same orbital assets
               that enable civilian communications and GPS navigation also
               support military targeting and ballistic missile defence. The
               cyber domain provides a persistent, low-threshold tool for
@@ -93,10 +92,8 @@ export default function AboutPage() {
             <p>
               The danger is not that a cyber attack will cause a nuclear
               launch. The danger is subtler and harder to govern: that a
-              cyber operation targeting satellite infrastructure —
-              plausibly motivated by intelligence collection,
-              pre-positioning, or compellence in a conventional conflict —
-              could be misread as preparation for a disarming first strike.
+              cyber operation targeting satellite infrastructure, plausibly motivated by intelligence collection,
+              pre-positioning, or compellence in a conventional conflict, could be misread as preparation for a disarming first strike.
             </p>
             <p>
               James Acton&apos;s concept of entanglement captures the
@@ -115,7 +112,7 @@ export default function AboutPage() {
               miniature. A cyber operation targeting a commercial satellite
               communication system, conducted in the opening hours of the
               Russia–Ukraine war, disrupted Ukrainian military
-              communications — but also knocked out wind turbines across
+              communications, but also knocked out wind turbines across
               Central Europe and disabled satellite modems in multiple NATO
               member states.
             </p>
@@ -132,9 +129,8 @@ export default function AboutPage() {
               Why This Problem Is Primary
             </h3>
             <p>
-              What makes entanglement risk the primary challenge — above
-              climate, pandemic risk, or conventional great-power rivalry —
-              is that it combines three properties simultaneously. It is
+              What makes entanglement risk the primary challenge, above
+              climate, pandemic risk, or conventional great-power rivalry, is that it combines three properties simultaneously. It is
               already operational rather than hypothetical. It is
               structurally resistant to existing arms control approaches
               because it cannot be verified or bounded the way nuclear
@@ -158,7 +154,7 @@ export default function AboutPage() {
             <p>
               Building the analytical and institutional infrastructure to
               address that gap is the most consequential security governance
-              task of the current decade — and the intellectual problem
+              task of the current decade, and the intellectual problem
               that motivates this platform. The Atlas exists to make that
               entanglement legible: to provide structured, evidence-based
               analysis of how cyber operations interact with escalation
@@ -185,7 +181,7 @@ export default function AboutPage() {
             <div className="relative rounded-xl overflow-hidden border border-white/[0.06]">
               <Image
                 src="/risa-koyanagi-og.png"
-                alt="Risa Koyanagi — 小柳璃紗"
+                alt="Risa Koyanagi, 小柳璃紗"
                 width={1536}
                 height={768}
                 className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
@@ -224,10 +220,10 @@ export default function AboutPage() {
                   systems.
                 </p>
                 <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed">
-                  The Cyber Escalation Atlas&trade; is designed, researched, and
+                  The Cyber Escalation Atlas is designed, researched, and
                   built as part of an ongoing research programme examining the
                   intersection of cyber operations, space security, and nuclear
-                  risk governance — and the analytical infrastructure required
+                  risk governance, and the analytical infrastructure required
                   to make those entanglements legible to policymakers.
                 </p>
                 <div className="pt-1">
@@ -276,7 +272,7 @@ export default function AboutPage() {
             <div className="relative rounded-xl overflow-hidden border border-white/[0.06]">
               <Image
                 src="/faultline-og.png"
-                alt="Faultline — Strategic research ecosystem"
+                alt="Faultline, Strategic research ecosystem"
                 width={1200}
                 height={630}
                 className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
@@ -296,8 +292,7 @@ export default function AboutPage() {
                 Faultline
               </a>
               , a research ecosystem designed by Risa Koyanagi that maps
-              structural risk across interconnected strategic domains —
-              cyber, space, nuclear, and emerging technology governance.
+              structural risk across interconnected strategic domains, cyber, space, nuclear, and emerging technology governance.
               Each platform within Faultline provides a distinct analytical
               lens on the same underlying problem: how dual-use
               infrastructure, contested authority, and governance gaps

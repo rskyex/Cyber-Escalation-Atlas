@@ -128,7 +128,7 @@ export const newCases2024: Incident[] = [
       ],
       peakTier: "degradation",
       restraintFactors: [
-        "Financially motivated — no geopolitical or destructive intent beyond extortion",
+        "Financially motivated, no geopolitical or destructive intent beyond extortion",
         "Attackers offered decryption for ransom payment",
       ],
       thresholdCrossings: [
@@ -196,13 +196,13 @@ export const newCases2024: Incident[] = [
   {
     id: "volt-typhoon-2024",
     slug: "volt-typhoon",
-    name: "Volt Typhoon — US Critical Infrastructure Pre-positioning",
+    name: "Volt Typhoon, US Critical Infrastructure Pre-positioning",
     shortName: "Volt Typhoon",
     year: 2024,
     dateRange: "2023 – 2024 (disclosed 2024)",
     incidentType: "espionage",
     summary:
-      "PRC-linked threat actor assessed to be pre-positioning access in US critical infrastructure — including water, energy, communications, and transportation systems — as preparation for potential disruptive operations in a Taiwan contingency scenario. The most significant allied joint attribution in the dataset, involving all Five Eyes nations in coordinated advisories.",
+      "PRC-linked threat actor assessed to be pre-positioning access in US critical infrastructure, including water, energy, communications, and transportation systems, as preparation for potential disruptive operations in a Taiwan contingency scenario. The most significant allied joint attribution in the dataset, involving all Five Eyes nations in coordinated advisories.",
     attribution: {
       confidence: "high",
       attributedTo: "Volt Typhoon, attributed by the US, UK, Australia, Canada, and New Zealand to PRC state-sponsored actors",
@@ -216,7 +216,7 @@ export const newCases2024: Incident[] = [
       ],
       peakTier: "intrusion",
       restraintFactors: [
-        "No disruptive or destructive actions observed — activity consistent with preparation, not execution",
+        "No disruptive or destructive actions observed, activity consistent with preparation, not execution",
         "Living-off-the-land techniques suggest intent to avoid detection and maintain long-term access",
       ],
       thresholdCrossings: [
@@ -243,7 +243,7 @@ export const newCases2024: Incident[] = [
         "Due diligence obligations of states regarding their territory",
       ],
       policyResponses: [
-        "Five Eyes joint advisory — the broadest allied attribution in the dataset (Feb 2024)",
+        "Five Eyes joint advisory, the broadest allied attribution in the dataset (Feb 2024)",
         "CISA Emergency Guidance for CI owners on Volt Typhoon detection",
         "FBI disrupted Volt Typhoon botnet infrastructure (KV Botnet takedown, Jan 2024)",
       ],
@@ -307,7 +307,7 @@ export const newCases2024: Incident[] = [
       ],
       peakTier: "intrusion",
       restraintFactors: [
-        "Activity consistent with espionage — no destructive or disruptive payload deployed",
+        "Activity consistent with espionage, no destructive or disruptive payload deployed",
         "No evidence of customer environment compromise through this vector",
       ],
       thresholdCrossings: [

@@ -135,7 +135,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "disruption",
       restraintFactors: [
-        "Operated within traditional espionage norms — collection, not disruption",
+        "Operated within traditional espionage norms, collection, not disruption",
         "Selective targeting minimized footprint",
       ],
       thresholdCrossings: [
@@ -233,7 +233,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "destruction",
       restraintFactors: [
-        "Highly targeted — designed to affect only specific Siemens S7-315/417 configurations",
+        "Highly targeted, designed to affect only specific Siemens S7-315/417 configurations",
         "No broader disruption to Iranian civilian infrastructure intended",
       ],
       thresholdCrossings: [
@@ -556,9 +556,9 @@ export const seedIncidents: Incident[] = [
         "Accelerated ICS protocol security research globally",
         "Informed IEC 62351 security standard adoption discussions",
       ],
-      impact: "Industroyer proved that adversaries are investing in reusable, modular ICS attack frameworks — raising the bar for grid defense and influencing ICS security standards worldwide.",
+      impact: "Industroyer proved that adversaries are investing in reusable, modular ICS attack frameworks, raising the bar for grid defense and influencing ICS security standards worldwide.",
     },
-    whyThisMatters: "Industroyer represented a generational leap in ICS malware sophistication — a modular, protocol-aware weapon that signaled the industrialization of grid-targeted cyber capabilities.",
+    whyThisMatters: "Industroyer represented a generational leap in ICS malware sophistication, a modular, protocol-aware weapon that signaled the industrialization of grid-targeted cyber capabilities.",
     teaching: {
       keyQuestion: "What are the policy implications of reusable, modular cyber weapons designed for industrial control systems?",
       discussionPoints: [
@@ -567,12 +567,12 @@ export const seedIncidents: Incident[] = [
         "Role of private-sector threat intelligence in public defense",
       ],
       furtherReading: [
-        "Dragos: CrashOverride — Analysis of the Threat to Electric Grid Operations, 2017.",
-        "ESET: Industroyer — A New Threat for Industrial Control Systems, 2017.",
+        "Dragos: CrashOverride, Analysis of the Threat to Electric Grid Operations, 2017.",
+        "ESET: Industroyer, A New Threat for Industrial Control Systems, 2017.",
       ],
     },
     sources: [
-      { title: "ESET: Industroyer — A New Threat for Industrial Control Systems", category: "vendor", date: "2017-06-12" },
+      { title: "ESET: Industroyer, A New Threat for Industrial Control Systems", category: "vendor", date: "2017-06-12" },
       { title: "Dragos: CrashOverride Report", category: "vendor", date: "2017-06-12" },
       { title: "US-CERT Alert TA17-163A", category: "government", date: "2017-06-12" },
     ],
@@ -714,7 +714,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "degradation",
       restraintFactors: [
-        "Attackers targeted IT, not OT directly — pipeline shutdown was a precautionary business decision",
+        "Attackers targeted IT, not OT directly, pipeline shutdown was a precautionary business decision",
         "DarkSide issued a public statement claiming they did not intend societal disruption",
       ],
       thresholdCrossings: [
@@ -799,7 +799,7 @@ export const seedIncidents: Incident[] = [
         {
           tier: "disruption",
           label: "Chemical setpoint manipulation",
-          description: "Sodium hydroxide level changed from ~100 ppm to ~11,100 ppm — an operator noticed and reversed the change within minutes.",
+          description: "Sodium hydroxide level changed from ~100 ppm to ~11,100 ppm, an operator noticed and reversed the change within minutes.",
           date: "2021-02-05",
         },
       ],
@@ -838,7 +838,7 @@ export const seedIncidents: Incident[] = [
         "EPA increased focus on cybersecurity in sanitary surveys (later challenged in court)",
         "CISA launched water-sector specific vulnerability scanning services",
       ],
-      impact: "Exposed the severe under-investment in water-sector cybersecurity and became a catalyst for federal efforts to extend cyber standards to small utilities — though regulatory authority remains contested.",
+      impact: "Exposed the severe under-investment in water-sector cybersecurity and became a catalyst for federal efforts to extend cyber standards to small utilities, though regulatory authority remains contested.",
     },
     whyThisMatters: "Oldsmar made water-system cyber risk tangible for policymakers and the public, revealing how small utilities with minimal security budgets can become targets with public-health consequences.",
     teaching: {
@@ -933,7 +933,7 @@ export const seedIncidents: Incident[] = [
         "EU NIS2 Directive implementation accelerated, partly citing Viasat as a motivating case",
         "Increased focus on satellite and space-system cybersecurity in US National Cyber Strategy (2023)",
       ],
-      impact: "Demonstrated that cyber operations are now integrated into conventional military campaigns and that collateral effects readily cross borders — reinforcing momentum behind the EU NIS2 Directive and NATO cyber commitments.",
+      impact: "Demonstrated that cyber operations are now integrated into conventional military campaigns and that collateral effects readily cross borders, reinforcing momentum behind the EU NIS2 Directive and NATO cyber commitments.",
     },
     whyThisMatters: "Viasat KA-SAT was the clearest example yet of cyber attack as an opening act of war, with cross-border collateral damage that forced NATO and the EU to treat satellite infrastructure as a shared security concern.",
     teaching: {
@@ -944,13 +944,13 @@ export const seedIncidents: Incident[] = [
         "Resilience of commercial satellite infrastructure as a security dependency",
       ],
       furtherReading: [
-        "SentinelOne: AcidRain — A Modem Wiper Rains Down on Europe, 2022.",
+        "SentinelOne: AcidRain, A Modem Wiper Rains Down on Europe, 2022.",
         "Viasat Incident Report: KA-SAT Network Cyber Attack Overview, 2022.",
       ],
     },
     sources: [
       { title: "Viasat: KA-SAT Network Cyber Attack Overview", category: "vendor", date: "2022-03-30" },
-      { title: "SentinelOne: AcidRain — A Modem Wiper Rains Down on Europe", category: "vendor", date: "2022-03-31" },
+      { title: "SentinelOne: AcidRain, A Modem Wiper Rains Down on Europe", category: "vendor", date: "2022-03-31" },
       { title: "EU Council: Declaration on Viasat Cyber Attack Attribution", category: "government", date: "2022-05-10" },
     ],
   },
@@ -1029,7 +1029,7 @@ export const seedIncidents: Incident[] = [
         "Strengthened CISA authority for emergency directives on private-sector software",
         "Accelerated US push for coordinated vulnerability disclosure norms",
       ],
-      impact: "The broadest multilateral cyber attribution to date — including NATO's first explicit attribution to China — established a template for coalition-based diplomatic response to state-sponsored cyber campaigns.",
+      impact: "The broadest multilateral cyber attribution to date, including NATO's first explicit attribution to China, established a template for coalition-based diplomatic response to state-sponsored cyber campaigns.",
     },
     whyThisMatters: "Hafnium demonstrated how a targeted espionage operation can metastasize into a mass-compromise event affecting tens of thousands, and prompted the widest coalition cyber attribution ever directed at China.",
     teaching: {
@@ -1061,7 +1061,7 @@ export const seedIncidents: Incident[] = [
     dateRange: "April – May 2022",
     incidentType: "ransomware",
     summary:
-      "Conti ransomware group attacked multiple Costa Rican government ministries, encrypting systems at the Ministry of Finance, disabling tax and customs platforms, and demanding a $20M ransom (later reduced to $10M). Costa Rica declared a national emergency — the first country to do so in response to a ransomware attack. A follow-on attack attributed to HIVE targeted the social security healthcare system weeks later.",
+      "Conti ransomware group attacked multiple Costa Rican government ministries, encrypting systems at the Ministry of Finance, disabling tax and customs platforms, and demanding a $20M ransom (later reduced to $10M). Costa Rica declared a national emergency, the first country to do so in response to a ransomware attack. A follow-on attack attributed to HIVE targeted the social security healthcare system weeks later.",
     attribution: {
       confidence: "high",
       attributedTo: "Conti ransomware group (Russian-speaking criminal organization); follow-on attack attributed to HIVE",
@@ -1091,7 +1091,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "degradation",
       restraintFactors: [
-        "Attackers offered decryption for ransom — coercive but not purely destructive",
+        "Attackers offered decryption for ransom, coercive but not purely destructive",
         "No reported impact on life-safety systems",
       ],
       thresholdCrossings: [
@@ -1157,7 +1157,7 @@ export const seedIncidents: Incident[] = [
     dateRange: "July – September 2022",
     incidentType: "destructive",
     summary:
-      "Iran-linked actors launched destructive cyber attacks against Albanian government systems, deploying wiper malware and ransomware that took e-government services offline for weeks. Albania attributed the attack to Iran and took the unprecedented step of severing diplomatic relations — the first known rupture of diplomatic ties over a cyber operation.",
+      "Iran-linked actors launched destructive cyber attacks against Albanian government systems, deploying wiper malware and ransomware that took e-government services offline for weeks. Albania attributed the attack to Iran and took the unprecedented step of severing diplomatic relations, the first known rupture of diplomatic ties over a cyber operation.",
     attribution: {
       confidence: "high",
       attributedTo: "Attributed by Albania, the US, and allied governments to Iranian state actors affiliated with MOIS",
@@ -1225,7 +1225,7 @@ export const seedIncidents: Incident[] = [
       ],
       impact: "Established that cyber attacks can trigger real diplomatic rupture and NATO solidarity, expanding the practical consequences states may face for destructive cyber operations against alliance members.",
     },
-    whyThisMatters: "Albania's decision to sever diplomatic ties over a cyber attack — backed by NATO solidarity — set a new precedent for treating destructive cyber operations as grounds for the most serious peacetime diplomatic consequences.",
+    whyThisMatters: "Albania's decision to sever diplomatic ties over a cyber attack, backed by NATO solidarity, set a new precedent for treating destructive cyber operations as grounds for the most serious peacetime diplomatic consequences.",
     teaching: {
       keyQuestion: "What diplomatic and alliance responses are appropriate when a state conducts destructive cyber operations against another state's government?",
       discussionPoints: [
@@ -1336,7 +1336,7 @@ export const seedIncidents: Incident[] = [
     sources: [
       { title: "Symantec: The Shamoon Attacks", category: "vendor", date: "2012-08-16" },
       { title: "Panetta, L. 'Defending the Nation from Cyber Attack' (speech)", category: "government", date: "2012-10-11" },
-      { title: "Kaspersky: Shamoon the Wiper — Copycats at Work", category: "vendor", date: "2012-08-16" },
+      { title: "Kaspersky: Shamoon the Wiper, Copycats at Work", category: "vendor", date: "2012-08-16" },
     ],
   },
 
@@ -1381,7 +1381,7 @@ export const seedIncidents: Incident[] = [
       peakTier: "degradation",
       restraintFactors: [
         "A typo in a transfer request triggered manual review, limiting losses",
-        "SWIFT infrastructure itself was not technically compromised — the endpoint was",
+        "SWIFT infrastructure itself was not technically compromised, the endpoint was",
       ],
       thresholdCrossings: [
         "First confirmed state-linked operation targeting the global interbank financial system",
@@ -1470,7 +1470,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "intrusion",
       restraintFactors: [
-        "No destructive or disruptive actions taken — activity consistent with intelligence collection",
+        "No destructive or disruptive actions taken, activity consistent with intelligence collection",
         "No public evidence of data weaponization or influence operations",
       ],
       thresholdCrossings: [
@@ -1592,7 +1592,7 @@ export const seedIncidents: Incident[] = [
       ],
       impact: "Reinforced the precedent set by Stuxnet that nuclear facilities are considered legitimate cyber targets by some states, complicating arms-control diplomacy.",
     },
-    whyThisMatters: "These incidents illustrate that cyber-enabled sabotage of nuclear facilities did not end with Stuxnet — the pattern persists, with implications for nonproliferation, deterrence, and the stability of diplomatic negotiations.",
+    whyThisMatters: "These incidents illustrate that cyber-enabled sabotage of nuclear facilities did not end with Stuxnet, the pattern persists, with implications for nonproliferation, deterrence, and the stability of diplomatic negotiations.",
     teaching: {
       keyQuestion: "Does covert cyber sabotage of nuclear facilities help or hinder nonproliferation diplomacy?",
       discussionPoints: [
@@ -1639,7 +1639,7 @@ export const seedIncidents: Incident[] = [
         {
           tier: "probing",
           label: "Pre-positioning for contingency",
-          description: "Activity consistent with infrastructure mapping and access maintenance rather than data exfiltration — assessed as preparation for potential future disruption.",
+          description: "Activity consistent with infrastructure mapping and access maintenance rather than data exfiltration, assessed as preparation for potential future disruption.",
           date: "2023",
         },
       ],
@@ -1679,7 +1679,7 @@ export const seedIncidents: Incident[] = [
         "Taiwan amended telecommunications management regulations to include cybersecurity requirements",
         "US critical infrastructure pre-positioning elevated as a strategic intelligence priority",
       ],
-      impact: "Crystallized the policy debate about whether pre-positioning in critical infrastructure during peacetime constitutes a violation of international norms — a question with no consensus answer.",
+      impact: "Crystallized the policy debate about whether pre-positioning in critical infrastructure during peacetime constitutes a violation of international norms, a question with no consensus answer.",
     },
     whyThisMatters: "These intrusions highlight the emerging norm challenge of peacetime pre-positioning: states embedding access in adversary infrastructure for potential future use, blurring the line between espionage and preparation for attack.",
     teaching: {
@@ -1779,12 +1779,12 @@ export const seedIncidents: Incident[] = [
         "IHL application to cyber attacks on civilian power infrastructure during armed conflict",
       ],
       furtherReading: [
-        "ESET: Industroyer2 — Sandworm's Cyberwarfare Targets Ukraine's Power Grid Again, 2022.",
+        "ESET: Industroyer2, Sandworm's Cyberwarfare Targets Ukraine's Power Grid Again, 2022.",
         "CERT-UA: Alert on Industroyer2 and CaddyWiper, 2022.",
       ],
     },
     sources: [
-      { title: "ESET: Industroyer2 — Sandworm Targets Ukraine's Power Grid Again", category: "vendor", date: "2022-04-12" },
+      { title: "ESET: Industroyer2, Sandworm Targets Ukraine's Power Grid Again", category: "vendor", date: "2022-04-12" },
       { title: "CERT-UA Alert #4435: Industroyer2 and CaddyWiper", category: "government", date: "2022-04-12" },
     ],
   },
@@ -1829,7 +1829,7 @@ export const seedIncidents: Incident[] = [
       ],
       peakTier: "degradation",
       restraintFactors: [
-        "Financially motivated — no geopolitical or destructive intent",
+        "Financially motivated, no geopolitical or destructive intent",
         "Attackers offered decryption for payment, consistent with criminal ransomware model",
       ],
       thresholdCrossings: [

@@ -4,8 +4,8 @@ import type { Incident } from "@/lib/types/incidents";
  * Attribution-consequence matched-pair cases.
  *
  * Selected to populate cells under-represented by the existing dataset, in
- * support of the argument that — when technical attribution confidence is
- * held roughly constant — the consequence an incident draws (no formal
+ * support of the argument that, when technical attribution confidence is
+ * held roughly constant, the consequence an incident draws (no formal
  * response → public naming → indictment → sanctions → diplomatic
  * expulsion) diverges with the political relationship between the
  * attributed actor and the Western attributing coalition, not with
@@ -33,7 +33,7 @@ export const newCasesAttribution: Incident[] = [
     dateRange: "circa 2010 – disclosed September 2013",
     incidentType: "espionage",
     summary:
-      "Multi-year intrusion into Belgacom, Belgium's largest telecommunications operator and at the time a majority state-owned carrier of EU institutional and NATO traffic. Snowden documents disclosed in September 2013 described the campaign — codenamed Operation Socialist — as a UK GCHQ operation that used QUANTUM packet injection and a man-in-the-middle infrastructure (FoxAcid) to compromise Belgacom engineers and pivot into the BICS international roaming subsidiary. Subsequent forensic work attributed the implant family to Regin, a malware platform later linked by multiple vendors to Five Eyes tooling.",
+      "Multi-year intrusion into Belgacom, Belgium's largest telecommunications operator and at the time a majority state-owned carrier of EU institutional and NATO traffic. Snowden documents disclosed in September 2013 described the campaign, codenamed Operation Socialist, as a UK GCHQ operation that used QUANTUM packet injection and a man-in-the-middle infrastructure (FoxAcid) to compromise Belgacom engineers and pivot into the BICS international roaming subsidiary. Subsequent forensic work attributed the implant family to Regin, a malware platform later linked by multiple vendors to Five Eyes tooling.",
     attribution: {
       confidence: "high",
       attributedTo:
@@ -67,7 +67,7 @@ export const newCasesAttribution: Incident[] = [
       ],
       peakTier: "intrusion",
       restraintFactors: [
-        "Activity consistent with intelligence collection, not disruption — no destructive payload, no manipulation of communications integrity disclosed",
+        "Activity consistent with intelligence collection, not disruption, no destructive payload, no manipulation of communications integrity disclosed",
         "Targeting concentrated on engineer credentials and signalling visibility rather than mass subscriber data exfiltration",
       ],
       thresholdCrossings: [
@@ -117,14 +117,14 @@ export const newCasesAttribution: Incident[] = [
         "No sanctions, diplomatic expulsions, or indictments",
       ],
       regulatoryChanges: [
-        "Belgian parliamentary inquiry into intelligence oversight (2014) — recommendations partially implemented",
+        "Belgian parliamentary inquiry into intelligence oversight (2014), recommendations partially implemented",
         "Strengthened operator-side security at Proximus (the rebranded Belgacom) and BICS, on the operator's own initiative",
       ],
       impact:
         "Demonstrated the boundary of the public-attribution machinery: when high-confidence technical attribution points to an allied state, the political mechanisms that would normally translate evidence into consequence (joint statements, sanctions, indictments) do not engage. Belgacom is the most direct empirical counter to the claim that consequence tracks attribution confidence.",
     },
     whyThisMatters:
-      "Belgacom is the strongest case in the dataset for the proposition that consequence in cyber conflict is determined by political relationship rather than by technical certainty. The forensic and documentary evidence base was as strong as in most cases coded 'confirmed'; the consequence was zero. Holding Belgacom alongside Salt Typhoon — a structurally similar telecom-backbone operation attributed to an adversary that drew OFAC sanctions — isolates the political variable.",
+      "Belgacom is the strongest case in the dataset for the proposition that consequence in cyber conflict is determined by political relationship rather than by technical certainty. The forensic and documentary evidence base was as strong as in most cases coded 'confirmed'; the consequence was zero. Holding Belgacom alongside Salt Typhoon, a structurally similar telecom-backbone operation attributed to an adversary that drew OFAC sanctions, isolates the political variable.",
     teaching: {
       keyQuestion:
         "When high-confidence technical attribution points at an allied intelligence service, which mechanisms in the public-attribution toolkit are available, and which are foreclosed?",
@@ -149,7 +149,7 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "The Intercept: 'Operation Socialist — The Inside Story of How British Spies Hacked Belgium's Largest Telco'",
+          "The Intercept: 'Operation Socialist, The Inside Story of How British Spies Hacked Belgium's Largest Telco'",
         category: "journalistic",
         date: "2014-12-13",
       },
@@ -161,13 +161,13 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "Kaspersky Lab: 'The Regin Platform — Nation-State Ownership of GSM Networks'",
+          "Kaspersky Lab: 'The Regin Platform, Nation-State Ownership of GSM Networks'",
         category: "vendor",
         date: "2014-11-24",
       },
       {
         title:
-          "Belgian Federal Prosecutor — Statement on closure of the Belgacom investigation (reported by RTBF and De Standaard)",
+          "Belgian Federal Prosecutor, Statement on closure of the Belgacom investigation (reported by RTBF and De Standaard)",
         category: "legal",
         date: "2018-09",
       },
@@ -216,7 +216,7 @@ export const newCasesAttribution: Incident[] = [
   // SolarWinds drew sanctions and diplomatic expulsions; OPM was characterised
   // by senior US officials as legitimate espionage and drew no formal
   // foreign-policy consequence. OPM lands at U=8 (matched on unpeace) and
-  // E=5 (lower entanglement — single victim agency vs SolarWinds's ~18k
+  // E=5 (lower entanglement, single victim agency vs SolarWinds's ~18k
   // organisations across the supply chain). The matched-pair contrast sits
   // in attributionDetail.consequences: SolarWinds Sanctions+Public Naming,
   // OPM Public Naming Only. This is the China-side matched pair to
@@ -279,7 +279,7 @@ export const newCasesAttribution: Incident[] = [
       restraintFactors: [
         "Activity confined to data exfiltration; no destructive payload, no manipulation, no public release of the stolen data",
         "DNI Clapper publicly framed the operation as conventional espionage that the United States itself conducts, signalling a deliberate decision not to treat it as crossing a norm threshold",
-        "Sanctions authority was available — Executive Order 13694 (April 2015) authorised cyber sanctions and pre-existed the public disclosure — but was deliberately not invoked against OPM-linked actors. The withholding was a discretionary political choice, not a tooling gap.",
+        "Sanctions authority was available, Executive Order 13694 (April 2015) authorised cyber sanctions and pre-existed the public disclosure, but was deliberately not invoked against OPM-linked actors. The withholding was a discretionary political choice, not a tooling gap.",
       ],
       thresholdCrossings: [
         "Largest compromise of US federal personnel data in history",
@@ -349,12 +349,12 @@ export const newCasesAttribution: Incident[] = [
       furtherReading: [
         "US House of Representatives, Committee on Oversight and Government Reform. 'The OPM Data Breach: How the Government Jeopardized Our National Security for More than a Generation.' Majority staff report, September 2016.",
         "GAO Reports on OPM information security (GAO-15-714T, GAO-16-501).",
-        "Clapper, J.R. Remarks at AFCEA Defense Intelligence Senior Executive Service Forum, Washington DC, 25 June 2015 — the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
+        "Clapper, J.R. Remarks at AFCEA Defense Intelligence Senior Executive Service Forum, Washington DC, 25 June 2015, the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
       ],
     },
     sources: [
       {
-        title: "OPM: Cybersecurity Incidents — Information About the Background Investigations Incident",
+        title: "OPM: Cybersecurity Incidents, Information About the Background Investigations Incident",
         category: "government",
         date: "2015-09",
       },
@@ -366,13 +366,13 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "GAO: Information Security — OPM Has Improved Controls, but Further Efforts Are Needed (GAO-17-614)",
+          "GAO: Information Security, OPM Has Improved Controls, but Further Efforts Are Needed (GAO-17-614)",
         category: "government",
         date: "2017-08",
       },
       {
         title:
-          "AP / Reuters wire reporting on DNI James Clapper's remarks at the AFCEA Defense Intelligence Senior Executive Service Forum — the 'you have to kind of salute the Chinese' characterisation of the OPM breach",
+          "AP / Reuters wire reporting on DNI James Clapper's remarks at the AFCEA Defense Intelligence Senior Executive Service Forum, the 'you have to kind of salute the Chinese' characterisation of the OPM breach",
         category: "journalistic",
         date: "2015-06-25",
       },
@@ -418,7 +418,7 @@ export const newCasesAttribution: Incident[] = [
   // of named foreign military officers for cyber economic espionage; it
   // produced public naming and the indictment flag, but never resulted in
   // any defendant appearing in court and no sanctions followed. Score sits
-  // in the indictment-without-sanctions band — below Exchange/Hafnium on
+  // in the indictment-without-sanctions band, below Exchange/Hafnium on
   // sanctions but matches it on indictment and attribution-public.
   {
     id: "apt1-2013",
@@ -429,7 +429,7 @@ export const newCasesAttribution: Incident[] = [
     dateRange: "2006 – disclosed February 2013; indictment May 2014",
     incidentType: "espionage",
     summary:
-      "Multi-year economic espionage campaign attributed by Mandiant to People's Liberation Army Unit 61398 (Second Bureau of the Third Department, General Staff Department), targeting at least 141 organisations across 20 major industries. The February 2013 Mandiant report APT1 was the first publicly attributed campaign tying a named foreign military unit to specific intrusion sets. In May 2014, the US Department of Justice indicted five PLA officers — the first US criminal charges against named foreign uniformed military personnel for cyber economic espionage. No defendant has ever appeared in a US court.",
+      "Multi-year economic espionage campaign attributed by Mandiant to People's Liberation Army Unit 61398 (Second Bureau of the Third Department, General Staff Department), targeting at least 141 organisations across 20 major industries. The February 2013 Mandiant report APT1 was the first publicly attributed campaign tying a named foreign military unit to specific intrusion sets. In May 2014, the US Department of Justice indicted five PLA officers, the first US criminal charges against named foreign uniformed military personnel for cyber economic espionage. No defendant has ever appeared in a US court.",
     attribution: {
       confidence: "confirmed",
       attributedTo:
@@ -457,7 +457,7 @@ export const newCasesAttribution: Incident[] = [
           tier: "intrusion",
           label: "Public attribution and DOJ indictment",
           description:
-            "Mandiant published the APT1 report attributing the campaign to PLA Unit 61398 (Feb 2013). The US DOJ indicted five PLA officers — Wang Dong, Sun Kailiang, Wen Xinyu, Huang Zhenyu, and Gu Chunhui — for computer fraud and economic espionage (May 2014). No defendant has been extradited or appeared.",
+            "Mandiant published the APT1 report attributing the campaign to PLA Unit 61398 (Feb 2013). The US DOJ indicted five PLA officers, Wang Dong, Sun Kailiang, Wen Xinyu, Huang Zhenyu, and Gu Chunhui, for computer fraud and economic espionage (May 2014). No defendant has been extradited or appeared.",
           date: "2014-05-19",
         },
       ],
@@ -519,10 +519,10 @@ export const newCasesAttribution: Incident[] = [
       flags: ["attribution-public", "indictment", "deterrence-signal"],
       normsInvoked: [
         "Distinction between political/military espionage (broadly tolerated in state practice) and economic espionage for commercial benefit (asserted by the United States as a prohibited category)",
-        "Obama–Xi understanding of September 2015 — neither government will conduct or knowingly support cyber-enabled theft of intellectual property for commercial advantage",
+        "Obama–Xi understanding of September 2015, neither government will conduct or knowingly support cyber-enabled theft of intellectual property for commercial advantage",
       ],
       policyResponses: [
-        "Mandiant APT1 report (Feb 2013) — first public attribution naming a specific PLA unit",
+        "Mandiant APT1 report (Feb 2013), first public attribution naming a specific PLA unit",
         "US DOJ indictment of five PLA officers (May 2014)",
         "Obama–Xi cyber espionage understanding (September 2015)",
         "No sanctions issued specifically in response to APT1; no defendant appeared",
@@ -536,24 +536,24 @@ export const newCasesAttribution: Incident[] = [
         "APT1 established the template for indictment as a signalling tool divorced from prospect of enforcement. It produced public naming and the indictment flag, but no US sanctions and no diplomatic expulsions. The case is the canonical example of consequence-stopping at the indictment tier when the target is a great-power adversary, and a useful pair with Hafnium (indictment without sanctions) and with later Chinese cases that did draw sanctions.",
     },
     whyThisMatters:
-      "APT1 is the foundational test case for indictment-as-signal in cyber statecraft. It demonstrates that the United States is willing to publicly name uniformed foreign military personnel — but that this willingness does not, on its own, translate into sanctions or any other coercive consequence. Read alongside Sandworm (indictment plus sanctions) and Salt Typhoon (sanctions on PRC contractor), it shows that the indictment-to-sanctions step is a discretionary political choice, not an automatic escalation.",
+      "APT1 is the foundational test case for indictment-as-signal in cyber statecraft. It demonstrates that the United States is willing to publicly name uniformed foreign military personnel, but that this willingness does not, on its own, translate into sanctions or any other coercive consequence. Read alongside Sandworm (indictment plus sanctions) and Salt Typhoon (sanctions on PRC contractor), it shows that the indictment-to-sanctions step is a discretionary political choice, not an automatic escalation.",
     teaching: {
       keyQuestion:
         "What does indictment without enforcement accomplish as a tool of cyber statecraft, and what does its repeated use without escalation to sanctions reveal about the political logic of public attribution?",
       discussionPoints: [
         "Indictment as signalling: deterrence, audience effects, and the cost of repeated non-enforcement",
         "The economic-versus-political espionage distinction and whether it has held in practice",
-        "Comparing APT1 to subsequent indictments (Sandworm 2020, Hafnium 2024) — what changed and what did not",
+        "Comparing APT1 to subsequent indictments (Sandworm 2020, Hafnium 2024), what changed and what did not",
       ],
       furtherReading: [
         "Mandiant. 'APT1: Exposing One of China's Cyber Espionage Units.' February 2013.",
         "US Department of Justice. Indictment of Wang Dong et al., Western District of Pennsylvania, May 1, 2014.",
-        "Segal, A. 'The Hacked World Order.' PublicAffairs, 2016 — chapter on APT1 and the indictment turn.",
+        "Segal, A. 'The Hacked World Order.' PublicAffairs, 2016, chapter on APT1 and the indictment turn.",
       ],
     },
     sources: [
       {
-        title: "Mandiant: 'APT1 — Exposing One of China's Cyber Espionage Units'",
+        title: "Mandiant: 'APT1, Exposing One of China's Cyber Espionage Units'",
         category: "vendor",
         date: "2013-02-19",
       },
@@ -571,13 +571,13 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "White House: Fact Sheet — President Xi Jinping's State Visit to the United States (cyber espionage understanding)",
+          "White House: Fact Sheet, President Xi Jinping's State Visit to the United States (cyber espionage understanding)",
         category: "government",
         date: "2015-09-25",
       },
       {
         title:
-          "Council on Foreign Relations: 'Cyber Operations Tracker — APT1 / PLA Unit 61398'",
+          "Council on Foreign Relations: 'Cyber Operations Tracker, APT1 / PLA Unit 61398'",
         category: "academic",
         date: "2018",
       },
@@ -608,7 +608,7 @@ export const newCasesAttribution: Incident[] = [
   // ---- 4. Salt Typhoon ------------------------------------------------------
   // Calibration anchor: Volt Typhoon (parallel PRC telecom-adjacent CI case).
   // Salt Typhoon sits ABOVE Volt Typhoon on governance because of the
-  // OFAC sanctions on Sichuan Juxinhe Network Technology (Jan 2025) — the
+  // OFAC sanctions on Sichuan Juxinhe Network Technology (Jan 2025), the
   // pivot point in the wider 2024-25 China cyber sanctions wave. Also paired
   // with Belgacom (telecom backbone, allied perpetrator, no consequence) to
   // demonstrate the asymmetry axis runs through the perpetrator's political
@@ -623,7 +623,7 @@ export const newCasesAttribution: Incident[] = [
   {
     id: "salt-typhoon-2024",
     slug: "salt-typhoon",
-    name: "Salt Typhoon — US Telecommunications Backbone Compromise",
+    name: "Salt Typhoon, US Telecommunications Backbone Compromise",
     shortName: "Salt Typhoon",
     year: 2024,
     dateRange:
@@ -733,16 +733,16 @@ export const newCasesAttribution: Incident[] = [
       regulatoryChanges: [
         "FCC declaratory ruling and proposed rulemaking on telecommunications cybersecurity (early 2025)",
         "CISA expanded guidance on protecting carrier network-edge infrastructure",
-        "Renewed legislative interest in revisiting CALEA's lawful-intercept design after demonstrated foreign-state abuse — TODO: status of any enacted legislation as of mid-2025 left for human review",
+        "Renewed legislative interest in revisiting CALEA's lawful-intercept design after demonstrated foreign-state abuse, TODO: status of any enacted legislation as of mid-2025 left for human review",
       ],
       impact:
         "Salt Typhoon marks the consolidation of US OFAC sanctions as a routinised response to PRC telecommunications-sector espionage. Pairing Salt Typhoon (PRC contractor, sanctions imposed) with Belgacom (UK GCHQ, no formal response) isolates the political relationship of the perpetrator from the technical character of the operation; pairing it with Volt Typhoon (parallel PRC campaign, no sanctions in the immediate response cycle) tracks how the 2024–2025 wave shifted the consequence baseline for China-attributed CI espionage.",
     },
     whyThisMatters:
-      "Salt Typhoon is the temporal pivot of the matched-pair argument. It is structurally similar to Belgacom (a foreign state compromising another state's telecommunications backbone) but draws a sharply higher consequence — OFAC sanctions on a named contractor — because the perpetrator is positioned outside the Western attributing coalition. Read alongside Belgacom and OPM, it shows the consequence axis tracking political relationship rather than technical facts; read alongside Volt Typhoon, it shows that the relationship can move within a short time horizon (sanctions arrived for Salt Typhoon faster than for the parallel Volt Typhoon campaign).",
+      "Salt Typhoon is the temporal pivot of the matched-pair argument. It is structurally similar to Belgacom (a foreign state compromising another state's telecommunications backbone) but draws a sharply higher consequence, OFAC sanctions on a named contractor, because the perpetrator is positioned outside the Western attributing coalition. Read alongside Belgacom and OPM, it shows the consequence axis tracking political relationship rather than technical facts; read alongside Volt Typhoon, it shows that the relationship can move within a short time horizon (sanctions arrived for Salt Typhoon faster than for the parallel Volt Typhoon campaign).",
     teaching: {
       keyQuestion:
-        "When two structurally similar telecommunications-backbone espionage operations attract opposite consequences — sanctions for the PRC contractor case, no formal response for the UK GCHQ case — what does this disclose about the criteria that govern public-attribution machinery?",
+        "When two structurally similar telecommunications-backbone espionage operations attract opposite consequences, sanctions for the PRC contractor case, no formal response for the UK GCHQ case, what does this disclose about the criteria that govern public-attribution machinery?",
       discussionPoints: [
         "Lawful-intercept architecture as a strategic vulnerability and an attribution choice",
         "Sanctions against named state contractors as a developing US tool against the PRC cyber ecosystem",
@@ -781,7 +781,7 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "Microsoft Threat Intelligence: 'Salt Typhoon / Earth Estries — adversary profile'",
+          "Microsoft Threat Intelligence: 'Salt Typhoon / Earth Estries, adversary profile'",
         category: "vendor",
         date: "2024-11",
       },
@@ -825,7 +825,7 @@ export const newCasesAttribution: Incident[] = [
 
   // ---- 5. Flame / Flamer (Tier 2) ------------------------------------------
   // Calibration anchor: Stuxnet (assessed US/Israel, no formal response,
-  // sabotage tier). Flame is the espionage analogue — sophisticated US/Israel-
+  // sabotage tier). Flame is the espionage analogue, sophisticated US/Israel-
   // linked toolkit, regional spread, no formal foreign-policy consequence.
   // Sits BELOW Stuxnet on peak tier (intrusion vs destruction) and matches
   // it on governance (zero flags). Reinforces the protected-actor cell that
@@ -860,7 +860,7 @@ export const newCasesAttribution: Incident[] = [
           tier: "intrusion",
           label: "Forged Microsoft code-signing certificate",
           description:
-            "Flame's update channel relied on a forged Microsoft code-signing certificate generated via a novel MD5 chosen-prefix collision against Microsoft Terminal Services Licensing — the first publicly documented offensive use of this cryptanalytic technique, requiring state-level engineering capacity.",
+            "Flame's update channel relied on a forged Microsoft code-signing certificate generated via a novel MD5 chosen-prefix collision against Microsoft Terminal Services Licensing, the first publicly documented offensive use of this cryptanalytic technique, requiring state-level engineering capacity.",
           date: "2010",
         },
         {
@@ -879,7 +879,7 @@ export const newCasesAttribution: Incident[] = [
       thresholdCrossings: [
         "First publicly documented offensive operational use of an MD5 chosen-prefix collision to forge a Microsoft code-signing certificate",
         "One of the largest and most modular espionage platforms publicly disclosed at the time",
-        "High-confidence assessment of state authorship producing no formal foreign-policy consequence — reinforcing the protected-actor cell that Belgacom anchors",
+        "High-confidence assessment of state authorship producing no formal foreign-policy consequence, reinforcing the protected-actor cell that Belgacom anchors",
       ],
     },
     infrastructure: {
@@ -961,13 +961,13 @@ export const newCasesAttribution: Incident[] = [
     },
     sources: [
       {
-        title: "Kaspersky Lab: 'The Flame — Questions and Answers'",
+        title: "Kaspersky Lab: 'The Flame, Questions and Answers'",
         category: "vendor",
         date: "2012-05-28",
       },
       {
         title:
-          "CrySyS Lab: 'sKyWIper — A complex malware for targeted attacks'",
+          "CrySyS Lab: 'sKyWIper, A complex malware for targeted attacks'",
         category: "academic",
         date: "2012-05-31",
       },
@@ -1029,7 +1029,7 @@ export const newCasesAttribution: Incident[] = [
     dateRange: "Active circa 2014 – publicly disclosed April 2017; indictment December 2018",
     incidentType: "espionage",
     summary:
-      "Multi-year campaign of intrusions against managed IT service providers (MSPs) in at least a dozen countries, pivoting through MSP credentials and infrastructure to reach the providers' downstream client networks. PwC UK, BAE Systems, and the UK NCSC publicly disclosed the campaign as Operation Cloud Hopper in April 2017, attributing it to APT10 (a.k.a. Stone Panda, MenuPass). The US Department of Justice indicted two PRC nationals — Zhu Hua and Zhang Shilong — alleged to be acting in association with the Ministry of State Security's Tianjin State Security Bureau, on 20 December 2018, in coordination with allied public-naming statements from the UK, Australia, Canada, New Zealand, Japan, Germany, and the Netherlands. The indictment was not accompanied by US sanctions at the time of filing.",
+      "Multi-year campaign of intrusions against managed IT service providers (MSPs) in at least a dozen countries, pivoting through MSP credentials and infrastructure to reach the providers' downstream client networks. PwC UK, BAE Systems, and the UK NCSC publicly disclosed the campaign as Operation Cloud Hopper in April 2017, attributing it to APT10 (a.k.a. Stone Panda, MenuPass). The US Department of Justice indicted two PRC nationals, Zhu Hua and Zhang Shilong, alleged to be acting in association with the Ministry of State Security's Tianjin State Security Bureau, on 20 December 2018, in coordination with allied public-naming statements from the UK, Australia, Canada, New Zealand, Japan, Germany, and the Netherlands. The indictment was not accompanied by US sanctions at the time of filing.",
     attribution: {
       confidence: "confirmed",
       attributedTo:
@@ -1150,7 +1150,7 @@ export const newCasesAttribution: Incident[] = [
         "Operation Cloud Hopper joint report by PwC UK, BAE Systems, and UK NCSC (Apr 2017)",
         "US DOJ indictment of Zhu Hua and Zhang Shilong (Dec 2018)",
         "Coordinated allied public-naming statements from Five Eyes, Japan, Germany, and the Netherlands (Dec 2018); additional allied statements followed in early 2019",
-        "No US sanctions issued in conjunction with the 2018 indictment — TODO: confirm subsequent Treasury actions touching APT10-linked entities for human review",
+        "No US sanctions issued in conjunction with the 2018 indictment, TODO: confirm subsequent Treasury actions touching APT10-linked entities for human review",
       ],
       regulatoryChanges: [
         "Catalysed CISA and NCSC guidance on MSP and third-party risk management",
@@ -1161,10 +1161,10 @@ export const newCasesAttribution: Incident[] = [
         "Cloud Hopper reinforced the indictment-without-sanctions pattern at allied scale: the breadth of coordinated public-naming statements was unprecedented for a PRC cyber campaign in 2018, but no US sanctions accompanied the indictment. The case sits in the same governance band as APT1 and provides the temporal bridge to the Salt Typhoon / Flax Typhoon / Sichuan Silence sanctions wave of 2024–2025.",
     },
     whyThisMatters:
-      "Cloud Hopper is the strongest pre-2024 data point on the indictment-without-sanctions cell at allied scale. It shows that even a broadly coordinated Five-Eyes-plus public-naming exercise against a PRC MSS contractor model did not, in 2018, escalate to OFAC sanctions. Read forward to Salt Typhoon (Jan 2025 OFAC sanctions on a comparable PRC contractor), it provides the time-series evidence that the consequence baseline for China-attributed espionage shifted in the 2024–2025 window — and that the shift was a political choice rather than a response to new technical facts.",
+      "Cloud Hopper is the strongest pre-2024 data point on the indictment-without-sanctions cell at allied scale. It shows that even a broadly coordinated Five-Eyes-plus public-naming exercise against a PRC MSS contractor model did not, in 2018, escalate to OFAC sanctions. Read forward to Salt Typhoon (Jan 2025 OFAC sanctions on a comparable PRC contractor), it provides the time-series evidence that the consequence baseline for China-attributed espionage shifted in the 2024–2025 window, and that the shift was a political choice rather than a response to new technical facts.",
     teaching: {
       keyQuestion:
-        "What does the 2018 Cloud Hopper indictment-without-sanctions outcome — and its 2024–2025 contrast with the Salt Typhoon sanctions — reveal about the discretionary nature of the indictment-to-sanctions escalation step?",
+        "What does the 2018 Cloud Hopper indictment-without-sanctions outcome, and its 2024–2025 contrast with the Salt Typhoon sanctions, reveal about the discretionary nature of the indictment-to-sanctions escalation step?",
       discussionPoints: [
         "MSP-pivot tradecraft as a systemic supply-chain vulnerability and the policy responses it generated",
         "Coordinated allied public-naming as a substitute for, or precursor to, sanctions",
