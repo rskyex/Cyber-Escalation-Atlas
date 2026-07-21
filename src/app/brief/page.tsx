@@ -23,6 +23,20 @@ const allRegions = Array.from(
   new Set(seedIncidents.flatMap((i) => i.infrastructure.targetCountries))
 ).sort();
 
+// Static example so the output format is visible before any generation runs.
+const SAMPLE_BRIEF = `## Executive Summary — State-Linked Destructive Operations
+
+### Overview
+Across the documented corpus, destructive state-linked operations remain rare relative to espionage, but account for the highest-severity events. NotPetya (2017) and the Viasat KA-SAT wiper (2022) illustrate a recurring pattern: destructive payloads timed to geopolitical objectives, producing collateral impact well beyond the intended target.
+
+### Key Judgements
+- Destructive operations cluster at the top of the escalation ladder yet are consistently paired with deniability — attribution is public but formal consequences lag by months or years.
+- Supply-chain and dual-use infrastructure (software updates, satellite modems) recur as vectors because they maximise reach while complicating attribution.
+- Governance responses are reactive: indictments and sanctions follow attribution, but no case in the corpus shows a destructive operation deterred in advance.
+
+### Governance Implications
+The gap between technical attribution and political consequence is the central governance problem these cases expose. Norms against targeting civilian critical infrastructure are widely cited and repeatedly violated.`;
+
 export default function BriefPage() {
   const [actor, setActor] = useState("all");
   const [sector, setSector] = useState("all");
@@ -119,6 +133,28 @@ export default function BriefPage() {
         </div>
       )}
 
+      {/* Static example so users see the output shape before generating. */}
+      {!brief && !loading && (
+        <div className="rounded-xl border border-dashed border-steel-300/50 dark:border-ink-600/50 bg-ink-50/30 dark:bg-ink-800/15 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-ink-100 dark:bg-ink-600/40 text-steel-600 dark:text-steel-300">
+              Example output
+            </span>
+            <p className="text-xs text-steel-500 dark:text-ink-400">
+              Illustrative — this is what a generated executive brief looks like.
+            </p>
+          </div>
+          <div className="prose prose-sm dark:prose-invert max-w-none opacity-90">
+            {SAMPLE_BRIEF.split("\n").map((line, i) => {
+              if (line.startsWith("## ")) return <h2 key={i} className="text-base font-bold text-ink dark:text-white mt-4 mb-2">{line.replace("## ", "")}</h2>;
+              if (line.startsWith("### ")) return <h3 key={i} className="text-sm font-bold text-ink dark:text-white mt-3 mb-1">{line.replace("### ", "")}</h3>;
+              if (line.trim() === "") return <br key={i} />;
+              return <p key={i} className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-2">{line}</p>;
+            })}
+          </div>
+        </div>
+      )}
+
       {brief && (
         <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 p-6">
           <div className="flex items-center justify-between mb-4">
@@ -128,6 +164,14 @@ export default function BriefPage() {
                 Copy to clipboard
               </button>
             </div>
+          </div>
+          {/* Standard AI disclaimer, shown at the top of every generated brief */}
+          <div className="mb-5 flex items-start gap-2.5 p-3 rounded-lg bg-amber-50/60 dark:bg-amber-900/10 border border-amber-300/40 dark:border-amber-700/30">
+            <span className="mt-0.5 w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+            <p className="text-xs font-medium text-amber-800 dark:text-amber-300 leading-relaxed">
+              AI-generated from the CEA dataset — verify before operational use.
+              This is a synthesis of documented cases, not an intelligence product.
+            </p>
           </div>
           <div className="prose prose-sm dark:prose-invert max-w-none">
             {brief.split("\n").map((line, i) => {

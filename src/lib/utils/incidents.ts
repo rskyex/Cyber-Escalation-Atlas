@@ -211,6 +211,43 @@ export function sortByEscalation(
   });
 }
 
+// ---- Comparative profile (radar axes) ---------------------------------------
+
+const confidenceStrength: Record<AttributionConfidence, number> = {
+  confirmed: 100,
+  high: 80,
+  moderate: 60,
+  low: 40,
+  contested: 20,
+};
+
+export interface ComparativeProfile {
+  escalation: number; // 0–100, peak tier
+  infrastructure: number; // 0–100, sector + country spread
+  governance: number; // 0–100, governance-response density
+  attribution: number; // 0–100, attribution strength
+  entanglement: number; // 0–100, entanglement score
+}
+
+/**
+ * Normalise an incident onto five comparable 0–100 axes for the radar overlay.
+ * These are derived from the same heuristic fields as the case scores; they are
+ * comparison aids, not measurements.
+ */
+export function comparativeProfile(incident: Incident): ComparativeProfile {
+  const tier = tierIndex(incident.escalation.peakTier) + 1; // 1–6
+  const sectors = incident.infrastructure.targetSectors.length;
+  const countries = incident.infrastructure.targetCountries.length;
+  const govFlags = incident.governance.flags.length; // 0–8
+  return {
+    escalation: Math.round((tier / 6) * 100),
+    infrastructure: Math.min(100, Math.round(((sectors + countries) / 12) * 100)),
+    governance: Math.min(100, Math.round((govFlags / 8) * 100)),
+    attribution: confidenceStrength[incident.attribution.confidence],
+    entanglement: entanglementScore(incident) * 10,
+  };
+}
+
 // ---- MITRE ATT&CK -----------------------------------------------------------
 
 /**

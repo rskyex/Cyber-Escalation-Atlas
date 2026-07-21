@@ -44,6 +44,45 @@ const presets = [
   { id: "false",   name: "False-Flag",         params: { attribution: 22, automation: 65, ambiguity: 85, alliance: 45, tempo: 70 } as Params },
 ];
 
+// Presets grounded in documented cases. Parameter values are ILLUSTRATIVE
+// analytic estimates of each posture, not measurements — they translate the
+// documented character of the operation onto the simulator's five axes.
+const casePresets: {
+  name: string;
+  slug: string;
+  params: Params;
+  rationale: string;
+}[] = [
+  {
+    name: "NotPetya 2017",
+    slug: "notpetya",
+    params: { attribution: 60, automation: 25, ambiguity: 80, alliance: 60, tempo: 85 },
+    rationale:
+      "Self-propagating wiper disguised as ransomware — high interpretive ambiguity and very high tempo (global spread in hours). Public attribution came, but formal consequences lagged by years.",
+  },
+  {
+    name: "SolarWinds 2020",
+    slug: "solarwinds",
+    params: { attribution: 55, automation: 20, ambiguity: 60, alliance: 65, tempo: 25 },
+    rationale:
+      "Patient supply-chain espionage: low tempo, low automation, sustained stealth. Ambiguity centred on espionage vs. attack preparation rather than on who was responsible.",
+  },
+  {
+    name: "Viasat KA-SAT 2022",
+    slug: "viasat-kasat",
+    params: { attribution: 55, automation: 30, ambiguity: 50, alliance: 75, tempo: 85 },
+    rationale:
+      "Modem wiper timed to a kinetic invasion — high tempo, with unusually coherent allied attribution (EU/US) within weeks of the event.",
+  },
+  {
+    name: "Stuxnet 2010",
+    slug: "stuxnet",
+    params: { attribution: 25, automation: 55, ambiguity: 75, alliance: 55, tempo: 30 },
+    rationale:
+      "Never formally acknowledged, leaving attribution contested; autonomous sabotage logic acting on PLCs; a long, patient operation with low tempo but high interpretive ambiguity.",
+  },
+];
+
 export default function SimulatorPage() {
   const [params, setParams] = useState<Params>(presets[1].params);
 
@@ -103,6 +142,46 @@ export default function SimulatorPage() {
           </button>
         ))}
       </div>
+
+      {/* ═══ CASE PRESETS ═══ */}
+      <Panel label="CASE PRESET · GROUNDED IN DOCUMENTED OPERATIONS" className="mb-8">
+        <p className="text-caption text-steel-400 leading-relaxed mb-4">
+          Load a posture derived from a real case. Parameter values are{" "}
+          <span className="text-amber-300/90">illustrative estimates</span> that
+          translate each operation&apos;s documented character onto the five
+          axes — not measurements.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {casePresets.map((c) => (
+            <div
+              key={c.slug}
+              className="rounded-md border border-white/[0.06] bg-white/[0.01] p-4"
+            >
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <span className="font-display text-subheading text-white">{c.name}</span>
+                <button
+                  onClick={() => setParams(c.params)}
+                  className="px-2.5 py-1 rounded text-[11px] font-mono uppercase tracking-wider border border-atlas-500/40 text-atlas-300 hover:bg-atlas-500/10 transition-colors"
+                >
+                  Load →
+                </button>
+              </div>
+              <p className="text-caption text-steel-400 leading-relaxed mb-2">{c.rationale}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono text-steel-600">
+                  A{c.params.attribution} · Au{c.params.automation} · Am{c.params.ambiguity} · Al{c.params.alliance} · T{c.params.tempo}
+                </span>
+                <a
+                  href={`/cases/${c.slug}`}
+                  className="text-[11px] font-medium text-atlas-400 hover:text-atlas-300"
+                >
+                  Read case →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Panel>
 
       <PanelGrid cols={2} className="mb-8">
         {/* ═══ CONTROL SURFACE ═══ */}
@@ -255,6 +334,53 @@ export default function SimulatorPage() {
         <p className="text-caption text-steel-300 leading-relaxed max-w-3xl">
           The simulator is descriptive, not prescriptive. It models the structural interactions between five doctrinal variables that recur across the dataset. Real-world decisions involve additional variables, domestic politics, regime type, prior signaling, technical surprise, that no scalar parameter set can adequately encode.
         </p>
+      </Panel>
+
+      {/* ═══ MODEL DOCUMENTATION ═══ */}
+      <Panel label="MODEL DOCUMENTATION · HOW THE SCORE IS COMPUTED" className="mt-8" statusTone="amber">
+        <div className="space-y-4 text-caption text-steel-300 leading-relaxed max-w-3xl">
+          <p>
+            The escalation-risk score is a transparent, deterministic function of
+            the five parameters. It is an{" "}
+            <span className="text-amber-300/90">illustrative model</span>, not a
+            calibrated predictor — the coefficients encode a hypothesis about how
+            these variables interact, chosen to make the dynamics legible.
+          </p>
+          <div className="rounded-md border border-white/[0.06] bg-black/20 p-4 font-mono text-[12px] text-steel-200 leading-relaxed overflow-x-auto">
+            <div>lowConf&nbsp;&nbsp;&nbsp;= (100 − attribution) / 100</div>
+            <div>highAuto&nbsp;&nbsp;= automation / 100</div>
+            <div>interaction = lowConf × highAuto × 1.4</div>
+            <div className="mt-2">risk = ( interaction×0.55</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ (ambiguity/100)×0.40</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ (tempo/100)×0.35</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ((100−alliance)/100)×0.25 ) × 100</div>
+            <div className="mt-2">if attribution &lt; 40 AND automation &gt; 70: risk += 18</div>
+            <div>risk = clamp(risk, 0, 100)</div>
+          </div>
+          <div>
+            <p className="text-white font-medium mb-1">Tier thresholds</p>
+            <ul className="space-y-0.5">
+              <li>· <span className="text-atlas-300">NOMINAL</span> &lt; 30</li>
+              <li>· <span className="text-amber-300">CONTESTED</span> 30–54</li>
+              <li>· <span className="text-amber-300">ELEVATED</span> 55–74</li>
+              <li>· <span className="text-plasma-300">CRITICAL</span> ≥ 75</li>
+            </ul>
+          </div>
+          <p>
+            The central design choice is the{" "}
+            <span className="text-white">interaction term</span>: low attribution
+            confidence and high automation are dangerous chiefly in combination —
+            neither alone drives risk as sharply. The <span className="text-white">+18
+            phase-shift</span> encodes the doctrinal claim that crossing both
+            critical thresholds is qualitatively, not just incrementally, worse.
+            Every coefficient is visible above precisely so the model can be
+            argued with. See{" "}
+            <a href="/methodology" className="text-atlas-400 underline underline-offset-2 hover:text-atlas-300">
+              methodology
+            </a>{" "}
+            for the epistemic posture behind the Observatory&apos;s models.
+          </p>
+        </div>
       </Panel>
     </>
   );
