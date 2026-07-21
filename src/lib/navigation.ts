@@ -20,7 +20,10 @@ export const secondaryNav: NavItem[] = [
   { label: "Brief Generator", href: "/brief" },
   { label: "Norms", href: "/norms" },
   { label: "Legal", href: "/legal" },
+  { label: "Glossary", href: "/glossary" },
+  { label: "Data", href: "/data" },
   { label: "Methodology", href: "/methodology" },
   { label: "Sources", href: "/sources" },
+  { label: "Cite", href: "/cite" },
   { label: "About", href: "/about" },
 ];

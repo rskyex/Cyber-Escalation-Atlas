@@ -24,7 +24,10 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const actor = actorProfiles.find((a) => a.slug === params.slug);
   if (!actor) return { title: "Actor Not Found" };
-  return { title: `${actor.name}, Cyber Escalation Atlas` };
+  return {
+    title: actor.name,
+    description: `${actor.name}: ${actor.stateNexus}. Attributed operations, TTPs, and governance footprint in the Cyber Escalation Atlas.`,
+  };
 }
 
 export default function ActorDetailPage({ params }: { params: { slug: string } }) {

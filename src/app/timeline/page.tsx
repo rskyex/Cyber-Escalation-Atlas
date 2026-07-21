@@ -108,15 +108,19 @@ export default function TimelinePage() {
             return (
               <button
                 key={inc.id}
-                className="absolute group focus:outline-none"
+                className="absolute group rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-atlas-400 focus-visible:ring-offset-2"
                 style={{
                   left: `${x}%`,
                   top: `${y}px`,
                   transform: "translate(-50%, -50%)",
                   zIndex: isActive ? 20 : 1,
                 }}
+                aria-label={`${inc.shortName}, ${inc.year}, ${incidentTypeLabels[inc.incidentType]}`}
+                aria-pressed={isActive}
                 onMouseEnter={() => setActive(inc.id)}
                 onMouseLeave={() => setActive(null)}
+                onFocus={() => setActive(inc.id)}
+                onBlur={() => setActive(null)}
                 onClick={() =>
                   setActive(active === inc.id ? null : inc.id)
                 }

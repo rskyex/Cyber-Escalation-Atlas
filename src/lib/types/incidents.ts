@@ -108,6 +108,8 @@ export interface TeachingBlock {
   keyQuestion: string;
   discussionPoints: string[];
   furtherReading: string[];
+  /** Open-ended seminar questions (landmark cases). */
+  discussionQuestions?: string[];
 }
 
 export interface SourceRef {

@@ -22,3 +22,4 @@ export { SourceCard } from "./SourceCard";
 export { RelatedSection } from "./RelatedSection";
 export { RelatedCaseCard } from "./RelatedCaseCard";
 export { CaseExportButton } from "./CaseExportButton";
+export { CiteButton } from "./CiteButton";

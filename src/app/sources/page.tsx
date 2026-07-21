@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageHeader, SectionWrapper, Card } from "@/components/ui";
 
 interface SourceLink {
@@ -39,6 +40,12 @@ const sourceCategories: { category: string; sources: SourceLink[] }[] = [
     ],
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Sources",
+  description:
+    "The curated corpus of government, vendor, academic, and journalistic sources underpinning the Cyber Escalation Atlas.",
+};
 
 export default function SourcesPage() {
   return (

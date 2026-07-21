@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Methodology",
+  description:
+    "How the Cyber Escalation Atlas is built: inclusion criteria, source hierarchy, classification logic, scoring formulas, limitations, and theoretical foundations.",
+};
 
 // ---------------------------------------------------------------------------
 // Section shell component, consistent heading + placeholder prose container

@@ -80,6 +80,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "NotPetya demonstrated that a cyber weapon aimed at one country can inflict billions in collateral damage worldwide, making it a landmark case for debating proportionality, state responsibility, and the limits of deniability in cyber conflict.",
     teaching: {
       keyQuestion: "When does a cyber operation targeting one country become a matter of international concern?",
+      discussionQuestions: [
+        "If an operation is aimed at one country but spreads globally, who bears responsibility for the collateral harm — the attacker, the software vendor, or the unpatched victims?",
+        "NotPetya was disguised as ransomware. How should defenders and policymakers classify an operation whose apparent motive masks its real one?",
+        "Public attribution to Russia eventually came, but consequences took years. What, if anything, does delayed attribution actually deter?",
+        "Several insurers invoked 'act of war' clauses to deny claims. Does importing that language into cyber help or hinder the development of norms?",
+      ],
       discussionPoints: [
         "Proportionality of collateral damage vs. intended target",
         "Effectiveness of public attribution as a deterrent",
@@ -179,6 +185,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "SolarWinds exposed systemic supply chain risk in government IT and triggered the most sweeping US cybersecurity executive order in a decade, reshaping federal procurement and zero-trust policy.",
     teaching: {
       keyQuestion: "Is large-scale cyber espionage an accepted norm of state behavior, or does its scale change its character?",
+      discussionQuestions: [
+        "SolarWinds is usually described as espionage, not attack. Where is the line between intelligence collection and attack preparation when the same access enables both?",
+        "Should a software vendor bear liability for a supply-chain compromise it did not detect? What incentives would that create?",
+        "The intrusion went undetected for roughly nine months. Does the duration of undetected access change its strategic meaning?",
+        "How should a state calibrate a proportionate response to a large-scale espionage operation that caused no destruction?",
+      ],
       discussionPoints: [
         "Espionage vs. attack: where should the line be drawn?",
         "Government dependence on commercial software supply chains",
@@ -278,6 +290,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "Stuxnet proved that software alone can destroy physical infrastructure, fundamentally changing how states, lawyers, and strategists think about the threshold between cyber operations and armed conflict.",
     teaching: {
       keyQuestion: "Does a cyber operation that causes physical destruction cross the use-of-force threshold under international law?",
+      discussionQuestions: [
+        "Stuxnet caused physical damage but was never publicly claimed. Does deniability make an operation more or less escalatory?",
+        "If a cyber operation achieves what a conventional strike would have, should it be judged by the same legal standards?",
+        "Stuxnet is often credited with delaying a nuclear programme without war. Is that a model of restraint or a dangerous precedent?",
+        "What norms, if any, did Stuxnet establish for using cyber weapons against industrial control systems?",
+      ],
       discussionPoints: [
         "Legitimacy of covert cyber sabotage as a non-kinetic alternative to military strikes",
         "Proliferation risk: Stuxnet's code became publicly available after discovery",
@@ -666,6 +684,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "WannaCry exposed how a leaked intelligence exploit can cascade into a global healthcare crisis, sharpening the policy debate on vulnerability disclosure and the duty to protect civilian systems.",
     teaching: {
       keyQuestion: "Should states disclose vulnerabilities they discover, or stockpile them for intelligence purposes?",
+      discussionQuestions: [
+        "WannaCry spread using an exploit derived from a leaked government toolkit. What responsibility do states bear for the vulnerabilities they stockpile?",
+        "The outbreak was slowed partly by chance (a kill switch). How should the role of luck factor into assessments of severity?",
+        "Hospitals were disrupted though not specifically targeted. Does intent matter when civilian critical infrastructure is harmed?",
+        "North Korea was formally named. What is the purpose of attribution when the named state faces few additional consequences?",
+      ],
       discussionPoints: [
         "Vulnerability equities process: intelligence value vs. public safety",
         "Healthcare as a uniquely vulnerable sector in cyber conflict",
@@ -950,6 +974,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "Viasat KA-SAT was the clearest example yet of cyber attack as an opening act of war, with cross-border collateral damage that forced NATO and the EU to treat satellite infrastructure as a shared security concern.",
     teaching: {
       keyQuestion: "How does the integration of cyber operations into conventional warfare change the rules of armed conflict?",
+      discussionQuestions: [
+        "A commercial satellite network served military and civilian users alike. How should dual-use infrastructure be treated under the principle of distinction?",
+        "Collateral outages spread across NATO states not party to the conflict. When does spillover become a separate international wrong?",
+        "Allied attribution was unusually fast and coordinated. What made rapid joint attribution possible here, and is it repeatable?",
+        "The wiper was timed to a kinetic invasion. How does cyber–kinetic coordination change the escalation calculus?",
+      ],
       discussionPoints: [
         "Cyber as a precursor to kinetic operations: legal and strategic implications",
         "Collateral damage across borders and the distinction principle in IHL",

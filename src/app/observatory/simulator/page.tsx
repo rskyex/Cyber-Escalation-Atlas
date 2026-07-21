@@ -439,8 +439,13 @@ function Slider({
         max={100}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full"
-        style={{ accentColor: fill }}
+        className="w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        style={{ accentColor: fill, outlineColor: fill }}
+        aria-label={`${label} (percent)`}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={value}
+        aria-valuetext={`${value} percent${overThreshold ? ", threshold crossed" : ""}`}
       />
       {threshold !== undefined && (
         <div className="relative h-px -mt-2 pointer-events-none">

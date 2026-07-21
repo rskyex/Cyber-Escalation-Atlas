@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
 import { seedIncidents } from "@/data/incidents";
 import { EscalationLens } from "@/components/escalation/EscalationLens";
+
+export const metadata: Metadata = {
+  title: "Escalation Lens",
+  description:
+    "How cyber operations climb the escalation ladder from access to strategic impact — and where restraint holds.",
+};
 
 export default function EscalationLensPage() {
   return (

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader, SectionWrapper, Card } from "@/components/ui";
 
@@ -27,6 +28,12 @@ const faultlineProjects = [
       "Mapping space governance mandates, treaties, and institutional authority across jurisdictions.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "About the Cyber Escalation Atlas and its creator, Risa Koyanagi — a research reference for cyber operations, escalation dynamics, and governance.",
+};
 
 export default function AboutPage() {
   return (
