@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid, MetricBlock } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, MetricBlock, ProvenanceNote } from "@/components/observatory";
 
 interface Stream {
   id: string;
@@ -115,6 +115,8 @@ export default function AttributionFieldPage() {
         description="Attribution is never singular. Five independent streams converge, or contest, on the question of state responsibility, each with its own evidentiary logic, audience, and political weight. The variance between them is where authority gets allocated."
         status="modeled"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       {/* ═══ CASE SELECTOR ═══ */}
       <div className="flex flex-wrap items-center gap-2 mb-6">

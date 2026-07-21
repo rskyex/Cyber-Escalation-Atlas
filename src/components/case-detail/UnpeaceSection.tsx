@@ -3,54 +3,21 @@
 import type { Incident } from "@/lib/types/incidents";
 import {
   unpeaceScore,
-  entanglementScore,
-  tierIndex,
+  unpeaceBreakdown,
+  entanglementBreakdown,
 } from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
 import { UnpeaceAxis } from "./UnpeaceAxis";
+import { ScoreBreakdown } from "./ScoreBreakdown";
 
 interface UnpeaceSectionProps {
   incident: Incident;
 }
 
-function DimensionBar({
-  label,
-  value,
-  max,
-  color,
-}: {
-  label: string;
-  value: number;
-  max: number;
-  color: string;
-}) {
-  const pct = Math.round((value / max) * 100);
-  return (
-    <div>
-      <div className="flex justify-between mb-1">
-        <span className="text-xs text-steel-500 dark:text-steel-300">{label}</span>
-        <span className="text-xs font-mono text-steel-500 dark:text-steel-300">
-          {value}/{max}
-        </span>
-      </div>
-      <div className="h-2 rounded-full bg-ink-100 dark:bg-ink-600/40 overflow-hidden">
-        <div
-          className={`h-full rounded-full ${color}`}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
 export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
   const score = unpeaceScore(incident);
-  const entanglement = entanglementScore(incident);
-  const escalation = tierIndex(incident.escalation.peakTier) + 1;
-  const thresholds = incident.escalation.thresholdCrossings.length;
-  const govFlags = incident.governance.flags.length;
-  const sectors = incident.infrastructure.targetSectors.length;
-  const countries = incident.infrastructure.targetCountries.length;
+  const unpeace = unpeaceBreakdown(incident);
+  const entanglement = entanglementBreakdown(incident);
 
   return (
     <section>
@@ -75,53 +42,26 @@ export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
               Unpeace Score
             </p>
             <p className="text-xs text-steel-500 dark:text-steel-300">
-              Composite severity rating on the peace–conflict spectrum
+              Composite severity rating on the peace–conflict spectrum (1–10)
             </p>
           </div>
         </div>
         <UnpeaceAxis score={score} />
       </div>
 
-      {/* Dimension breakdown */}
-      <div className="space-y-3 p-5 rounded-lg bg-white dark:bg-ink-700/30 border border-steel-200/20 dark:border-ink-600/30">
-        <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-1">
-          Contributing Dimensions
-        </p>
-        <DimensionBar
-          label="Escalation peak"
-          value={escalation}
-          max={6}
-          color="bg-signal-400 dark:bg-signal-500"
-        />
-        <DimensionBar
-          label="Threshold crossings"
-          value={thresholds}
-          max={4}
-          color="bg-signal-400 dark:bg-signal-500"
-        />
-        <DimensionBar
-          label="Governance flags"
-          value={govFlags}
-          max={8}
-          color="bg-atlas-400 dark:bg-atlas-500"
-        />
-        <DimensionBar
-          label="Sectors affected"
-          value={sectors}
-          max={6}
-          color="bg-ink-400 dark:bg-steel-400"
-        />
-        <DimensionBar
-          label="Entanglement"
-          value={entanglement}
+      {/* Transparent score breakdowns */}
+      <div className="grid gap-5 md:grid-cols-2">
+        <ScoreBreakdown
+          title="Unpeace"
+          breakdown={unpeace}
           max={10}
-          color="bg-ink-400 dark:bg-steel-400"
+          methodologyAnchor="unpeace-score"
         />
-        <DimensionBar
-          label="Country scope"
-          value={countries}
-          max={6}
-          color="bg-ink-400 dark:bg-steel-400"
+        <ScoreBreakdown
+          title="Entanglement"
+          breakdown={entanglement}
+          max={10}
+          methodologyAnchor="entanglement-score"
         />
       </div>
     </section>

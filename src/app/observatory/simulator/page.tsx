@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid, MetricBlock } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, MetricBlock, ProvenanceNote } from "@/components/observatory";
 
 interface Params {
   attribution: number;
@@ -87,6 +87,8 @@ export default function SimulatorPage() {
         description="The simulator composes all seven layers into a single interactive surface. Modulate five parameters and observe how escalation risk responds, phase-shifts occur when low attribution confidence meets high automation."
         status="live"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       {/* ═══ PRESET ROW ═══ */}
       <div className="flex flex-wrap items-center gap-2 mb-6">

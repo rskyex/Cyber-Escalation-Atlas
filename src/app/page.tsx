@@ -4,16 +4,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui";
-import { AtmosphericBackground } from "@/components/observatory";
+import { AtmosphericBackground, ProvenanceMark } from "@/components/observatory";
+import type { ProvenanceKind } from "@/components/observatory";
+import { caseCount, observatoryLayerCount } from "@/lib/datasetStats";
 
-const observatoryLayers = [
-  { coord: "L-01", title: "Decision Compression", href: "/observatory/compression", metric: "0.4s", metricLabel: "autonomous latency", tone: "atlas" as const },
-  { coord: "L-02", title: "Attribution Field",    href: "/observatory/attribution-field", metric: "5", metricLabel: "contested streams", tone: "violet" as const },
-  { coord: "L-03", title: "Agent Pathways",       href: "/observatory/agent-pathways", metric: "6→∞", metricLabel: "branching depth", tone: "plasma" as const },
-  { coord: "L-04", title: "Cross-Domain Map",     href: "/observatory/cross-domain", metric: "7", metricLabel: "interlocked domains", tone: "atlas" as const },
-  { coord: "L-05", title: "Escalation Tempo",     href: "/observatory/tempo", metric: "10⁶×", metricLabel: "tempo asymmetry", tone: "amber" as const },
-  { coord: "L-06", title: "Governance Cascade",   href: "/observatory/governance-cascade", metric: "6", metricLabel: "failure modes", tone: "plasma" as const },
-  { coord: "L-07", title: "Authority Layer",      href: "/observatory/authority", metric: "4", metricLabel: "authority loci", tone: "violet" as const },
+const observatoryLayers: {
+  coord: string;
+  title: string;
+  href: string;
+  metric: string;
+  metricLabel: string;
+  tone: "atlas" | "violet" | "plasma" | "amber";
+  provenance: ProvenanceKind;
+}[] = [
+  { coord: "L-01", title: "Decision Compression", href: "/observatory/compression", metric: "0.4s", metricLabel: "autonomous latency", tone: "atlas", provenance: "illustrative" },
+  { coord: "L-02", title: "Attribution Field",    href: "/observatory/attribution-field", metric: "5", metricLabel: "contested streams", tone: "violet", provenance: "structural" },
+  { coord: "L-03", title: "Agent Pathways",       href: "/observatory/agent-pathways", metric: "6→∞", metricLabel: "branching depth", tone: "plasma", provenance: "illustrative" },
+  { coord: "L-04", title: "Cross-Domain Map",     href: "/observatory/cross-domain", metric: "7", metricLabel: "interlocked domains", tone: "atlas", provenance: "structural" },
+  { coord: "L-05", title: "Escalation Tempo",     href: "/observatory/tempo", metric: "10⁶×", metricLabel: "tempo asymmetry", tone: "amber", provenance: "illustrative" },
+  { coord: "L-06", title: "Governance Cascade",   href: "/observatory/governance-cascade", metric: "6", metricLabel: "failure modes", tone: "plasma", provenance: "structural" },
+  { coord: "L-07", title: "Authority Layer",      href: "/observatory/authority", metric: "4", metricLabel: "authority loci", tone: "violet", provenance: "structural" },
 ];
 
 const featuredCases = [
@@ -179,12 +189,12 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={stagger.item} className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 max-w-2xl">
-              {[
-                { value: "7", label: "Observatory Layers", tone: "atlas" },
-                { value: "36", label: "Documented Cases", tone: "steel" },
-                { value: "10⁶×", label: "Tempo Asymmetry", tone: "amber" },
+              {([
+                { value: String(observatoryLayerCount), label: "Observatory Layers", tone: "atlas", provenance: "structural" },
+                { value: String(caseCount), label: "Documented Cases", tone: "steel" },
+                { value: "10⁶×", label: "Tempo Asymmetry", tone: "amber", provenance: "illustrative" },
                 { value: "Δ", label: "Phase-Shift Model", tone: "plasma" },
-              ].map((stat) => (
+              ] as { value: string; label: string; tone: string; provenance?: ProvenanceKind }[]).map((stat) => (
                 <div key={stat.label} className="flex flex-col">
                   <span
                     className={`font-display text-heading ${
@@ -198,6 +208,7 @@ export default function HomePage() {
                     }`}
                   >
                     {stat.value}
+                    {stat.provenance && <ProvenanceMark kind={stat.provenance} />}
                   </span>
                   <span className="text-micro font-medium uppercase tracking-widest text-steel-500 mt-0.5">
                     {stat.label}
@@ -245,7 +256,10 @@ export default function HomePage() {
                   <div className={`relative obs-panel rounded-xl p-5 h-full transition-all duration-300 ${toneBorderMap[l.tone]} group-hover:bg-white/[0.03]`}>
                     <div className="flex items-start justify-between mb-3">
                       <span className={`tag-mono ${toneClassMap[l.tone]}`}>{l.coord}</span>
-                      <span className={`font-display text-caption ${toneClassMap[l.tone]}`}>{l.metric}</span>
+                      <span className={`font-display text-caption ${toneClassMap[l.tone]}`}>
+                        {l.metric}
+                        <ProvenanceMark kind={l.provenance} />
+                      </span>
                     </div>
                     <h3 className="font-display text-subheading text-white mb-1.5 leading-tight group-hover:text-atlas-300 transition-colors">
                       {l.title}

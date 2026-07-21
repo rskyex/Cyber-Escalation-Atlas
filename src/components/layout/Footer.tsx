@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { primaryNav, secondaryNav } from "@/lib/navigation";
+import { caseCount, dataCutoff } from "@/lib/datasetStats";
 
 export function Footer() {
   return (
@@ -24,6 +25,10 @@ export function Footer() {
             <p className="text-caption text-steel-500 dark:text-steel-500 leading-relaxed max-w-sm">
               A research reference for understanding cyber operations,
               escalation dynamics, and governance frameworks.
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2 text-micro font-mono text-steel-600 dark:text-steel-500">
+              <span className="status-dot" />
+              Data cutoff: {dataCutoff} · {caseCount} documented cases
             </p>
           </div>
 

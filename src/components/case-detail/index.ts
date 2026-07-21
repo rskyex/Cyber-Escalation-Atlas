@@ -8,6 +8,7 @@ export { AttributionSection } from "./AttributionSection";
 export { AttributionTable } from "./AttributionTable";
 export { UnpeaceSection } from "./UnpeaceSection";
 export { UnpeaceAxis } from "./UnpeaceAxis";
+export { ScoreBreakdown } from "./ScoreBreakdown";
 export { CoerciveSection } from "./CoerciveSection";
 export { EntanglementSection } from "./EntanglementSection";
 export { InfrastructureSection } from "./InfrastructureSection";

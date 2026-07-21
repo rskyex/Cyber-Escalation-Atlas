@@ -171,4 +171,18 @@ export interface Incident {
   attributionDetail?: AttributionDetail;
   /** Threat actor profile slug (Upgrade 3) */
   actorSlug?: string;
+  /** ISO date (YYYY-MM or YYYY-MM-DD) the record was last reviewed/updated. */
+  lastUpdated?: string;
+  /** Legal frameworks/rules whose application to this case is debated. */
+  legalFrameworks?: LegalFrameworkRef[];
+}
+
+/** A legal rule/framework whose application to a case is analysed. */
+export interface LegalFrameworkRef {
+  /** Stable id matching a rule in src/data/legalFrameworks.ts */
+  ruleId: string;
+  /** Short human label, e.g. "Tallinn Manual Rule 71 — Sovereignty". */
+  label: string;
+  /** The specific legal question this case raises for the rule. */
+  question: string;
 }

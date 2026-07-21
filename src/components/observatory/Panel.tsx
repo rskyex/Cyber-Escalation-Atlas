@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { ProvenanceMark, type ProvenanceKind } from "./StatProvenance";
 
 interface PanelProps {
   children: ReactNode;
@@ -76,12 +77,19 @@ export function MetricBlock({
   unit,
   tone = "atlas",
   hint,
+  provenance,
+  source,
+  sourceUrl,
 }: {
   label: string;
   value: string | number;
   unit?: string;
   tone?: "atlas" | "amber" | "plasma" | "violet" | "steel";
   hint?: string;
+  /** Epistemic status of the value; renders an inline provenance marker. */
+  provenance?: ProvenanceKind;
+  source?: string;
+  sourceUrl?: string;
 }) {
   const toneClass =
     tone === "atlas"
@@ -100,6 +108,13 @@ export function MetricBlock({
       <span className="flex items-baseline gap-1.5">
         <span className={`font-display text-heading ${toneClass}`}>{value}</span>
         {unit && <span className="text-caption text-steel-500">{unit}</span>}
+        {provenance && (
+          <ProvenanceMark
+            kind={provenance}
+            source={source}
+            sourceUrl={sourceUrl}
+          />
+        )}
       </span>
       {hint && <span className="text-caption text-steel-500 leading-snug">{hint}</span>}
     </div>

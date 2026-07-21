@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:counts": "node scripts/check-counts.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",

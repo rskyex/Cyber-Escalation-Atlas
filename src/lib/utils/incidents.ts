@@ -278,6 +278,125 @@ export function entanglementScore(incident: Incident): number {
   return Math.min(10, Math.max(1, sectors + countries + crossings - 1));
 }
 
+// ---- Score breakdowns (transparency of the composite formulas) -------------
+
+export interface ScoreComponent {
+  label: string;
+  /** Raw input value (e.g. number of threshold crossings). */
+  input: number;
+  /** Weight applied to the input in the formula. */
+  weight: number;
+  /** Weighted contribution to the raw score (input × weight). */
+  contribution: number;
+  /** Short note on what the component measures. */
+  note: string;
+}
+
+export interface ScoreBreakdown {
+  score: number;
+  /** Raw weighted sum before rounding/capping. */
+  raw: number;
+  /** Whether the raw sum was capped by the formula ceiling. */
+  capped: boolean;
+  components: ScoreComponent[];
+  /** Human-readable formula string. */
+  formula: string;
+}
+
+/**
+ * Decompose the unpeace score into its weighted components so the case page
+ * can show exactly how the number is assembled. Mirrors {@link unpeaceScore}.
+ */
+export function unpeaceBreakdown(incident: Incident): ScoreBreakdown {
+  const base = tierIndex(incident.escalation.peakTier) + 1; // 1–6
+  const crossings = incident.escalation.thresholdCrossings.length;
+  const govWeight = incident.governance.flags.length;
+
+  const components: ScoreComponent[] = [
+    {
+      label: "Escalation peak",
+      input: base,
+      weight: 1.2,
+      contribution: base * 1.2,
+      note: `Peak tier reached (${incident.escalation.peakTier}), ranked 1–6.`,
+    },
+    {
+      label: "Threshold crossings",
+      input: crossings,
+      weight: 1,
+      contribution: crossings,
+      note: "Distinct escalation thresholds the operation crossed.",
+    },
+    {
+      label: "Governance weight",
+      input: govWeight,
+      weight: 0.5,
+      contribution: govWeight * 0.5,
+      note: "Formal governance responses flagged (attribution, sanctions, indictments…).",
+    },
+  ];
+
+  const raw = components.reduce((s, c) => s + c.contribution, 0);
+  const score = Math.min(10, Math.round(raw));
+  return {
+    score,
+    raw,
+    capped: Math.round(raw) > 10,
+    components,
+    formula: "round( escalationPeak×1.2 + crossings×1 + governance×0.5 ), capped at 10",
+  };
+}
+
+/**
+ * Decompose the entanglement score. Mirrors {@link entanglementScore}.
+ */
+export function entanglementBreakdown(incident: Incident): ScoreBreakdown {
+  const sectors = incident.infrastructure.targetSectors.length;
+  const countries = incident.infrastructure.targetCountries.length;
+  const crossings = incident.escalation.thresholdCrossings.length;
+
+  const components: ScoreComponent[] = [
+    {
+      label: "Sectors affected",
+      input: sectors,
+      weight: 1,
+      contribution: sectors,
+      note: "Distinct critical-infrastructure sectors touched.",
+    },
+    {
+      label: "Countries / regions",
+      input: countries,
+      weight: 1,
+      contribution: countries,
+      note: "Geographic spread of impact.",
+    },
+    {
+      label: "Threshold crossings",
+      input: crossings,
+      weight: 1,
+      contribution: crossings,
+      note: "Escalation thresholds crossed (collateral-spread proxy).",
+    },
+    {
+      label: "Baseline offset",
+      input: 1,
+      weight: -1,
+      contribution: -1,
+      note: "Constant offset so a single-sector, single-country event floors at 1.",
+    },
+  ];
+
+  const raw = components.reduce((s, c) => s + c.contribution, 0);
+  const score = Math.min(10, Math.max(1, raw));
+  return {
+    score,
+    raw,
+    capped: raw > 10 || raw < 1,
+    components,
+    formula: "clamp( sectors + countries + crossings − 1, 1, 10 )",
+  };
+}
+
 /**
  * Find related incidents by shared sector, actor country, or incident type.
  * Returns up to `limit` incidents sorted by overlap count.

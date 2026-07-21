@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid, MetricBlock } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, MetricBlock, ProvenanceNote } from "@/components/observatory";
 
 interface Process {
   id: string;
@@ -64,6 +64,8 @@ export default function TempoPage() {
         description="Eight strategic processes plotted on a logarithmic time axis spanning seven orders of magnitude, from autonomous AI agents (sub-second) to international norm formation (years). The gap between tempo classes is the gap that machine-speed actors exploit."
         status="live"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       <Panel label="TEMPO COMPARATOR · LOG SCALE" status="streaming" className="mb-8">
         <div className="space-y-1.5">

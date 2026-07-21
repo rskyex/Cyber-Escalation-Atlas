@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, ProvenanceNote } from "@/components/observatory";
 
 interface Actor {
   id: string;
@@ -123,6 +123,8 @@ export default function AuthorityPage() {
         description="Across the lifecycle of any incident, interpretive and executive authority migrates between six actors, analyst, AI system, command, autonomous executor, political leadership, public. Where authority lives at each phase shapes who can be answerable later."
         status="modeled"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       {/* ═══ PHASE TIMELINE ═══ */}
       <Panel label="AUTHORITY MIGRATION · 6-PHASE LIFECYCLE" status={activePhase.name.toLowerCase()} statusTone="violet" className="mb-8">
