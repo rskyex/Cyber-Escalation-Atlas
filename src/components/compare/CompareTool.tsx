@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { Incident, GovernanceFlag } from "@/lib/types/incidents";
 import { Badge } from "@/components/ui";
 import { UnpeaceAxis } from "@/components/case-detail/UnpeaceAxis";
 import { EscalationRadar } from "@/components/case-detail/EscalationRadar";
 import { GovernanceFlagsGrid } from "@/components/case-detail/GovernanceFlagsGrid";
+import { ComparativeRadar } from "./ComparativeRadar";
 import {
   unpeaceScore,
   entanglementScore,
@@ -226,11 +227,54 @@ function downloadCsv(selected: Incident[]) {
 // Main component
 // ---------------------------------------------------------------------------
 
+// Default landing comparison so the tool demonstrates itself immediately.
+const SAMPLE_SLUGS = ["notpetya", "stuxnet"];
+
 export function CompareTool({ incidents }: { incidents: Incident[] }) {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const sampleIds = SAMPLE_SLUGS.map(
+    (slug) => incidents.find((i) => i.slug === slug)?.id,
+  ).filter(Boolean) as string[];
+
+  const [selectedIds, setSelectedIds] = useState<string[]>(sampleIds);
   const [showTable, setShowTable] = useState(false);
+  const [isSample, setIsSample] = useState(true);
+
+  // On mount, hydrate selection from ?ids=slug1,slug2 if present.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const idsParam = params.get("ids");
+    if (idsParam) {
+      const ids = idsParam
+        .split(",")
+        .map((slug) => incidents.find((i) => i.slug === slug)?.id)
+        .filter(Boolean)
+        .slice(0, MAX_SELECTIONS) as string[];
+      if (ids.length > 0) {
+        setSelectedIds(ids);
+        setIsSample(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Reflect the current selection into the URL for shareable links.
+  useEffect(() => {
+    const slugs = selectedIds
+      .map((id) => incidents.find((i) => i.id === id)?.slug)
+      .filter(Boolean);
+    const params = new URLSearchParams(window.location.search);
+    if (slugs.length > 0) params.set("ids", slugs.join(","));
+    else params.delete("ids");
+    const qs = params.toString();
+    window.history.replaceState(
+      null,
+      "",
+      qs ? `${window.location.pathname}?${qs}` : window.location.pathname,
+    );
+  }, [selectedIds, incidents]);
 
   const toggle = useCallback((id: string) => {
+    setIsSample(false);
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     );
@@ -282,6 +326,17 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
           </div>
         ) : (
           <>
+            {isSample && cols >= 2 && (
+              <div className="mb-4 flex items-start gap-2 rounded-lg border border-atlas-400/30 bg-atlas-50/40 dark:bg-atlas-900/10 px-4 py-2.5 print:hidden">
+                <span className="mt-0.5 w-2 h-2 rounded-full bg-atlas-400 shrink-0" />
+                <p className="text-xs text-steel-600 dark:text-steel-300 leading-relaxed">
+                  <span className="font-medium text-ink dark:text-white">Sample comparison</span>{" "}
+                  (NotPetya vs Stuxnet). Pick cases from the sidebar to build your
+                  own — the URL updates so any comparison is shareable.
+                </p>
+              </div>
+            )}
+
             {/* Action bar */}
             {cols >= 2 && (
               <div className="flex items-center justify-between mb-4 print:hidden">
@@ -356,6 +411,13 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                     </div>
                   ))}
                 </div>
+
+                {/* Combined comparative radar */}
+                {cols >= 2 && (
+                  <div className="border-b border-steel-200/15 dark:border-ink-600/20">
+                    <ComparativeRadar incidents={selected} />
+                  </div>
+                )}
 
                 {/* Unpeace score */}
                 <CompareRow label="Unpeace Score" verdict={verdicts?.unpeace} colCount={cols}>

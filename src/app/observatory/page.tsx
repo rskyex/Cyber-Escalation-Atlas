@@ -2,8 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ProvenanceMark, ProvenanceNote, type ProvenanceKind } from "@/components/observatory";
 
-const layers = [
+const layers: {
+  coord: string;
+  coordinate: string;
+  title: string;
+  tagline: string;
+  href: string;
+  description: string;
+  metric: string;
+  metricLabel: string;
+  tone: string;
+  provenance: ProvenanceKind;
+}[] = [
   {
     coord: "L-01",
     coordinate: "47.4° N · 8.5° E",
@@ -14,6 +26,7 @@ const layers = [
       "How AI compresses retaliation timelines from days to seconds. Four-stage transition from human-only deliberation to autonomous response, with attribution-confidence degradation tracked at each stage.",
     metric: "0.4s",
     metricLabel: "autonomous tier latency",
+    provenance: "illustrative",
     tone: "atlas",
   },
   {
@@ -26,6 +39,7 @@ const layers = [
       "Beyond binary attribution. Five fragmented attribution streams: technical, intelligence, political, public, alliance; each with independent confidence and contested timing.",
     metric: "5",
     metricLabel: "contested attribution streams",
+    provenance: "structural",
     tone: "violet",
   },
   {
@@ -38,6 +52,7 @@ const layers = [
       "Agentic AI escalation chains. Prompt injection cascading through tool misuse, autonomous action, cross-system propagation, and recursive feedback loops.",
     metric: "6→∞",
     metricLabel: "branching propagation depth",
+    provenance: "illustrative",
     tone: "plasma",
   },
   {
@@ -50,6 +65,7 @@ const layers = [
       "Live propagation across cyber, space, nuclear, AI command, information, financial, and autonomous-weapons domains. Pulses signal cross-contamination events.",
     metric: "7",
     metricLabel: "interlocked domains",
+    provenance: "structural",
     tone: "atlas",
   },
   {
@@ -62,6 +78,7 @@ const layers = [
       "Tempo comparator across six time-scales. Side-by-side: AI agents (seconds), nuclear warning (minutes), cyber espionage (months), sanctions (weeks).",
     metric: "10⁶×",
     metricLabel: "tempo asymmetry: AI vs. diplomacy",
+    provenance: "illustrative",
     tone: "amber",
   },
   {
@@ -74,6 +91,7 @@ const layers = [
       "Procedural collapse sequence: signal detected → misclassification → authority ambiguity → automation continuation → retaliatory escalation. Replay any breakdown.",
     metric: "6",
     metricLabel: "cascade failure modes",
+    provenance: "structural",
     tone: "plasma",
   },
   {
@@ -86,6 +104,7 @@ const layers = [
       "Authority transition diagrams. Who holds interpretive authority at each phase: analyst, AI prioritizer, autonomous executor, political leadership.",
     metric: "4",
     metricLabel: "authority loci",
+    provenance: "structural",
     tone: "violet",
   },
 ];
@@ -208,6 +227,26 @@ export default function ObservatoryHome() {
             Each layer is independently navigable. All seven share state in the simulator.
           </p>
         </div>
+        <ProvenanceNote className="mt-2">
+          <span className="font-medium text-amber-300/90">
+            The metrics on these cards are illustrative or structural.
+          </span>{" "}
+          A figure like <span className="font-mono text-amber-400/80">10⁶×</span> or{" "}
+          <span className="font-mono text-amber-400/80">0.4s</span> is a model
+          parameter chosen to make a dynamic legible (
+          <span className="font-mono text-amber-400/80">≈</span>); a figure like{" "}
+          <span className="font-mono text-amber-400/80">7 domains</span> is a
+          count of elements defined in the model (
+          <span className="font-mono text-amber-400/80">▣</span>). Neither is an
+          empirical measurement. See{" "}
+          <a
+            href="/methodology"
+            className="text-atlas-400 underline underline-offset-2 hover:text-atlas-300"
+          >
+            methodology
+          </a>
+          .
+        </ProvenanceNote>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -246,7 +285,10 @@ export default function ObservatoryHome() {
                       <span className="tag-mono mt-0.5">{l.coordinate}</span>
                     </div>
                     <div className="text-right">
-                      <span className={`block font-display text-subheading ${accent}`}>{l.metric}</span>
+                      <span className={`block font-display text-subheading ${accent}`}>
+                        {l.metric}
+                        <ProvenanceMark kind={l.provenance} />
+                      </span>
                       <span className="tag-mono">{l.metricLabel}</span>
                     </div>
                   </div>

@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Methodology",
+  description:
+    "How the Cyber Escalation Atlas is built: inclusion criteria, source hierarchy, classification logic, scoring formulas, limitations, and theoretical foundations.",
+};
 
 // ---------------------------------------------------------------------------
 // Section shell component, consistent heading + placeholder prose container
@@ -68,11 +75,12 @@ const TOC = [
   { id: "inclusion", number: "03", title: "Inclusion Criteria" },
   { id: "sources", number: "04", title: "Source Hierarchy" },
   { id: "classification", number: "05", title: "Classification Logic" },
-  { id: "limitations", number: "06", title: "Limitations" },
-  { id: "attribution", number: "07", title: "Analytic Caution on Attribution" },
-  { id: "behavior-vs-law", number: "08", title: "Operational Behaviour vs. Legal Interpretation" },
-  { id: "strategic-behaviours", number: "09", title: "Strategic Behaviours, Not Spectacles" },
-  { id: "foundations", number: "10", title: "Theoretical Foundations" },
+  { id: "scoring", number: "06", title: "Scoring Formulas" },
+  { id: "limitations", number: "07", title: "Limitations" },
+  { id: "attribution", number: "08", title: "Analytic Caution on Attribution" },
+  { id: "behavior-vs-law", number: "09", title: "Operational Behaviour vs. Legal Interpretation" },
+  { id: "strategic-behaviours", number: "10", title: "Strategic Behaviours, Not Spectacles" },
+  { id: "foundations", number: "11", title: "Theoretical Foundations" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -314,15 +322,23 @@ export default function MethodologyPage() {
           </ul>
           <p>
             Two derived scores provide additional comparative dimensions.
-            The <strong>unpeace score</strong> (0–100) combines escalation
-            tier, threshold crossings, and governance weight into a single
-            composite indicator. The <strong>entanglement score</strong>
-            (1–10) measures how many sectors, countries, and collateral
-            dimensions an incident touches. Both are heuristics designed for
-            comparison and teaching. They are not measurements, and they
-            should not be cited as if they carried the precision of
-            quantitative data. Their formulas are documented in the
-            codebase and can be inspected directly.
+            The <strong>unpeace score</strong> (1–10, rendered on a 0–100 axis)
+            combines escalation tier, threshold crossings, and governance
+            weight into a single composite indicator. The{" "}
+            <strong>entanglement score</strong> (1–10) measures how many
+            sectors, countries, and collateral dimensions an incident touches.
+            Both are heuristics designed for comparison and teaching. They are
+            not measurements, and they should not be cited as if they carried
+            the precision of quantitative data. Their exact formulas — and a
+            per-case breakdown of how each number is assembled — are documented
+            in{" "}
+            <a
+              href="#scoring"
+              className="text-atlas-600 dark:text-atlas-400 underline underline-offset-2 hover:text-atlas-500"
+            >
+              section 06
+            </a>
+            .
           </p>
           <p>
             Classification decisions involve analytical judgement.
@@ -332,8 +348,98 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        {/* 06, Limitations */}
-        <Section id="limitations" number="06" title="Limitations">
+        {/* 06, Scoring formulas */}
+        <Section id="scoring" number="06" title="Scoring Formulas">
+          <p>
+            Two composite scores appear on every case page. Both are simple,
+            deterministic functions of the structured data, published here in
+            full so that no number in the Atlas is a black box. They are{" "}
+            <strong>interpretive heuristics for comparison and teaching</strong>,
+            not measurements, and they should never be cited as if they carried
+            the precision of empirical data. Each case page reproduces the exact
+            component-by-component arithmetic in a &ldquo;score breakdown&rdquo;
+            panel.
+          </p>
+
+          <div
+            id="unpeace-score"
+            className="scroll-mt-24 mt-4 p-5 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03]"
+          >
+            <h4 className="text-base font-bold text-ink dark:text-white mb-1">
+              Unpeace score
+            </h4>
+            <p className="text-xs font-mono text-steel-500 dark:text-ink-400 mb-3">
+              round( escalationPeak×1.2 + thresholdCrossings×1 + governanceFlags×0.5 ), capped at 10
+            </p>
+            <p>
+              The score sits on a 1–10 scale (rendered on a 0–100 unpeace axis
+              for visual comparison, where 10 maps to 100). It combines three
+              components drawn from Kello&apos;s &ldquo;unpeace&rdquo; framing
+              (section&nbsp;11):
+            </p>
+            <ul className="list-disc pl-5 space-y-1 mt-2">
+              <li>
+                <strong>Escalation peak</strong> — the peak tier reached, ranked
+                1–6, weighted ×1.2 as the dominant term.
+              </li>
+              <li>
+                <strong>Threshold crossings</strong> — count of distinct
+                escalation thresholds the operation crossed, weighted ×1.
+              </li>
+              <li>
+                <strong>Governance weight</strong> — count of formal governance
+                responses (attribution, sanctions, indictments, and so on),
+                weighted ×0.5.
+              </li>
+            </ul>
+            <p className="mt-2">
+              The weights are a deliberate editorial judgement: peak severity
+              matters most, formal governance response least. Reasonable
+              analysts would choose different weights; the point is that ours
+              are visible and inspectable, not that they are uniquely correct.
+            </p>
+          </div>
+
+          <div
+            id="entanglement-score"
+            className="scroll-mt-24 mt-4 p-5 rounded-xl border border-transparent dark:border-white/[0.04] bg-ink-50/50 dark:bg-white/[0.03]"
+          >
+            <h4 className="text-base font-bold text-ink dark:text-white mb-1">
+              Entanglement score
+            </h4>
+            <p className="text-xs font-mono text-steel-500 dark:text-ink-400 mb-3">
+              clamp( sectors + countries + thresholdCrossings − 1, 1, 10 )
+            </p>
+            <p>
+              On a 1–10 scale, the entanglement score measures how many
+              dimensions an incident touches — a proxy for the inadvertent
+              escalation risk described by Acton&apos;s entanglement thesis
+              (section&nbsp;11). It sums the number of affected sectors, the
+              number of affected countries/regions, and the number of threshold
+              crossings, then subtracts a baseline of 1 so a single-sector,
+              single-country event with no crossings floors at 1. The result is
+              clamped to the 1–10 range.
+            </p>
+          </div>
+
+          <p className="mt-4">
+            Both formulas live in{" "}
+            <span className="font-mono text-xs">src/lib/utils/incidents.ts</span>{" "}
+            and can be inspected or re-derived directly from the exported
+            dataset (see the{" "}
+            <a
+              href="/data"
+              className="text-atlas-600 dark:text-atlas-400 underline underline-offset-2 hover:text-atlas-500"
+            >
+              data &amp; downloads
+            </a>{" "}
+            page). Because they are pure functions of the published fields,
+            anyone can reproduce every score.
+          </p>
+        </Section>
+
+        {/* 07, Limitations */}
+        <Section id="limitations" number="07" title="Limitations">
           <p>
             This platform has significant limitations that users should
             understand before drawing conclusions from its content:
@@ -399,7 +505,7 @@ export default function MethodologyPage() {
         </Section>
 
         {/* 07, Attribution caution */}
-        <Section id="attribution" number="07" title="Analytic Caution on Attribution">
+        <Section id="attribution" number="08" title="Analytic Caution on Attribution">
           <p>
             Attribution of cyber operations to specific state actors is one
             of the most epistemologically fraught tasks in security analysis.
@@ -446,7 +552,7 @@ export default function MethodologyPage() {
         </Section>
 
         {/* 08, Behaviour vs. law */}
-        <Section id="behavior-vs-law" number="08" title="Operational Behaviour vs. Legal Interpretation">
+        <Section id="behavior-vs-law" number="09" title="Operational Behaviour vs. Legal Interpretation">
           <p>
             The Atlas describes what states did and how the international
             community responded. It does not offer legal opinions on whether
@@ -484,7 +590,7 @@ export default function MethodologyPage() {
         </Section>
 
         {/* 09, Strategic behaviours */}
-        <Section id="strategic-behaviours" number="09" title="Strategic Behaviours, Not Spectacles">
+        <Section id="strategic-behaviours" number="10" title="Strategic Behaviours, Not Spectacles">
           <p>
             Public discourse about cyber operations tends toward two poles:
             breathless alarm (&ldquo;cyber Pearl Harbor,&rdquo; &ldquo;cyber
@@ -526,7 +632,7 @@ export default function MethodologyPage() {
         </Section>
 
         {/* 10, Theoretical foundations */}
-        <Section id="foundations" number="10" title="Theoretical Foundations">
+        <Section id="foundations" number="11" title="Theoretical Foundations">
           <p>
             The Atlas draws on several bodies of scholarship to structure its
             analysis. These frameworks inform how incidents are categorised,

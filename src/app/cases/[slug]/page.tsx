@@ -13,11 +13,13 @@ import {
   EntanglementSection,
   InfrastructureSection,
   GovernanceSection,
+  LegalDimensionsSection,
   AttackSection,
   TeachingSection,
   SourcesSection,
   RelatedSection,
   CaseExportButton,
+  CiteButton,
 } from "@/components/case-detail";
 
 // ---------------------------------------------------------------------------
@@ -40,8 +42,13 @@ export function generateMetadata({
   const incident = findBySlug(seedIncidents, params.slug);
   if (!incident) return { title: "Case Not Found" };
   return {
-    title: `${incident.shortName}, Cyber Escalation Atlas`,
+    title: incident.name,
     description: incident.summary.slice(0, 160),
+    openGraph: {
+      title: `${incident.name} · Cyber Escalation Atlas`,
+      description: incident.summary.slice(0, 200),
+      type: "article",
+    },
   };
 }
 
@@ -62,8 +69,9 @@ export default function CaseDetailPage({
   return (
     <SectionWrapper>
       <div className="max-w-4xl mx-auto space-y-10">
-        {/* Export */}
-        <div className="flex justify-end">
+        {/* Export + cite */}
+        <div className="flex justify-end gap-2">
+          <CiteButton incident={incident} />
           <CaseExportButton incident={incident} />
         </div>
 
@@ -93,6 +101,9 @@ export default function CaseDetailPage({
 
         {/* 10. Governance analysis (visually prominent) */}
         <GovernanceSection incident={incident} />
+
+        {/* 10b. Legal dimensions (reverse of the Legal Mapper) */}
+        <LegalDimensionsSection incident={incident} />
 
         {/* 11. ATT&CK mapping (collapsible) */}
         <AttackSection incident={incident} />

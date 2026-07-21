@@ -5,6 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 @layer base {
+  /* Accessibility: guarantee a visible keyboard focus indicator even where a
+     component sets focus:outline-none. Pointer clicks stay ring-free. */
+  :focus-visible {
+    outline: 2px solid var(--color-atlas, #2DD4A8);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   :root {
     --color-ink: #0A0F1C;
     --color-steel: #8493AF;

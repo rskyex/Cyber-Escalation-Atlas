@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, ProvenanceNote } from "@/components/observatory";
 
 interface Node {
   id: string;
@@ -101,6 +101,8 @@ export default function AgentPathwaysPage() {
         description="Agentic AI systems compose attack surfaces no traditional adversary needed. A single prompt injection can branch through tool misuse, exfiltration, propagation, recursion, emerging as authority drift in production systems. Hover any node to trace forward propagation."
         status="speculative"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       <Panel label="AGENTIC ESCALATION GRAPH · 5-LAYER" status="branching topology" statusTone="amber" ticks className="mb-8">
         <div className="relative overflow-x-auto edge-fade-x">

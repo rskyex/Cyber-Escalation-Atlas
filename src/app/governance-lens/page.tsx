@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
 import { seedIncidents } from "@/data/incidents";
 import { GovernanceLens } from "@/components/governance/GovernanceLens";
+
+export const metadata: Metadata = {
+  title: "Governance Lens",
+  description:
+    "Policy responses, international norms, and regulatory frameworks shaped by state-linked cyber incidents.",
+};
 
 export default function GovernanceLensPage() {
   return (

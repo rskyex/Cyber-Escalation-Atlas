@@ -6,6 +6,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { primaryNav, secondaryNav } from "@/lib/navigation";
 import { useTheme } from "./ThemeProvider";
+import { SearchModal } from "./SearchModal";
+
+function openSearch() {
+  window.dispatchEvent(new Event("cea:open-search"));
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -73,6 +78,20 @@ export function Header() {
               ))}
             </div>
 
+            {/* Search trigger */}
+            <button
+              onClick={openSearch}
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-steel-500 dark:text-steel-400 hover:text-ink dark:hover:text-white hover:bg-ink-50/50 dark:hover:bg-white/5 transition-colors"
+              aria-label="Search (Command K)"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.2-5.2m2.2-5.3a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+              </svg>
+              <kbd className="hidden lg:inline text-[10px] font-mono text-steel-500 border border-steel-300/40 dark:border-ink-600/50 rounded px-1 py-0.5">
+                ⌘K
+              </kbd>
+            </button>
+
             <div className="hidden lg:block w-px h-4 bg-steel-200/30 dark:bg-steel-700/30 mx-1" />
 
             <button
@@ -111,6 +130,9 @@ export function Header() {
 
       {/* Subtle bottom line */}
       <div className="atlas-rule" />
+
+      {/* Site-wide search (Cmd/Ctrl-K) */}
+      <SearchModal />
 
       {/* Mobile menu */}
       <AnimatePresence>

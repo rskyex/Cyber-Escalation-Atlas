@@ -80,6 +80,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "NotPetya demonstrated that a cyber weapon aimed at one country can inflict billions in collateral damage worldwide, making it a landmark case for debating proportionality, state responsibility, and the limits of deniability in cyber conflict.",
     teaching: {
       keyQuestion: "When does a cyber operation targeting one country become a matter of international concern?",
+      discussionQuestions: [
+        "If an operation is aimed at one country but spreads globally, who bears responsibility for the collateral harm — the attacker, the software vendor, or the unpatched victims?",
+        "NotPetya was disguised as ransomware. How should defenders and policymakers classify an operation whose apparent motive masks its real one?",
+        "Public attribution to Russia eventually came, but consequences took years. What, if anything, does delayed attribution actually deter?",
+        "Several insurers invoked 'act of war' clauses to deny claims. Does importing that language into cyber help or hinder the development of norms?",
+      ],
       discussionPoints: [
         "Proportionality of collateral damage vs. intended target",
         "Effectiveness of public attribution as a deterrent",
@@ -90,10 +96,13 @@ export const seedIncidents: Incident[] = [
         "Bowen, A.S. 'Russian Cyber Units.' CRS Report, 2022.",
       ],
     },
+    lastUpdated: "2026-07",
     sources: [
-      { title: "CISA Alert TA17-181A", category: "government", date: "2017-06-30" },
+      { title: "CISA Alert TA17-181A: Petya Ransomware", url: "https://www.cisa.gov/news-events/alerts/2017/07/01/petya-ransomware", category: "government", date: "2017-07-01" },
       { title: "Microsoft Threat Intelligence: Petya Ransomware Attack", category: "vendor", date: "2017-06-27" },
-      { title: "US DOJ: Six Russian GRU Officers Indicted", category: "legal", date: "2020-10-19" },
+      { title: "US DOJ: Six Russian GRU Officers Charged", url: "https://www.justice.gov/archives/opa/pr/six-russian-gru-officers-charged-connection-worldwide-deployment-destructive-malware-and", category: "legal", date: "2020-10-19" },
+      { title: "Andy Greenberg, 'The Untold Story of NotPetya, the Most Devastating Cyberattack in History,' Wired", url: "https://www.wired.com/story/notpetya-cyberattack-ukraine-russia-code-crashed-the-world/", category: "journalistic", date: "2018-08-22" },
+      { title: "Andy Greenberg, Sandworm (Doubleday, 2019)", category: "academic", date: "2019" },
     ],
   },
   {
@@ -176,6 +185,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "SolarWinds exposed systemic supply chain risk in government IT and triggered the most sweeping US cybersecurity executive order in a decade, reshaping federal procurement and zero-trust policy.",
     teaching: {
       keyQuestion: "Is large-scale cyber espionage an accepted norm of state behavior, or does its scale change its character?",
+      discussionQuestions: [
+        "SolarWinds is usually described as espionage, not attack. Where is the line between intelligence collection and attack preparation when the same access enables both?",
+        "Should a software vendor bear liability for a supply-chain compromise it did not detect? What incentives would that create?",
+        "The intrusion went undetected for roughly nine months. Does the duration of undetected access change its strategic meaning?",
+        "How should a state calibrate a proportionate response to a large-scale espionage operation that caused no destruction?",
+      ],
       discussionPoints: [
         "Espionage vs. attack: where should the line be drawn?",
         "Government dependence on commercial software supply chains",
@@ -186,10 +201,13 @@ export const seedIncidents: Incident[] = [
         "CSRB Review of the SolarWinds Incident, 2022.",
       ],
     },
+    lastUpdated: "2026-07",
     sources: [
-      { title: "CISA Emergency Directive 21-01", category: "government", date: "2020-12-13" },
-      { title: "FireEye: Highly Evasive Attacker Leverages SolarWinds Supply Chain", category: "vendor", date: "2020-12-13" },
-      { title: "Executive Order 14028", category: "government", date: "2021-05-12" },
+      { title: "CISA Emergency Directive 21-01: Mitigate SolarWinds Orion Code Compromise", url: "https://www.cisa.gov/news-events/directives/ed-21-01-mitigate-solarwinds-orion-code-compromise-closed", category: "government", date: "2020-12-13" },
+      { title: "FireEye/Mandiant: Highly Evasive Attacker Leverages SolarWinds Supply Chain (SUNBURST)", url: "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor/", category: "vendor", date: "2020-12-13" },
+      { title: "Executive Order 14028: Improving the Nation's Cybersecurity", category: "government", date: "2021-05-12" },
+      { title: "Brad Smith (Microsoft), 'A moment of reckoning: the need for a strong and global cybersecurity response'", url: "https://blogs.microsoft.com/on-the-issues/2020/12/17/cyberattacks-cybersecurity-solarwinds-fireeye/", category: "journalistic", date: "2020-12-17" },
+      { title: "Dina Temple-Raston, 'A “Worst Nightmare” Cyberattack: The Untold Story Of The SolarWinds Hack,' NPR", category: "journalistic", date: "2021-04-16" },
     ],
   },
 
@@ -272,6 +290,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "Stuxnet proved that software alone can destroy physical infrastructure, fundamentally changing how states, lawyers, and strategists think about the threshold between cyber operations and armed conflict.",
     teaching: {
       keyQuestion: "Does a cyber operation that causes physical destruction cross the use-of-force threshold under international law?",
+      discussionQuestions: [
+        "Stuxnet caused physical damage but was never publicly claimed. Does deniability make an operation more or less escalatory?",
+        "If a cyber operation achieves what a conventional strike would have, should it be judged by the same legal standards?",
+        "Stuxnet is often credited with delaying a nuclear programme without war. Is that a model of restraint or a dangerous precedent?",
+        "What norms, if any, did Stuxnet establish for using cyber weapons against industrial control systems?",
+      ],
       discussionPoints: [
         "Legitimacy of covert cyber sabotage as a non-kinetic alternative to military strikes",
         "Proliferation risk: Stuxnet's code became publicly available after discovery",
@@ -282,9 +306,12 @@ export const seedIncidents: Incident[] = [
         "Langner, R. 'To Kill a Centrifuge.' The Langner Group, 2013.",
       ],
     },
+    lastUpdated: "2026-07",
     sources: [
-      { title: "Symantec: W32.Stuxnet Dossier", category: "vendor", date: "2011-02" },
-      { title: "Langner, R. 'To Kill a Centrifuge'", category: "academic", date: "2013-11" },
+      { title: "Falliere, Murchu & Chien (Symantec): W32.Stuxnet Dossier", url: "https://docs.broadcom.com/docs/security-response-w32-stuxnet-dossier-11-en", category: "vendor", date: "2011-02" },
+      { title: "Ralph Langner, 'To Kill a Centrifuge'", category: "academic", date: "2013-11" },
+      { title: "Ralph Langner, 'Stuxnet: Dissecting a Cyberwarfare Weapon,' IEEE Security & Privacy 9(3)", url: "https://ieeexplore.ieee.org/document/5772960/", category: "academic", date: "2011" },
+      { title: "David E. Sanger, 'Obama Order Sped Up Wave of Cyberattacks Against Iran,' The New York Times", url: "https://www.nytimes.com/2012/06/01/world/middleeast/obama-ordered-wave-of-cyberattacks-against-iran.html", category: "journalistic", date: "2012-06-01" },
       { title: "ICS-CERT Advisory ICSA-10-272-01", category: "government", date: "2010-09" },
     ],
   },
@@ -657,6 +684,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "WannaCry exposed how a leaked intelligence exploit can cascade into a global healthcare crisis, sharpening the policy debate on vulnerability disclosure and the duty to protect civilian systems.",
     teaching: {
       keyQuestion: "Should states disclose vulnerabilities they discover, or stockpile them for intelligence purposes?",
+      discussionQuestions: [
+        "WannaCry spread using an exploit derived from a leaked government toolkit. What responsibility do states bear for the vulnerabilities they stockpile?",
+        "The outbreak was slowed partly by chance (a kill switch). How should the role of luck factor into assessments of severity?",
+        "Hospitals were disrupted though not specifically targeted. Does intent matter when civilian critical infrastructure is harmed?",
+        "North Korea was formally named. What is the purpose of attribution when the named state faces few additional consequences?",
+      ],
       discussionPoints: [
         "Vulnerability equities process: intelligence value vs. public safety",
         "Healthcare as a uniquely vulnerable sector in cyber conflict",
@@ -667,10 +700,13 @@ export const seedIncidents: Incident[] = [
         "Bossert, T. 'It's Official: North Korea Is Behind WannaCry.' WSJ, 2017.",
       ],
     },
+    lastUpdated: "2026-07",
     sources: [
       { title: "NHS England: Lessons Learned Review of WannaCry", category: "government", date: "2018-02" },
-      { title: "Microsoft: Customer Guidance for WannaCrypt Attacks", category: "vendor", date: "2017-05-12" },
-      { title: "White House Press Briefing: Attribution of WannaCry", category: "government", date: "2017-12-19" },
+      { title: "MSRC: Customer Guidance for WannaCrypt Attacks", url: "https://msrc.microsoft.com/blog/2017/05/customer-guidance-for-wannacrypt-attacks/", category: "vendor", date: "2017-05-12" },
+      { title: "CISA Alert TA17-132A: Indicators Associated With WannaCry Ransomware", url: "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware", category: "government", date: "2017-05-12" },
+      { title: "US DOJ: North Korean Regime-Backed Programmer Charged (Park Jin Hyok)", url: "https://www.justice.gov/archives/opa/pr/north-korean-regime-backed-programmer-charged-conspiracy-conduct-multiple-cyber-attacks-and", category: "legal", date: "2018-09-06" },
+      { title: "Nicole Perlroth, This Is How They Tell Me the World Ends (Bloomsbury, 2021)", category: "academic", date: "2021" },
     ],
   },
 
@@ -938,6 +974,12 @@ export const seedIncidents: Incident[] = [
     whyThisMatters: "Viasat KA-SAT was the clearest example yet of cyber attack as an opening act of war, with cross-border collateral damage that forced NATO and the EU to treat satellite infrastructure as a shared security concern.",
     teaching: {
       keyQuestion: "How does the integration of cyber operations into conventional warfare change the rules of armed conflict?",
+      discussionQuestions: [
+        "A commercial satellite network served military and civilian users alike. How should dual-use infrastructure be treated under the principle of distinction?",
+        "Collateral outages spread across NATO states not party to the conflict. When does spillover become a separate international wrong?",
+        "Allied attribution was unusually fast and coordinated. What made rapid joint attribution possible here, and is it repeatable?",
+        "The wiper was timed to a kinetic invasion. How does cyber–kinetic coordination change the escalation calculus?",
+      ],
       discussionPoints: [
         "Cyber as a precursor to kinetic operations: legal and strategic implications",
         "Collateral damage across borders and the distinction principle in IHL",
@@ -948,10 +990,11 @@ export const seedIncidents: Incident[] = [
         "Viasat Incident Report: KA-SAT Network Cyber Attack Overview, 2022.",
       ],
     },
+    lastUpdated: "2026-07",
     sources: [
-      { title: "Viasat: KA-SAT Network Cyber Attack Overview", category: "vendor", date: "2022-03-30" },
-      { title: "SentinelOne: AcidRain, A Modem Wiper Rains Down on Europe", category: "vendor", date: "2022-03-31" },
-      { title: "EU Council: Declaration on Viasat Cyber Attack Attribution", category: "government", date: "2022-05-10" },
+      { title: "Viasat: KA-SAT Network Cyber Attack Overview", url: "https://news.viasat.com/blog/corporate/ka-sat-network-cyber-attack-overview", category: "vendor", date: "2022-03-30" },
+      { title: "Guerrero-Saade & Chen (SentinelOne Labs): AcidRain — A Modem Wiper Rains Down on Europe", url: "https://www.sentinelone.com/labs/acidrain-a-modem-wiper-rains-down-on-europe/", category: "vendor", date: "2022-03-31" },
+      { title: "Council of the EU: Declaration by the High Representative on Russian cyber operations against Ukraine (Viasat/KA-SAT)", url: "https://www.consilium.europa.eu/en/press/press-releases/2022/05/10/russian-cyber-operations-against-ukraine-declaration-by-the-high-representative-on-behalf-of-the-european-union/", category: "government", date: "2022-05-10" },
     ],
   },
 

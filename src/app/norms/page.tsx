@@ -48,10 +48,13 @@ export default function NormsPage() {
                 <h3 className="text-sm font-bold text-ink dark:text-white leading-snug">
                   {norm.title}
                 </h3>
-                <span className="text-xs text-steel-500 font-mono shrink-0">
-                  {norm.cases.length}
+                <span className="text-xs text-steel-500 font-mono shrink-0" title="Cases implicating this norm">
+                  {norm.normEffects.length} cases
                 </span>
               </div>
+              <p className="text-[10px] font-mono text-steel-500 dark:text-ink-400 mb-2">
+                Articulated {norm.originYear}
+              </p>
               <p className="text-xs text-steel-500 dark:text-steel-400 line-clamp-2 mb-3">
                 {norm.description}
               </p>
@@ -73,36 +76,55 @@ export default function NormsPage() {
             {selectedNorm.description}
           </p>
 
-          {/* Legal basis */}
+          {/* Legal basis + origin */}
           <div className="mb-4">
             <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-400 uppercase tracking-wider mb-1">Anchor Instruments</p>
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1 mb-2">
               {selectedNorm.anchorInstruments.map((a) => (
                 <Badge key={a} variant="default">{a}</Badge>
               ))}
             </div>
+            <p className="text-xs text-steel-500 dark:text-steel-400">
+              First articulated <strong className="text-ink dark:text-white">{selectedNorm.originYear}</strong>
+              {" — "}{selectedNorm.originBasis}.
+            </p>
           </div>
 
-          {/* Timeline of cases */}
+          {/* Chronological timeline of implicating cases */}
           <div className="mb-4">
-            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">Cases Implicating This Norm</p>
-            <div className="space-y-2">
-              {selectedNorm.normEffects.map((ne) => {
-                const inc = seedIncidents.find((i) => i.slug === ne.caseSlug);
-                if (!inc) return null;
-                return (
-                  <a key={ne.caseSlug} href={`/cases/${ne.caseSlug}`} className="flex items-center justify-between p-3 rounded-lg hover:bg-ink-50/30 dark:hover:bg-ink-700/30 transition-colors border border-steel-200/15 dark:border-ink-600/20">
-                    <div>
-                      <span className="text-sm font-medium text-ink dark:text-white">{inc.shortName}</span>
-                      <span className="text-xs text-steel-500 ml-2">{inc.year}</span>
-                    </div>
-                    <span className={`text-xs font-medium ${effectColors[ne.effect]}`}>
-                      {ne.effect}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-3">
+              Timeline of Implicating Cases
+            </p>
+            <ol className="relative border-l border-steel-200/40 dark:border-ink-600/40 ml-2">
+              {[...selectedNorm.normEffects]
+                .map((ne) => ({
+                  ne,
+                  inc: seedIncidents.find((i) => i.slug === ne.caseSlug),
+                }))
+                .filter((x) => x.inc)
+                .sort((a, b) => (a.inc!.year - b.inc!.year))
+                .map(({ ne, inc }) => (
+                  <li key={ne.caseSlug} className="ml-4 mb-2.5">
+                    <span className="absolute -left-[5px] mt-1.5 h-2 w-2 rounded-full bg-atlas-400 dark:bg-atlas-500" />
+                    <a
+                      href={`/cases/${ne.caseSlug}`}
+                      className="flex items-center justify-between gap-3 p-2.5 rounded-lg hover:bg-ink-50/30 dark:hover:bg-ink-700/30 transition-colors"
+                    >
+                      <div className="min-w-0">
+                        <span className="text-xs font-mono text-steel-500 dark:text-ink-400 mr-2">
+                          {inc!.year}
+                        </span>
+                        <span className="text-sm font-medium text-ink dark:text-white">
+                          {inc!.shortName}
+                        </span>
+                      </div>
+                      <span className={`text-xs font-medium shrink-0 ${effectColors[ne.effect]}`}>
+                        {ne.effect}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+            </ol>
           </div>
 
           {/* Current assessment */}

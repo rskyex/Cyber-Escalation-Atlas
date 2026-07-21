@@ -8,7 +8,8 @@ interface TeachingSectionProps {
 }
 
 export function TeachingSection({ incident }: TeachingSectionProps) {
-  const { keyQuestion, discussionPoints, furtherReading } = incident.teaching;
+  const { keyQuestion, discussionPoints, furtherReading, discussionQuestions } =
+    incident.teaching;
 
   return (
     <Collapsible title="Teaching Mode">
@@ -42,6 +43,23 @@ export function TeachingSection({ incident }: TeachingSectionProps) {
             ))}
           </ul>
         </div>
+
+        {/* Discussion questions (open-ended seminar prompts) */}
+        {discussionQuestions && discussionQuestions.length > 0 && (
+          <div className="p-4 rounded-lg bg-ink-50/50 dark:bg-ink-800/20 border border-steel-200/25 dark:border-ink-600/30">
+            <p className="text-xs font-semibold text-ink dark:text-ink-100 uppercase tracking-wider mb-2">
+              Discussion Questions
+            </p>
+            <ol className="space-y-2">
+              {discussionQuestions.map((q, i) => (
+                <li key={i} className="text-sm text-steel-500 dark:text-steel-200 flex gap-2 leading-relaxed">
+                  <span className="text-atlas-500 font-medium shrink-0">Q{i + 1}.</span>
+                  {q}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
 
         {/* Further reading */}
         {furtherReading.length > 0 && (

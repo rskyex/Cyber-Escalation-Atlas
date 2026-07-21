@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, ProvenanceNote } from "@/components/observatory";
 
 interface Domain {
   id: string;
@@ -103,6 +103,8 @@ export default function CrossDomainPage() {
         description="Eight interlocked operational domains. An action in one, cyber, space, AI command, nuclear C3, information, financial, autonomous weapons, propagates through structural entanglements that no single ministry, command, or doctrine wholly governs. Select a scenario to trace propagation."
         status="modeled"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       <div className="flex flex-wrap items-center gap-2 mb-6">
         <span className="tag-mono mr-2">SCENARIO ·</span>

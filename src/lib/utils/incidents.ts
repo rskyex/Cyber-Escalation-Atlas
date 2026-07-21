@@ -211,6 +211,61 @@ export function sortByEscalation(
   });
 }
 
+// ---- Comparative profile (radar axes) ---------------------------------------
+
+const confidenceStrength: Record<AttributionConfidence, number> = {
+  confirmed: 100,
+  high: 80,
+  moderate: 60,
+  low: 40,
+  contested: 20,
+};
+
+export interface ComparativeProfile {
+  escalation: number; // 0–100, peak tier
+  infrastructure: number; // 0–100, sector + country spread
+  governance: number; // 0–100, governance-response density
+  attribution: number; // 0–100, attribution strength
+  entanglement: number; // 0–100, entanglement score
+}
+
+/**
+ * Normalise an incident onto five comparable 0–100 axes for the radar overlay.
+ * These are derived from the same heuristic fields as the case scores; they are
+ * comparison aids, not measurements.
+ */
+export function comparativeProfile(incident: Incident): ComparativeProfile {
+  const tier = tierIndex(incident.escalation.peakTier) + 1; // 1–6
+  const sectors = incident.infrastructure.targetSectors.length;
+  const countries = incident.infrastructure.targetCountries.length;
+  const govFlags = incident.governance.flags.length; // 0–8
+  return {
+    escalation: Math.round((tier / 6) * 100),
+    infrastructure: Math.min(100, Math.round(((sectors + countries) / 12) * 100)),
+    governance: Math.min(100, Math.round((govFlags / 8) * 100)),
+    attribution: confidenceStrength[incident.attribution.confidence],
+    entanglement: entanglementScore(incident) * 10,
+  };
+}
+
+// ---- MITRE ATT&CK -----------------------------------------------------------
+
+/**
+ * Build the canonical attack.mitre.org URL for a technique ID.
+ * "T1195.002" → https://attack.mitre.org/techniques/T1195/002/
+ * "T1059"     → https://attack.mitre.org/techniques/T1059/
+ * Works for Enterprise and ICS (T0xxx) technique IDs alike. Returns null for
+ * anything that isn't a well-formed technique ID, so we never emit a bad link.
+ */
+export function mitreUrl(id: string): string | null {
+  const m = id.trim().match(/^(T\d{4})(?:\.(\d{3}))?$/);
+  if (!m) return null;
+  const [, base, sub] = m;
+  return sub
+    ? `https://attack.mitre.org/techniques/${base}/${sub}/`
+    : `https://attack.mitre.org/techniques/${base}/`;
+}
+
 // ---- Lookup helpers ---------------------------------------------------------
 
 export function findBySlug(
@@ -276,6 +331,125 @@ export function entanglementScore(incident: Incident): number {
   const countries = incident.infrastructure.targetCountries.length;
   const crossings = incident.escalation.thresholdCrossings.length;
   return Math.min(10, Math.max(1, sectors + countries + crossings - 1));
+}
+
+// ---- Score breakdowns (transparency of the composite formulas) -------------
+
+export interface ScoreComponent {
+  label: string;
+  /** Raw input value (e.g. number of threshold crossings). */
+  input: number;
+  /** Weight applied to the input in the formula. */
+  weight: number;
+  /** Weighted contribution to the raw score (input × weight). */
+  contribution: number;
+  /** Short note on what the component measures. */
+  note: string;
+}
+
+export interface ScoreBreakdown {
+  score: number;
+  /** Raw weighted sum before rounding/capping. */
+  raw: number;
+  /** Whether the raw sum was capped by the formula ceiling. */
+  capped: boolean;
+  components: ScoreComponent[];
+  /** Human-readable formula string. */
+  formula: string;
+}
+
+/**
+ * Decompose the unpeace score into its weighted components so the case page
+ * can show exactly how the number is assembled. Mirrors {@link unpeaceScore}.
+ */
+export function unpeaceBreakdown(incident: Incident): ScoreBreakdown {
+  const base = tierIndex(incident.escalation.peakTier) + 1; // 1–6
+  const crossings = incident.escalation.thresholdCrossings.length;
+  const govWeight = incident.governance.flags.length;
+
+  const components: ScoreComponent[] = [
+    {
+      label: "Escalation peak",
+      input: base,
+      weight: 1.2,
+      contribution: base * 1.2,
+      note: `Peak tier reached (${incident.escalation.peakTier}), ranked 1–6.`,
+    },
+    {
+      label: "Threshold crossings",
+      input: crossings,
+      weight: 1,
+      contribution: crossings,
+      note: "Distinct escalation thresholds the operation crossed.",
+    },
+    {
+      label: "Governance weight",
+      input: govWeight,
+      weight: 0.5,
+      contribution: govWeight * 0.5,
+      note: "Formal governance responses flagged (attribution, sanctions, indictments…).",
+    },
+  ];
+
+  const raw = components.reduce((s, c) => s + c.contribution, 0);
+  const score = Math.min(10, Math.round(raw));
+  return {
+    score,
+    raw,
+    capped: Math.round(raw) > 10,
+    components,
+    formula: "round( escalationPeak×1.2 + crossings×1 + governance×0.5 ), capped at 10",
+  };
+}
+
+/**
+ * Decompose the entanglement score. Mirrors {@link entanglementScore}.
+ */
+export function entanglementBreakdown(incident: Incident): ScoreBreakdown {
+  const sectors = incident.infrastructure.targetSectors.length;
+  const countries = incident.infrastructure.targetCountries.length;
+  const crossings = incident.escalation.thresholdCrossings.length;
+
+  const components: ScoreComponent[] = [
+    {
+      label: "Sectors affected",
+      input: sectors,
+      weight: 1,
+      contribution: sectors,
+      note: "Distinct critical-infrastructure sectors touched.",
+    },
+    {
+      label: "Countries / regions",
+      input: countries,
+      weight: 1,
+      contribution: countries,
+      note: "Geographic spread of impact.",
+    },
+    {
+      label: "Threshold crossings",
+      input: crossings,
+      weight: 1,
+      contribution: crossings,
+      note: "Escalation thresholds crossed (collateral-spread proxy).",
+    },
+    {
+      label: "Baseline offset",
+      input: 1,
+      weight: -1,
+      contribution: -1,
+      note: "Constant offset so a single-sector, single-country event floors at 1.",
+    },
+  ];
+
+  const raw = components.reduce((s, c) => s + c.contribution, 0);
+  const score = Math.min(10, Math.max(1, raw));
+  return {
+    score,
+    raw,
+    capped: raw > 10 || raw < 1,
+    components,
+    formula: "clamp( sectors + countries + crossings − 1, 1, 10 )",
+  };
 }
 
 /**

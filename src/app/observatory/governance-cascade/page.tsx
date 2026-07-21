@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid, MetricBlock } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, MetricBlock, ProvenanceNote } from "@/components/observatory";
 
 interface Stage {
   id: string;
@@ -108,6 +108,8 @@ export default function GovernanceCascadePage() {
         description="Crisis rarely arrives from a single catastrophic decision. It arrives through six smaller failures stacked atop one another, each plausible in isolation, each compounding the last. The cascade is the most-observed and least-prevented pattern in modern incident escalation."
         status="modeled"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       {/* ═══ CONTROL BAR ═══ */}
       <Panel label="CASCADE SIMULATOR · 6-STAGE FAILURE" status={playing ? "running" : "paused"} statusTone={playing ? "plasma" : "atlas"} className="mb-8">

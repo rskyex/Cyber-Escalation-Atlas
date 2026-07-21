@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ObservatoryHeader, Panel, PanelGrid, MetricBlock } from "@/components/observatory";
+import { ObservatoryHeader, Panel, PanelGrid, MetricBlock, ProvenanceNote, ProvenanceMark } from "@/components/observatory";
 
 interface Stage {
   id: string;
@@ -100,6 +100,8 @@ export default function DecisionCompressionPage() {
         description="As decision-making migrates from human deliberation to autonomous response, retaliation latency collapses by six orders of magnitude, while attribution certainty degrades and override windows narrow toward zero. Hover or select a tier."
         status="modeled"
       />
+
+      <ProvenanceNote className="mb-10" />
 
       {/* ═══ COMPRESSION SPECTRUM ═══ */}
       <Panel label="DECISION TIER · TEMPORAL SPECTRUM" status="active" className="mb-8">
@@ -213,6 +215,7 @@ export default function DecisionCompressionPage() {
                 label="Attribution confidence"
                 value={`${active.attribution}%`}
                 tone="violet"
+                provenance="illustrative"
                 hint="Pre-action certainty about responsible actor."
               />
               <div className="mt-6 obs-rule" />
@@ -221,6 +224,7 @@ export default function DecisionCompressionPage() {
                   label="Confidence degradation"
                   value={`−${active.confidenceDeg} pts`}
                   tone="amber"
+                  provenance="illustrative"
                   hint="Loss in attribution rigor vs. human-only baseline."
                 />
               </div>
@@ -235,6 +239,7 @@ export default function DecisionCompressionPage() {
                   <span className="tag-mono">UNINTENDED ESCALATION PROBABILITY</span>
                   <span className="font-display text-subheading text-white">
                     {active.escalationRisk}<span className="text-steel-500 text-caption font-sans ml-1">%</span>
+                    <ProvenanceMark kind="illustrative" />
                   </span>
                 </div>
                 <div className="relative h-2 bg-white/[0.04] rounded-full overflow-hidden">

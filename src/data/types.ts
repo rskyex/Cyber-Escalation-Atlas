@@ -30,4 +30,5 @@ export type {
   AttributionConsequenceType,
   AttributionClaimant,
   AttributionDetail,
+  LegalFrameworkRef,
 } from "@/lib/types/incidents";

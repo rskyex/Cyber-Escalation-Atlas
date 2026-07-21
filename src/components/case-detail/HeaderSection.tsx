@@ -10,6 +10,7 @@ import {
   targetSectorLabels,
   unpeaceScore,
 } from "@/lib/utils/incidents";
+import { dataCutoff } from "@/lib/datasetStats";
 
 interface HeaderSectionProps {
   incident: Incident;
@@ -38,6 +39,11 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
         </h1>
         <p className="text-base text-steel-500 dark:text-steel-200 mt-1">
           {incident.dateRange}
+        </p>
+        <p className="mt-1.5 text-xs font-mono text-steel-500 dark:text-ink-400">
+          {incident.lastUpdated
+            ? `Record reviewed: ${incident.lastUpdated}`
+            : `Dataset reviewed: ${dataCutoff}`}
         </p>
       </div>
 

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { caseCount } from "@/lib/datasetStats";
 
 export const runtime = "edge";
 
@@ -235,7 +236,7 @@ export default function OgImage() {
           {/* Stats badges */}
           <div style={{ display: "flex", gap: 12 }}>
             {[
-              { value: "36", label: "Cases" },
+              { value: String(caseCount), label: "Cases" },
               { value: "4", label: "Lenses" },
               { value: "8", label: "Actors" },
             ].map((s) => (
