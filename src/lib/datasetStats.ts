@@ -24,15 +24,12 @@ export const caseCount: number = seedIncidents.length;
 export const observatoryLayerCount = 7;
 
 /**
- * Best-effort ISO-ish date for a single incident, used to derive the dataset
- * cutoff. Prefers an explicit `lastUpdated`, then the last date that appears
- * in `dateRange`, then falls back to the incident year.
+ * Best-effort occurrence date for a single incident, used to derive the
+ * dataset *coverage* cutoff (how current the corpus is). This intentionally
+ * uses the incident's own date — NOT `lastUpdated`, which records when a
+ * record was last reviewed, a different question.
  */
 function incidentDate(inc: Incident): Date {
-  if (inc.lastUpdated) {
-    const d = new Date(inc.lastUpdated);
-    if (!Number.isNaN(d.getTime())) return d;
-  }
   // Pull a trailing YYYY(-MM(-DD)) or YYYY out of the free-text dateRange.
   const match = inc.dateRange?.match(/(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?\s*$/);
   if (match) {

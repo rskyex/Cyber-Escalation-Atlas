@@ -7,7 +7,15 @@ import {
   unpeaceScore,
   incidentTypeLabels,
   incidentTypeBadge,
+  attributionLabels,
+  attributionBadge,
 } from "@/lib/utils/incidents";
+import {
+  actorCases,
+  groupByAttributionGap,
+  attributionGapMeta,
+  type AttributionGap,
+} from "@/lib/utils/actors";
 
 export function generateStaticParams() {
   return actorProfiles.map((a) => ({ slug: a.slug }));
@@ -23,7 +31,9 @@ export default function ActorDetailPage({ params }: { params: { slug: string } }
   const actor = actorProfiles.find((a) => a.slug === params.slug);
   if (!actor) notFound();
 
-  const cases = seedIncidents.filter((i) => i.actorSlug === params.slug);
+  const cases = actorCases(seedIncidents, params.slug);
+  const isUnknownContested = actor.slug === "unknown-contested";
+  const gapGroups = groupByAttributionGap(cases);
   const techniques = cases.flatMap((c) => c.infrastructure.techniques);
   const tacticCounts: Record<string, number> = {};
   techniques.forEach((t) => {
@@ -83,6 +93,118 @@ export default function ActorDetailPage({ params }: { params: { slug: string } }
             ))}
           </div>
         </section>
+
+        {/* Activity timeline */}
+        {cases.length > 0 && (
+          <section>
+            <h2 className="text-lg font-bold text-ink dark:text-white mb-4">Activity Timeline</h2>
+            <ol className="relative border-l border-steel-200/40 dark:border-ink-600/40 ml-2">
+              {cases.map((inc) => (
+                <li key={inc.id} className="ml-4 mb-3">
+                  <span className="absolute -left-[5px] mt-1.5 h-2 w-2 rounded-full bg-atlas-400 dark:bg-atlas-500" />
+                  <a href={`/cases/${inc.slug}`} className="group block">
+                    <span className="text-xs font-mono text-steel-500 dark:text-ink-400 mr-2">{inc.year}</span>
+                    <span className="text-sm font-medium text-ink dark:text-white group-hover:text-atlas-600 dark:group-hover:text-atlas-400 transition-colors">
+                      {inc.shortName}
+                    </span>
+                    <span className="ml-2 text-xs text-steel-500">{incidentTypeLabels[inc.incidentType]}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {/* Attribution basis */}
+        {cases.length > 0 && (
+          <section>
+            <h2 className="text-lg font-bold text-ink dark:text-white mb-2">Attribution Basis</h2>
+            <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-4">
+              How firmly each operation is tied to this actor, and by whom. Confidence
+              reflects the weight of public evidence, not intelligence-community ground
+              truth (see{" "}
+              <a href="/methodology#attribution" className="text-atlas-600 dark:text-atlas-400 hover:underline">
+                methodology §08
+              </a>
+              ).
+            </p>
+            <div className="space-y-2.5">
+              {cases.map((inc) => (
+                <div
+                  key={inc.id}
+                  className="p-3.5 rounded-lg border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <a href={`/cases/${inc.slug}`} className="text-sm font-medium text-ink dark:text-white hover:text-atlas-600 dark:hover:text-atlas-400">
+                      {inc.shortName}
+                    </a>
+                    <Badge variant={attributionBadge[inc.attribution.confidence]}>
+                      {attributionLabels[inc.attribution.confidence]}
+                    </Badge>
+                  </div>
+                  {inc.attributionDetail && inc.attributionDetail.claimants.length > 0 ? (
+                    <p className="text-xs text-steel-500 dark:text-steel-400 leading-snug">
+                      Attributed by{" "}
+                      {inc.attributionDetail.claimants.map((c) => c.actor).join(", ")}
+                      {inc.attributionDetail.consequences.length > 0 && (
+                        <> · Consequences: {inc.attributionDetail.consequences.join(", ")}</>
+                      )}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-steel-500 dark:text-steel-400 leading-snug">
+                      Named actor: {inc.attribution.attributedTo || "—"}
+                      {inc.attribution.country ? ` (${inc.attribution.country})` : ""}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Unknown / Contested typology */}
+        {isUnknownContested && (
+          <section>
+            <h2 className="text-lg font-bold text-ink dark:text-white mb-2">
+              Why Attribution Fails
+            </h2>
+            <p className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-4">
+              The cases below share one feature: no confident, consensus attribution
+              exists. Attribution uncertainty is not a single problem but several. The
+              Atlas sorts these cases into three failure modes — a derived analytic
+              categorisation based on each record&apos;s confidence level and
+              attribution detail, not an external ruling.
+            </p>
+            <div className="space-y-4">
+              {(Object.keys(attributionGapMeta) as AttributionGap[]).map((gap) => {
+                const group = gapGroups[gap];
+                if (group.length === 0) return null;
+                const meta = attributionGapMeta[gap];
+                return (
+                  <div key={gap} className="p-4 rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20">
+                    <div className="flex items-baseline justify-between gap-2 mb-1">
+                      <h3 className="text-sm font-bold text-ink dark:text-white">{meta.label}</h3>
+                      <span className="text-xs font-mono text-steel-500 shrink-0">{group.length} cases</span>
+                    </div>
+                    <p className="text-xs text-steel-500 dark:text-steel-400 leading-snug mb-2.5">{meta.description}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.map((inc) => (
+                        <a
+                          key={inc.id}
+                          href={`/cases/${inc.slug}`}
+                          className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-md bg-ink-50 dark:bg-ink-600/30 text-ink dark:text-steel-200 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
+                        >
+                          {inc.shortName}
+                          <span className="font-mono text-[10px] text-steel-500">{inc.year}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* TTP Pattern */}
         <section>

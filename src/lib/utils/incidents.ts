@@ -211,6 +211,24 @@ export function sortByEscalation(
   });
 }
 
+// ---- MITRE ATT&CK -----------------------------------------------------------
+
+/**
+ * Build the canonical attack.mitre.org URL for a technique ID.
+ * "T1195.002" → https://attack.mitre.org/techniques/T1195/002/
+ * "T1059"     → https://attack.mitre.org/techniques/T1059/
+ * Works for Enterprise and ICS (T0xxx) technique IDs alike. Returns null for
+ * anything that isn't a well-formed technique ID, so we never emit a bad link.
+ */
+export function mitreUrl(id: string): string | null {
+  const m = id.trim().match(/^(T\d{4})(?:\.(\d{3}))?$/);
+  if (!m) return null;
+  const [, base, sub] = m;
+  return sub
+    ? `https://attack.mitre.org/techniques/${base}/${sub}/`
+    : `https://attack.mitre.org/techniques/${base}/`;
+}
+
 // ---- Lookup helpers ---------------------------------------------------------
 
 export function findBySlug(

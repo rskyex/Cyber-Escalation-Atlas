@@ -14,6 +14,7 @@ export { EntanglementSection } from "./EntanglementSection";
 export { InfrastructureSection } from "./InfrastructureSection";
 export { GovernanceSection } from "./GovernanceSection";
 export { GovernanceFlagsGrid } from "./GovernanceFlagsGrid";
+export { LegalDimensionsSection } from "./LegalDimensionsSection";
 export { AttackSection } from "./AttackSection";
 export { TeachingSection } from "./TeachingSection";
 export { SourcesSection } from "./SourcesSection";

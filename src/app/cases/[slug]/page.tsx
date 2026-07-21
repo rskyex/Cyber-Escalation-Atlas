@@ -13,6 +13,7 @@ import {
   EntanglementSection,
   InfrastructureSection,
   GovernanceSection,
+  LegalDimensionsSection,
   AttackSection,
   TeachingSection,
   SourcesSection,
@@ -93,6 +94,9 @@ export default function CaseDetailPage({
 
         {/* 10. Governance analysis (visually prominent) */}
         <GovernanceSection incident={incident} />
+
+        {/* 10b. Legal dimensions (reverse of the Legal Mapper) */}
+        <LegalDimensionsSection incident={incident} />
 
         {/* 11. ATT&CK mapping (collapsible) */}
         <AttackSection incident={incident} />
