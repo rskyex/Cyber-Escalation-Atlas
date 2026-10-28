@@ -22,7 +22,7 @@ const faultlineProjects = [
       "Monitoring and analysis of orbital risks, space debris, and dual-use satellite systems.",
   },
   {
-    name: "Space Mandate Atlas",
+    name: "Lunar Governance Tracker",
     href: "https://lunar-mandate-atlas.vercel.app/",
     description:
       "Mapping space governance mandates, treaties, and institutional authority across jurisdictions.",

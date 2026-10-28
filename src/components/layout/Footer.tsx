@@ -113,7 +113,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-caption text-steel-500 dark:text-steel-400 hover:text-atlas-600 dark:hover:text-atlas-400 transition-colors"
                 >
-                  Space Mandate Atlas
+                  Lunar Governance Tracker
                 </a>
               </li>
             </ul>
