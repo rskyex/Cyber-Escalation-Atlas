@@ -1,3 +1,5 @@
+import { tallinnNumbers, TALLINN_RULES } from "@/data/tallinnRules";
+
 export interface LegalRule {
   ruleId: string;
   name: string;
@@ -18,22 +20,22 @@ export const legalFrameworks: LegalFramework[] = [
     name: "Tallinn Manual 2.0",
     rules: [
       {
-        ruleId: "tallinn-r4",
-        name: "Rule 4, State Responsibility",
+        ruleId: `tallinn-r${TALLINN_RULES.internationallyWrongfulActs.number}`,
+        name: `${tallinnNumbers("internationallyWrongfulActs", "attributionStateOrgans", "attributionNonStateActors")}, State Responsibility and Attribution`,
         description: "A state bears international responsibility for a cyber operation attributable to it that constitutes a breach of an international obligation. Attribution requires that the operation was conducted by state organs or by persons acting under the direction or control of the state.",
-        cyberControversy: "The threshold for 'direction or control' remains contested. States increasingly use proxy groups, contractors, and criminal organisations for cyber operations, making attribution under Rule 4 analytically complex. The 'effective control' vs. 'overall control' debate from ICJ and ICTY jurisprudence has no settled cyber-specific interpretation.",
+        cyberControversy: "The threshold for 'direction or control' remains contested. States increasingly use proxy groups, contractors, and criminal organisations for cyber operations, making attribution under these rules analytically complex. The 'effective control' vs. 'overall control' debate from ICJ and ICTY jurisprudence has no settled cyber-specific interpretation.",
         cases: [
           { caseSlug: "colonial-pipeline", note: "Criminal group operating from Russian territory raises questions about state tolerance as a basis for responsibility" },
           { caseSlug: "costa-rica-conti", note: "Conti's Russian nexus tested the boundary between criminal autonomy and state acquiescence" },
           { caseSlug: "wannacry", note: "State-linked group (Lazarus) using criminal ransomware tools blurs the state/non-state distinction" },
           { caseSlug: "cloud-hopper-apt10", note: "MSS Tianjin State Security Bureau association in the 2018 DOJ indictment tested 'direction or control' applied to a contractor model at allied scale" },
           { caseSlug: "salt-typhoon", note: "Jan 2025 OFAC designation of Sichuan Juxinhe Network Technology operationalised attribution of contractor activity to PRC state responsibility through sanctions rather than indictment" },
-          { caseSlug: "belgacom-operation-socialist", note: "High-confidence technical attribution to a Five Eyes service produced no political-attribution chain; tests Rule 4 in the absence of victim-state willingness to invoke it against an ally" },
+          { caseSlug: "belgacom-operation-socialist", note: `High-confidence technical attribution to a Five Eyes service produced no political-attribution chain; tests ${tallinnNumbers("attributionStateOrgans")} in the absence of victim-state willingness to invoke it against an ally` },
         ],
       },
       {
-        ruleId: "tallinn-r14",
-        name: "Rule 14, Due Diligence",
+        ruleId: `tallinn-r${TALLINN_RULES.dueDiligence.number}`,
+        name: `${tallinnNumbers("dueDiligence", "dueDiligenceCompliance")}, Due Diligence`,
         description: "A state must not knowingly allow its territory to be used for cyber operations that adversely affect the rights of other states. The duty extends to taking feasible measures to halt ongoing operations and prevent future ones.",
         cyberControversy: "The scope of due diligence in cyberspace is deeply contested. Questions remain about what constitutes 'knowledge' of malicious activity originating from a state's territory, what 'feasible measures' are required, and whether the obligation is one of conduct or result.",
         cases: [
@@ -44,8 +46,8 @@ export const legalFrameworks: LegalFramework[] = [
         ],
       },
       {
-        ruleId: "tallinn-r30",
-        name: "Rule 30, Distinction",
+        ruleId: `tallinn-r${TALLINN_RULES.distinction.number}`,
+        name: `${tallinnNumbers("distinction")}, Distinction`,
         description: "Parties to an armed conflict must distinguish between civilian objects and military objectives. Cyber attacks may only be directed at military objectives.",
         cyberControversy: "Dual-use infrastructure, telecommunications networks, power grids, cloud platforms serving both military and civilian users, makes distinction in cyberspace exceptionally difficult. A cyber operation targeting a military communication channel hosted on civilian infrastructure may inevitably affect civilian services.",
         cases: [
@@ -55,8 +57,8 @@ export const legalFrameworks: LegalFramework[] = [
         ],
       },
       {
-        ruleId: "tallinn-r32",
-        name: "Rule 32, Proportionality",
+        ruleId: `tallinn-r${TALLINN_RULES.proportionality.number}`,
+        name: `${tallinnNumbers("proportionality")}, Proportionality`,
         description: "A cyber attack that may be expected to cause incidental civilian harm must not be excessive in relation to the concrete and direct military advantage anticipated.",
         cyberControversy: "Proportionality assessment in cyber operations is complicated by the difficulty of predicting cascading effects. Worm-like propagation (NotPetya), supply chain compromise (SolarWinds), and cross-border collateral damage challenge the ability to assess proportionality ex ante.",
         cases: [
@@ -65,8 +67,8 @@ export const legalFrameworks: LegalFramework[] = [
         ],
       },
       {
-        ruleId: "tallinn-r69",
-        name: "Rule 69, Countermeasures",
+        ruleId: `tallinn-r${TALLINN_RULES.countermeasures.number}`,
+        name: `${tallinnNumbers("countermeasures")}, Countermeasures`,
         description: "An injured state may take proportionate countermeasures against a responsible state for the purpose of inducing compliance with the latter's international obligations.",
         cyberControversy: "Cyber countermeasures face unique challenges: the speed of cyber operations may not allow time for the prior notification traditionally required, and the reversibility of cyber effects complicates proportionality assessment. States disagree on whether 'hack back' constitutes a legitimate countermeasure.",
         cases: [
@@ -75,8 +77,8 @@ export const legalFrameworks: LegalFramework[] = [
         ],
       },
       {
-        ruleId: "tallinn-r80",
-        name: "Rule 80, Intervention",
+        ruleId: `tallinn-r${TALLINN_RULES.interventionByStates.number}`,
+        name: `${tallinnNumbers("interventionByStates")}, Intervention`,
         description: "A state may not intervene, including by cyber means, in the internal or external affairs of another state regarding matters in which the state is permitted to decide freely.",
         cyberControversy: "The boundary between espionage (generally not prohibited) and intervention (prohibited) in cyberspace is unclear. Cyber operations that compromise electoral infrastructure or government decision-making systems may constitute intervention even without data manipulation, if they coerce or dictate outcomes in the target state's internal affairs.",
         cases: [

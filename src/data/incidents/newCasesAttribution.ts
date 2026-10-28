@@ -1,4 +1,5 @@
 import type { Incident } from "@/lib/types/incidents";
+import { tallinnCite } from "@/data/tallinnRules";
 
 /**
  * Attribution-consequence matched-pair cases.
@@ -108,7 +109,7 @@ export const newCasesAttribution: Incident[] = [
     governance: {
       flags: [],
       normsInvoked: [
-        "Sovereignty of telecommunications infrastructure (Tallinn Manual 2.0 Rule 4 by analogy)",
+        `Sovereignty of telecommunications infrastructure (${tallinnCite("violationOfSovereignty")}, by analogy)`,
         "UN GGE 2015 Norm 13(f) on critical infrastructure (the norm did not yet exist at the time of the operation but was widely retro-applied in academic commentary)",
       ],
       policyResponses: [
@@ -720,7 +721,7 @@ export const newCasesAttribution: Incident[] = [
       ],
       normsInvoked: [
         "UN GGE 2015 Norm 13(f) on critical infrastructure (telecommunications)",
-        "Tallinn Manual 2.0 Rule 4 (state responsibility for MSS contractor activity)",
+        `${tallinnCite("attributionNonStateActors")} (state responsibility for MSS contractor activity)`,
         "OECD principles on lawful-intercept infrastructure integrity",
       ],
       policyResponses: [
@@ -1144,7 +1145,7 @@ export const newCasesAttribution: Incident[] = [
       normsInvoked: [
         "Obama–Xi 2015 understanding on cyber-enabled economic espionage; Cloud Hopper was cited as an indication that the understanding had not produced sustained behavioural change",
         "UN GGE 2015 Norm 13(i) on supply-chain integrity (relevant by extension to MSP trust relationships)",
-        "State responsibility for contractor / MSS-affiliated operator activity (Tallinn Manual 2.0 Rule 4)",
+        `State responsibility for contractor / MSS-affiliated operator activity (${tallinnCite("attributionNonStateActors")})`,
       ],
       policyResponses: [
         "Operation Cloud Hopper joint report by PwC UK, BAE Systems, and UK NCSC (Apr 2017)",

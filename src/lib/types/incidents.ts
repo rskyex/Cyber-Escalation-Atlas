@@ -183,7 +183,7 @@ export interface Incident {
 export interface LegalFrameworkRef {
   /** Stable id matching a rule in src/data/legalFrameworks.ts */
   ruleId: string;
-  /** Short human label, e.g. "Tallinn Manual Rule 71 — Sovereignty". */
+  /** Short human label, e.g. "Tallinn Manual 2.0, Rule 4 – Violation of sovereignty" (see src/data/tallinnRules.ts). */
   label: string;
   /** The specific legal question this case raises for the rule. */
   question: string;

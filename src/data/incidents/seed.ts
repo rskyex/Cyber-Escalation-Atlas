@@ -1,4 +1,5 @@
 import type { Incident } from "@/lib/types/incidents";
+import { tallinnCite } from "@/data/tallinnRules";
 
 export const seedIncidents: Incident[] = [
   {
@@ -64,7 +65,7 @@ export const seedIncidents: Incident[] = [
       flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment"],
       normsInvoked: [
         "UN GGE 2015 norm against damaging critical infrastructure",
-        "Due diligence obligations (Tallinn Manual Rule 6)",
+        `Due diligence obligations (${tallinnCite("dueDiligence")})`,
       ],
       policyResponses: [
         "Five Eyes joint attribution statement (Feb 2018)",

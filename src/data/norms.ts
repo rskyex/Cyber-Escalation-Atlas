@@ -4,6 +4,8 @@
  * and effects across real-world incidents.
  */
 
+import { tallinnCite } from "@/data/tallinnRules";
+
 export interface NormEntry {
   normId: string;
   title: string;
@@ -28,7 +30,7 @@ export const normsData: NormEntry[] = [
         originYear: 2015,
     originBasis: "UN GGE 2015 Group report, Norm 13(f) (rooted in IHL distinction, 1977)",
     anchorInstruments: [
-      "Tallinn Manual 2.0 Rule 30 (Distinction)",
+      tallinnCite("distinction"),
       "UN GGE 2015 Norm 13(f)",
     ],
     cases: [
@@ -66,7 +68,7 @@ export const normsData: NormEntry[] = [
     originBasis: "ILC Articles on State Responsibility, Art. 8 (2001)",
     anchorInstruments: [
       "ILC Articles on State Responsibility Art. 8",
-      "Tallinn Manual 2.0 Rule 4",
+      tallinnCite("internationallyWrongfulActs", "attributionNonStateActors"),
     ],
     cases: [
       "colonial-pipeline",
@@ -94,7 +96,7 @@ export const normsData: NormEntry[] = [
         originYear: 1977,
     originBasis: "IHL Additional Protocol I, Art. 51(5)(b) (1977)",
     anchorInstruments: [
-      "Tallinn Manual 2.0 Rule 32",
+      tallinnCite("proportionality", "proportionalityOfCountermeasures"),
       "UN Charter Art. 51",
       "IHL Additional Protocol I Art. 51(5)(b)",
     ],
@@ -148,7 +150,7 @@ export const normsData: NormEntry[] = [
     originBasis: "UN GGE 2015 Group report, Norm 13(b)",
     anchorInstruments: [
       "UN GGE 2015 Norm 13(b)",
-      "Tallinn Manual 2.0 Rule 32 (Prohibition of Intervention)",
+      tallinnCite("interventionByStates"),
     ],
     cases: [
       "australia-parliament",
@@ -169,7 +171,7 @@ export const normsData: NormEntry[] = [
     originBasis: "UN OEWG 2021 substantive report",
     anchorInstruments: [
       "UN OEWG 2021 recommendations",
-      "Tallinn Manual 2.0 Rule 14 (Due Diligence)",
+      tallinnCite("dueDiligence"),
     ],
     cases: [
       "volt-typhoon",

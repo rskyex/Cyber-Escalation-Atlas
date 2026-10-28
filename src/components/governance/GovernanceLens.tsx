@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Incident, GovernanceFlag } from "@/lib/types/incidents";
 import { Badge } from "@/components/ui";
+import { tallinnCite } from "@/data/tallinnRules";
 import {
   governanceFlagLabels,
   governanceFlagBadge,
@@ -34,7 +35,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "The operation violated or is assessed to have violated an established international norm governing state behaviour in cyberspace. This includes UN GGE consensus norms, OEWG commitments, and customary international law expectations.",
     ruleCitation:
-      "UN GGE 2015, §13(f): States should not conduct or knowingly support ICT activity that intentionally damages critical infrastructure. Tallinn Manual 2.0, Rule 4 (Sovereignty), Rule 32 (Prohibition of Intervention).",
+      `UN GGE 2015, §13(f): States should not conduct or knowingly support ICT activity that intentionally damages critical infrastructure. ${tallinnCite("violationOfSovereignty", "interventionByStates")}.`,
     politicalSignificance:
       "Norm-violation findings strengthen the case for collective attribution and countermeasures. They also test whether the norm regime has enforcement credibility, repeated violations without consequences risk hollowing out the framework.",
     defaultStatus: "yes",
@@ -44,7 +45,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "One or more governments issued a formal public attribution statement identifying the responsible state or state-affiliated actor. Public attribution represents a deliberate policy choice with diplomatic consequences.",
     ruleCitation:
-      "There is no treaty obligation to attribute publicly. Practice draws on the Articles on State Responsibility (ILC 2001), Art. 49 (countermeasures) and Tallinn Manual 2.0, Rule 17 (Due Diligence). States increasingly treat public attribution as a norm-enforcement tool.",
+      `There is no treaty obligation to attribute publicly. Practice draws on the Articles on State Responsibility (ILC 2001), Art. 49 (countermeasures) and ${tallinnCite("attributionStateOrgans", "attributionNonStateActors")}. States increasingly treat public attribution as a norm-enforcement tool.`,
     politicalSignificance:
       "Public attribution transforms a technical incident into a diplomatic event. It constrains future deniability, shapes alliance solidarity, and creates expectations for follow-on measures. Coordinated multi-state attribution amplifies political pressure.",
     defaultStatus: "yes",
@@ -54,7 +55,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "Targeted sanctions, asset freezes, travel bans, or sectoral restrictions, were imposed on individuals, entities, or state bodies linked to the operation. Sanctions represent one of the strongest non-kinetic responses available.",
     ruleCitation:
-      "UN Charter Art. 41 (measures not involving armed force); US Executive Orders 13694 & 13757 (cyber sanctions); EU Council Decision 2019/797 (cyber sanctions framework); Tallinn Manual 2.0, Rule 20 (Countermeasures).",
+      `UN Charter Art. 41 (measures not involving armed force); US Executive Orders 13694 & 13757 (cyber sanctions); EU Council Decision 2019/797 (cyber sanctions framework); ${tallinnCite("countermeasures")}.`,
     politicalSignificance:
       "Sanctions signal that cyber operations carry material costs. Their effectiveness depends on coalition breadth, target vulnerability to financial isolation, and willingness to sustain them over time. Unilateral sanctions are easier to impose but weaker in effect.",
     defaultStatus: "yes",
@@ -64,7 +65,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "Criminal indictments were filed against named individuals, typically intelligence officers, military personnel, or state-affiliated hackers. Indictments personalise accountability and create lasting legal jeopardy.",
     ruleCitation:
-      "US Computer Fraud and Abuse Act (18 U.S.C. §1030); Economic Espionage Act (18 U.S.C. §1831); Mutual Legal Assistance Treaties (MLATs). Tallinn Manual 2.0, Rule 2 (Jurisdiction).",
+      `US Computer Fraud and Abuse Act (18 U.S.C. §1030); Economic Espionage Act (18 U.S.C. §1831); Mutual Legal Assistance Treaties (MLATs). ${tallinnCite("jurisdiction", "lawEnforcementCooperation")}.`,
     politicalSignificance:
       "Indictments serve a dual function: legal accountability and strategic messaging. Named individuals face travel restrictions and personal consequences, even if extradition is unlikely. The evidentiary standard required lends credibility to attribution claims.",
     defaultStatus: "yes",
@@ -84,7 +85,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "The incident triggered or materially accelerated regulatory or policy changes, new legislation, executive orders, mandatory reporting requirements, or sector-specific security standards.",
     ruleCitation:
-      "Examples include: US EO 14028 (Improving the Nation's Cybersecurity, 2021); EU NIS2 Directive (2022); CISA Binding Operational Directives. Tallinn Manual 2.0, Rule 6 (Due Diligence) provides the normative foundation for regulatory obligations.",
+      `Examples include: US EO 14028 (Improving the Nation's Cybersecurity, 2021); EU NIS2 Directive (2022); CISA Binding Operational Directives. ${tallinnCite("dueDiligence")} provides the normative foundation for regulatory obligations.`,
     politicalSignificance:
       "Regulatory change is the most durable governance response; it alters baseline security requirements long after the incident fades from headlines. However, it is often slow, sector-specific, and subject to implementation gaps across jurisdictions.",
     defaultStatus: "yes",
@@ -94,7 +95,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "The response to the operation involved formal international cooperation, joint attribution statements, coordinated law enforcement action, shared intelligence, or multilateral technical assistance.",
     ruleCitation:
-      "UN GGE 2015, §13(c): States should cooperate to prevent malicious ICT activities. Budapest Convention on Cybercrime, Art. 29–35 (international cooperation). Tallinn Manual 2.0, Rule 6 (Due Diligence), Rule 14 (Cooperation).",
+      `UN GGE 2015, §13(c): States should cooperate to prevent malicious ICT activities. Budapest Convention on Cybercrime, Art. 29–35 (international cooperation). ${tallinnCite("dueDiligence", "lawEnforcementCooperation")}.`,
     politicalSignificance:
       "International cooperation demonstrates that cyber incidents can mobilise collective responses, strengthening deterrence. It also builds institutional capacity for future crises. The depth of cooperation varies significantly, from Five Eyes coordination to broader multilateral efforts.",
     defaultStatus: "yes",
@@ -104,7 +105,7 @@ const FLAG_ANALYSES: FlagAnalysis[] = [
     shortExplanation:
       "The incident or its response was used, explicitly or implicitly, to signal deterrence: demonstrating capability, willingness to retaliate, or establishing red lines. Deterrence signalling can come from either the attacker or the defender.",
     ruleCitation:
-      "No direct treaty basis. Draws on strategic deterrence theory (Schelling, 1966) and emerging cyber deterrence doctrine. Tallinn Manual 2.0, Rule 20 (Countermeasures) and Rule 22 (Necessity) provide the legal framework within which deterrence operates.",
+      `No direct treaty basis. Draws on strategic deterrence theory (Schelling, 1966) and emerging cyber deterrence doctrine. ${tallinnCite("countermeasures", "necessity")} provide the legal framework within which deterrence operates.`,
     politicalSignificance:
       "Deterrence signalling in cyberspace remains deeply contested. Unlike nuclear deterrence, cyber capabilities cannot be demonstrated without revealing them. The credibility of deterrence threats depends on demonstrated willingness to impose costs, which is why public attribution and sanctions often serve a deterrence function.",
     defaultStatus: "contested",

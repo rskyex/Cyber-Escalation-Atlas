@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
+import { tallinnRule } from "@/data/tallinnRules";
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -767,9 +768,11 @@ export default function MethodologyPage() {
                 cyber operations. Its 154 rules cover sovereignty, due
                 diligence, jurisdiction, the law of armed conflict, and state
                 responsibility. The Atlas references specific Tallinn rules
-                in its governance flag citations, particularly Rule 4
-                (sovereignty), Rule 6 (due diligence), Rule 20
-                (countermeasures), and Rule 32 (intervention).
+                in its governance flag citations, particularly{" "}
+                {tallinnRule("violationOfSovereignty")},{" "}
+                {tallinnRule("dueDiligence")},{" "}
+                {tallinnRule("countermeasures")} and{" "}
+                {tallinnRule("interventionByStates")}.
               </p>
               <p>
                 The Manual is useful because it provides a shared vocabulary
