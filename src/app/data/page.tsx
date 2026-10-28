@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
 import { DataDownloads } from "@/components/data/DataDownloads";
 import { codebook } from "@/lib/utils/datasetExport";
-import { caseCount, dataCutoff } from "@/lib/datasetStats";
+import { caseCount, dataCutoff, DATASET_VERSION, DATASET_LAST_UPDATED } from "@/lib/datasetStats";
 
 export const metadata: Metadata = {
   title: "Data & Downloads",
@@ -39,6 +39,12 @@ export default function DataPage() {
             <span className="text-sm text-steel-500 dark:text-steel-300">
               <strong className="text-ink dark:text-white">{caseCount}</strong> documented cases
             </span>
+            <span className="text-sm text-steel-500 dark:text-steel-300" data-testid="dataset-version">
+              Version <strong className="text-ink dark:text-white font-mono">{DATASET_VERSION}</strong>
+            </span>
+            <span className="text-sm text-steel-500 dark:text-steel-300">
+              Last updated <strong className="text-ink dark:text-white font-mono">{DATASET_LAST_UPDATED}</strong>
+            </span>
             <span className="text-sm text-steel-500 dark:text-steel-300">
               Data cutoff <strong className="text-ink dark:text-white font-mono">{dataCutoff}</strong>
             </span>
@@ -58,7 +64,13 @@ export default function DataPage() {
           <p className="text-xs text-steel-500 dark:text-ink-400 mt-3">
             CSV is a flat, one-row-per-case export (good for spreadsheets). JSON
             preserves the full nested record structure. Both are generated from
-            the same source data that powers the site.
+            the same source data that powers the site. Each file carries the
+            dataset version, last-updated date and record count: in the JSON
+            under <span className="font-mono">meta</span>, and in the CSV as
+            comment lines starting with <span className="font-mono">#</span> (in
+            pandas, read with <span className="font-mono">comment=&quot;#&quot;</span>).
+            Data cutoff is the date of the newest case; last updated is the date
+            the records were last changed.
           </p>
         </section>
 

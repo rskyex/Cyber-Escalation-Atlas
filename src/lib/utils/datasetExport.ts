@@ -79,3 +79,35 @@ export function buildJson(incidents: Incident[]): string {
   // Export the full, structured records (not the flattened row) for JSON.
   return JSON.stringify(incidents, null, 2);
 }
+
+// ---- Versioned exports (used by /data) ------------------------------------
+
+export interface DatasetMeta {
+  dataset: string;
+  version: string;
+  lastUpdated: string;
+  recordCount: number;
+  license: string;
+  source: string;
+}
+
+/**
+ * CSV with a short metadata header. Lines starting with "#" are comments;
+ * in pandas use read_csv(path, comment="#"), in R use comment.char = "#".
+ */
+export function buildVersionedCsv(incidents: Incident[], meta: DatasetMeta): string {
+  const header = [
+    `# dataset: ${meta.dataset}`,
+    `# version: ${meta.version}`,
+    `# last_updated: ${meta.lastUpdated}`,
+    `# record_count: ${meta.recordCount}`,
+    `# license: ${meta.license}`,
+    `# source: ${meta.source}`,
+  ];
+  return [...header, buildCsv(incidents)].join("\n");
+}
+
+/** JSON with a metadata block and the full nested records. */
+export function buildVersionedJson(incidents: Incident[], meta: DatasetMeta): string {
+  return JSON.stringify({ meta, records: incidents }, null, 2);
+}

@@ -45,7 +45,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-caption rounded-md transition-all duration-200 ${
+                  className={`px-2 xl:px-3 py-1.5 text-caption rounded-md transition-all duration-200 ${
                     active
                       ? "text-white bg-ink-500/80 dark:bg-white/10 font-medium"
                       : item.highlight
@@ -62,7 +62,7 @@ export function Header() {
           {/* Right controls */}
           <div className="flex items-center gap-1">
             {/* Secondary links — desktop only */}
-            <div className="hidden lg:flex items-center gap-0.5 mr-2">
+            <div className="hidden min-[1720px]:flex items-center gap-0.5 mr-2">
               {secondaryNav.map((item) => (
                 <Link
                   key={item.href}
@@ -113,7 +113,7 @@ export function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-md text-steel-500 dark:text-steel-400 hover:text-ink dark:hover:text-white transition-colors"
+              className="min-[1720px]:hidden p-2 rounded-md text-steel-500 dark:text-steel-400 hover:text-ink dark:hover:text-white transition-colors"
               aria-label="Toggle menu"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -142,17 +142,20 @@ export function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden overflow-hidden bg-white/95 dark:bg-ink-800/95 backdrop-blur-xl"
+            className="min-[1720px]:hidden overflow-hidden bg-white/95 dark:bg-ink-800/95 backdrop-blur-xl"
           >
             <nav className="px-6 py-4 space-y-0.5">
-              {[...primaryNav, ...secondaryNav].map((item) => {
+              {[
+                ...primaryNav.map((item) => ({ ...item, onlySmall: true })),
+                ...secondaryNav.map((item) => ({ ...item, onlySmall: false })),
+              ].map((item) => {
                 const active = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`block px-3 py-2.5 text-body rounded-lg transition-colors ${
+                    className={`${item.onlySmall ? "lg:hidden " : ""}block px-3 py-2.5 text-body rounded-lg transition-colors ${
                       active
                         ? "bg-atlas/5 text-atlas-600 dark:text-atlas-400 font-medium"
                         : item.highlight

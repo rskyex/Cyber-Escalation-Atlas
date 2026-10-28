@@ -6,6 +6,12 @@ import { seedIncidents } from "@/data/incidents";
 import { actorProfiles } from "@/data/actors";
 import { targetSectorLabels } from "@/lib/utils/incidents";
 import type { TargetSector } from "@/lib/types/incidents";
+import {
+  TEMPLATE_BRIEF_LABEL,
+  buildTemplateBrief,
+  filterCasesForBrief,
+  type BriefType,
+} from "@/lib/utils/templateBrief";
 
 const BRIEF_TYPES = [
   { value: "executive", label: "Executive Summary (500 words)" },
@@ -23,19 +29,17 @@ const allRegions = Array.from(
   new Set(seedIncidents.flatMap((i) => i.infrastructure.targetCountries))
 ).sort();
 
-// Static example so the output format is visible before any generation runs.
-const SAMPLE_BRIEF = `## Executive Summary — State-Linked Destructive Operations
+type BriefMode = "ai" | "template";
 
-### Overview
-Across the documented corpus, destructive state-linked operations remain rare relative to espionage, but account for the highest-severity events. NotPetya (2017) and the Viasat KA-SAT wiper (2022) illustrate a recurring pattern: destructive payloads timed to geopolitical objectives, producing collateral impact well beyond the intended target.
-
-### Key Judgements
-- Destructive operations cluster at the top of the escalation ladder yet are consistently paired with deniability — attribution is public but formal consequences lag by months or years.
-- Supply-chain and dual-use infrastructure (software updates, satellite modems) recur as vectors because they maximise reach while complicating attribution.
-- Governance responses are reactive: indictments and sanctions follow attribution, but no case in the corpus shows a destructive operation deterred in advance.
-
-### Governance Implications
-The gap between technical attribution and political consequence is the central governance problem these cases expose. Norms against targeting civilian critical infrastructure are widely cited and repeatedly violated.`;
+function renderBrief(text: string) {
+  return text.split("\n").map((line, i) => {
+    if (line.startsWith("## ")) return <h2 key={i} className="text-base font-bold text-ink dark:text-white mt-4 mb-2">{line.replace("## ", "")}</h2>;
+    if (line.startsWith("### ")) return <h3 key={i} className="text-sm font-bold text-ink dark:text-white mt-3 mb-1">{line.replace("### ", "")}</h3>;
+    if (line.startsWith("- ")) return <p key={i} className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-1.5 pl-4 -indent-3 break-words">{"\u2022 "}{line.slice(2)}</p>;
+    if (line.trim() === "") return <div key={i} className="h-2" />;
+    return <p key={i} className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-2 break-words">{line}</p>;
+  });
+}
 
 export default function BriefPage() {
   const [actor, setActor] = useState("all");
@@ -43,41 +47,80 @@ export default function BriefPage() {
   const [region, setRegion] = useState("all");
   const [briefType, setBriefType] = useState("executive");
   const [brief, setBrief] = useState("");
+  const [mode, setMode] = useState<BriefMode>("ai");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [briefCaseCount, setBriefCaseCount] = useState(0);
+
+  const matchingCases = filterCasesForBrief(seedIncidents, { actor, sector, region });
+
+  function buildLocalTemplate() {
+    const type: BriefType =
+      briefType === "technical" || briefType === "governance" ? briefType : "executive";
+    const actorName = actorProfiles.find((a) => a.slug === actor)?.name;
+    setBrief(buildTemplateBrief(matchingCases, { actor, sector, region, actorName }, type));
+    setMode("template");
+    setBriefCaseCount(matchingCases.length);
+    setError("");
+  }
 
   async function generate() {
     setLoading(true);
     setError("");
     setBrief("");
+    setCopied(false);
+    if (matchingCases.length === 0) {
+      setError("No cases match the selected filters. Widen the actor, sector or region selection and try again.");
+      setLoading(false);
+      return;
+    }
     try {
       const res = await fetch("/api/generate-brief", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ actor, sector, region, briefType }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || `Request failed (${res.status})`);
+      const raw = await res.text();
+      let data: { brief?: string; error?: string; mode?: BriefMode } = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = {};
       }
-      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || `The brief service returned an error (HTTP ${res.status}).`);
+      }
+      if (!data.brief || typeof data.brief !== "string") {
+        throw new Error("The brief service returned an empty response.");
+      }
       setBrief(data.brief);
+      setMode(data.mode === "template" ? "template" : "ai");
+      setBriefCaseCount(matchingCases.length);
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Generation failed");
+      const msg = e instanceof Error ? e.message : "";
+      setError(msg && msg !== "Failed to fetch" ? msg : "Could not reach the brief service. Check your connection and try again.");
     } finally {
       setLoading(false);
     }
   }
 
-  function copyToClipboard() {
-    navigator.clipboard.writeText(brief);
+  async function copyToClipboard() {
+    const header = mode === "template" ? `${TEMPLATE_BRIEF_LABEL}\n\n` : "";
+    try {
+      await navigator.clipboard.writeText(header + brief);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
   }
 
   return (
     <SectionWrapper>
       <PageHeader
         title="AI Intelligence Brief Generator"
-        subtitle="Generate structured intelligence briefs from the CEA case dataset using AI analysis. Select filters and brief type to produce a tailored assessment."
+        subtitle="Generate structured briefs from the CEA case dataset. Select filters and a brief type. When no AI model is configured, the site builds a template brief directly from the matching case records."
       />
 
       {/* Form */}
@@ -119,67 +162,86 @@ export default function BriefPage() {
         </div>
       </div>
 
-      <button
-        onClick={generate}
-        disabled={loading}
-        className="px-6 py-3 rounded-lg bg-atlas-500 hover:bg-atlas-600 text-white text-sm font-medium transition-all disabled:opacity-50 shadow-glow-sm hover:shadow-glow mb-8"
-      >
-        {loading ? "Generating..." : "Generate Brief"}
-      </button>
+      <div className="flex flex-wrap items-center gap-3 mb-8">
+        <button
+          onClick={generate}
+          disabled={loading}
+          aria-busy={loading}
+          className="px-6 py-3 rounded-lg bg-atlas-500 hover:bg-atlas-600 text-white text-sm font-medium transition-all disabled:opacity-50 shadow-glow-sm hover:shadow-glow"
+        >
+          {loading ? "Generating..." : "Generate Brief"}
+        </button>
+        <span className="text-xs text-steel-500 dark:text-ink-400" data-testid="matching-count">
+          {matchingCases.length} of {seedIncidents.length} cases match these filters
+        </span>
+      </div>
 
       {error && (
-        <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-200/40 dark:border-red-700/30 text-sm text-red-700 dark:text-red-300 mb-6">
-          {error}
+        <div
+          role="alert"
+          data-testid="brief-error"
+          className="p-4 rounded-xl bg-red-50 dark:bg-red-900/10 border border-red-200/40 dark:border-red-700/30 mb-6"
+        >
+          <p className="text-sm font-semibold text-red-800 dark:text-red-300 mb-1">The brief could not be generated</p>
+          <p className="text-sm text-red-700 dark:text-red-300 break-words">{error}</p>
+          {matchingCases.length > 0 && (
+            <button
+              onClick={buildLocalTemplate}
+              className="mt-3 px-3 py-1.5 text-xs font-medium rounded-md border border-red-300/60 dark:border-red-700/50 text-red-800 dark:text-red-200 hover:bg-red-100/60 dark:hover:bg-red-900/20 transition-colors"
+            >
+              Build a template brief from the data instead
+            </button>
+          )}
         </div>
       )}
 
-      {/* Static example so users see the output shape before generating. */}
-      {!brief && !loading && (
+      {!brief && !loading && !error && (
         <div className="rounded-xl border border-dashed border-steel-300/50 dark:border-ink-600/50 bg-ink-50/30 dark:bg-ink-800/15 p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-ink-100 dark:bg-ink-600/40 text-steel-600 dark:text-steel-300">
-              Example output
-            </span>
-            <p className="text-xs text-steel-500 dark:text-ink-400">
-              Illustrative — this is what a generated executive brief looks like.
-            </p>
-          </div>
-          <div className="prose prose-sm dark:prose-invert max-w-none opacity-90">
-            {SAMPLE_BRIEF.split("\n").map((line, i) => {
-              if (line.startsWith("## ")) return <h2 key={i} className="text-base font-bold text-ink dark:text-white mt-4 mb-2">{line.replace("## ", "")}</h2>;
-              if (line.startsWith("### ")) return <h3 key={i} className="text-sm font-bold text-ink dark:text-white mt-3 mb-1">{line.replace("### ", "")}</h3>;
-              if (line.trim() === "") return <br key={i} />;
-              return <p key={i} className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-2">{line}</p>;
-            })}
-          </div>
+          <h2 className="text-sm font-bold text-ink dark:text-white mb-2">What the brief contains</h2>
+          <ul className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed list-disc pl-5 space-y-1">
+            <li>Scope: how many cases match, the years they cover and their incident types.</li>
+            <li>The cases in scope, with attribution and peak escalation tier.</li>
+            <li>Escalation peaks and recorded threshold crossings.</li>
+            <li>Attribution status: confidence levels and attributed state nexus.</li>
+            <li>Governance responses recorded for each case.</li>
+          </ul>
+          <p className="text-xs text-steel-500 dark:text-ink-400 mt-3">
+            Every statement is drawn from the case records. Check case pages for primary sources.
+          </p>
         </div>
       )}
 
       {brief && (
-        <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 p-6">
+        <div className="rounded-xl border border-steel-200/25 dark:border-ink-600/35 bg-white dark:bg-ink-700/20 p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-ink dark:text-white">Generated Brief</h2>
             <div className="flex gap-2">
               <button onClick={copyToClipboard} className="px-3 py-1.5 text-xs font-medium rounded-md border border-atlas-400/50 dark:border-atlas-600/40 text-atlas-700 dark:text-atlas-400 hover:bg-atlas-50/50 dark:hover:bg-atlas-900/20 transition-colors">
-                Copy to clipboard
+                {copied ? "Copied" : "Copy to clipboard"}
               </button>
             </div>
           </div>
-          {/* Standard AI disclaimer, shown at the top of every generated brief */}
+          {mode === "template" ? (
+            <div data-testid="template-label" className="mb-5 flex items-start gap-2.5 p-3 rounded-lg bg-ink-50/60 dark:bg-ink-800/30 border border-steel-300/40 dark:border-ink-600/40">
+              <span className="mt-0.5 w-2 h-2 rounded-full bg-steel-400 shrink-0" />
+              <div>
+                <p className="text-xs font-semibold text-ink dark:text-white">{TEMPLATE_BRIEF_LABEL}</p>
+                <p className="text-xs text-steel-500 dark:text-steel-300 leading-relaxed mt-0.5">
+                  Built by a fixed template from the {briefCaseCount} matching case records. No language model was used and no facts outside the dataset were added.
+                </p>
+              </div>
+            </div>
+          ) : (
           <div className="mb-5 flex items-start gap-2.5 p-3 rounded-lg bg-amber-50/60 dark:bg-amber-900/10 border border-amber-300/40 dark:border-amber-700/30">
             <span className="mt-0.5 w-2 h-2 rounded-full bg-amber-500 shrink-0" />
             <p className="text-xs font-medium text-amber-800 dark:text-amber-300 leading-relaxed">
-              AI-generated from the CEA dataset — verify before operational use.
+              AI-generated from the CEA dataset. Verify before operational use.
               This is a synthesis of documented cases, not an intelligence product.
             </p>
           </div>
-          <div className="prose prose-sm dark:prose-invert max-w-none">
-            {brief.split("\n").map((line, i) => {
-              if (line.startsWith("## ")) return <h2 key={i} className="text-base font-bold text-ink dark:text-white mt-4 mb-2">{line.replace("## ", "")}</h2>;
-              if (line.startsWith("### ")) return <h3 key={i} className="text-sm font-bold text-ink dark:text-white mt-3 mb-1">{line.replace("### ", "")}</h3>;
-              if (line.trim() === "") return <br key={i} />;
-              return <p key={i} className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed mb-2">{line}</p>;
-            })}
+          )}
+          <div className="prose prose-sm dark:prose-invert max-w-none" data-testid="brief-body">
+            {renderBrief(brief)}
           </div>
           <div className="mt-6 p-3 rounded-lg bg-signal-50/30 dark:bg-signal-900/10 border border-signal-200/30 dark:border-signal-700/20">
             <p className="text-xs text-signal-700 dark:text-signal-300 italic">

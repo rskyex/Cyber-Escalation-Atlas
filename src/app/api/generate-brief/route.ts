@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { seedIncidents } from "@/data/incidents";
-import type { TargetSector } from "@/lib/types/incidents";
+import { actorProfiles } from "@/data/actors";
+import {
+  buildTemplateBrief,
+  filterCasesForBrief,
+  type BriefType,
+} from "@/lib/utils/templateBrief";
 
 const STRUCTURES: Record<string, string> = {
   executive:
@@ -13,12 +18,6 @@ const STRUCTURES: Record<string, string> = {
 
 export async function POST(request: Request) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: "ANTHROPIC_API_KEY not configured" },
-      { status: 500 }
-    );
-  }
 
   let body: { actor?: string; sector?: string; region?: string; briefType?: string };
   try {
@@ -29,29 +28,25 @@ export async function POST(request: Request) {
 
   const { actor = "all", sector = "all", region = "all", briefType = "executive" } = body;
 
-  // Filter cases
-  let cases = [...seedIncidents];
-  if (actor !== "all") {
-    cases = cases.filter((c) => c.actorSlug === actor);
-  }
-  if (sector !== "all") {
-    cases = cases.filter((c) =>
-      c.infrastructure.targetSectors.includes(sector as TargetSector)
-    );
-  }
-  if (region !== "all") {
-    cases = cases.filter((c) =>
-      c.infrastructure.targetCountries.some(
-        (country) => country.toLowerCase() === region.toLowerCase()
-      )
-    );
-  }
-
+  const cases = filterCasesForBrief(seedIncidents, { actor, sector, region });
   if (cases.length === 0) {
     return NextResponse.json(
       { error: "No cases match the selected filters" },
       { status: 400 }
     );
+  }
+
+  // No model configured: return a deterministic brief built only from the
+  // filtered case records, clearly labelled as a template.
+  if (!apiKey) {
+    const type: BriefType =
+      briefType === "technical" || briefType === "governance" ? briefType : "executive";
+    const actorName = actorProfiles.find((a) => a.slug === actor)?.name;
+    return NextResponse.json({
+      brief: buildTemplateBrief(cases, { actor, sector, region, actorName }, type),
+      mode: "template",
+      caseCount: cases.length,
+    });
   }
 
   const structure = STRUCTURES[briefType] || STRUCTURES.executive;
@@ -70,7 +65,7 @@ export async function POST(request: Request) {
     summary: c.summary,
   }));
 
-  const systemPrompt = `You are a senior cyber policy analyst producing a structured intelligence brief for a policy audience. Write in precise, non-sensational, analytically grounded language. Use the following section structure: ${structure}. Target approximately ${wordCount} words. Format section headers with ## markdown. Do not include a title, the platform will add it.`;
+  const systemPrompt = `You are a senior cyber policy analyst producing a structured intelligence brief for a policy audience. Write in precise, non-sensational, analytically grounded language. Use only the facts in the case data provided. Do not add names, dates, figures or events that are not in that data; if something is not in the data, say it is not recorded. Use the following section structure: ${structure}. Target approximately ${wordCount} words. Format section headers with ## markdown. Do not include a title, the platform will add it.`;
 
   const userMessage = `Produce a ${briefType} brief based on the following ${cases.length} cases from the Cyber Escalation Atlas dataset.
 
@@ -98,7 +93,9 @@ ${JSON.stringify(caseData, null, 2)}`;
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
       return NextResponse.json(
-        { error: errData.error?.message || `Anthropic API error (${res.status})` },
+        {
+          error: `The AI model request failed (${errData.error?.message || `HTTP ${res.status}`}).`,
+        },
         { status: 502 }
       );
     }
@@ -107,10 +104,12 @@ ${JSON.stringify(caseData, null, 2)}`;
     const text =
       data.content?.[0]?.text || "Brief generation returned no content.";
 
-    return NextResponse.json({ brief: text });
+    return NextResponse.json({ brief: text, mode: "ai", caseCount: cases.length });
   } catch (e: unknown) {
     return NextResponse.json(
-      { error: e instanceof Error ? e.message : "Failed to call Anthropic API" },
+      {
+        error: `The AI model could not be reached (${e instanceof Error ? e.message : "network error"}).`,
+      },
       { status: 502 }
     );
   }

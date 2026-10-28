@@ -64,3 +64,11 @@ export const dataCutoff: string = (() => {
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   return `${yyyy}-${mm}`;
 })();
+
+/**
+ * Dataset release metadata for verifiers. Bump DATASET_VERSION and
+ * DATASET_LAST_UPDATED whenever a case record is added or changed.
+ * DATASET_LAST_UPDATED is the date of the last change to src/data/incidents.
+ */
+export const DATASET_VERSION = "1.0.0";
+export const DATASET_LAST_UPDATED = "2026-07-21";
