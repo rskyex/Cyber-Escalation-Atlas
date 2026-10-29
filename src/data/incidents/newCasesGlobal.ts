@@ -72,9 +72,11 @@ export const newCasesGlobal: Incident[] = [
         "Kaspersky: Transparent Tribe Campaign Analysis, 2020.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "two-analytical-lenses"],
     sources: [
       { title: "Recorded Future: Pakistan-Linked Cyber Threats to Indian Targets", category: "vendor", date: "2019-06" },
-      { title: "Kaspersky: Transparent Tribe Campaign Analysis", category: "vendor", date: "2020-06" },
+      { title: "Kaspersky: Transparent Tribe: Evolution analysis, part 1", url: "https://securelist.com/transparent-tribe-part-1/98127/", category: "vendor", date: "2020-08-20" },
     ],
     attributionDetail: {
       claimants: [
@@ -155,8 +157,10 @@ export const newCasesGlobal: Incident[] = [
         "Check Point: Gaza Cybergang Group1 Campaign, 2021.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["two-analytical-lenses"],
     sources: [
-      { title: "ESET: APT-C-23 targets Middle Eastern users with fake messaging apps", category: "vendor", date: "2022-04" },
+      { title: "ESET: APT-C-23 group evolves its Android spyware", url: "https://www.welivesecurity.com/2020/09/30/aptc23-group-evolves-its-android-spyware/", category: "vendor", date: "2020-09-30" },
       { title: "Check Point: Gaza Cybergang Threat Intelligence Report", category: "vendor", date: "2021-02" },
     ],
     attributionDetail: {
@@ -238,6 +242,8 @@ export const newCasesGlobal: Incident[] = [
         "ASEAN: Framework on Digital Data Governance, 2019.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "Thai Election Commission: Statement on cyber incidents", category: "government", date: "2019-03" },
       { title: "Reuters: Thailand election agency targeted by cyber attacks", category: "journalistic", date: "2019-03" },
@@ -321,8 +327,10 @@ export const newCasesGlobal: Incident[] = [
         "Ecuador Organic Law on Personal Data Protection, 2021.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "vpnMentor: Report, Ecuadorian Breach", category: "vendor", date: "2019-09-11" },
+      { title: "vpnMentor: Report, Ecuadorian Breach", url: "https://www.vpnmentor.com/blog/cybersecurity/report-ecuador-leak/", category: "vendor", date: "2019-09-11" },
       { title: "Ecuador Government: Statement on Data Exposure Investigation", category: "government", date: "2019-09-16" },
     ],
     attributionDetail: {
@@ -404,9 +412,11 @@ export const newCasesGlobal: Incident[] = [
         "ITU: Global Cybersecurity Index, 2020.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "Bangladesh CERT: Advisory on Government Portal Security", category: "government", date: "2021-08" },
-      { title: "TechCrunch: Bangladesh government websites leak citizen data", category: "journalistic", date: "2023-07" },
+      { title: "TechCrunch: Bangladesh government website leaks citizens' personal data", url: "https://techcrunch.com/2023/07/07/bangladesh-government-website-leaks-citizens-personal-data/", category: "journalistic", date: "2023-07" },
     ],
     attributionDetail: {
       claimants: [

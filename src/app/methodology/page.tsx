@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
 import { tallinnRule } from "@/data/tallinnRules";
+import { inclusionCriteria, INCLUSION_THRESHOLD } from "@/data/inclusionCriteria";
+import { seedIncidents } from "@/data/incidents";
+
+const belowThreshold = seedIncidents.filter((c) => c.inclusionCriteriaMet.length < INCLUSION_THRESHOLD);
 
 export const metadata: Metadata = {
   title: "Methodology",
@@ -193,12 +197,26 @@ export default function MethodologyPage() {
             following conditions to be included:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Attributed (publicly or by government statement) to a state or state-affiliated actor</li>
-            <li>Produced effects beyond the immediate target (collateral, cascading, or cross-border)</li>
-            <li>Triggered a formal governance response (attribution statement, sanctions, indictment, regulatory change)</li>
-            <li>Documented by at least two independent source categories (government, vendor, academic, journalistic, legal)</li>
-            <li>Relevant to at least two of the three analytical lenses (escalation, infrastructure, governance)</li>
+            {inclusionCriteria.map((c) => (
+              <li key={c.id}>
+                {c.label}. <span className="text-steel-500 dark:text-steel-400">{c.rule}</span>
+              </li>
+            ))}
           </ul>
+          <p>
+            Each case records the criteria it meets (<code>inclusionCriteriaMet</code>,
+            included in the CSV export). Cases currently below the
+            three-of-five guideline:{" "}
+            {belowThreshold.length === 0
+              ? "none"
+              : belowThreshold.map((c, i) => (
+                  <span key={c.slug}>
+                    {i > 0 && ", "}
+                    <a href={`/cases/${c.slug}`} className="underline">{c.shortName}</a> ({c.inclusionCriteriaMet.length}/5)
+                  </span>
+                ))}
+            . They are kept for teaching value and are under review.
+          </p>
           <p>
             These criteria are applied with analytical judgement, not
             mechanically. Borderline cases are included when they offer

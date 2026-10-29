@@ -89,10 +89,12 @@ export const newCases2024: Incident[] = [
         "Microsoft: Results of Major Technical Investigation for Storm-0558 Key Acquisition, Sep 2023.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "Microsoft: Analysis of Storm-0558 techniques", category: "vendor", date: "2023-07-14" },
-      { title: "CISA: Enhanced Monitoring to Detect APT Activity Targeting Outlook Online", category: "government", date: "2023-07-12" },
-      { title: "CSRB: Review of the Summer 2023 Microsoft Exchange Online Intrusion", category: "government", date: "2024-03-20" },
+      { title: "Microsoft: Analysis of Storm-0558 techniques", url: "https://www.microsoft.com/en-us/security/blog/2023/07/14/analysis-of-storm-0558-techniques-for-unauthorized-email-access/", category: "vendor", date: "2023-07-14" },
+      { title: "CISA: Enhanced Monitoring to Detect APT Activity Targeting Outlook Online", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-193a", category: "government", date: "2023-07-12" },
+      { title: "CSRB: Review of the Summer 2023 Microsoft Exchange Online Intrusion", url: "https://www.cisa.gov/resources-tools/resources/CSRB-Review-Summer-2023-MEO-Intrusion", category: "government", date: "2024-04-02" },
     ],
     attributionDetail: {
       claimants: [
@@ -178,10 +180,12 @@ export const newCases2024: Incident[] = [
         "HHS: Proposed Updates to the HIPAA Security Rule, 2024.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "CISA: ALPHV BlackCat Advisory Update", category: "government", date: "2024-02-27" },
+      { title: "CISA: ALPHV BlackCat Advisory Update", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-353a", category: "government", date: "2024-02-27" },
       { title: "UnitedHealth Group: Change Healthcare Cyber Response Update", category: "vendor", date: "2024-03-13" },
-      { title: "Senate Finance Committee: Hearing Testimony on Change Healthcare", category: "government", date: "2024-05-01" },
+      { title: "Senate Finance Committee: Hearing Testimony on Change Healthcare", url: "https://www.finance.senate.gov/imo/media/doc/0501_witty_testimony.pdf", category: "government", date: "2024-05-01" },
     ],
     attributionDetail: {
       claimants: [
@@ -267,10 +271,12 @@ export const newCases2024: Incident[] = [
         "Microsoft Threat Intelligence: Volt Typhoon, 2023–2024.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "CISA/NSA/FBI Joint Advisory: Volt Typhoon", category: "government", date: "2024-02-07" },
-      { title: "Microsoft: Volt Typhoon targets US critical infrastructure", category: "vendor", date: "2023-05-24" },
-      { title: "FBI: Court-Authorized Operation Disrupts KV Botnet", category: "government", date: "2024-01-31" },
+      { title: "CISA/NSA/FBI Joint Advisory: Volt Typhoon", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a", category: "government", date: "2024-02-07" },
+      { title: "Microsoft: Volt Typhoon targets US critical infrastructure", url: "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/", category: "vendor", date: "2023-05-24" },
+      { title: "US DOJ: U.S. Government Disrupts Botnet People's Republic of China Used to Conceal Hacking of Critical Infrastructure", url: "https://www.justice.gov/archives/opa/pr/us-government-disrupts-botnet-peoples-republic-china-used-conceal-hacking-critical", category: "government", date: "2024-01-31" },
     ],
     attributionDetail: {
       claimants: [
@@ -356,10 +362,12 @@ export const newCases2024: Incident[] = [
         "CISA Emergency Directive 24-02, Apr 2024.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "Microsoft: Nation-state attack on Microsoft corporate systems", category: "vendor", date: "2024-01-19" },
-      { title: "SEC: Microsoft 8-K Filing on Cyber Incident", category: "legal", date: "2024-01-19" },
-      { title: "CISA Emergency Directive 24-02", category: "government", date: "2024-04-02" },
+      { title: "Microsoft: Nation-state attack on Microsoft corporate systems", url: "https://www.microsoft.com/en-us/msrc/blog/2024/01/microsoft-actions-following-attack-by-nation-state-actor-midnight-blizzard", category: "vendor", date: "2024-01-19" },
+      { title: "SEC: Microsoft 8-K Filing on Cyber Incident", url: "https://www.sec.gov/Archives/edgar/data/789019/000119312524011295/d708866d8k.htm", category: "legal", date: "2024-01-19" },
+      { title: "CISA Emergency Directive 24-02", url: "https://www.cisa.gov/news-events/directives/ed-24-02-mitigating-significant-risk-nation-state-compromise-microsoft-corporate-email-system-closed", category: "government", date: "2024-04-02" },
     ],
     attributionDetail: {
       claimants: [
@@ -444,6 +452,8 @@ export const newCases2024: Incident[] = [
         "RUSI: Cyber Operations in the Russia-Ukraine War, 2024.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "Ukraine SBU: Sandworm responsible for Kyivstar attack", category: "government", date: "2024-01-04" },
       { title: "Kyivstar: Statement on cyber attack and service restoration", category: "vendor", date: "2023-12-12" },

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui";
 import { AtmosphericBackground, ProvenanceMark } from "@/components/observatory";
 import type { ProvenanceKind } from "@/components/observatory";
-import { caseCount, observatoryLayerCount } from "@/lib/datasetStats";
+import { caseCount, dataCutoff, observatoryLayerCount } from "@/lib/datasetStats";
 
 const observatoryLayers: {
   coord: string;
@@ -21,7 +21,7 @@ const observatoryLayers: {
   { coord: "L-02", title: "Attribution Field",    href: "/observatory/attribution-field", metric: "5", metricLabel: "contested streams", tone: "violet", provenance: "structural" },
   { coord: "L-03", title: "Agent Pathways",       href: "/observatory/agent-pathways", metric: "6→∞", metricLabel: "branching depth", tone: "plasma", provenance: "illustrative" },
   { coord: "L-04", title: "Cross-Domain Map",     href: "/observatory/cross-domain", metric: "7", metricLabel: "interlocked domains", tone: "atlas", provenance: "structural" },
-  { coord: "L-05", title: "Escalation Tempo",     href: "/observatory/tempo", metric: "10⁶×", metricLabel: "tempo asymmetry", tone: "amber", provenance: "illustrative" },
+  { coord: "L-05", title: "Escalation Tempo",     href: "/observatory/tempo", metric: "10⁶×", metricLabel: "tempo asymmetry (illustrative)", tone: "amber", provenance: "illustrative" },
   { coord: "L-06", title: "Governance Cascade",   href: "/observatory/governance-cascade", metric: "6", metricLabel: "failure modes", tone: "plasma", provenance: "structural" },
   { coord: "L-07", title: "Authority Layer",      href: "/observatory/authority", metric: "4", metricLabel: "authority loci", tone: "violet", provenance: "structural" },
 ];
@@ -123,10 +123,7 @@ export default function HomePage() {
             className="max-w-4xl"
           >
             <motion.div variants={stagger.item} className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-10">
-              <span className="flex items-center gap-2 tag-mono">
-                <span className="status-dot" />
-                ATMOSPHERIC TELEMETRY · LIVE
-              </span>
+              <span className="tag-mono">DATA CUTOFF · {dataCutoff}</span>
               <span className="tag-mono">v 2.0 · STRATEGIC LAYER</span>
               <span className="tag-mono">51.5074° N · 0.1278° W</span>
             </motion.div>
@@ -177,8 +174,7 @@ export default function HomePage() {
                 href="/observatory/simulator"
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-body font-medium text-amber-300 bg-amber-500/[0.08] border border-amber-500/30 hover:bg-amber-500/[0.14] hover:border-amber-500/50 transition-all duration-200"
               >
-                <span className="status-dot status-dot-amber" />
-                Live Simulator
+                Simulator
               </Link>
               <Link
                 href="/cases"
@@ -192,7 +188,7 @@ export default function HomePage() {
               {([
                 { value: String(observatoryLayerCount), label: "Observatory Layers", tone: "atlas", provenance: "structural" },
                 { value: String(caseCount), label: "Documented Cases", tone: "steel" },
-                { value: "10⁶×", label: "Tempo Asymmetry", tone: "amber", provenance: "illustrative" },
+                { value: dataCutoff, label: "Data Cutoff", tone: "amber" },
                 { value: "Δ", label: "Phase-Shift Model", tone: "plasma" },
               ] as { value: string; label: string; tone: string; provenance?: ProvenanceKind }[]).map((stat) => (
                 <div key={stat.label} className="flex flex-col">
@@ -280,9 +276,8 @@ export default function HomePage() {
                 <div className="relative obs-panel-strong corner-ticks rounded-xl p-5 h-full transition-all duration-300 group-hover:bg-atlas-500/10">
                   <div className="flex items-start justify-between mb-3">
                     <span className="tag-mono text-plasma-300">SIM-Δ</span>
-                    <span className="font-display text-caption text-plasma-300">LIVE</span>
                   </div>
-                  <h3 className="font-display text-subheading text-white mb-1.5 leading-tight">Live Simulator</h3>
+                  <h3 className="font-display text-subheading text-white mb-1.5 leading-tight">Simulator</h3>
                   <p className="text-[11px] font-mono uppercase tracking-wider text-amber-400/80">interactive · 5 axes</p>
                 </div>
               </Link>

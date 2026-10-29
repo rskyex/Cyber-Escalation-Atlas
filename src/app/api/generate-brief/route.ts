@@ -51,6 +51,9 @@ export async function POST(request: Request) {
 
   const structure = STRUCTURES[briefType] || STRUCTURES.executive;
   const wordCount = briefType === "executive" ? 500 : 800;
+  // About 1.3 tokens per English word plus ## headers: 800 words needs ~1,100
+  // tokens, so 2,000 leaves room without inviting much longer output.
+  const maxTokens = 2000;
 
   const caseData = cases.map((c) => ({
     name: c.name,
@@ -84,7 +87,7 @@ ${JSON.stringify(caseData, null, 2)}`;
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
+        max_tokens: maxTokens,
         system: systemPrompt,
         messages: [{ role: "user", content: userMessage }],
       }),
@@ -102,9 +105,15 @@ ${JSON.stringify(caseData, null, 2)}`;
 
     const data = await res.json();
     const text =
-      data.content?.[0]?.text || "Brief generation returned no content.";
+      (Array.isArray(data.content) ? data.content : [])
+        .filter((b: { type?: string }) => b.type === "text")
+        .map((b: { text: string }) => b.text)
+        .join("") || "Brief generation returned no content.";
+    // The model hit the output cap: the brief stops mid-section and must be
+    // labelled as incomplete rather than shown as a finished brief.
+    const truncated = data.stop_reason === "max_tokens";
 
-    return NextResponse.json({ brief: text, mode: "ai", caseCount: cases.length });
+    return NextResponse.json({ brief: text, mode: "ai", truncated, caseCount: cases.length });
   } catch (e: unknown) {
     return NextResponse.json(
       {

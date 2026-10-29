@@ -8,6 +8,7 @@ import {
   targetSectorLabels,
   attributionLabels,
   unpeaceScore,
+  entanglementScore,
 } from "@/lib/utils/incidents";
 
 function addHeader(doc: jsPDF) {
@@ -46,7 +47,8 @@ export function exportCasePdf(incident: Incident) {
     `Sectors: ${incident.infrastructure.targetSectors.map((s) => targetSectorLabels[s]).join(", ")}`,
     `Attribution: ${incident.attribution.attributedTo}`,
     `Confidence: ${attributionLabels[incident.attribution.confidence]}`,
-    `Unpeace Score: ${unpeaceScore(incident) * 10}`,
+    `Unpeace Score: ${unpeaceScore(incident)}/10`,
+    `Entanglement Score: ${entanglementScore(incident)}/10`,
     `Peak Escalation: ${escalationTierLabels[incident.escalation.peakTier]}`,
   ];
   meta.forEach((line) => {

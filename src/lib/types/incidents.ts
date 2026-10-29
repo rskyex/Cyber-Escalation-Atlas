@@ -52,6 +52,14 @@ export type GovernanceFlag =
   | "international-cooperation"
   | "deterrence-signal";
 
+/** The five inclusion criteria on /methodology §03 (see src/data/inclusionCriteria.ts). */
+export type InclusionCriterion =
+  | "state-attribution"
+  | "effects-beyond-target"
+  | "formal-governance-response"
+  | "two-source-categories"
+  | "two-analytical-lenses";
+
 export type SourceCategory =
   | "government"
   | "vendor"
@@ -174,7 +182,9 @@ export interface Incident {
   /** Threat actor profile slug (Upgrade 3) */
   actorSlug?: string;
   /** ISO date (YYYY-MM or YYYY-MM-DD) the record was last reviewed/updated. */
-  lastUpdated?: string;
+  lastUpdated: string;
+  /** Inclusion criteria this case meets. The guideline is at least 3 of 5. */
+  inclusionCriteriaMet: InclusionCriterion[];
   /** Legal frameworks/rules whose application to this case is debated. */
   legalFrameworks?: LegalFrameworkRef[];
 }

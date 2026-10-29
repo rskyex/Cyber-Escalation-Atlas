@@ -121,7 +121,7 @@ export default function SimulatorPage() {
       <ObservatoryHeader
         layerIndex="SIM-Δ"
         coordinate="Interactive · Live"
-        title="Live Escalation Simulator"
+        title="Escalation Simulator"
         tagline="Where every layer meets a slider."
         description="The simulator composes all seven layers into a single interactive surface. Modulate five parameters and observe how escalation risk responds, phase-shifts occur when low attribution confidence meets high automation."
         status="live"

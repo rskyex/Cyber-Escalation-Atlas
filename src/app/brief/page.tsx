@@ -31,6 +31,9 @@ const allRegions = Array.from(
 
 type BriefMode = "ai" | "template";
 
+const TRUNCATED_LABEL =
+  "[Truncated: the model reached its output limit before finishing this brief. The last section is incomplete.]";
+
 function renderBrief(text: string) {
   return text.split("\n").map((line, i) => {
     if (line.startsWith("## ")) return <h2 key={i} className="text-base font-bold text-ink dark:text-white mt-4 mb-2">{line.replace("## ", "")}</h2>;
@@ -52,6 +55,7 @@ export default function BriefPage() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
   const [briefCaseCount, setBriefCaseCount] = useState(0);
+  const [truncated, setTruncated] = useState(false);
 
   const matchingCases = filterCasesForBrief(seedIncidents, { actor, sector, region });
 
@@ -61,6 +65,7 @@ export default function BriefPage() {
     const actorName = actorProfiles.find((a) => a.slug === actor)?.name;
     setBrief(buildTemplateBrief(matchingCases, { actor, sector, region, actorName }, type));
     setMode("template");
+    setTruncated(false);
     setBriefCaseCount(matchingCases.length);
     setError("");
   }
@@ -69,6 +74,7 @@ export default function BriefPage() {
     setLoading(true);
     setError("");
     setBrief("");
+    setTruncated(false);
     setCopied(false);
     if (matchingCases.length === 0) {
       setError("No cases match the selected filters. Widen the actor, sector or region selection and try again.");
@@ -82,7 +88,7 @@ export default function BriefPage() {
         body: JSON.stringify({ actor, sector, region, briefType }),
       });
       const raw = await res.text();
-      let data: { brief?: string; error?: string; mode?: BriefMode } = {};
+      let data: { brief?: string; error?: string; mode?: BriefMode; truncated?: boolean } = {};
       try {
         data = raw ? JSON.parse(raw) : {};
       } catch {
@@ -96,6 +102,7 @@ export default function BriefPage() {
       }
       setBrief(data.brief);
       setMode(data.mode === "template" ? "template" : "ai");
+      setTruncated(data.truncated === true);
       setBriefCaseCount(matchingCases.length);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "";
@@ -108,7 +115,10 @@ export default function BriefPage() {
   async function copyToClipboard() {
     const header = mode === "template" ? `${TEMPLATE_BRIEF_LABEL}\n\n` : "";
     try {
-      await navigator.clipboard.writeText(header + brief);
+      const footer = truncated ? `
+
+${TRUNCATED_LABEL}` : "";
+      await navigator.clipboard.writeText(header + brief + footer);
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -240,8 +250,14 @@ export default function BriefPage() {
             </p>
           </div>
           )}
+          {truncated && (
+            <p data-testid="truncated-label" role="status" className="mb-5 p-3 rounded-lg text-xs font-semibold text-signal-800 dark:text-signal-200 bg-signal-50/60 dark:bg-signal-900/20 border border-signal-300/50 dark:border-signal-700/40">
+              {TRUNCATED_LABEL}
+            </p>
+          )}
           <div className="prose prose-sm dark:prose-invert max-w-none" data-testid="brief-body">
             {renderBrief(brief)}
+            {truncated && <p className="text-sm font-semibold text-signal-700 dark:text-signal-300">[… truncated]</p>}
           </div>
           <div className="mt-6 p-3 rounded-lg bg-signal-50/30 dark:bg-signal-900/10 border border-signal-200/30 dark:border-signal-700/20">
             <p className="text-xs text-signal-700 dark:text-signal-300 italic">

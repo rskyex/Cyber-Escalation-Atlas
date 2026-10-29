@@ -27,14 +27,16 @@ export const codebook: ExportColumn[] = [
   { key: "attributionCountry", description: "Attributed state nexus." },
   { key: "attributionConfidence", description: "confirmed | high | moderate | low | contested." },
   { key: "peakTier", description: "Peak escalation tier: probing…strategic." },
-  { key: "unpeaceScore", description: "Composite severity, 0–100 (see methodology §06)." },
+  { key: "unpeaceScore", description: "Composite severity, 1–10 (see methodology §06). The site draws it on a 0–100 axis; the export keeps the native scale." },
   { key: "entanglementScore", description: "Cross-dimension spread, 1–10 (see methodology §06)." },
   { key: "targetSectors", description: "Affected sectors (semicolon-separated)." },
   { key: "targetCountries", description: "Affected countries/regions (semicolon-separated)." },
   { key: "thresholdCrossings", description: "Escalation thresholds crossed (semicolon-separated)." },
   { key: "governanceFlags", description: "Governance mechanisms triggered (semicolon-separated)." },
   { key: "attackTechniques", description: "MITRE ATT&CK technique IDs (semicolon-separated)." },
-  { key: "lastUpdated", description: "Date the record was last reviewed (if set)." },
+  { key: "lastUpdated", description: "Date the record was last reviewed." },
+  { key: "inclusionCriteriaMet", description: "Inclusion criteria met (methodology §03; semicolon-separated). The guideline is at least 3 of 5." },
+  { key: "sourceUrls", description: "URLs of sources that have a stable official page (semicolon-separated)." },
 ];
 
 function csvEscape(s: string): string {
@@ -54,14 +56,16 @@ function row(inc: Incident): Record<string, string> {
     attributionCountry: inc.attribution.country,
     attributionConfidence: inc.attribution.confidence,
     peakTier: inc.escalation.peakTier,
-    unpeaceScore: String(unpeaceScore(inc) * 10),
+    unpeaceScore: String(unpeaceScore(inc)),
     entanglementScore: String(entanglementScore(inc)),
     targetSectors: inc.infrastructure.targetSectors.join("; "),
     targetCountries: inc.infrastructure.targetCountries.join("; "),
     thresholdCrossings: inc.escalation.thresholdCrossings.join("; "),
     governanceFlags: inc.governance.flags.join("; "),
     attackTechniques: inc.infrastructure.techniques.map((t) => t.id).join("; "),
-    lastUpdated: inc.lastUpdated ?? "",
+    lastUpdated: inc.lastUpdated,
+    inclusionCriteriaMet: inc.inclusionCriteriaMet.join("; "),
+    sourceUrls: inc.sources.flatMap((s) => (s.url ? [s.url] : [])).join("; "),
   };
 }
 

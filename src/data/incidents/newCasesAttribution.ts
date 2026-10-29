@@ -141,28 +141,34 @@ export const newCasesAttribution: Incident[] = [
         "Bossong, R. & Wagner, B. 'A typology of cybersecurity and public-private partnerships in the context of the EU.' Crime, Law and Social Change, 67(3), 2017.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title:
-          "Der Spiegel: 'Belgacom Attack: Britain's GCHQ Hacked Belgian Telecoms Firm'",
+          "Der Spiegel: 'British Spy Agency GCHQ Hacked Belgian Telecoms Firm'",
+        url: "https://www.spiegel.de/international/europe/british-spy-agency-gchq-hacked-belgian-telecoms-firm-a-923406.html",
         category: "journalistic",
         date: "2013-09-20",
       },
       {
         title:
           "The Intercept: 'Operation Socialist, The Inside Story of How British Spies Hacked Belgium's Largest Telco'",
+        url: "https://theintercept.com/2014/12/13/belgacom-hack-gchq-inside-story/",
         category: "journalistic",
         date: "2014-12-13",
       },
       {
         title:
           "Symantec Security Response: 'Regin: Top-tier espionage tool enables stealthy surveillance'",
+        url: "https://www.security.com/threat-intelligence/regin-espionage-surveillance",
         category: "vendor",
         date: "2014-11-23",
       },
       {
         title:
-          "Kaspersky Lab: 'The Regin Platform, Nation-State Ownership of GSM Networks'",
+          "Kaspersky Lab: 'Regin: Nation-state ownage of GSM networks'",
+        url: "https://securelist.com/regin-nation-state-ownage-of-gsm-networks/67741/",
         category: "vendor",
         date: "2014-11-24",
       },
@@ -353,6 +359,8 @@ export const newCasesAttribution: Incident[] = [
         "Clapper, J.R. Remarks at AFCEA Defense Intelligence Senior Executive Service Forum, Washington DC, 25 June 2015, the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title: "OPM: Cybersecurity Incidents, Information About the Background Investigations Incident",
@@ -362,12 +370,14 @@ export const newCasesAttribution: Incident[] = [
       {
         title:
           "House Oversight and Government Reform: 'The OPM Data Breach' Majority Staff Report",
+        url: "https://oversight.house.gov/report/opm-data-breach-government-jeopardized-national-security-generation/",
         category: "government",
         date: "2016-09-07",
       },
       {
         title:
           "GAO: Information Security, OPM Has Improved Controls, but Further Efforts Are Needed (GAO-17-614)",
+        url: "https://www.gao.gov/products/gao-17-614",
         category: "government",
         date: "2017-08",
       },
@@ -379,6 +389,7 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title: "CrowdStrike: 'Deep Panda' threat actor profile",
+        url: "https://www.crowdstrike.com/en-us/adversaries/deep-panda/",
         category: "vendor",
         date: "2014",
       },
@@ -552,33 +563,40 @@ export const newCasesAttribution: Incident[] = [
         "Segal, A. 'The Hacked World Order.' PublicAffairs, 2016, chapter on APT1 and the indictment turn.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title: "Mandiant: 'APT1, Exposing One of China's Cyber Espionage Units'",
+        url: "https://services.google.com/fh/files/misc/mandiant-apt1-report.pdf",
         category: "vendor",
         date: "2013-02-19",
       },
       {
         title:
           "US Department of Justice: Indictment of Wang Dong, Sun Kailiang, Wen Xinyu, Huang Zhenyu, and Gu Chunhui (W.D. Pa.)",
+        url: "https://www.justice.gov/iso/opa/resources/5122014519132358461949.pdf",
         category: "legal",
         date: "2014-05-01",
       },
       {
         title:
           "US Department of Justice press release: 'U.S. Charges Five Chinese Military Hackers for Cyber Espionage Against U.S. Corporations and a Labor Organization for Commercial Advantage'",
+        url: "https://www.justice.gov/archives/opa/pr/us-charges-five-chinese-military-hackers-cyber-espionage-against-us-corporations-and-labor",
         category: "legal",
         date: "2014-05-19",
       },
       {
         title:
           "White House: Fact Sheet, President Xi Jinping's State Visit to the United States (cyber espionage understanding)",
+        url: "https://obamawhitehouse.archives.gov/the-press-office/2015/09/25/fact-sheet-president-xi-jinpings-state-visit-united-states",
         category: "government",
         date: "2015-09-25",
       },
       {
         title:
           "Council on Foreign Relations: 'Cyber Operations Tracker, APT1 / PLA Unit 61398'",
+        url: "https://www.cfr.org/cyber-operations/pla-unit-61398",
         category: "academic",
         date: "2018",
       },
@@ -756,15 +774,19 @@ export const newCasesAttribution: Incident[] = [
         "Lewis, J.A. (CSIS) commentary on the 2024–2025 PRC cyber sanctions wave.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title:
-          "US Department of the Treasury: 'Treasury Sanctions Cyber Actors Involved in PRC State-Sponsored Hacking of U.S. Telecommunications'",
+          "US Department of the Treasury: 'Treasury Sanctions Company Associated with Salt Typhoon and Hacker Associated with Treasury Compromise'",
+        url: "https://home.treasury.gov/news/press-releases/jy2792",
         category: "government",
         date: "2025-01-17",
       },
       {
-        title: "CISA / FBI / NSA Joint Cybersecurity Advisory: PRC-Affiliated Actor Compromise of US Telecommunications Providers",
+        title: "CISA / FBI / NSA and partners: 'Enhanced Visibility and Hardening Guidance for Communications Infrastructure'",
+        url: "https://www.cisa.gov/resources-tools/resources/enhanced-visibility-and-hardening-guidance-communications-infrastructure",
         category: "government",
         date: "2024-12-03",
       },
@@ -960,21 +982,26 @@ export const newCasesAttribution: Incident[] = [
         "Stevens, M. et al. 'Counter-cryptanalysis: Reconstructing the MD5 collision in the Flame malware.' CWI Amsterdam, 2012.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title: "Kaspersky Lab: 'The Flame, Questions and Answers'",
+        url: "https://securelist.com/the-flame-questions-and-answers/34344/",
         category: "vendor",
         date: "2012-05-28",
       },
       {
         title:
           "CrySyS Lab: 'sKyWIper, A complex malware for targeted attacks'",
+        url: "https://www.crysys.hu/publications/files/skywiper.pdf",
         category: "academic",
         date: "2012-05-31",
       },
       {
         title:
           "Microsoft Security Advisory 2718704: 'Unauthorized Digital Certificates Could Allow Spoofing'",
+        url: "https://learn.microsoft.com/en-us/security-updates/securityadvisories/2012/2718704",
         category: "vendor",
         date: "2012-06-03",
       },
@@ -986,9 +1013,10 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "Stevens, M. et al.: 'Counter-cryptanalysis: Reconstructing the MD5 collision in the Flame malware' (CWI Amsterdam)",
+          "Stevens, M.: 'Counter-cryptanalysis' (CRYPTO 2013; reconstructs the MD5 collision in the Flame malware)",
+        url: "https://eprint.iacr.org/2013/358",
         category: "academic",
-        date: "2012-06",
+        date: "2013",
       },
     ],
     attributionDetail: {
@@ -1178,6 +1206,8 @@ export const newCasesAttribution: Incident[] = [
         "Australian Government, Minister for Foreign Affairs. Joint statement on attribution of malicious cyber activity. 21 December 2018.",
       ],
     },
+    lastUpdated: "2026-10-29",
+    inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       {
         title:
@@ -1188,24 +1218,28 @@ export const newCasesAttribution: Incident[] = [
       {
         title:
           "US Department of Justice: Indictment of Zhu Hua and Zhang Shilong (S.D.N.Y.)",
+        url: "https://www.justice.gov/archives/opa/press-release/file/1121706/dl?inline=",
         category: "legal",
         date: "2018-12-17",
       },
       {
         title:
           "US Department of Justice press release: 'Two Chinese Hackers Associated With the Ministry of State Security Charged With Global Computer Intrusion Campaigns'",
+        url: "https://www.justice.gov/archives/opa/pr/two-chinese-hackers-associated-ministry-state-security-charged-global-computer-intrusion",
         category: "legal",
         date: "2018-12-20",
       },
       {
         title:
           "UK Foreign and Commonwealth Office: 'UK and allies reveal global scale of Chinese cyber campaign'",
+        url: "https://www.gov.uk/government/news/uk-and-allies-reveal-global-scale-of-chinese-cyber-campaign",
         category: "government",
         date: "2018-12-20",
       },
       {
         title:
-          "Australian Government Joint Statement on Attribution of Malicious Cyber Activity",
+          "Australian Government (Payne and Dutton): 'Attribution of Chinese cyber-enabled commercial intellectual property theft'",
+        url: "https://www.foreignminister.gov.au/minister/marise-payne/media-release/attribution-chinese-cyber-enabled-commercial-intellectual-property-theft",
         category: "government",
         date: "2018-12-21",
       },

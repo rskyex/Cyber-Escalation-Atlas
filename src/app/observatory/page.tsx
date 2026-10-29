@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ProvenanceMark, ProvenanceNote, type ProvenanceKind } from "@/components/observatory";
+import { dataCutoff } from "@/lib/datasetStats";
 
 const layers: {
   coord: string;
@@ -111,7 +112,7 @@ const layers: {
 
 const simulator = {
   coord: "SIM-Δ",
-  title: "Live Escalation Simulator",
+  title: "Escalation Simulator",
   href: "/observatory/simulator",
   description:
     "Interactive crisis simulator. Modulate attribution confidence and automation level. Observe how escalation risk spikes when low confidence meets high autonomy.",
@@ -126,10 +127,7 @@ export default function ObservatoryHome() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-8">
           <span className="tag-mono text-atlas-400/90">CEA / OBSERVATORY</span>
           <span className="tag-mono">v 2.0 · STRATEGIC LAYER</span>
-          <span className="flex items-center gap-2 tag-mono">
-            <span className="status-dot" />
-            ATMOSPHERIC TELEMETRY · LIVE
-          </span>
+          <span className="tag-mono">DATA CUTOFF · {dataCutoff}</span>
         </div>
 
         <motion.p
@@ -190,10 +188,6 @@ export default function ObservatoryHome() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="tag-mono text-plasma-400">{simulator.coord}</span>
                 <span className="tag-mono">PRIORITY · INTERACTIVE</span>
-                <span className="flex items-center gap-2 tag-mono text-plasma-300">
-                  <span className="status-dot status-dot-plasma" />
-                  LIVE
-                </span>
               </div>
               <h2 className="font-display text-heading sm:text-display text-white mb-4 group-hover:text-atlas-300 transition-colors">
                 {simulator.title}

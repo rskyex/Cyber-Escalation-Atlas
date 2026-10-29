@@ -70,5 +70,5 @@ export const dataCutoff: string = (() => {
  * DATASET_LAST_UPDATED whenever a case record is added or changed.
  * DATASET_LAST_UPDATED is the date of the last change to src/data/incidents.
  */
-export const DATASET_VERSION = "1.1.0";
-export const DATASET_LAST_UPDATED = "2026-10-28";
+export const DATASET_VERSION = "1.2.0";
+export const DATASET_LAST_UPDATED = "2026-10-29";
