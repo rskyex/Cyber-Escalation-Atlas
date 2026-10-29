@@ -405,38 +405,25 @@ export function unpeaceRanks(incidents: Incident[], weights: { tier: number; thr
 
 // ---- Attribution confidence from evidence layers ----------------------------
 
-const NON_STATE_CLAIMANTS = new Set(["Academic/Private Sector", "Contested/Unknown"]);
 
-/** Evidence layers: coded on the record, or derived from claimants and consequences. */
+/** Evidence layers coded on the record (methodology §05). */
 export function attributionLayers(incident: Incident): AttributionLayer[] {
-  if (incident.attribution.layers) return incident.attribution.layers;
-  const d = incident.attributionDetail;
-  const out = new Set<AttributionLayer>();
-  for (const c of d?.claimants ?? []) {
-    if (c.actor === "Academic/Private Sector") out.add("technical");
-    else if (!NON_STATE_CLAIMANTS.has(c.actor)) out.add("governmental");
-  }
-  if (d?.consequences.some((c) => c === "Indictment" || c === "Sanctions")) out.add("legal");
-  return Array.from(out);
-}
-
-/** Number of distinct governments attributing on the record (from claimants). */
-function governmentsOnRecord(incident: Incident): number {
-  if (incident.attribution.layers) return incident.attribution.layers.includes("governmental") ? 1 : 0;
-  return new Set((incident.attributionDetail?.claimants ?? []).filter((c) => !NON_STATE_CLAIMANTS.has(c.actor)).map((c) => c.actor)).size;
+  return incident.attribution.layers ?? [];
 }
 
 /**
  * Confidence implied by the layers (methodology §05):
- * confirmed = governmental + legal, or governmental by two or more states + technical;
- * high = governmental + technical, or documentary + technical;
+ * confirmed = a government on the record + a legal act, or two or more governments + technical;
+ * high = one government + technical, documentary + technical, or a government alone;
  * moderate = technical only; low = none. "contested" is coded by hand.
  */
 export function confidenceFromLayers(incident: Incident): AttributionConfidence {
   const L = new Set(attributionLayers(incident));
-  if (L.has("governmental") && (L.has("legal") || (L.has("technical") && governmentsOnRecord(incident) >= 2))) return "confirmed";
-  if ((L.has("governmental") || L.has("documentary")) && L.has("technical")) return "high";
-  if (L.has("governmental")) return "high";
+  const gov = L.has("governmental") || L.has("multi-governmental");
+  if (gov && L.has("legal")) return "confirmed";
+  if (L.has("multi-governmental") && L.has("technical")) return "confirmed";
+  if ((gov || L.has("documentary")) && L.has("technical")) return "high";
+  if (gov) return "high";
   if (L.has("technical")) return "moderate";
   return "low";
 }

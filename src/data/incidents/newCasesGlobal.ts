@@ -17,6 +17,7 @@ export const newCasesGlobal: Incident[] = [
       country: "India / Pakistan (reciprocal)",
       aliases: ["Transparent Tribe", "APT36", "SideWinder", "Patchwork", "Gorgon Group"],
       intrusionSetIds: ["G0134", "G0121", "G0040", "G0078"],
+      layers: ["technical"],
     },
     escalation: {
       thresholds: [],
@@ -105,6 +106,7 @@ export const newCasesGlobal: Incident[] = [
       country: "Palestinian Territories (Hamas-linked)",
       aliases: ["APT-C-23", "Arid Viper", "Desert Falcon", "Gaza Cybergang"],
       intrusionSetIds: ["G1028"],
+      layers: ["technical"],
     },
     escalation: {
       thresholds: [],
@@ -187,10 +189,11 @@ export const newCasesGlobal: Incident[] = [
     summary:
       "Intrusions targeting Thailand's Election Commission and political party systems during the 2019 general election, the first since the 2014 military coup. The operations compromised voter registration databases and party communication systems, raising concerns about electoral integrity in a democratically fragile context.",
     attribution: {
-      confidence: "moderate",
+      confidence: "low",
       attributedTo: "Assessed to be regional state-linked actors; specific attribution remains inconclusive",
       country: "Unknown (regional state-linked actors assessed)",
       aliases: [],
+      layers: [],
     },
     escalation: {
       thresholds: ["election-or-nc3-target"],
@@ -278,6 +281,7 @@ export const newCasesGlobal: Incident[] = [
       attributedTo: "Unknown; investigations did not produce public attribution. Some researchers noted similarities with regional threat groups but evidence remained inconclusive",
       country: "Unknown",
       aliases: [],
+      layers: [],
     },
     escalation: {
       thresholds: [],

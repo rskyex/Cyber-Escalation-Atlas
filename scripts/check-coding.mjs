@@ -98,13 +98,16 @@ for (const inc of seedIncidents) {
   if (inc.infrastructure.targetSectors.includes("multiple")) add(errors, inc, "sector-multiple", '"multiple" is not a sector');
 }
 
-// Attribution confidence vs evidence layers (methodology §05). Reported for
-// review, not failed: the claimant table is coarse.
+// Attribution confidence must match the coded evidence layers (methodology §05).
 for (const inc of seedIncidents) {
+  if (!inc.attribution.layers) {
+    add(errors, inc, "layers-missing", "attribution.layers is not coded");
+    continue;
+  }
   if (inc.attribution.confidence === "contested") continue;
   const implied = confidenceFromLayers(inc);
   if (implied !== inc.attribution.confidence)
-    add(warnings, inc, "confidence-vs-layers", `coded "${inc.attribution.confidence}", layers (${attributionLayers(inc).join(", ") || "none"}) imply "${implied}"`);
+    add(errors, inc, "confidence-vs-layers", `coded "${inc.attribution.confidence}", layers (${attributionLayers(inc).join(", ") || "none"}) imply "${implied}"`);
 }
 
 // Inclusion criteria: the two mechanical ones must match the record.

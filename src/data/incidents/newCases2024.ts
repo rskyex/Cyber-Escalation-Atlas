@@ -16,6 +16,7 @@ export const newCases2024: Incident[] = [
       attributedTo: "Storm-0558, assessed by Microsoft and US CISA to be a China-based threat actor focused on espionage",
       country: "China",
       aliases: ["Storm-0558"],
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: [],
@@ -123,6 +124,7 @@ export const newCases2024: Incident[] = [
       attributedTo: "ALPHV/BlackCat ransomware-as-a-service group, a Russian-speaking criminal organization",
       country: "Russia (criminal, possible state nexus)",
       aliases: ["ALPHV", "BlackCat", "Noberus"],
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: ["civilian-service-harm"],
@@ -213,11 +215,12 @@ export const newCases2024: Incident[] = [
     summary:
       "PRC-linked threat actor assessed to be pre-positioning access in US critical infrastructure, including water, energy, communications, and transportation systems, as preparation for potential disruptive operations in a Taiwan contingency scenario. The most significant allied joint attribution in the dataset, involving all Five Eyes nations in coordinated advisories.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Volt Typhoon, attributed by the US, UK, Australia, Canada, and New Zealand to PRC state-sponsored actors",
       country: "China",
       aliases: ["Volt Typhoon", "BRONZE SILHOUETTE", "Vanguard Panda"],
       intrusionSetIds: ["G1017"],
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -294,7 +297,7 @@ export const newCases2024: Incident[] = [
         { actor: "Academic/Private Sector", date: "2023-05-24", confidenceLevel: "High", evidenceBasis: "Microsoft original Volt Typhoon reporting" },
       ],
       coordinationType: "joint",
-      consequences: ["Public Naming"],
+      consequences: ["Law-Enforcement Action", "Public Naming"],
     },
     actorSlug: "prc-state-unspecified",
   },
@@ -309,12 +312,13 @@ export const newCases2024: Incident[] = [
     summary:
       "SVR/Cozy Bear intrusion into Microsoft's corporate environment via a password spray attack on a legacy test tenant, subsequently accessing source code repositories and internal email communications of senior leadership and cybersecurity staff. The operation targeted a foundational technology vendor's own internal systems rather than its customers.",
     attribution: {
-      confidence: "confirmed",
+      confidence: "high",
       attributedTo: "Midnight Blizzard (APT29/Cozy Bear), attributed by Microsoft and the US government to Russia's SVR",
       country: "Russia",
       aliases: ["Midnight Blizzard", "APT29", "Cozy Bear", "Nobelium"],
       intrusionSetIds: ["G0016"],
       organ: "SVR",
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: [],
@@ -478,8 +482,7 @@ export const newCases2024: Incident[] = [
     ],
     attributionDetail: {
       claimants: [
-        { actor: "Academic/Private Sector", date: "2024-01-04", confidenceLevel: "Confirmed", evidenceBasis: "Ukraine SBU investigation with technical forensics" },
-        { actor: "Allied Coalition", date: "2024-01-15", confidenceLevel: "Confirmed", evidenceBasis: "Allied governments cited in broader Sandworm documentation" },
+        { actor: "Ukraine Government (SBU)", date: "2024-01-04", confidenceLevel: "Confirmed", evidenceBasis: "SBU cyber department head Illia Vitiuk attributed the attack to Sandworm in an on-record interview (Reuters), on the basis of the SBU investigation" },
       ],
       coordinationType: "unilateral",
       consequences: ["Public Naming"],

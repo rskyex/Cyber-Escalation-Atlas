@@ -58,8 +58,8 @@ export const flagCodebook: { flag: GovernanceFlag; kind: "formal" | "analytic"; 
 
 /** Attribution confidence levels defined by evidence layers (methodology §05). */
 export const confidenceLevels: { level: AttributionConfidence; requires: string }[] = [
-  { level: "confirmed", requires: "A government attributes on the record and a legal act follows (indictment or sanctions), or two or more governments attribute on the record and technical analysis agrees." },
-  { level: "high", requires: "One government attributes on the record, with technical analysis; or authenticated primary documents (for example the Snowden files) with technical analysis." },
+  { level: "confirmed", requires: "A government attributes on the record and a legal act cites this operation (indictment, sanctions designation, court-authorised seizure or takedown), or two or more governments attribute on the record and technical analysis agrees." },
+  { level: "high", requires: "One government attributes on the record, with technical analysis (a victim state counts as one government); or authenticated primary documents (for example the Snowden files) with technical analysis." },
   { level: "moderate", requires: "Technical analysis only, or technical analysis plus press reports citing unnamed officials." },
   { level: "low", requires: "Indicators only, or a single unverified claim." },
   { level: "contested", requires: "Credible competing attributions, or reciprocal operations coded as one case." },

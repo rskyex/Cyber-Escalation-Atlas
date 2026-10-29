@@ -45,12 +45,12 @@ export const attributionDetails: Record<string, AttributionDetail> = {
   },
   "ukraine-power-grid-2015": {
     claimants: [
-      { actor: "US Government", date: "2016-02-25", confidenceLevel: "High", evidenceBasis: "DHS ICS-CERT technical analysis and joint investigation with Ukrainian CERT" },
+      { actor: "US Government (technical, no attribution)", date: "2016-02-25", confidenceLevel: "High", evidenceBasis: "DHS ICS-CERT technical analysis and joint investigation with Ukrainian CERT; the alert named no responsible state" },
       { actor: "Academic/Private Sector", date: "2016-03-18", confidenceLevel: "High", evidenceBasis: "SANS ICS and ESET analysis linking BlackEnergy 3 to Sandworm group" },
-      { actor: "Allied Coalition", date: "2018-02-15", confidenceLevel: "Confirmed", evidenceBasis: "Confirmed as part of broader Five Eyes Sandworm attribution in 2018" },
+      { actor: "US Government", date: "2020-10-19", confidenceLevel: "Confirmed", evidenceBasis: "DOJ indictment of six GRU officers charging the December 2015 and December 2016 attacks on companies supporting Ukraine's electric power grid" },
     ],
     coordinationType: "joint",
-    consequences: ["Public Naming"],
+    consequences: ["Indictment", "Public Naming"],
   },
   "ukraine-power-grid-2016": {
     claimants: [
@@ -77,7 +77,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2021-05-10", confidenceLevel: "High", evidenceBasis: "Multiple threat intelligence firms identified DarkSide RaaS infrastructure" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Sanctions", "Public Naming"],
+    consequences: ["Law-Enforcement Action", "Public Naming"],
   },
   "oldsmar-water": {
     claimants: [
@@ -104,7 +104,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2021-03-02", confidenceLevel: "High", evidenceBasis: "Microsoft Threat Intelligence identified Hafnium as China-based group" },
     ],
     coordinationType: "joint",
-    consequences: ["Indictment", "Public Naming"],
+    consequences: ["Public Naming"],
   },
   "costa-rica-conti": {
     claimants: [
@@ -112,7 +112,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2022-04-18", confidenceLevel: "Confirmed", evidenceBasis: "Conti group publicly claimed responsibility and leaked data" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Sanctions", "Public Naming"],
+    consequences: ["Public Naming"],
   },
   "albania-iran": {
     claimants: [
@@ -125,7 +125,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
   },
   "shamoon-aramco": {
     claimants: [
-      { actor: "US Government", date: "2012-10-11", confidenceLevel: "Moderate", evidenceBasis: "Secretary Panetta referenced attack without formal attribution; US officials later assessed Iranian involvement" },
+      { actor: "Contested/Unknown", date: "2012-10-11", confidenceLevel: "Moderate", evidenceBasis: "Secretary Panetta referenced the attack without naming a state; US officials later assessed Iranian involvement" },
       { actor: "Academic/Private Sector", date: "2012-08-16", confidenceLevel: "Moderate", evidenceBasis: "Symantec and Kaspersky technical analysis; hacktivist front claim" },
     ],
     coordinationType: "none",
@@ -156,19 +156,18 @@ export const attributionDetails: Record<string, AttributionDetail> = {
   },
   "taiwan-telecom": {
     claimants: [
-      { actor: "US Government", date: "2023-05-24", confidenceLevel: "Moderate", evidenceBasis: "CISA/NSA/FBI joint advisory on PRC-linked living-off-the-land activity" },
-      { actor: "Allied Coalition", date: "2023-05-24", confidenceLevel: "Moderate", evidenceBasis: "Five Eyes joint advisory on Volt Typhoon" },
+      { actor: "Contested/Unknown", date: "2023-05-24", confidenceLevel: "Moderate", evidenceBasis: "Context only: the CISA/NSA/FBI advisory on PRC living-off-the-land activity concerns US infrastructure and does not attribute the Taiwanese telecom intrusions" },
       { actor: "Academic/Private Sector", date: "2023-05-24", confidenceLevel: "Moderate", evidenceBasis: "Microsoft Volt Typhoon and Flax Typhoon reporting" },
     ],
-    coordinationType: "joint",
-    consequences: ["Public Naming"],
+    coordinationType: "none",
+    consequences: ["No Formal Response"],
   },
   industroyer2: {
     claimants: [
-      { actor: "Academic/Private Sector", date: "2022-04-12", confidenceLevel: "Confirmed", evidenceBasis: "CERT-UA and ESET joint technical analysis" },
-      { actor: "Allied Coalition", date: "2022-04-12", confidenceLevel: "Confirmed", evidenceBasis: "Cited in allied documentation of Russian cyber operations in Ukraine" },
+      { actor: "Ukraine Government (CERT-UA)", date: "2022-04-12", confidenceLevel: "Confirmed", evidenceBasis: "CERT-UA alert #4435 attributing Industroyer2 and CaddyWiper to Sandworm (UAC-0082)" },
+      { actor: "Academic/Private Sector", date: "2022-04-12", confidenceLevel: "Confirmed", evidenceBasis: "ESET technical analysis of Industroyer2, published with CERT-UA" },
     ],
-    coordinationType: "joint",
+    coordinationType: "unilateral",
     consequences: ["Public Naming"],
   },
   "scattered-spider-mgm": {
@@ -177,7 +176,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2023-09-14", confidenceLevel: "High", evidenceBasis: "CrowdStrike and Microsoft public threat reporting" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Indictment"],
+    consequences: ["Public Naming"],
   },
 };
 

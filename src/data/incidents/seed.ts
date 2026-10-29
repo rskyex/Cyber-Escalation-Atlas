@@ -19,6 +19,7 @@ export const seedIncidents: Incident[] = [
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
       intrusionSetIds: ["G0034"],
       organ: "GRU",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: ["civilian-service-harm", "unintended-spillover"],
@@ -122,12 +123,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Sophisticated supply chain compromise of SolarWinds Orion IT monitoring platform, enabling covert access to ~18,000 organizations including US federal agencies. Discovered in December 2020 after ~9 months of undetected access.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "SVR (Foreign Intelligence Service)",
       country: "Russia",
       aliases: ["APT29", "Cozy Bear", "Nobelium", "Midnight Blizzard"],
       intrusionSetIds: ["G0016"],
       organ: "SVR",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -215,6 +217,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "White House: Fact Sheet, Imposing Costs for Harmful Foreign Activities by the Russian Government", url: "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2021/04/15/fact-sheet-imposing-costs-for-harmful-foreign-activities-by-the-russian-government/", category: "government", date: "2021-04-15" },
       { title: "CISA Emergency Directive 21-01: Mitigate SolarWinds Orion Code Compromise", url: "https://www.cisa.gov/news-events/directives/ed-21-01-mitigate-solarwinds-orion-code-compromise-closed", category: "government", date: "2020-12-13" },
       { title: "FireEye/Mandiant: Highly Evasive Attacker Leverages SolarWinds Supply Chain (SUNBURST)", url: "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor/", category: "vendor", date: "2020-12-13" },
       { title: "Executive Order 14028: Improving the Nation's Cybersecurity", url: "https://bidenwhitehouse.archives.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/", category: "government", date: "2021-05-12" },
@@ -345,12 +348,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Destructive intrusion into Sony Pictures Entertainment that exfiltrated confidential data and deployed wiper malware, rendering thousands of workstations inoperable. Accompanied by coercive threats linked to the film 'The Interview,' prompting an unprecedented US public attribution to a state actor.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Lazarus Group, attributed by the US government to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "HIDDEN COBRA", "Guardians of Peace"],
       intrusionSetIds: ["G0032"],
       organ: "RGB",
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -448,12 +452,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Coordinated cyber attack against three Ukrainian regional power distribution companies that caused power outages affecting approximately 230,000 customers. Attackers used spearphishing for initial access, then leveraged stolen credentials to remotely operate SCADA systems and open breakers, followed by destructive actions to delay restoration.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
       intrusionSetIds: ["G0034"],
       organ: "GRU",
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: ["physical-effects", "civilian-service-harm"],
@@ -501,7 +506,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Power outages for ~230,000 customers across three regions; manual restoration required ~6 hours.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      flags: ["norm-violation", "attribution-public", "international-cooperation", "indictment"],
       normsInvoked: [
         "UN GGE 2015 norm against attacking critical infrastructure",
         "Tallinn Manual rules on attacks against civilian objects",
@@ -532,6 +537,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "US Department of Justice: Indictment of six GRU officers (W.D. Pa., October 2020)", url: "https://www.justice.gov/archives/opa/press-release/file/1328521/dl?inline=", category: "legal", date: "2020-10-19" },
       { title: "ICS-CERT Alert IR-ALERT-H-16-056-01", url: "https://www.cisa.gov/news-events/ics-alerts/ir-alert-h-16-056-01", category: "government", date: "2016-02-25" },
       { title: "SANS ICS: Analysis of the Cyber Attack on the Ukrainian Power Grid", category: "academic", date: "2016-03-18" },
       { title: "ESET: BlackEnergy by the SSHBearDoor", url: "https://www.welivesecurity.com/2016/01/03/blackenergy-sshbeardoor-details-2015-attacks-ukrainian-news-media-electric-industry/", category: "vendor", date: "2016-01" },
@@ -550,12 +556,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "A more sophisticated follow-up to the 2015 grid attack, this operation used purpose-built ICS malware (Industroyer/CrashOverride) capable of directly speaking industrial protocols to open circuit breakers. It caused a localized outage in Kyiv lasting approximately one hour.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
       intrusionSetIds: ["G0034"],
       organ: "GRU",
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: ["physical-effects", "civilian-service-harm"],
@@ -635,6 +642,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "US Department of Justice: Indictment of six GRU officers (W.D. Pa., October 2020)", url: "https://www.justice.gov/archives/opa/press-release/file/1328521/dl?inline=", category: "legal", date: "2020-10-19" },
       { title: "ESET: Industroyer, A New Threat for Industrial Control Systems", url: "https://www.welivesecurity.com/wp-content/uploads/2017/06/Win32_Industroyer.pdf", category: "vendor", date: "2017-06-12" },
       { title: "Dragos: CrashOverride Report", category: "vendor", date: "2017-06-12" },
       { title: "US-CERT Alert TA17-163A", url: "https://www.cisa.gov/news-events/alerts/2017/06/12/crashoverride-malware", category: "government", date: "2017-06-12" },
@@ -653,12 +661,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Self-propagating ransomware that exploited the EternalBlue SMB vulnerability to spread across ~150 countries in hours. The UK's National Health Service was among the hardest hit, with hospitals diverting ambulances and cancelling surgeries. A researcher-activated kill switch slowed propagation, but not before substantial global disruption.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Lazarus Group, attributed by the US, UK, and allied governments to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "HIDDEN COBRA"],
       intrusionSetIds: ["G0032"],
       organ: "RGB",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: ["civilian-service-harm", "unintended-spillover"],
@@ -743,6 +752,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "US Treasury: Treasury Sanctions North Korean State-Sponsored Malicious Cyber Groups", url: "https://home.treasury.gov/news/press-releases/sm774", category: "government", date: "2019-09-13" },
       { title: "NHS England: Lessons Learned Review of WannaCry", url: "https://www.england.nhs.uk/wp-content/uploads/2018/02/lessons-learned-review-wannacry-ransomware-cyber-attack-cio-review.pdf", category: "government", date: "2018-02" },
       { title: "MSRC: Customer Guidance for WannaCrypt Attacks", url: "https://msrc.microsoft.com/blog/2017/05/customer-guidance-for-wannacrypt-attacks/", category: "vendor", date: "2017-05-12" },
       { title: "CISA Alert TA17-132A: Indicators Associated With WannaCry Ransomware", url: "https://www.cisa.gov/news-events/alerts/2017/05/12/indicators-associated-wannacry-ransomware", category: "government", date: "2017-05-12" },
@@ -763,10 +773,11 @@ export const seedIncidents: Incident[] = [
     summary:
       "DarkSide ransomware group encrypted IT systems at Colonial Pipeline, operator of the largest refined-fuel pipeline in the US. The company preemptively shut down OT pipeline operations for six days, triggering fuel shortages and panic buying across the US East Coast. A $4.4M ransom was paid, of which the DOJ later recovered roughly $2.3M.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "DarkSide ransomware-as-a-service group, assessed to be a Russian-speaking criminal organization",
       country: "Russia (criminal, not directly state-sponsored per US assessment)",
       aliases: ["DarkSide", "BlackMatter"],
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: ["civilian-service-harm"],
@@ -814,7 +825,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Six-day shutdown of 5,500-mile pipeline supplying ~45% of US East Coast fuel; 17-state emergency declarations.",
     },
     governance: {
-      flags: ["regulatory-change", "sanctions-imposed", "deterrence-signal"],
+      flags: ["regulatory-change", "deterrence-signal"],
       normsInvoked: [
         "Responsible state behavior: harboring cybercriminals targeting critical infrastructure",
         "Biden–Putin Geneva summit discussion on ransomware safe harbors (Jun 2021)",
@@ -869,6 +880,7 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Unknown; initial reports suggested a remote intruder, though subsequent investigation raised the possibility of insider involvement",
       country: "Unknown",
       aliases: [],
+      layers: [],
     },
     escalation: {
       thresholds: ["physical-effects"],
@@ -963,6 +975,7 @@ export const seedIncidents: Incident[] = [
       aliases: ["Sandworm"],
       intrusionSetIds: ["G0034"],
       organ: "GRU",
+      layers: ["technical", "multi-governmental"],
     },
     escalation: {
       thresholds: ["physical-effects", "civilian-service-harm", "unintended-spillover", "wartime-use"],
@@ -1068,12 +1081,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Mass exploitation of four zero-day vulnerabilities in on-premises Microsoft Exchange Server by a China-based group, later followed by indiscriminate exploitation by multiple actors after patches were released. At least 30,000 US organizations and many more worldwide were compromised, with web shells left for persistent access.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Hafnium, attributed by the US and allied governments to actors affiliated with China's Ministry of State Security",
       country: "China",
       aliases: ["Hafnium", "Silk Typhoon"],
       intrusionSetIds: ["G0125"],
       organ: "MSS",
+      layers: ["technical", "multi-governmental"],
     },
     escalation: {
       thresholds: ["unintended-spillover"],
@@ -1120,7 +1134,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "At least 30,000 US organizations compromised; web shells provided persistent access exploitable by any subsequent attacker.",
     },
     governance: {
-      flags: ["attribution-public", "indictment", "international-cooperation", "norm-violation"],
+      flags: ["attribution-public", "international-cooperation", "norm-violation"],
       normsInvoked: [
         "Responsible disclosure and restraint in vulnerability exploitation",
         "UN GGE norm on responsible state behavior in ICT use",
@@ -1175,6 +1189,7 @@ export const seedIncidents: Incident[] = [
       country: "Russia (criminal, not directly state-sponsored per public assessments)",
       aliases: ["Conti", "Wizard Spider", "HIVE"],
       intrusionSetIds: ["G0102"],
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: ["civilian-service-harm"],
@@ -1221,7 +1236,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Tax and customs systems offline for weeks; national emergency declared; healthcare disrupted by follow-on attack.",
     },
     governance: {
-      flags: ["norm-violation", "sanctions-imposed"],
+      flags: ["norm-violation"],
       normsInvoked: [
         "Protection of government services and public welfare infrastructure",
         "Responsible state behavior: preventing criminal groups from operating with impunity",
@@ -1271,11 +1286,12 @@ export const seedIncidents: Incident[] = [
     summary:
       "Iran-linked actors launched destructive cyber attacks against Albanian government systems, deploying wiper malware and ransomware that took e-government services offline for weeks. Albania attributed the attack to Iran and took the unprecedented step of severing diplomatic relations, the first known rupture of diplomatic ties over a cyber operation.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Attributed by Albania, the US, and allied governments to Iranian state actors affiliated with MOIS",
       country: "Iran",
       aliases: ["Homeland Justice", "DEV-0861", "DEV-0166"],
       organ: "MOIS",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: ["civilian-service-harm"],
@@ -1355,6 +1371,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "US Treasury: Treasury Sanctions Iranian Ministry of Intelligence and Minister for Malign Cyber Activities", url: "https://home.treasury.gov/news/press-releases/jy0941", category: "government", date: "2022-09-09" },
       { title: "Microsoft: Iranian Attacks Against the Albanian Government", url: "https://www.microsoft.com/en-us/security/blog/2022/09/08/microsoft-investigates-iranian-attacks-against-the-albanian-government/", category: "vendor", date: "2022-09-08" },
       { title: "White House: Statement on Iran's Cyberattack Against Albania", url: "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2022/09/07/statement-by-nsc-spokesperson-adrienne-watson-on-irans-cyberattack-against-albania/", category: "government", date: "2022-09-07" },
       { title: "FBI/CISA Advisory AA22-264A: Iranian State Actors Conduct Cyber Operations Against Albania", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-264a", category: "government", date: "2022-09-21" },
@@ -1378,6 +1395,7 @@ export const seedIncidents: Incident[] = [
       country: "Iran (assessed)",
       aliases: ["APT33", "Elfin", "Cutting Sword of Justice"],
       intrusionSetIds: ["G0064"],
+      layers: ["technical"],
     },
     escalation: {
       thresholds: [],
@@ -1474,12 +1492,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Attackers compromised Bangladesh Bank's SWIFT terminal and issued fraudulent transfer requests totaling $951M from its account at the Federal Reserve Bank of New York. Most transactions were blocked, but $81M was successfully routed to accounts in the Philippines. The operation demonstrated that the global interbank messaging system could be exploited for state-linked financial theft.",
     attribution: {
-      confidence: "high",
+      confidence: "confirmed",
       attributedTo: "Lazarus Group, attributed by the US DOJ and multiple researchers to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "APT38", "BlueNoroff"],
       intrusionSetIds: ["G0032", "G0082"],
       organ: "RGB",
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -1560,6 +1579,7 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "US Treasury: Treasury Sanctions North Korean State-Sponsored Malicious Cyber Groups", url: "https://home.treasury.gov/news/press-releases/sm774", category: "government", date: "2019-09-13" },
       { title: "Reuters: How the New York Fed fumbled over the Bangladesh Bank cyber-heist", category: "journalistic", date: "2016-07-21" },
       { title: "US DOJ: North Korean Regime-Backed Programmer Charged", url: "https://www.justice.gov/archives/opa/pr/north-korean-regime-backed-programmer-charged-conspiracy-conduct-multiple-cyber-attacks-and", category: "legal", date: "2018-09-06" },
       { title: "SWIFT: Customer Security Programme overview", category: "vendor", date: "2017-01" },
@@ -1582,6 +1602,7 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Described by the Australian government as a 'sophisticated state actor'; widely assessed in reporting to be China-linked, but never officially confirmed",
       country: "Unknown (officially); China (widely assessed)",
       aliases: [],
+      layers: ["technical"],
     },
     escalation: {
       thresholds: ["election-or-nc3-target"],
@@ -1671,10 +1692,11 @@ export const seedIncidents: Incident[] = [
     summary:
       "A series of reported cyber-enabled incidents at Iranian nuclear and industrial facilities, including an explosion and fire at the Natanz enrichment plant (July 2020), a power distribution disruption at Natanz (April 2021), and other suspected sabotage events. Iran attributed several incidents to Israel. Details remain opaque, with much information coming from Iranian state media and unconfirmed reporting.",
     attribution: {
-      confidence: "moderate",
+      confidence: "low",
       attributedTo: "Iran publicly attributed several incidents to Israel; independent confirmation is limited and details remain sparse",
       country: "Israel (attributed by Iran; not officially confirmed)",
       aliases: [],
+      layers: [],
     },
     escalation: {
       thresholds: [],
@@ -1767,6 +1789,7 @@ export const seedIncidents: Incident[] = [
       country: "China (assessed)",
       aliases: ["Volt Typhoon", "Flax Typhoon"],
       intrusionSetIds: ["G1017"],
+      layers: ["technical"],
     },
     escalation: {
       thresholds: [],
@@ -1807,7 +1830,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Persistent access to telecom networks; no disruption observed, but pre-positioning raises contingency concerns.",
     },
     governance: {
-      flags: ["attribution-public", "deterrence-signal", "international-cooperation"],
+      flags: [],
       normsInvoked: [
         "Responsible state behavior in ICT use (UN OEWG)",
         "Pre-positioning in critical infrastructure as a potentially destabilizing activity",
@@ -1838,7 +1861,7 @@ export const seedIncidents: Incident[] = [
     },
     relatedRecords: [{ id: "cyber:volt-typhoon", sourceUrl: "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/" }],
     lastUpdated: "2026-10-29",
-    inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
+    inclusionCriteriaMet: ["state-attribution", "two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "CISA/NSA/FBI Advisory AA23-144A: PRC State-Sponsored Cyber Actor Living off the Land", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-144a", category: "government", date: "2023-05-24" },
       { title: "Microsoft: Volt Typhoon Targets US Critical Infrastructure", url: "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/", category: "vendor", date: "2023-05-24" },
@@ -1857,12 +1880,13 @@ export const seedIncidents: Incident[] = [
     summary:
       "Sandworm deployed Industroyer2, an updated variant of the 2016 Industroyer malware, against a Ukrainian regional energy company during Russia's ongoing invasion. The attack aimed to de-energize electrical substations using IEC 104 protocol commands. CERT-UA and ESET detected and neutralized the attack before it could cause a sustained outage, marking a successful wartime cyber defense.",
     attribution: {
-      confidence: "confirmed",
+      confidence: "high",
       attributedTo: "Sandworm Team, attributed by Ukraine's CERT-UA and corroborated by ESET and allied governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
       intrusionSetIds: ["G0034"],
       organ: "GRU",
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: ["wartime-use"],
@@ -1903,7 +1927,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Attack neutralized before sustained outage; demonstrated continued ICS threat capability during wartime.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      flags: ["norm-violation", "attribution-public"],
       normsInvoked: [
         "IHL prohibition on attacking civilian objects (electric grid serving civilians)",
         "UN GGE 2015 norm against damaging critical infrastructure",
@@ -1957,6 +1981,7 @@ export const seedIncidents: Incident[] = [
       country: "United States / United Kingdom (individuals; not state-sponsored)",
       aliases: ["Scattered Spider", "UNC3944", "Octo Tempest", "0ktapus"],
       intrusionSetIds: ["G1015"],
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: [],
@@ -2004,7 +2029,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "MGM systems offline for 10+ days with >$100M in losses; Caesars paid ~$15M ransom; customer data exfiltrated at both companies.",
     },
     governance: {
-      flags: ["regulatory-change", "indictment"],
+      flags: ["regulatory-change"],
       normsInvoked: [
         "Corporate duty of care for customer data and operational resilience",
         "Debate over ransom payment regulation",

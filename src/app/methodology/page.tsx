@@ -350,9 +350,10 @@ export default function MethodologyPage() {
           <h4 className="text-base font-bold text-ink dark:text-white mt-4">Attribution confidence levels</h4>
           <ConfidenceLevelsTable />
           <p className="text-sm mt-2">
-            Confidence is coded by hand against these definitions. Where the
-            claimant table implies a different level, the coding check lists
-            the case for review rather than changing it automatically.
+            Every case records which layers are present (<span className="font-mono text-xs">attribution.layers</span>),
+            and the coding check fails when the coded confidence does not
+            match the level its layers imply. A legal layer counts only when
+            the legal act cites this operation.
             Ecuador&apos;s 2019 data exposure was removed in dataset 2.0.0: it
             had no attacker, so it is outside the scope of an escalation atlas.
           </p>

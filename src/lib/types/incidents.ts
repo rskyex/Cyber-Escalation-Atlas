@@ -54,7 +54,8 @@ export type ThresholdCode =
   | "election-or-nc3-target";
 
 /** Evidence layers behind an attribution (methodology §05). */
-export type AttributionLayer = "technical" | "governmental" | "legal" | "documentary";
+/** "governmental": one government attributes on the record; "multi-governmental": two or more do. */
+export type AttributionLayer = "technical" | "governmental" | "multi-governmental" | "legal" | "documentary";
 
 export type GovernanceFlag =
   | "norm-violation"
@@ -92,7 +93,7 @@ export interface Attribution {
   intrusionSetIds?: string[];
   /** State organ named in the attribution (GRU, MSS, GCHQ, ...). */
   organ?: string;
-  /** Evidence layers; derived from claimants and consequences when absent. */
+  /** Evidence layers (methodology §05); coded on every case and checked against confidence. */
   layers?: AttributionLayer[];
 }
 
@@ -172,6 +173,7 @@ export type AttributionConsequenceType =
   | "Sanctions"
   | "Indictment"
   | "Diplomatic Expulsion"
+  | "Law-Enforcement Action"
   | "Public Naming"
   | "No Formal Response";
 

@@ -256,6 +256,7 @@ export const newCasesAttribution: Incident[] = [
       country: "China",
       aliases: ["Deep Panda", "Axiom (linked tooling)"],
       intrusionSetIds: ["G0009", "G0001"],
+      layers: ["technical", "governmental"],
     },
     escalation: {
       thresholds: [],
@@ -458,6 +459,7 @@ export const newCasesAttribution: Incident[] = [
       aliases: ["APT1", "Comment Crew", "Comment Group", "Byzantine Candor"],
       intrusionSetIds: ["G0006"],
       organ: "PLA Unit 61398",
+      layers: ["technical", "governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -658,6 +660,7 @@ export const newCasesAttribution: Incident[] = [
       ],
       intrusionSetIds: ["G1045"],
       organ: "MSS",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -1053,6 +1056,7 @@ export const newCasesAttribution: Incident[] = [
       aliases: ["APT10", "Stone Panda", "MenuPass", "POTASSIUM", "Red Apollo"],
       intrusionSetIds: ["G0045"],
       organ: "MSS (Tianjin State Security Bureau)",
+      layers: ["technical", "multi-governmental", "legal"],
     },
     escalation: {
       thresholds: [],
@@ -1220,7 +1224,7 @@ export const newCasesAttribution: Incident[] = [
           date: "2017-04-03",
           confidenceLevel: "High",
           evidenceBasis:
-            "UK National Cyber Security Centre co-authored the Operation Cloud Hopper report",
+            "UK Foreign and Commonwealth Office public attribution to APT10 acting for the MSS (20 December 2018); NCSC supported the 2017 PwC UK / BAE Systems report",
         },
         {
           actor: "US Government",

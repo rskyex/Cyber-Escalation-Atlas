@@ -1,5 +1,33 @@
 # Changelog
 
+## Dataset 2.1.0 — 2026-10-29
+
+Attribution confidence review (cea-confidence-review.md):
+
+- Every case now codes `attribution.layers` (technical, governmental, multi-governmental, legal,
+  documentary), and `npm run check:coding` fails when confidence does not match the layers. A legal
+  layer counts only when the legal act cites this operation.
+- To confirmed: SolarWinds, Sony, Ukraine grid 2015 and 2016, WannaCry, Colonial, Exchange,
+  Albania, Bangladesh Bank, Volt Typhoon. To high: Industroyer2, Midnight Blizzard. To low: Iran
+  nuclear, Thailand.
+- Ukraine grid 2015: indictment added. The October 2020 GRU indictment charges the December 2015
+  and December 2016 grid attacks (checked in the indictment text). The DHS ICS-CERT claimant is
+  relabelled as technical with no attribution, and the unsupported 2018 Five Eyes claimant is
+  replaced by the indictment.
+- Removed unsupported consequences and flags: sanctions for Colonial (none on DarkSide) and Costa
+  Rica (the February 2023 Trickbot sanctions do not mention Conti or Costa Rica); the indictment for
+  Exchange (the July 2021 MSS indictment concerns a separate campaign, per the White House
+  statement) and for Scattered Spider (no indictment covering MGM or Caesars found).
+- New consequence type "Law-Enforcement Action": Colonial (ransom seizure), Volt Typhoon (KV
+  botnet takedown).
+- Taiwan telecom: the Five Eyes advisory concerns US infrastructure, so it is no longer counted as
+  attribution; attribution, cooperation and deterrence flags removed.
+- Claimants relabelled: CERT-UA (Industroyer2) and the SBU (Kyivstar) as Ukrainian government;
+  unsourced "Allied Coalition" claimants removed from both; Panetta's speech (Shamoon) as no state
+  named; Cloud Hopper's UK claimant corrected (NCSC supported, did not co-author, the 2017 report).
+- Sources added: White House fact sheet of 15 April 2021 (SolarWinds), the GRU indictment (both
+  grid cases), Treasury jy0941 (Albania) and sm774 (WannaCry, Bangladesh Bank).
+
 ## Dataset 2.0.0 — 2026-10-29
 
 Breaking schema changes (field names and meanings):
