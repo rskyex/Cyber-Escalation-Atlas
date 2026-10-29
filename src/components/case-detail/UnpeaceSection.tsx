@@ -5,6 +5,8 @@ import {
   unpeaceScore,
   unpeaceBreakdown,
   entanglementBreakdown,
+  governanceAxis,
+  governanceFlagLabels,
 } from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
 import { UnpeaceAxis } from "./UnpeaceAxis";
@@ -18,6 +20,7 @@ export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
   const score = unpeaceScore(incident);
   const unpeace = unpeaceBreakdown(incident);
   const entanglement = entanglementBreakdown(incident);
+  const gov = governanceAxis(incident);
 
   return (
     <section>
@@ -42,11 +45,19 @@ export function UnpeaceSection({ incident }: UnpeaceSectionProps) {
               Unpeace Score
             </p>
             <p className="text-xs text-steel-500 dark:text-steel-300">
-              Composite severity rating on the peace–conflict spectrum (1–10)
+              Severity on the peace–conflict spectrum (1–10): peak tier and thresholds crossed
             </p>
           </div>
         </div>
         <UnpeaceAxis score={score} />
+        <div className="mt-4 pt-4 border-t border-steel-200/20 dark:border-ink-600/30 text-sm">
+          <p className="font-semibold text-ink dark:text-white">Governance response (separate axis)</p>
+          <p className="text-steel-500 dark:text-steel-300 mt-1">
+            {gov.formal} formal {gov.formal === 1 ? "response" : "responses"}
+            {gov.formal > 0 && `: ${gov.formalFlags.map((f) => governanceFlagLabels[f].toLowerCase()).join(", ")}`}.
+            {gov.analytic > 0 && ` Analyst judgements: ${gov.analyticFlags.map((f) => governanceFlagLabels[f].replace(" (analyst judgement)", "").toLowerCase()).join(", ")}.`}
+          </p>
+        </div>
       </div>
 
       {/* Transparent score breakdowns */}

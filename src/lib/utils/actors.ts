@@ -53,7 +53,7 @@ export function attributionGap(inc: Incident): AttributionGap {
   if (
     coordination === "none" ||
     consequences.includes("No Formal Response") ||
-    (consequences.length === 1 && consequences[0] === "Public Naming Only")
+    (consequences.length === 1 && consequences[0] === "Public Naming")
   ) {
     return "no-political-attribution";
   }

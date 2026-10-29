@@ -16,8 +16,10 @@ export const newCasesGlobal: Incident[] = [
       attributedTo: "Multiple groups on both sides; Pakistani-linked groups include Transparent Tribe (APT36) and Gorgon Group; Indian-linked groups include SideWinder and Patchwork",
       country: "India / Pakistan (reciprocal)",
       aliases: ["Transparent Tribe", "APT36", "SideWinder", "Patchwork", "Gorgon Group"],
+      intrusionSetIds: ["G0134", "G0121", "G0040", "G0078"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         { tier: "intrusion", label: "Targeted espionage campaigns", description: "Both sides conducted persistent spearphishing campaigns against military, diplomatic, and government targets using custom remote access trojans.", date: "2016" },
         { tier: "intrusion", label: "Intensification during tensions", description: "Cyber operations escalated during the 2016 Uri attack aftermath and 2019 Balakot crisis, with both sides increasing targeting of military and intelligence organizations.", date: "2019" },
@@ -27,14 +29,14 @@ export const newCasesGlobal: Incident[] = [
         "Operations remained within espionage parameters, no destructive payloads documented",
         "Both sides maintained deniability through proxy groups",
       ],
-      thresholdCrossings: [
+      significance: [
         "Most sustained reciprocal cyber espionage campaign between nuclear-armed adversaries in South Asia",
         "Demonstrated that cyber operations track kinetic tension cycles in regional conflicts",
       ],
     },
     infrastructure: {
       targetSectors: ["government", "defense", "media"],
-      targetCountries: ["India", "Pakistan"],
+      targetCountries: ["IN", "PK"],
       techniques: [
         { id: "T1566.001", name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" },
         { id: "T1059", name: "Command and Scripting Interpreter", tactic: "Execution" },
@@ -44,7 +46,7 @@ export const newCasesGlobal: Incident[] = [
       impactSummary: "Sustained bilateral espionage affecting military and government targets; scope of intelligence loss not publicly assessed.",
     },
     governance: {
-      flags: ["deterrence-signal"],
+      flags: [],
       normsInvoked: [
         "Responsible state behavior in ICT use (UN OEWG)",
         "Restraint in cyber operations between nuclear-armed states",
@@ -102,8 +104,10 @@ export const newCasesGlobal: Incident[] = [
       attributedTo: "APT-C-23 / Gaza Cybergang / Arid Viper, assessed by multiple security vendors to be linked to Hamas",
       country: "Palestinian Territories (Hamas-linked)",
       aliases: ["APT-C-23", "Arid Viper", "Desert Falcon", "Gaza Cybergang"],
+      intrusionSetIds: ["G1028"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         { tier: "intrusion", label: "Mobile espionage campaigns", description: "Deployed custom Android spyware through fake messaging and dating applications targeting Israeli military personnel and Palestinian Authority officials.", date: "2018" },
         { tier: "intrusion", label: "Evolved tradecraft", description: "Updated mobile malware with improved evasion techniques; expanded targeting to include regional diplomatic targets in Egypt and Gulf states.", date: "2021" },
@@ -113,14 +117,14 @@ export const newCasesGlobal: Incident[] = [
         "Operations remained focused on intelligence collection, not disruption",
         "Mobile malware designed for stealth and persistence rather than destruction",
       ],
-      thresholdCrossings: [
+      significance: [
         "Non-state armed group maintaining a persistent, multi-year cyber espionage programme",
         "Targeting of an occupying military's personnel through social engineering at scale",
       ],
     },
     infrastructure: {
       targetSectors: ["government", "defense"],
-      targetCountries: ["Israel", "Palestinian Territories", "Egypt"],
+      targetCountries: ["IL", "PS", "EG"],
       techniques: [
         { id: "T1566.002", name: "Phishing: Spearphishing Link", tactic: "Initial Access" },
         { id: "T1437", name: "Application Layer Protocol", tactic: "Command and Control" },
@@ -130,7 +134,7 @@ export const newCasesGlobal: Incident[] = [
       impactSummary: "Sustained espionage against Israeli military personnel and PA officials; intelligence value of exfiltrated data unknown.",
     },
     governance: {
-      flags: ["deterrence-signal"],
+      flags: [],
       normsInvoked: [
         "Application of cyber norms to non-state armed groups in conflict zones",
         "Dual-use mobile surveillance capabilities",
@@ -189,6 +193,7 @@ export const newCasesGlobal: Incident[] = [
       aliases: [],
     },
     escalation: {
+      thresholds: ["election-or-nc3-target"],
       phases: [
         { tier: "intrusion", label: "Election Commission compromise", description: "Unauthorized access to Election Commission systems including voter registration infrastructure during the pre-election period.", date: "2019-02" },
         { tier: "intrusion", label: "Party systems targeted", description: "Political party communication and coordination systems accessed, raising concerns about intelligence collection on democratic opposition.", date: "2019-03" },
@@ -198,14 +203,15 @@ export const newCasesGlobal: Incident[] = [
         "No evidence of data manipulation or vote-count interference",
         "No disruptive or destructive actions observed",
       ],
-      thresholdCrossings: [
+      significance: [
         "Targeting of electoral infrastructure in a democratically fragile Southeast Asian state",
         "Compromise during the first election after a military coup, heightening political sensitivity",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Election Commission of Thailand", sector: "government", country: "TH" }],
       targetSectors: ["government"],
-      targetCountries: ["Thailand"],
+      targetCountries: ["TH"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1114", name: "Email Collection", tactic: "Collection" },
@@ -214,7 +220,7 @@ export const newCasesGlobal: Incident[] = [
       impactSummary: "Election Commission and party systems accessed; no evidence of data manipulation; intelligence collection suspected.",
     },
     governance: {
-      flags: ["deterrence-signal"],
+      flags: [],
       normsInvoked: [
         "Non-interference in electoral processes (UN GGE 2015 Norm 13(b))",
         "Sovereignty of democratic institutions",
@@ -258,91 +264,6 @@ export const newCasesGlobal: Incident[] = [
     actorSlug: "unknown-contested",
   },
   {
-    id: "ecuador-data-2019",
-    slug: "ecuador-data-exposure-2019",
-    name: "Ecuador Citizen Data Exposure",
-    shortName: "Ecuador Data Exposure",
-    year: 2019,
-    dateRange: "September 2019 (disclosed)",
-    incidentType: "hybrid",
-    summary:
-      "An exposed Elasticsearch database operated by a state-contracted analytics firm contained personal data of virtually the entire Ecuadorian population, approximately 20.8 million records including children and deceased individuals. The exposure included national identity numbers, financial information, and family relationships. This governance-priority case examines state responsibility for civilian data protection rather than offensive cyber operations.",
-    attribution: {
-      confidence: "confirmed",
-      attributedTo: "Non-state negligence: Novaestrat, an Ecuadorian data analytics firm operating a state-contracted database without adequate security controls",
-      country: "Ecuador (domestic negligence)",
-      aliases: [],
-    },
-    escalation: {
-      phases: [
-        { tier: "intrusion", label: "Unprotected database discovered", description: "vpnMentor researchers discovered an unprotected Elasticsearch server containing 18 GB of personal data of virtually every Ecuadorian citizen.", date: "2019-09-11" },
-        { tier: "disruption", label: "National privacy crisis", description: "Disclosure triggered national alarm over data sovereignty; Ecuadorian government ordered investigation and emergency data protection measures.", date: "2019-09-16" },
-      ],
-      peakTier: "disruption",
-      restraintFactors: [
-        "Not an offensive cyber operation, exposure resulted from negligent security practices",
-        "No evidence the exposed data was exploited for malicious purposes before discovery",
-      ],
-      thresholdCrossings: [
-        "Near-total population data exposure from a single misconfigured database",
-        "Demonstrated the governance gap in state responsibility for contracted data handling",
-      ],
-    },
-    infrastructure: {
-      targetSectors: ["government", "critical-infrastructure"],
-      targetCountries: ["Ecuador"],
-      techniques: [
-        { id: "T1530", name: "Data from Cloud Storage", tactic: "Collection" },
-      ],
-      malwareFamilies: [],
-      impactSummary: "Personal data of ~20.8 million Ecuadorians exposed; national identity numbers, financial records, and family data affected.",
-    },
-    governance: {
-      flags: ["regulatory-change"],
-      normsInvoked: [
-        "State responsibility for civilian data protection",
-        "Data sovereignty and the obligation to secure citizen information held by state contractors",
-      ],
-      policyResponses: [
-        "Ecuadorian government launched criminal investigation into Novaestrat",
-        "Emergency measures to assess and contain exposure",
-        "International pressure for data protection legislation",
-      ],
-      regulatoryChanges: [
-        "Ecuador enacted Organic Law on Personal Data Protection (May 2021)",
-        "Strengthened oversight requirements for state data contractors",
-      ],
-      impact: "Catalyzed Ecuador's first comprehensive data protection legislation, demonstrating that mass civilian data exposure events, even without malicious intent, can drive fundamental governance reform in states previously lacking data protection frameworks.",
-    },
-    whyThisMatters: "The Ecuador data exposure demonstrates that state failure to secure contracted civilian data systems can produce population-scale privacy crises, illustrating data sovereignty as a governance challenge distinct from but parallel to offensive cyber threats.",
-    teaching: {
-      keyQuestion: "What obligations do states bear for protecting citizen data held by private contractors, and what governance frameworks are needed in states that lack comprehensive data protection legislation?",
-      discussionPoints: [
-        "Data sovereignty vs. data negligence: governance-priority cases",
-        "The role of security researchers in discovering government data exposures",
-        "Data protection legislation as a response to exposure events",
-      ],
-      furtherReading: [
-        "vpnMentor: Report on Ecuador Data Breach, Sep 2019.",
-        "Ecuador Organic Law on Personal Data Protection, 2021.",
-      ],
-    },
-    lastUpdated: "2026-10-29",
-    inclusionCriteriaMet: ["formal-governance-response", "two-source-categories", "two-analytical-lenses"],
-    sources: [
-      { title: "vpnMentor: Report, Ecuadorian Breach", url: "https://www.vpnmentor.com/blog/cybersecurity/report-ecuador-leak/", category: "vendor", date: "2019-09-11" },
-      { title: "Ecuador Government: Statement on Data Exposure Investigation", category: "government", date: "2019-09-16" },
-    ],
-    attributionDetail: {
-      claimants: [
-        { actor: "Academic/Private Sector", date: "2019-09-11", confidenceLevel: "Confirmed", evidenceBasis: "vpnMentor discovered unprotected Elasticsearch database" },
-      ],
-      coordinationType: "none",
-      consequences: ["No Formal Response"],
-    },
-    actorSlug: "unknown-contested",
-  },
-  {
     id: "bangladesh-egov-2021",
     slug: "bangladesh-egov-2021",
     name: "Bangladesh e-Government Portal Intrusions",
@@ -359,6 +280,7 @@ export const newCasesGlobal: Incident[] = [
       aliases: [],
     },
     escalation: {
+      thresholds: [],
       phases: [
         { tier: "intrusion", label: "Government portal compromise", description: "Attackers gained access to multiple e-government service portals including citizen registration and administrative systems.", date: "2021-07" },
         { tier: "disruption", label: "Data exposure and service disruption", description: "Citizen data exposed through compromised portals; some administrative services taken offline during incident response.", date: "2021-12" },
@@ -368,14 +290,14 @@ export const newCasesGlobal: Incident[] = [
         "No destructive payloads deployed",
         "Scope appeared opportunistic rather than strategically targeted",
       ],
-      thresholdCrossings: [
+      significance: [
         "Compromise of national citizen identity data in a rapidly digitizing state",
         "Exposed the security gap between e-government ambition and cybersecurity capability",
       ],
     },
     infrastructure: {
       targetSectors: ["government", "technology"],
-      targetCountries: ["Bangladesh"],
+      targetCountries: ["BD"],
       techniques: [
         { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
         { id: "T1530", name: "Data from Cloud Storage", tactic: "Collection" },

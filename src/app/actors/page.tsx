@@ -28,6 +28,9 @@ export default function ActorsPage() {
         title="Threat Actor Profiles"
         subtitle="Named threat actors in the dataset, their state nexus, attributed operations, and behavioural patterns."
       />
+      <p className="text-sm text-steel-500 dark:text-steel-300 max-w-3xl mb-6 leading-relaxed">
+        Rule: a case gets a named profile when a state organ or group is named by an on-record government attribution, by authenticated documents, or by consistent reporting citing officials, whichever state it is. Each profile states that basis. Criminal groups with no established state nexus have their own profile. &ldquo;Unattributed, contested or non-state&rdquo; holds only cases where no state organ is named.
+      </p>
       <div className="space-y-3">
         {actorProfiles.map((actor) => {
           const cases = getActorCases(actor.slug);

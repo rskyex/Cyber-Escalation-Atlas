@@ -13,7 +13,7 @@ import { incidentCoords } from "@/lib/utils/geo";
 import {
   escalationTierBadge,
   escalationTierLabels,
-  incidentTypeLabels,
+  incidentTypeLabels, targetCountryNames
 } from "@/lib/utils/incidents";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -65,9 +65,7 @@ export function CasesMap({ incidents }: CasesMapProps) {
           </Geographies>
 
           {incidents.map((incident) => {
-            const coords = incidentCoords(
-              incident.infrastructure.targetCountries,
-            );
+            const coords = incidentCoords(targetCountryNames(incident));
             const variant =
               escalationTierBadge[incident.escalation.peakTier];
             const color = pinColor[variant] || pinColor.default;

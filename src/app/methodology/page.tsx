@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader, SectionWrapper } from "@/components/ui";
 import { tallinnRule } from "@/data/tallinnRules";
 import { inclusionCriteria, INCLUSION_THRESHOLD } from "@/data/inclusionCriteria";
+import { ConfidenceLevelsTable, FlagCodebookTable, SensitivityTable, ThresholdTable } from "@/components/methodology/CodingTables";
 import { seedIncidents } from "@/data/incidents";
 
 const belowThreshold = seedIncidents.filter((c) => c.inclusionCriteriaMet.length < INCLUSION_THRESHOLD);
@@ -320,32 +321,51 @@ export default function MethodologyPage() {
             </li>
             <li>
               <strong>Attribution confidence</strong> (confirmed, high,
-              moderate, low, contested), reflects the weight of publicly
-              available evidence, structured by the Rid–Buchanan layered
-              model. See section 07 for caveats.
+              moderate, low, contested), defined by which evidence layers are
+              present: technical analysis, an on-the-record government
+              attribution, a legal act (indictment or sanctions), and
+              authenticated primary documents. The levels are in the table
+              below. See section 08 for caveats.
             </li>
             <li>
-              <strong>Target sectors and countries</strong>, drawn from a
-              fixed taxonomy. An incident may target multiple sectors; all
-              are recorded.
+              <strong>Target sectors and countries</strong>. Sectors come from a
+              fixed taxonomy with no catch-all &ldquo;multiple&rdquo; value;
+              every affected sector is listed. Countries are ISO 3166-1
+              alpha-2 codes. Areas that are not countries (global, NATO allies,
+              Central Europe, allied jurisdictions) are recorded separately as
+              a geographic scope.
             </li>
             <li>
-              <strong>Governance flags</strong>, eight binary indicators
-              recording whether specific governance mechanisms were
-              triggered (norm violation, public attribution, sanctions,
-              indictment, UN discussion, regulatory change, international
-              cooperation, deterrence signal). Flags indicate that a
-              mechanism was invoked, not that it was effective or
-              appropriate.
+              <strong>Governance flags</strong>, eight binary indicators. Six
+              record a formal response, an official act that can be checked
+              against the attribution detail. Two, norm violation and
+              deterrence signal, are the atlas&apos;s own judgements and are
+              labelled as such everywhere they appear. Flags indicate that a
+              mechanism was invoked, not that it was effective or appropriate.
+              The codebook below gives each flag&apos;s definition and evidence
+              threshold, and <span className="font-mono text-xs">npm run check:coding</span>{" "}
+              fails when a flag contradicts the attribution detail.
             </li>
           </ul>
+          <h4 className="text-base font-bold text-ink dark:text-white mt-4">Attribution confidence levels</h4>
+          <ConfidenceLevelsTable />
+          <p className="text-sm mt-2">
+            Confidence is coded by hand against these definitions. Where the
+            claimant table implies a different level, the coding check lists
+            the case for review rather than changing it automatically.
+            Ecuador&apos;s 2019 data exposure was removed in dataset 2.0.0: it
+            had no attacker, so it is outside the scope of an escalation atlas.
+          </p>
+          <h4 className="text-base font-bold text-ink dark:text-white mt-4">Governance flag codebook</h4>
+          <FlagCodebookTable />
           <p>
             Two derived scores provide additional comparative dimensions.
             The <strong>unpeace score</strong> (1–10, rendered on a 0–100 axis)
-            combines escalation tier, threshold crossings, and governance
-            weight into a single composite indicator. The{" "}
+            combines peak escalation tier and the thresholds crossed from a
+            closed list. Governance responses are reported on their own axis,
+            not mixed into severity. The{" "}
             <strong>entanglement score</strong> (1–10) measures how many
-            sectors, countries, and collateral dimensions an incident touches.
+            sectors and countries an incident touches.
             Both are heuristics designed for comparison and teaching. They are
             not measurements, and they should not be cited as if they carried
             the precision of quantitative data. Their exact formulas — and a
@@ -388,35 +408,44 @@ export default function MethodologyPage() {
               Unpeace score
             </h4>
             <p className="text-xs font-mono text-steel-500 dark:text-ink-400 mb-3">
-              round( escalationPeak×1.2 + thresholdCrossings×1 + governanceFlags×0.5 ), capped at 10
+              round( 1 + 9 × (1.2 × peak + thresholds − 1.2) ÷ 11 )
             </p>
             <p>
               The score sits on a 1–10 scale (rendered on a 0–100 unpeace axis
-              for visual comparison, where 10 maps to 100). It combines three
-              components drawn from Kello&apos;s &ldquo;unpeace&rdquo; framing
-              (section&nbsp;11):
+              for visual comparison). It combines two components drawn from
+              Kello&apos;s &ldquo;unpeace&rdquo; framing (section&nbsp;11):
             </p>
             <ul className="list-disc pl-5 space-y-1 mt-2">
               <li>
-                <strong>Escalation peak</strong> — the peak tier reached, ranked
+                <strong>Escalation peak</strong>: the peak tier reached, ranked
                 1–6, weighted ×1.2 as the dominant term.
               </li>
               <li>
-                <strong>Threshold crossings</strong> — count of distinct
-                escalation thresholds the operation crossed, weighted ×1.
-              </li>
-              <li>
-                <strong>Governance weight</strong> — count of formal governance
-                responses (attribution, sanctions, indictments, and so on),
-                weighted ×0.5.
+                <strong>Thresholds crossed</strong>: how many of the five
+                thresholds in the closed list below the operation crossed,
+                weighted ×1. The free-text sentences that used to be counted
+                here are kept as each case&apos;s &ldquo;significance&rdquo;
+                and are no longer scored.
               </li>
             </ul>
             <p className="mt-2">
-              The weights are a deliberate editorial judgement: peak severity
-              matters most, formal governance response least. Reasonable
-              analysts would choose different weights; the point is that ours
-              are visible and inspectable, not that they are uniquely correct.
+              The weighted sum is rescaled by its theoretical range (peak 1–6,
+              thresholds 0–5), so the score cannot exceed 10 and needs no cap.
+              No current case reaches 10; the highest is Viasat KA-SAT. The
+              <strong> governance axis</strong> is shown separately on case
+              pages: the number of formal responses, and, apart, the analyst
+              judgements.
             </p>
+            <ThresholdTable />
+            <h5 className="text-sm font-bold text-ink dark:text-white mt-5">Sensitivity</h5>
+            <p className="text-sm">
+              The weights are an editorial judgement. The table shows how each
+              case&apos;s rank changes under other weightings, and how many cases
+              reach 10 under each. The top of the ranking is stable; the middle
+              reorders mainly between destructive cases with no threshold and
+              degradation cases that cross one.
+            </p>
+            <SensitivityTable />
           </div>
 
           <div
@@ -427,17 +456,18 @@ export default function MethodologyPage() {
               Entanglement score
             </h4>
             <p className="text-xs font-mono text-steel-500 dark:text-ink-400 mb-3">
-              clamp( sectors + countries + thresholdCrossings − 1, 1, 10 )
+              clamp( sectors + countries − 1, 1, 10 ); 10 when the scope is global
             </p>
             <p>
               On a 1–10 scale, the entanglement score measures how many
               dimensions an incident touches — a proxy for the inadvertent
               escalation risk described by Acton&apos;s entanglement thesis
-              (section&nbsp;11). It sums the number of affected sectors, the
-              number of affected countries/regions, and the number of threshold
-              crossings, then subtracts a baseline of 1 so a single-sector,
-              single-country event with no crossings floors at 1. The result is
-              clamped to the 1–10 range.
+              (section&nbsp;11). It sums the number of affected sectors and the
+              number of affected countries (counted from ISO codes), then
+              subtracts a baseline of 1 so a single-sector, single-country event
+              scores 1. A case whose geographic scope is global scores 10.
+              Thresholds are not counted here: they already enter the unpeace
+              score.
             </p>
           </div>
 

@@ -1,5 +1,8 @@
 import type { Incident } from "@/lib/types/incidents";
-import { incidentTypeLabels } from "@/lib/utils/incidents";
+import {
+  incidentTypeLabels,
+  thresholdMeta,
+} from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
 
 interface CoerciveSectionProps {
@@ -32,19 +35,19 @@ export function CoerciveSection({ incident }: CoerciveSectionProps) {
         <p className="text-sm text-steel-500 dark:text-steel-200 leading-relaxed">
           {coerciveDescriptions[incident.incidentType]}
         </p>
-        {incident.escalation.thresholdCrossings.length > 0 && (
+        {incident.escalation.thresholds.length > 0 && (
           <div className="mt-3 pt-3 border-t border-steel-200/20 dark:border-ink-600/30">
             <p className="text-xs font-medium text-steel-500 dark:text-steel-300 uppercase tracking-wider mb-1.5">
-              Observed coercive effects
+              Thresholds crossed
             </p>
             <ul className="space-y-1">
-              {incident.escalation.thresholdCrossings.map((t, i) => (
+              {incident.escalation.thresholds.map((t, i) => (
                 <li
                   key={i}
                   className="text-sm text-steel-500 dark:text-steel-200 flex gap-2"
                 >
                   <span className="text-signal-500 shrink-0">&bull;</span>
-                  {t}
+                  {thresholdMeta[t].label}
                 </li>
               ))}
             </ul>

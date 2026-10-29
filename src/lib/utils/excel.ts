@@ -11,6 +11,8 @@ import {
   sourceCategoryLabels,
   unpeaceScore,
   entanglementScore,
+  thresholdMeta,
+  targetCountryNames,
 } from "@/lib/utils/incidents";
 import { actorProfiles } from "@/data/actors";
 import { normsData } from "@/data/norms";
@@ -43,7 +45,7 @@ function buildIncidentsSheet(incidents: Incident[]) {
     "Target Sectors": i.infrastructure.targetSectors
       .map((s) => targetSectorLabels[s])
       .join("; "),
-    "Target Countries": i.infrastructure.targetCountries.join("; "),
+    "Target Countries": targetCountryNames(i).join("; "),
     "Malware Families": i.infrastructure.malwareFamilies.join("; "),
     "Impact Summary": i.infrastructure.impactSummary,
     "Governance Flags": i.governance.flags
@@ -54,7 +56,8 @@ function buildIncidentsSheet(incidents: Incident[]) {
     "Regulatory Changes": i.governance.regulatoryChanges.join("; "),
     "Governance Impact": i.governance.impact,
     "Restraint Factors": i.escalation.restraintFactors.join("; "),
-    "Threshold Crossings": i.escalation.thresholdCrossings.join("; "),
+    "Thresholds Crossed": i.escalation.thresholds.map((t) => thresholdMeta[t].label).join("; "),
+    Significance: i.escalation.significance.join("; "),
     Summary: i.summary,
     "Why This Matters": i.whyThisMatters,
     "Actor Slug": i.actorSlug ?? "",

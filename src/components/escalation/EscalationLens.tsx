@@ -10,6 +10,7 @@ import {
   incidentTypeLabels,
   incidentTypeBadge,
   tierIndex,
+  thresholdMeta,
 } from "@/lib/utils/incidents";
 
 // ---------------------------------------------------------------------------
@@ -122,7 +123,7 @@ function classifySchelling(incidents: Incident[]): {
       (inc.incidentType === "destructive" ||
         inc.incidentType === "sabotage" ||
         inc.incidentType === "ransomware") &&
-      inc.escalation.thresholdCrossings.length > 0;
+      inc.escalation.thresholds.length > 0;
 
     if (isCompellent) {
       compellence.push({
@@ -141,9 +142,9 @@ function classifySchelling(incidents: Incident[]): {
 }
 
 function buildCompellenceReasoning(inc: Incident): string {
-  const crossings = inc.escalation.thresholdCrossings;
+  const crossings = inc.escalation.thresholds;
   if (crossings.length > 0) {
-    return `Crossed ${crossings.length} threshold${crossings.length > 1 ? "s" : ""}: ${crossings[0]}.`;
+    return `Crossed ${crossings.length} threshold${crossings.length > 1 ? "s" : ""}: ${crossings.map((t) => thresholdMeta[t].label.toLowerCase()).join(", ")}.`;
   }
   return "Imposed direct costs to compel a change in adversary behaviour.";
 }
@@ -275,7 +276,7 @@ export function EscalationLens({ incidents }: EscalationLensProps) {
         </h2>
         <p className="text-sm text-steel-500 dark:text-steel-300 mb-6 max-w-2xl">
           Each incident is positioned on a 0–100 unpeace axis reflecting
-          escalation severity, threshold crossings, and governance weight.
+          peak escalation tier and the thresholds crossed from the closed list (governance is a separate axis).
           Hover or tap an incident to inspect.
         </p>
 

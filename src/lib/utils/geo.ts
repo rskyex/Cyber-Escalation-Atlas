@@ -26,6 +26,22 @@ const coords: Record<string, [number, number]> = {
   "nato allies": [4.4, 50.8],
   global: [0.0, 20.0],
   "central europe": [15.5, 49.8],
+  "allied jurisdictions": [4.4, 50.8],
+  guam: [144.8, 13.4],
+  canada: [-106.3, 56.1],
+  india: [78.9, 20.6],
+  pakistan: [69.3, 30.4],
+  egypt: [30.8, 26.8],
+  thailand: [101.0, 15.9],
+  belgium: [4.5, 50.5],
+  "palestinian territories": [35.2, 31.9],
+  netherlands: [5.3, 52.1],
+  sweden: [18.6, 60.1],
+  switzerland: [8.2, 46.8],
+  brazil: [-51.9, -14.2],
+  sudan: [30.2, 12.9],
+  syria: [38.9, 34.8],
+  lebanon: [35.9, 33.9],
 };
 
 /**

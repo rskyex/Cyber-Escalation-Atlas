@@ -41,8 +41,11 @@ export const newCasesAttribution: Incident[] = [
         "UK Government Communications Headquarters (GCHQ), based on internal Snowden documents and on Regin malware family attribution by Symantec, F-Secure, and Kaspersky",
       country: "United Kingdom",
       aliases: ["Operation Socialist", "Regin (toolset)"],
+      organ: "GCHQ",
+      layers: ["technical", "documentary"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -71,15 +74,17 @@ export const newCasesAttribution: Incident[] = [
         "Activity consistent with intelligence collection, not disruption, no destructive payload, no manipulation of communications integrity disclosed",
         "Targeting concentrated on engineer credentials and signalling visibility rather than mass subscriber data exfiltration",
       ],
-      thresholdCrossings: [
+      significance: [
         "First publicly documented case of one EU/NATO member state hacking the critical telecommunications infrastructure of another",
         "Compromise of a majority state-owned carrier handling EU institutional traffic, including European Commission and Council communications",
         "High-confidence allied-on-allied attribution that produced no formal diplomatic, sanctions, or judicial consequence",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Belgacom", sector: "telecommunications", country: "BE" }],
+      sectorCountryPairs: [["telecommunications", "BE"]],
       targetSectors: ["telecommunications", "critical-infrastructure"],
-      targetCountries: ["Belgium"],
+      targetCountries: ["BE"],
       techniques: [
         {
           id: "T1557",
@@ -213,7 +218,7 @@ export const newCasesAttribution: Incident[] = [
       coordinationType: "none",
       consequences: ["No Formal Response"],
     },
-    actorSlug: "unknown-contested",
+    actorSlug: "gchq",
   },
 
   // ---- 2. OPM data breach --------------------------------------------------
@@ -250,8 +255,10 @@ export const newCasesAttribution: Incident[] = [
         "China-linked actors; US officials assessed Chinese state responsibility but did not name a specific service in public attribution",
       country: "China",
       aliases: ["Deep Panda", "Axiom (linked tooling)"],
+      intrusionSetIds: ["G0009", "G0001"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -288,15 +295,16 @@ export const newCasesAttribution: Incident[] = [
         "DNI Clapper publicly framed the operation as conventional espionage that the United States itself conducts, signalling a deliberate decision not to treat it as crossing a norm threshold",
         "Sanctions authority was available, Executive Order 13694 (April 2015) authorised cyber sanctions and pre-existed the public disclosure, but was deliberately not invoked against OPM-linked actors. The withholding was a discretionary political choice, not a tooling gap.",
       ],
-      thresholdCrossings: [
+      significance: [
         "Largest compromise of US federal personnel data in history",
         "Compromise of SF-86 background investigation files containing decades of biographical, financial, and counter-intelligence-relevant information on cleared personnel",
         "High-confidence attribution to a state actor producing no formal foreign-policy consequence",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "US Office of Personnel Management", sector: "government", country: "US" }],
       targetSectors: ["government", "defense"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         {
           id: "T1078",
@@ -419,9 +427,9 @@ export const newCasesAttribution: Incident[] = [
         },
       ],
       coordinationType: "unilateral",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
-    actorSlug: "hafnium-apt40",
+    actorSlug: "prc-state-unspecified",
   },
 
   // ---- 3. APT1 / PLA Unit 61398 --------------------------------------------
@@ -448,8 +456,11 @@ export const newCasesAttribution: Incident[] = [
         "People's Liberation Army (PLA) Unit 61398, Second Bureau of the Third Department of the General Staff Department, as named by Mandiant in February 2013 and by US DOJ indictment in May 2014",
       country: "China",
       aliases: ["APT1", "Comment Crew", "Comment Group", "Byzantine Candor"],
+      intrusionSetIds: ["G0006"],
+      organ: "PLA Unit 61398",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -478,29 +489,15 @@ export const newCasesAttribution: Incident[] = [
         "Activity confined to economic and business intelligence collection; no destructive payload, no manipulation of data",
         "Targeting concentrated on long-running access rather than disruption",
       ],
-      thresholdCrossings: [
+      significance: [
         "First public attribution of a named foreign military unit to a specific cyber intrusion set with photographic identification of operators",
         "First US criminal charges filed against named foreign uniformed military personnel for cyber economic espionage",
         "Established the 'indictment without enforcement' template for naming-and-shaming as a US response tool",
       ],
     },
     infrastructure: {
-      targetSectors: [
-        "technology",
-        "defense",
-        "energy",
-        "manufacturing",
-        "telecommunications",
-        "multiple",
-      ],
-      targetCountries: [
-        "United States",
-        "Canada",
-        "United Kingdom",
-        "South Korea",
-        "Japan",
-        "Taiwan",
-      ],
+      targetSectors: ["technology", "defense", "energy", "manufacturing", "telecommunications"],
+      targetCountries: ["US", "CA", "GB", "KR", "JP", "TW"],
       techniques: [
         {
           id: "T1566.001",
@@ -619,7 +616,7 @@ export const newCasesAttribution: Incident[] = [
         },
       ],
       coordinationType: "unilateral",
-      consequences: ["Indictment", "Public Naming Only"],
+      consequences: ["Indictment", "Public Naming"],
     },
     actorSlug: "pla-cyber",
   },
@@ -659,8 +656,11 @@ export const newCasesAttribution: Incident[] = [
         "Salt Typhoon",
         "Earth Estries",
       ],
+      intrusionSetIds: ["G1045"],
+      organ: "MSS",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -690,19 +690,17 @@ export const newCasesAttribution: Incident[] = [
         "Activity to date consistent with intelligence collection; no public evidence of destructive payload or manipulation of communications integrity",
         "Public US government framing distinguishes Salt Typhoon (collection) from Volt Typhoon (pre-positioning for disruption), though the two campaigns are run by separate PRC actors",
       ],
-      thresholdCrossings: [
+      significance: [
         "First publicly documented compromise of US lawful-intercept (CALEA) infrastructure by a foreign state",
         "First US OFAC sanctions against a PRC commercial contractor for telecommunications-sector cyber espionage (Sichuan Juxinhe, 17 Jan 2025)",
         "Marked the consolidation of a 2024–2025 US sanctions posture against PRC cyber contractors, alongside Flax Typhoon / Integrity Tech and Sichuan Silence designations",
       ],
     },
     infrastructure: {
-      targetSectors: [
-        "telecommunications",
-        "critical-infrastructure",
-        "government",
-      ],
-      targetCountries: ["United States", "multiple allied jurisdictions"],
+      sectorCountryPairs: [["telecommunications", "US"]],
+      targetSectors: ["telecommunications", "critical-infrastructure", "government"],
+      targetCountries: ["US"],
+      geographicScope: "allied-jurisdictions",
       techniques: [
         {
           id: "T1190",
@@ -730,13 +728,7 @@ export const newCasesAttribution: Incident[] = [
         "Access to core network and CALEA-related systems at multiple major US telecommunications operators; metadata and content for an unknown number of US persons exposed; senior political figures' communications targeted. Full scope and remediation status remain under investigation as of May 2025.",
     },
     governance: {
-      flags: [
-        "attribution-public",
-        "sanctions-imposed",
-        "regulatory-change",
-        "international-cooperation",
-        "deterrence-signal",
-      ],
+      flags: ["attribution-public", "sanctions-imposed", "regulatory-change", "international-cooperation", "deterrence-signal"],
       normsInvoked: [
         "UN GGE 2015 Norm 13(f) on critical infrastructure (telecommunications)",
         `${tallinnCite("attributionNonStateActors")} (state responsibility for MSS contractor activity)`,
@@ -841,7 +833,7 @@ export const newCasesAttribution: Incident[] = [
         },
       ],
       coordinationType: "joint",
-      consequences: ["Sanctions", "Public Naming Only"],
+      consequences: ["Sanctions", "Public Naming"],
     },
     actorSlug: "hafnium-apt40",
   },
@@ -864,13 +856,15 @@ export const newCasesAttribution: Incident[] = [
     summary:
       "Modular espionage toolkit of exceptional size and sophistication disclosed in May 2012, primarily affecting computers in Iran, Israel/Palestine, Sudan, Syria, Lebanon, Saudi Arabia, and Egypt. Flame collected screenshots, microphone audio, keystrokes, Bluetooth device proximity data, and file contents from compromised systems. Its update channel abused a forged Microsoft code-signing certificate produced via a novel MD5 chosen-prefix collision, an engineering capability widely assessed to require state-level resources. Multiple security firms and the Washington Post linked Flame to the same US–Israel programme that produced Stuxnet; no government has formally attributed Flame, and no formal foreign-policy consequence followed.",
     attribution: {
-      confidence: "high",
+      confidence: "moderate",
       attributedTo:
         "Widely assessed by Kaspersky, CrySyS Lab, and Washington Post reporting to be a US–Israeli joint intelligence operation; never formally attributed by any government",
       country: "United States / Israel",
       aliases: ["Flame", "Flamer", "sKyWIper"],
+      layers: ["technical"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -899,23 +893,15 @@ export const newCasesAttribution: Incident[] = [
         "Activity confined to intelligence collection; no destructive payload, no manipulation of operational systems",
         "Targeting concentrated on specific machines of intelligence interest rather than indiscriminate mass spread",
       ],
-      thresholdCrossings: [
+      significance: [
         "First publicly documented offensive operational use of an MD5 chosen-prefix collision to forge a Microsoft code-signing certificate",
         "One of the largest and most modular espionage platforms publicly disclosed at the time",
         "High-confidence assessment of state authorship producing no formal foreign-policy consequence, reinforcing the protected-actor cell that Belgacom anchors",
       ],
     },
     infrastructure: {
-      targetSectors: ["government", "education", "energy", "multiple"],
-      targetCountries: [
-        "Iran",
-        "Israel",
-        "Sudan",
-        "Syria",
-        "Lebanon",
-        "Saudi Arabia",
-        "Egypt",
-      ],
+      targetSectors: ["government", "education", "energy"],
+      targetCountries: ["IR", "IL", "SD", "SY", "LB", "SA", "EG"],
       techniques: [
         {
           id: "T1553.002",
@@ -1039,7 +1025,7 @@ export const newCasesAttribution: Incident[] = [
       coordinationType: "none",
       consequences: ["No Formal Response"],
     },
-    actorSlug: "unknown-contested",
+    actorSlug: "us-israel-reported",
   },
 
   // ---- 6. Cloud Hopper / APT10 (Tier 2) ------------------------------------
@@ -1065,8 +1051,11 @@ export const newCasesAttribution: Incident[] = [
         "APT10 acting in association with the PRC Ministry of State Security (MSS) Tianjin State Security Bureau, per US DOJ indictment and coordinated allied attribution statements",
       country: "China",
       aliases: ["APT10", "Stone Panda", "MenuPass", "POTASSIUM", "Red Apollo"],
+      intrusionSetIds: ["G0045"],
+      organ: "MSS (Tianjin State Security Bureau)",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -1095,37 +1084,15 @@ export const newCasesAttribution: Incident[] = [
         "Activity confined to intellectual-property and business-intelligence collection across MSP client networks; no destructive payload, no manipulation",
         "Operators selected downstream targets selectively from MSP visibility rather than pursuing indiscriminate disruption",
       ],
-      thresholdCrossings: [
+      significance: [
         "First public attribution of MSP-pivot tradecraft at global scale, demonstrating the systemic risk of concentrated managed-service trust relationships",
         "First broadly coordinated allied public-naming statement against a PRC cyber espionage campaign (Five Eyes + Japan + Germany + Netherlands in December 2018, with additional statements in early 2019)",
         "Reinforced the indictment-without-sanctions pattern previously established by APT1",
       ],
     },
     infrastructure: {
-      targetSectors: [
-        "technology",
-        "telecommunications",
-        "manufacturing",
-        "finance",
-        "healthcare",
-        "government",
-        "multiple",
-      ],
-      targetCountries: [
-        "United States",
-        "United Kingdom",
-        "Japan",
-        "Australia",
-        "Canada",
-        "France",
-        "Germany",
-        "Netherlands",
-        "Sweden",
-        "Switzerland",
-        "Brazil",
-        "India",
-        "South Korea",
-      ],
+      targetSectors: ["technology", "telecommunications", "manufacturing", "finance", "healthcare", "government"],
+      targetCountries: ["US", "GB", "JP", "AU", "CA", "FR", "DE", "NL", "SE", "CH", "BR", "IN", "KR"],
       techniques: [
         {
           id: "T1199",
@@ -1164,12 +1131,7 @@ export const newCasesAttribution: Incident[] = [
         "MSP-pivot intrusions across at least a dozen jurisdictions enabling access to hundreds of downstream client networks; full scope of exfiltrated data not publicly enumerated.",
     },
     governance: {
-      flags: [
-        "attribution-public",
-        "indictment",
-        "international-cooperation",
-        "deterrence-signal",
-      ],
+      flags: ["attribution-public", "indictment", "international-cooperation", "deterrence-signal"],
       normsInvoked: [
         "Obama–Xi 2015 understanding on cyber-enabled economic espionage; Cloud Hopper was cited as an indication that the understanding had not produced sustained behavioural change",
         "UN GGE 2015 Norm 13(i) on supply-chain integrity (relevant by extension to MSP trust relationships)",
@@ -1276,7 +1238,7 @@ export const newCasesAttribution: Incident[] = [
         },
       ],
       coordinationType: "joint",
-      consequences: ["Indictment", "Public Naming Only"],
+      consequences: ["Indictment", "Public Naming"],
     },
     actorSlug: "hafnium-apt40",
   },

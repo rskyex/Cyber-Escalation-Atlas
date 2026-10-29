@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "check:counts": "node scripts/check-counts.mjs",
-    "check:data": "npm run check:counts",
+    "check:data": "npm run check:counts && npm run check:coding",
     "check:coding": "node --import ./scripts/ts-hooks.mjs scripts/check-coding.mjs"
   },
   "dependencies": {

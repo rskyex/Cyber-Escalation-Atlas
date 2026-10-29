@@ -14,7 +14,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2017-07-01", confidenceLevel: "High", evidenceBasis: "ESET and Cisco Talos technical analysis linking to Sandworm tooling" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Indictment", "Public Naming Only"],
+    consequences: ["Sanctions", "Indictment", "Public Naming"],
   },
   solarwinds: {
     claimants: [
@@ -24,7 +24,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2020-12-13", confidenceLevel: "High", evidenceBasis: "FireEye discovery and technical analysis linking to APT29" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Public Naming Only"],
+    consequences: ["Sanctions", "Public Naming"],
   },
   stuxnet: {
     claimants: [
@@ -41,7 +41,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2016-02-01", confidenceLevel: "High", evidenceBasis: "Novetta Operation Blockbuster linking tooling to Lazarus Group" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Sanctions", "Indictment", "Public Naming Only"],
+    consequences: ["Sanctions", "Indictment", "Public Naming"],
   },
   "ukraine-power-grid-2015": {
     claimants: [
@@ -50,7 +50,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Allied Coalition", date: "2018-02-15", confidenceLevel: "Confirmed", evidenceBasis: "Confirmed as part of broader Five Eyes Sandworm attribution in 2018" },
     ],
     coordinationType: "joint",
-    consequences: ["Public Naming Only"],
+    consequences: ["Public Naming"],
   },
   "ukraine-power-grid-2016": {
     claimants: [
@@ -59,7 +59,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Allied Coalition", date: "2020-10-19", confidenceLevel: "Confirmed", evidenceBasis: "Confirmed in DOJ indictment of six GRU officers" },
     ],
     coordinationType: "joint",
-    consequences: ["Indictment", "Public Naming Only"],
+    consequences: ["Indictment", "Public Naming"],
   },
   wannacry: {
     claimants: [
@@ -69,7 +69,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2017-05-15", confidenceLevel: "High", evidenceBasis: "Symantec and Google code similarity analysis to Lazarus tooling" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Indictment", "Public Naming Only"],
+    consequences: ["Sanctions", "Indictment", "Public Naming"],
   },
   "colonial-pipeline": {
     claimants: [
@@ -77,7 +77,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2021-05-10", confidenceLevel: "High", evidenceBasis: "Multiple threat intelligence firms identified DarkSide RaaS infrastructure" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Sanctions", "Public Naming Only"],
+    consequences: ["Sanctions", "Public Naming"],
   },
   "oldsmar-water": {
     claimants: [
@@ -94,7 +94,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2022-03-31", confidenceLevel: "High", evidenceBasis: "SentinelOne technical analysis of AcidRain wiper" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Public Naming Only"],
+    consequences: ["Sanctions", "Public Naming"],
   },
   "exchange-hafnium": {
     claimants: [
@@ -104,7 +104,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2021-03-02", confidenceLevel: "High", evidenceBasis: "Microsoft Threat Intelligence identified Hafnium as China-based group" },
     ],
     coordinationType: "joint",
-    consequences: ["Indictment", "Public Naming Only"],
+    consequences: ["Indictment", "Public Naming"],
   },
   "costa-rica-conti": {
     claimants: [
@@ -112,7 +112,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2022-04-18", confidenceLevel: "Confirmed", evidenceBasis: "Conti group publicly claimed responsibility and leaked data" },
     ],
     coordinationType: "unilateral",
-    consequences: ["Sanctions", "Public Naming Only"],
+    consequences: ["Sanctions", "Public Naming"],
   },
   "albania-iran": {
     claimants: [
@@ -121,7 +121,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2022-09-08", confidenceLevel: "Confirmed", evidenceBasis: "Microsoft Threat Intelligence detailed technical attribution" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Diplomatic Expulsion", "Public Naming Only"],
+    consequences: ["Sanctions", "Diplomatic Expulsion", "Public Naming"],
   },
   "shamoon-aramco": {
     claimants: [
@@ -129,7 +129,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2012-08-16", confidenceLevel: "Moderate", evidenceBasis: "Symantec and Kaspersky technical analysis; hacktivist front claim" },
     ],
     coordinationType: "none",
-    consequences: ["Public Naming Only"],
+    consequences: ["No Formal Response"],
   },
   "bangladesh-bank-swift": {
     claimants: [
@@ -145,7 +145,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2019-03-01", confidenceLevel: "Moderate", evidenceBasis: "Media reporting and private research widely assessed China as likely sponsor" },
     ],
     coordinationType: "none",
-    consequences: ["Public Naming Only"],
+    consequences: ["Public Naming"],
   },
   "iran-nuclear-cyber": {
     claimants: [
@@ -161,7 +161,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2023-05-24", confidenceLevel: "Moderate", evidenceBasis: "Microsoft Volt Typhoon and Flax Typhoon reporting" },
     ],
     coordinationType: "joint",
-    consequences: ["Public Naming Only"],
+    consequences: ["Public Naming"],
   },
   industroyer2: {
     claimants: [
@@ -169,7 +169,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Allied Coalition", date: "2022-04-12", confidenceLevel: "Confirmed", evidenceBasis: "Cited in allied documentation of Russian cyber operations in Ukraine" },
     ],
     coordinationType: "joint",
-    consequences: ["Public Naming Only"],
+    consequences: ["Public Naming"],
   },
   "scattered-spider-mgm": {
     claimants: [
@@ -187,22 +187,22 @@ export const attributionDetails: Record<string, AttributionDetail> = {
 export const actorSlugs: Record<string, string> = {
   notpetya: "sandworm",
   solarwinds: "svr-apt29",
-  stuxnet: "unknown-contested",
+  stuxnet: "us-israel-reported",
   "sony-pictures": "lazarus-group",
   "ukraine-power-grid-2015": "sandworm",
   "ukraine-power-grid-2016": "sandworm",
   wannacry: "lazarus-group",
-  "colonial-pipeline": "unknown-contested",
+  "colonial-pipeline": "criminal-ransomware",
   "oldsmar-water": "unknown-contested",
   "viasat-kasat": "sandworm",
   "exchange-hafnium": "hafnium-apt40",
-  "costa-rica-conti": "unknown-contested",
+  "costa-rica-conti": "criminal-ransomware",
   "albania-iran": "iranian-state-actors",
   "shamoon-aramco": "iranian-state-actors",
   "bangladesh-bank-swift": "lazarus-group",
   "australia-parliament": "unknown-contested",
   "iran-nuclear-cyber": "unknown-contested",
-  "taiwan-telecom": "hafnium-apt40",
+  "taiwan-telecom": "prc-state-unspecified",
   industroyer2: "sandworm",
   "scattered-spider-mgm": "scattered-spider",
 };

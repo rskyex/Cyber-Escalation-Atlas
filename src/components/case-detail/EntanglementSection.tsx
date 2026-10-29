@@ -1,5 +1,6 @@
 import type { Incident } from "@/lib/types/incidents";
-import { targetSectorLabels, entanglementScore } from "@/lib/utils/incidents";
+import { targetSectorLabels, entanglementScore, targetCountryNames
+} from "@/lib/utils/incidents";
 import { Badge } from "@/components/ui";
 import { SectionHeading } from "./SectionHeading";
 
@@ -9,7 +10,7 @@ interface EntanglementSectionProps {
 
 export function EntanglementSection({ incident }: EntanglementSectionProps) {
   const score = entanglementScore(incident);
-  const { targetSectors, targetCountries, impactSummary } =
+  const { targetSectors, impactSummary } =
     incident.infrastructure;
 
   return (
@@ -51,7 +52,7 @@ export function EntanglementSection({ incident }: EntanglementSectionProps) {
             Countries / regions
           </p>
           <div className="flex flex-wrap gap-1.5">
-            {targetCountries.map((c) => (
+            {targetCountryNames(incident).map((c) => (
               <Badge key={c} variant="navy">
                 {c}
               </Badge>

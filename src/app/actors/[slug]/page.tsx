@@ -56,6 +56,31 @@ export default function ActorDetailPage({ params }: { params: { slug: string } }
           </a>
           <h1 className="text-display font-display text-ink dark:text-white mb-2">{actor.name}</h1>
           <p className="text-body-lg text-steel-500 dark:text-steel-400">{actor.stateNexus}</p>
+          <dl className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink dark:text-ink-100">State organ</dt>
+              <dd className="text-steel-500 dark:text-steel-300">{actor.stateOrgan ?? "None named"}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink dark:text-ink-100">MITRE ATT&amp;CK groups</dt>
+              <dd className="text-steel-500 dark:text-steel-300">
+                {actor.mitreGroupIds.length
+                  ? actor.mitreGroupIds.map((id, i) => (
+                      <span key={id}>
+                        {i > 0 && ", "}
+                        <a href={`https://attack.mitre.org/groups/${id}/`} className="underline" target="_blank" rel="noopener noreferrer">
+                          {id}
+                        </a>
+                      </span>
+                    ))
+                  : "No ATT&CK group"}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink dark:text-ink-100">Attribution basis</dt>
+              <dd className="text-steel-500 dark:text-steel-300">{actor.attributionBasis}</dd>
+            </div>
+          </dl>
         </div>
 
         {/* Overview */}

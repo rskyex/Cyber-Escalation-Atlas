@@ -18,6 +18,7 @@ export const newCases2024: Incident[] = [
       aliases: ["Storm-0558"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -43,14 +44,15 @@ export const newCases2024: Incident[] = [
         "Activity consistent with targeted intelligence collection, not disruption",
         "No destructive payload or lateral movement beyond email access",
       ],
-      thresholdCrossings: [
+      significance: [
         "Compromised a foundational cloud identity trust mechanism affecting all Microsoft cloud tenants",
         "Demonstrated that a single signing key compromise could bypass multi-tenant cloud security boundaries",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Microsoft", sector: "technology", country: "US" }],
       targetSectors: ["government", "technology"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1199", name: "Trusted Relationship", tactic: "Initial Access" },
         { id: "T1550.001", name: "Use Alternate Authentication Material: Application Access Token", tactic: "Defense Evasion" },
@@ -60,7 +62,7 @@ export const newCases2024: Incident[] = [
       impactSummary: "Email accounts of ~25 organizations accessed including senior US officials; exposed systemic cloud authentication trust gap.",
     },
     governance: {
-      flags: ["attribution-public", "regulatory-change", "international-cooperation"],
+      flags: ["attribution-public", "regulatory-change"],
       normsInvoked: [
         "Responsible state behavior in ICT use (UN GGE/OEWG)",
         "Cloud provider security obligations and transparency duties",
@@ -102,9 +104,9 @@ export const newCases2024: Incident[] = [
         { actor: "Academic/Private Sector", date: "2023-07-14", confidenceLevel: "High", evidenceBasis: "Microsoft threat intelligence identifying Storm-0558 as China-based espionage group" },
       ],
       coordinationType: "unilateral",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
-    actorSlug: "hafnium-apt40",
+    actorSlug: "prc-state-unspecified",
   },
   {
     id: "change-healthcare-2024",
@@ -123,6 +125,7 @@ export const newCases2024: Incident[] = [
       aliases: ["ALPHV", "BlackCat", "Noberus"],
     },
     escalation: {
+      thresholds: ["civilian-service-harm"],
       phases: [
         { tier: "intrusion", label: "Initial access via stolen credentials", description: "Attackers gained access to Change Healthcare systems using compromised credentials for a Citrix remote access portal lacking multi-factor authentication.", date: "2024-02-12" },
         { tier: "disruption", label: "Ransomware deployment and system shutdown", description: "ALPHV/BlackCat ransomware encrypted critical systems; Change Healthcare disconnected its entire network, halting claims processing nationwide.", date: "2024-02-21" },
@@ -133,14 +136,16 @@ export const newCases2024: Incident[] = [
         "Financially motivated, no geopolitical or destructive intent beyond extortion",
         "Attackers offered decryption for ransom payment",
       ],
-      thresholdCrossings: [
+      significance: [
         "Largest disruption to US healthcare infrastructure from a single cyber attack",
         "Demonstrated systemic concentration risk in healthcare claims processing",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Change Healthcare", sector: "healthcare", country: "US" }],
+      sectorCountryPairs: [["healthcare", "US"]],
       targetSectors: ["healthcare", "critical-infrastructure"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
@@ -193,9 +198,9 @@ export const newCases2024: Incident[] = [
         { actor: "Academic/Private Sector", date: "2024-02-22", confidenceLevel: "High", evidenceBasis: "ALPHV publicly claimed responsibility on darknet leak site" },
       ],
       coordinationType: "unilateral",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
-    actorSlug: "unknown-contested",
+    actorSlug: "criminal-ransomware",
   },
   {
     id: "volt-typhoon-2024",
@@ -212,8 +217,10 @@ export const newCases2024: Incident[] = [
       attributedTo: "Volt Typhoon, attributed by the US, UK, Australia, Canada, and New Zealand to PRC state-sponsored actors",
       country: "China",
       aliases: ["Volt Typhoon", "BRONZE SILHOUETTE", "Vanguard Panda"],
+      intrusionSetIds: ["G1017"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         { tier: "intrusion", label: "Living-off-the-land access", description: "Actor used legitimate credentials and native system tools to establish persistent access across US CI networks, avoiding traditional malware signatures.", date: "2023" },
         { tier: "probing", label: "Infrastructure mapping and pre-positioning", description: "Activity consistent with mapping operational technology environments and maintaining access for future use, not immediate data exfiltration.", date: "2024" },
@@ -223,14 +230,14 @@ export const newCases2024: Incident[] = [
         "No disruptive or destructive actions observed, activity consistent with preparation, not execution",
         "Living-off-the-land techniques suggest intent to avoid detection and maintain long-term access",
       ],
-      thresholdCrossings: [
+      significance: [
         "First publicly documented campaign of peacetime pre-positioning across multiple US critical infrastructure sectors simultaneously",
         "Reframed the espionage/pre-attack distinction as a policy-urgent question",
       ],
     },
     infrastructure: {
-      targetSectors: ["critical-infrastructure", "energy", "telecommunications", "transportation", "multiple"],
-      targetCountries: ["United States", "Guam"],
+      targetSectors: ["critical-infrastructure", "energy", "telecommunications", "transportation"],
+      targetCountries: ["US", "GU"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1218", name: "System Binary Proxy Execution", tactic: "Defense Evasion" },
@@ -271,6 +278,7 @@ export const newCases2024: Incident[] = [
         "Microsoft Threat Intelligence: Volt Typhoon, 2023–2024.",
       ],
     },
+    relatedRecords: [{ id: "cyber:taiwan-telecom", sourceUrl: "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/" }],
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
@@ -286,9 +294,9 @@ export const newCases2024: Incident[] = [
         { actor: "Academic/Private Sector", date: "2023-05-24", confidenceLevel: "High", evidenceBasis: "Microsoft original Volt Typhoon reporting" },
       ],
       coordinationType: "joint",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
-    actorSlug: "hafnium-apt40",
+    actorSlug: "prc-state-unspecified",
   },
   {
     id: "midnight-blizzard-2024",
@@ -305,8 +313,11 @@ export const newCases2024: Incident[] = [
       attributedTo: "Midnight Blizzard (APT29/Cozy Bear), attributed by Microsoft and the US government to Russia's SVR",
       country: "Russia",
       aliases: ["Midnight Blizzard", "APT29", "Cozy Bear", "Nobelium"],
+      intrusionSetIds: ["G0016"],
+      organ: "SVR",
     },
     escalation: {
+      thresholds: [],
       phases: [
         { tier: "intrusion", label: "Legacy tenant compromise", description: "Password spray attack compromised a legacy test OAuth application with elevated privileges in Microsoft's corporate environment.", date: "2023-11" },
         { tier: "intrusion", label: "Email and source code access", description: "Actor accessed email accounts of senior leadership and cybersecurity personnel, then pivoted to source code repositories.", date: "2024-01" },
@@ -316,14 +327,15 @@ export const newCases2024: Incident[] = [
         "Activity consistent with espionage, no destructive or disruptive payload deployed",
         "No evidence of customer environment compromise through this vector",
       ],
-      thresholdCrossings: [
+      significance: [
         "State actor directly targeting a foundational technology vendor's internal systems and source code",
         "Escalated concerns about supply chain trust when a platform vendor's own defenses are penetrated",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Microsoft", sector: "technology", country: "US" }],
       targetSectors: ["technology"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1110.003", name: "Brute Force: Password Spraying", tactic: "Credential Access" },
         { id: "T1550.001", name: "Use Alternate Authentication Material: Application Access Token", tactic: "Lateral Movement" },
@@ -375,7 +387,7 @@ export const newCases2024: Incident[] = [
         { actor: "US Government", date: "2024-04-02", confidenceLevel: "Confirmed", evidenceBasis: "CISA emergency directive referencing Russian state-sponsored actor" },
       ],
       coordinationType: "unilateral",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
     actorSlug: "svr-apt29",
   },
@@ -390,12 +402,16 @@ export const newCases2024: Incident[] = [
     summary:
       "Sandworm attack destroying the core network of Kyivstar, Ukraine's largest mobile operator serving approximately 24 million subscribers. The attack wiped network infrastructure and disrupted mobile communications, internet access, and air-raid alert systems across Ukraine for several days during active conflict.",
     attribution: {
-      confidence: "confirmed",
+      confidence: "high",
       attributedTo: "Sandworm Team, attributed by Ukraine's SBU to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM", "Seashell Blizzard"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
+      layers: ["technical", "governmental"],
     },
     escalation: {
+      thresholds: ["civilian-service-harm", "wartime-use"],
       phases: [
         { tier: "intrusion", label: "Network pre-positioning", description: "Sandworm established access to Kyivstar's internal infrastructure months before the destructive phase.", date: "2023-05" },
         { tier: "destruction", label: "Core network destruction", description: "Wiper malware destroyed core network equipment including virtualization infrastructure, rendering the entire mobile network inoperable.", date: "2023-12-12" },
@@ -406,14 +422,16 @@ export const newCases2024: Incident[] = [
         "Attack targeted a single operator, not all Ukrainian telecoms simultaneously",
         "Service was restored within days through emergency measures",
       ],
-      thresholdCrossings: [
+      significance: [
         "Largest cyber attack on a telecommunications company during an active armed conflict",
         "Disrupted civilian emergency warning systems during wartime missile campaigns",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Kyivstar", sector: "telecommunications", country: "UA" }],
+      sectorCountryPairs: [["telecommunications", "UA"]],
       targetSectors: ["telecommunications", "critical-infrastructure"],
-      targetCountries: ["Ukraine"],
+      targetCountries: ["UA"],
       techniques: [
         { id: "T1485", name: "Data Destruction", tactic: "Impact" },
         { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
@@ -423,7 +441,7 @@ export const newCases2024: Incident[] = [
       impactSummary: "Core mobile network destroyed; 24 million subscribers affected; air-raid alerts and banking disrupted for days.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      flags: ["norm-violation", "attribution-public"],
       normsInvoked: [
         "IHL prohibition on targeting civilian communication infrastructure during armed conflict",
         "UN GGE 2015 norm against damaging critical infrastructure",
@@ -464,7 +482,7 @@ export const newCases2024: Incident[] = [
         { actor: "Allied Coalition", date: "2024-01-15", confidenceLevel: "Confirmed", evidenceBasis: "Allied governments cited in broader Sandworm documentation" },
       ],
       coordinationType: "unilateral",
-      consequences: ["Public Naming Only"],
+      consequences: ["Public Naming"],
     },
     actorSlug: "sandworm",
   },

@@ -19,6 +19,7 @@ import {
   attributionBadge,
   targetSectorLabels,
   governanceFlagLabels,
+  thresholdMeta, targetCountryNames
 } from "@/lib/utils/incidents";
 
 // ---------------------------------------------------------------------------
@@ -190,8 +191,8 @@ function buildCsv(selected: Incident[]): string {
     ["Unpeace Score (1-10)", ...selected.map((inc) => String(unpeaceScore(inc)))],
     ["Entanglement Score (1-10)", ...selected.map((inc) => String(entanglementScore(inc)))],
     ["Target Sectors", ...selected.map((inc) => inc.infrastructure.targetSectors.map((s) => targetSectorLabels[s]).join("; "))],
-    ["Target Countries", ...selected.map((inc) => inc.infrastructure.targetCountries.join("; "))],
-    ["Threshold Crossings", ...selected.map((inc) => inc.escalation.thresholdCrossings.join("; ") || "None")],
+    ["Target Countries", ...selected.map((inc) => targetCountryNames(inc).join("; "))],
+    ["Thresholds Crossed", ...selected.map((inc) => inc.escalation.thresholds.map((t) => thresholdMeta[t].label).join("; ") || "None")],
     ["Restraint Factors", ...selected.map((inc) => inc.escalation.restraintFactors.join("; ") || "None")],
     ...allFlags.map((flag) => [
       `Gov: ${governanceFlagLabels[flag]}`,
@@ -524,7 +525,7 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                           ))}
                         </div>
                         <p className="text-xs text-steel-500 dark:text-steel-400 mt-2">
-                          {inc.infrastructure.targetCountries.join(", ")}
+                          {targetCountryNames(inc).join(", ")}
                         </p>
                       </CompareCell>
                     );
@@ -532,19 +533,19 @@ export function CompareTool({ incidents }: { incidents: Incident[] }) {
                 </CompareRow>
 
                 {/* Threshold crossings */}
-                <CompareRow label="Threshold Crossings" colCount={cols}>
+                <CompareRow label="Thresholds Crossed" colCount={cols}>
                   {selected.map((inc) => (
                     <CompareCell key={inc.id}>
-                      {inc.escalation.thresholdCrossings.length === 0 ? (
+                      {inc.escalation.thresholds.length === 0 ? (
                         <p className="text-xs text-steel-500 dark:text-ink-400 italic">
-                          No threshold crossings recorded.
+                          None of the five listed thresholds.
                         </p>
                       ) : (
                         <ul className="space-y-1">
-                          {inc.escalation.thresholdCrossings.map((t, i) => (
+                          {inc.escalation.thresholds.map((t, i) => (
                             <li key={i} className="text-xs text-steel-500 dark:text-steel-300 flex items-start gap-1.5">
                               <span className="text-signal-500 mt-0.5 shrink-0">·</span>
-                              {t}
+                              {thresholdMeta[t].label}
                             </li>
                           ))}
                         </ul>
@@ -654,8 +655,8 @@ function PrintTable({ selected }: { selected: Incident[] }) {
     { label: "Unpeace Score (1–10)", values: selected.map((i) => String(unpeaceScore(i))) },
     { label: "Entanglement (1–10)", values: selected.map((i) => String(entanglementScore(i))) },
     { label: "Target Sectors", values: selected.map((i) => i.infrastructure.targetSectors.map((s) => targetSectorLabels[s]).join(", ")) },
-    { label: "Target Countries", values: selected.map((i) => i.infrastructure.targetCountries.join(", ")) },
-    { label: "Threshold Crossings", values: selected.map((i) => i.escalation.thresholdCrossings.join("; ") || "None") },
+    { label: "Target Countries", values: selected.map((i) => targetCountryNames(i).join(", ")) },
+    { label: "Thresholds Crossed", values: selected.map((i) => i.escalation.thresholds.map((t) => thresholdMeta[t].label).join("; ") || "None") },
     { label: "Restraint Factors", values: selected.map((i) => i.escalation.restraintFactors.join("; ") || "None") },
     ...allFlags.map((flag) => ({
       label: governanceFlagLabels[flag],

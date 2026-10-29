@@ -88,9 +88,9 @@ export function ScoreBreakdown({
 
       <div className="mt-4 pt-3 border-t border-steel-200/20 dark:border-ink-600/30 flex items-baseline justify-between">
         <span className="text-[11px] font-mono text-steel-500 dark:text-steel-300">
-          Raw sum{" "}
+          Before rounding{" "}
           {Number.isInteger(raw) ? raw : raw.toFixed(1)}
-          {capped && " → capped"}
+          {capped && " → clamped to 1–10"}
         </span>
         <span className="text-[11px] font-mono text-ink dark:text-white">
           = {score}/{max}

@@ -14,7 +14,7 @@ import type { TargetSector, IncidentType, Incident } from "@/lib/types/incidents
 const SECTORS: TargetSector[] = [
   "energy", "finance", "government", "healthcare", "telecommunications",
   "transportation", "defense", "technology", "manufacturing", "media",
-  "critical-infrastructure",
+  "critical-infrastructure", "hospitality",
 ];
 
 function getCases(sector: TargetSector) {

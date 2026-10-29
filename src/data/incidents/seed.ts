@@ -17,8 +17,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "GRU (Main Intelligence Directorate)",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
     },
     escalation: {
+      thresholds: ["civilian-service-harm", "unintended-spillover"],
       phases: [
         {
           tier: "intrusion",
@@ -44,14 +47,15 @@ export const seedIncidents: Incident[] = [
         "Disguised as criminal ransomware, providing deniability",
         "No direct military targeting",
       ],
-      thresholdCrossings: [
+      significance: [
         "First cyber operation to cause >$10B in collateral economic damage",
         "Indiscriminate global propagation beyond intended target set",
       ],
     },
     infrastructure: {
-      targetSectors: ["multiple", "critical-infrastructure"],
-      targetCountries: ["Ukraine", "Global"],
+      targetSectors: ["transportation", "manufacturing", "critical-infrastructure"],
+      targetCountries: ["UA"],
+      geographicScope: "global",
       techniques: [
         { id: "T1195.002", name: "Supply Chain Compromise: Software Supply Chain", tactic: "Initial Access" },
         { id: "T1210", name: "Exploitation of Remote Services", tactic: "Lateral Movement" },
@@ -62,7 +66,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Irreversible disk encryption/wipe across ~2,000 organizations in 65+ countries.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment"],
+      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment", "international-cooperation"],
       normsInvoked: [
         "UN GGE 2015 norm against damaging critical infrastructure",
         `Due diligence obligations (${tallinnCite("dueDiligence")})`,
@@ -122,8 +126,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "SVR (Foreign Intelligence Service)",
       country: "Russia",
       aliases: ["APT29", "Cozy Bear", "Nobelium", "Midnight Blizzard"],
+      intrusionSetIds: ["G0016"],
+      organ: "SVR",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -149,14 +156,16 @@ export const seedIncidents: Incident[] = [
         "Operated within traditional espionage norms, collection, not disruption",
         "Selective targeting minimized footprint",
       ],
-      thresholdCrossings: [
+      significance: [
         "Scale of supply chain access exceeded traditional espionage scope",
         "Compromised core government IT monitoring infrastructure",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "SolarWinds", sector: "technology", country: "US" }],
       targetSectors: ["government", "technology", "defense"],
-      targetCountries: ["United States", "United Kingdom", "NATO allies"],
+      targetCountries: ["US", "GB"],
+      geographicScope: "nato-allies",
       techniques: [
         { id: "T1195.002", name: "Supply Chain Compromise: Software Supply Chain", tactic: "Initial Access" },
         { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
@@ -167,7 +176,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Covert access to email and files at Treasury, Commerce, DHS, DOE, and ~100 private-sector organizations.",
     },
     governance: {
-      flags: ["attribution-public", "sanctions-imposed", "regulatory-change", "deterrence-signal"],
+      flags: ["attribution-public", "sanctions-imposed", "regulatory-change", "deterrence-signal", "international-cooperation"],
       normsInvoked: [
         "Debate over whether espionage violates UN GGE norms",
         "Responsible state behavior in cyberspace (OEWG)",
@@ -226,12 +235,14 @@ export const seedIncidents: Incident[] = [
     summary:
       "A precision cyber weapon that targeted Siemens SCADA systems controlling uranium-enrichment centrifuges at Iran's Natanz facility. It caused physical destruction of centrifuges while reporting normal telemetry to operators. Widely regarded as the first publicly known cyber operation to cause physical damage to industrial equipment.",
     attribution: {
-      confidence: "high",
+      confidence: "moderate",
       attributedTo: "Widely attributed to a joint US–Israeli operation",
       country: "United States / Israel",
       aliases: ["Olympic Games"],
+      layers: ["technical"],
     },
     escalation: {
+      thresholds: ["physical-effects", "unintended-spillover"],
       phases: [
         {
           tier: "intrusion",
@@ -257,14 +268,16 @@ export const seedIncidents: Incident[] = [
         "Highly targeted, designed to affect only specific Siemens S7-315/417 configurations",
         "No broader disruption to Iranian civilian infrastructure intended",
       ],
-      thresholdCrossings: [
+      significance: [
         "First known cyber operation to cause physical destruction of industrial equipment",
         "Demonstrated that cyber means can achieve strategic effects previously requiring kinetic action",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Natanz enrichment facility", sector: "energy", country: "IR" }],
+      sectorCountryPairs: [["energy", "IR"]],
       targetSectors: ["energy", "critical-infrastructure"],
-      targetCountries: ["Iran"],
+      targetCountries: ["IR"],
       techniques: [
         { id: "T1091", name: "Replication Through Removable Media", tactic: "Initial Access" },
         { id: "T1068", name: "Exploitation for Privilege Escalation", tactic: "Privilege Escalation" },
@@ -275,7 +288,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "~1,000 IR-1 centrifuges destroyed at Natanz; temporary disruption to Iran's uranium enrichment timeline.",
     },
     governance: {
-      flags: ["norm-violation", "deterrence-signal"],
+      flags: ["norm-violation"],
       normsInvoked: [
         "Sovereignty and non-intervention (UN Charter Art. 2(4) by analogy)",
         "Debate over whether cyber sabotage constitutes a use of force",
@@ -336,8 +349,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Lazarus Group, attributed by the US government to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "HIDDEN COBRA", "Guardians of Peace"],
+      intrusionSetIds: ["G0032"],
+      organ: "RGB",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -363,14 +379,15 @@ export const seedIncidents: Incident[] = [
         "Targeted a single corporation, not government or critical infrastructure",
         "No reported physical harm to individuals",
       ],
-      thresholdCrossings: [
+      significance: [
         "State-sponsored destructive attack against a private company over expressive content",
         "First US presidential public attribution of a cyber attack to a specific state",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Sony Pictures Entertainment", sector: "media", country: "US" }],
       targetSectors: ["media"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1566.001", name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" },
         { id: "T1485", name: "Data Destruction", tactic: "Impact" },
@@ -409,6 +426,7 @@ export const seedIncidents: Incident[] = [
         "US DOJ: Criminal Complaint, United States v. Park Jin Hyok, 2018.",
       ],
     },
+    relatedRecords: [{ id: "cyber:bangladesh-bank-swift", sourceUrl: "https://www.justice.gov/archives/opa/pr/north-korean-regime-backed-programmer-charged-conspiracy-conduct-multiple-cyber-attacks-and" }],
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
@@ -434,8 +452,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
     },
     escalation: {
+      thresholds: ["physical-effects", "civilian-service-harm"],
       phases: [
         {
           tier: "intrusion",
@@ -461,14 +482,15 @@ export const seedIncidents: Incident[] = [
         "Outages lasted ~6 hours; manual restoration was possible",
         "Limited to distribution-level systems, not generation or transmission",
       ],
-      thresholdCrossings: [
+      significance: [
         "First publicly confirmed cyber attack to cause a power outage",
         "Demonstrated end-to-end attack chain from IT network to physical grid impact",
       ],
     },
     infrastructure: {
+      sectorCountryPairs: [["energy", "UA"]],
       targetSectors: ["energy", "critical-infrastructure"],
-      targetCountries: ["Ukraine"],
+      targetCountries: ["UA"],
       techniques: [
         { id: "T1566.001", name: "Phishing: Spearphishing Attachment", tactic: "Initial Access" },
         { id: "T1078", name: "Valid Accounts", tactic: "Persistence" },
@@ -532,8 +554,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Sandworm Team, attributed by multiple governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
     },
     escalation: {
+      thresholds: ["physical-effects", "civilian-service-harm"],
       phases: [
         {
           tier: "intrusion",
@@ -559,14 +584,15 @@ export const seedIncidents: Incident[] = [
         "Outage lasted ~1 hour; scope limited to one transmission substation",
         "Relay DoS module did not achieve widespread effect",
       ],
-      thresholdCrossings: [
+      significance: [
         "First known malware purpose-built to attack electric grid protocols",
         "Demonstrated automated ICS attack capability without operator interaction",
       ],
     },
     infrastructure: {
+      sectorCountryPairs: [["energy", "UA"]],
       targetSectors: ["energy", "critical-infrastructure"],
-      targetCountries: ["Ukraine"],
+      targetCountries: ["UA"],
       techniques: [
         { id: "T0855", name: "Unauthorized Command Message", tactic: "Impact (ICS)" },
         { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
@@ -577,7 +603,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "~1-hour power outage in part of Kyiv via automated ICS malware; limited physical damage.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "international-cooperation"],
+      flags: ["norm-violation", "attribution-public", "international-cooperation", "indictment"],
       normsInvoked: [
         "UN GGE 2015 norm against attacking critical infrastructure",
         "Tallinn Manual rules on proportionality and civilian objects",
@@ -631,8 +657,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Lazarus Group, attributed by the US, UK, and allied governments to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "HIDDEN COBRA"],
+      intrusionSetIds: ["G0032"],
+      organ: "RGB",
     },
     escalation: {
+      thresholds: ["civilian-service-harm", "unintended-spillover"],
       phases: [
         {
           tier: "intrusion",
@@ -658,14 +687,15 @@ export const seedIncidents: Incident[] = [
         "Kill switch domain limited further spread once activated",
         "Ransomware payment mechanism was poorly designed, suggesting profit was not the primary motive",
       ],
-      thresholdCrossings: [
+      significance: [
         "First state-linked ransomware to cause widespread disruption to healthcare services",
         "Demonstrated risk of weaponized vulnerability stockpiles entering the wild",
       ],
     },
     infrastructure: {
-      targetSectors: ["healthcare", "telecommunications", "transportation", "manufacturing", "multiple"],
-      targetCountries: ["Global"],
+      targetSectors: ["healthcare", "telecommunications", "transportation", "manufacturing"],
+      targetCountries: [],
+      geographicScope: "global",
       techniques: [
         { id: "T1210", name: "Exploitation of Remote Services", tactic: "Lateral Movement" },
         { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
@@ -675,7 +705,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "~200,000 systems encrypted in ~150 countries; major disruption to UK NHS, Telefónica, Deutsche Bahn, and others.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment"],
+      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "indictment", "international-cooperation"],
       normsInvoked: [
         "UN GGE 2015 norm against damaging critical infrastructure",
         "Duty of care toward healthcare systems in peacetime",
@@ -739,6 +769,7 @@ export const seedIncidents: Incident[] = [
       aliases: ["DarkSide", "BlackMatter"],
     },
     escalation: {
+      thresholds: ["civilian-service-harm"],
       phases: [
         {
           tier: "intrusion",
@@ -764,14 +795,16 @@ export const seedIncidents: Incident[] = [
         "Attackers targeted IT, not OT directly, pipeline shutdown was a precautionary business decision",
         "DarkSide issued a public statement claiming they did not intend societal disruption",
       ],
-      thresholdCrossings: [
+      significance: [
         "Ransomware caused a national-level fuel supply disruption for the first time",
         "Demonstrated that IT-side attacks can have cascading OT and societal effects",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Colonial Pipeline", sector: "energy", country: "US" }],
+      sectorCountryPairs: [["energy", "US"]],
       targetSectors: ["energy", "critical-infrastructure", "transportation"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
@@ -838,6 +871,7 @@ export const seedIncidents: Incident[] = [
       aliases: [],
     },
     escalation: {
+      thresholds: ["physical-effects"],
       phases: [
         {
           tier: "intrusion",
@@ -857,14 +891,15 @@ export const seedIncidents: Incident[] = [
         "Operator observation enabled immediate reversal",
         "Multiple downstream safety checks would likely have caught the change before it reached consumers",
       ],
-      thresholdCrossings: [
+      significance: [
         "Demonstrated that remote access to water treatment SCADA can enable potentially harmful chemical manipulation",
         "Highlighted systemic weaknesses: shared passwords, unpatched remote-access software, flat networks",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Oldsmar water treatment plant", sector: "critical-infrastructure", country: "US" }],
       targetSectors: ["critical-infrastructure"],
-      targetCountries: ["United States"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1133", name: "External Remote Services", tactic: "Initial Access" },
         { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
@@ -926,8 +961,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Attributed by the EU, UK, US, and allied governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
     },
     escalation: {
+      thresholds: ["physical-effects", "civilian-service-harm", "unintended-spillover", "wartime-use"],
       phases: [
         {
           tier: "intrusion",
@@ -953,14 +991,17 @@ export const seedIncidents: Incident[] = [
         "Attack targeted communications infrastructure, not life-safety systems",
         "Physical satellite constellation was not damaged",
       ],
-      thresholdCrossings: [
+      significance: [
         "First confirmed cyber attack synchronized with the opening of a conventional military invasion",
         "Cross-border collateral impact on NATO-member critical infrastructure",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Viasat KA-SAT", sector: "telecommunications" }],
+      sectorCountryPairs: [["telecommunications", "UA"]],
       targetSectors: ["telecommunications", "defense", "energy", "critical-infrastructure"],
-      targetCountries: ["Ukraine", "Germany", "France", "Italy", "Central Europe"],
+      targetCountries: ["UA", "DE", "FR", "IT"],
+      geographicScope: "central-europe",
       techniques: [
         { id: "T1133", name: "External Remote Services", tactic: "Initial Access" },
         { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
@@ -1005,6 +1046,7 @@ export const seedIncidents: Incident[] = [
         "Viasat Incident Report: KA-SAT Network Cyber Attack Overview, 2022.",
       ],
     },
+    relatedRecords: [{ id: "orbital:21", sourceUrl: "https://www.sentinelone.com/labs/acidrain-a-modem-wiper-rains-down-on-europe/" }],
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
@@ -1030,8 +1072,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Hafnium, attributed by the US and allied governments to actors affiliated with China's Ministry of State Security",
       country: "China",
       aliases: ["Hafnium", "Silk Typhoon"],
+      intrusionSetIds: ["G0125"],
+      organ: "MSS",
     },
     escalation: {
+      thresholds: ["unintended-spillover"],
       phases: [
         {
           tier: "intrusion",
@@ -1057,14 +1102,15 @@ export const seedIncidents: Incident[] = [
         "Initial phase was narrowly targeted espionage",
         "No destructive payload deployed by the primary actor",
       ],
-      thresholdCrossings: [
+      significance: [
         "Shift from targeted espionage to indiscriminate mass exploitation at scale",
         "Created attack surface subsequently exploited by criminal ransomware groups",
       ],
     },
     infrastructure: {
-      targetSectors: ["government", "defense", "healthcare", "education", "technology", "multiple"],
-      targetCountries: ["United States", "Global"],
+      targetSectors: ["government", "defense", "healthcare", "education", "technology"],
+      targetCountries: ["US"],
+      geographicScope: "global",
       techniques: [
         { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
         { id: "T1505.003", name: "Server Software Component: Web Shell", tactic: "Persistence" },
@@ -1128,8 +1174,10 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Conti ransomware group (Russian-speaking criminal organization); follow-on attack attributed to HIVE",
       country: "Russia (criminal, not directly state-sponsored per public assessments)",
       aliases: ["Conti", "Wizard Spider", "HIVE"],
+      intrusionSetIds: ["G0102"],
     },
     escalation: {
+      thresholds: ["civilian-service-harm"],
       phases: [
         {
           tier: "intrusion",
@@ -1155,14 +1203,15 @@ export const seedIncidents: Incident[] = [
         "Attackers offered decryption for ransom, coercive but not purely destructive",
         "No reported impact on life-safety systems",
       ],
-      thresholdCrossings: [
+      significance: [
         "First country to declare a national emergency over ransomware",
         "Demonstrated that ransomware can functionally incapacitate the fiscal apparatus of a nation-state",
       ],
     },
     infrastructure: {
+      sectorCountryPairs: [["government", "CR"]],
       targetSectors: ["government", "finance", "healthcare"],
-      targetCountries: ["Costa Rica"],
+      targetCountries: ["CR"],
       techniques: [
         { id: "T1486", name: "Data Encrypted for Impact", tactic: "Impact" },
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
@@ -1172,7 +1221,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Tax and customs systems offline for weeks; national emergency declared; healthcare disrupted by follow-on attack.",
     },
     governance: {
-      flags: ["norm-violation", "international-cooperation", "sanctions-imposed"],
+      flags: ["norm-violation", "sanctions-imposed"],
       normsInvoked: [
         "Protection of government services and public welfare infrastructure",
         "Responsible state behavior: preventing criminal groups from operating with impunity",
@@ -1226,8 +1275,10 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Attributed by Albania, the US, and allied governments to Iranian state actors affiliated with MOIS",
       country: "Iran",
       aliases: ["Homeland Justice", "DEV-0861", "DEV-0166"],
+      organ: "MOIS",
     },
     escalation: {
+      thresholds: ["civilian-service-harm"],
       phases: [
         {
           tier: "intrusion",
@@ -1253,14 +1304,14 @@ export const seedIncidents: Incident[] = [
         "Attacks targeted government IT, not civilian critical infrastructure",
         "No reported physical harm",
       ],
-      thresholdCrossings: [
+      significance: [
         "First known severance of diplomatic relations over a cyber attack",
         "State-sponsored destructive attack against a NATO member's government systems",
       ],
     },
     infrastructure: {
       targetSectors: ["government"],
-      targetCountries: ["Albania"],
+      targetCountries: ["AL"],
       techniques: [
         { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
         { id: "T1485", name: "Data Destruction", tactic: "Impact" },
@@ -1326,8 +1377,10 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Widely assessed by US officials and researchers to be linked to Iran, though direct attribution remains circumstantial",
       country: "Iran (assessed)",
       aliases: ["APT33", "Elfin", "Cutting Sword of Justice"],
+      intrusionSetIds: ["G0064"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -1353,14 +1406,16 @@ export const seedIncidents: Incident[] = [
         "OT and production control systems were air-gapped and unaffected",
         "Oil production and export operations continued without interruption",
       ],
-      thresholdCrossings: [
+      significance: [
         "Largest destructive cyber attack against a single enterprise at that time",
         "Targeted the crown jewel of a major economy's resource sector",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Saudi Aramco", sector: "energy", country: "SA" }],
+      sectorCountryPairs: [["energy", "SA"]],
       targetSectors: ["energy"],
-      targetCountries: ["Saudi Arabia"],
+      targetCountries: ["SA"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1561.002", name: "Disk Wipe: Disk Structure Wipe", tactic: "Impact" },
@@ -1370,7 +1425,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "~35,000 workstations wiped; weeks of degraded corporate IT operations; no impact on oil production.",
     },
     governance: {
-      flags: ["norm-violation", "deterrence-signal"],
+      flags: ["norm-violation"],
       normsInvoked: [
         "Protection of critical economic infrastructure",
         "Proportionality: destructive response to policy grievances",
@@ -1399,7 +1454,7 @@ export const seedIncidents: Incident[] = [
       ],
     },
     lastUpdated: "2026-10-29",
-    inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
+    inclusionCriteriaMet: ["state-attribution", "two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "Symantec: The Shamoon Attacks", category: "vendor", date: "2012-08-16" },
       { title: "Panetta, L. 'Defending the Nation from Cyber Attack' (speech)", url: "https://content.govdelivery.com/accounts/USDOD/bulletins/571813", category: "government", date: "2012-10-11" },
@@ -1423,8 +1478,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Lazarus Group, attributed by the US DOJ and multiple researchers to North Korea's RGB",
       country: "North Korea",
       aliases: ["Lazarus Group", "APT38", "BlueNoroff"],
+      intrusionSetIds: ["G0032", "G0082"],
+      organ: "RGB",
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -1450,14 +1508,16 @@ export const seedIncidents: Incident[] = [
         "A typo in a transfer request triggered manual review, limiting losses",
         "SWIFT infrastructure itself was not technically compromised, the endpoint was",
       ],
-      thresholdCrossings: [
+      significance: [
         "First confirmed state-linked operation targeting the global interbank financial system",
         "Demonstrated that SWIFT endpoint security was a systemic risk across central banks",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Bangladesh Bank", sector: "finance", country: "BD" }],
+      sectorCountryPairs: [["finance", "BD"]],
       targetSectors: ["finance"],
-      targetCountries: ["Bangladesh", "Philippines"],
+      targetCountries: ["BD", "PH"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1565.001", name: "Data Manipulation: Stored Data Manipulation", tactic: "Impact" },
@@ -1496,6 +1556,7 @@ export const seedIncidents: Incident[] = [
         "UN Security Council Panel of Experts DPRK Reports, 2019–2023.",
       ],
     },
+    relatedRecords: [{ id: "cyber:sony-pictures", sourceUrl: "https://www.justice.gov/archives/opa/pr/north-korean-regime-backed-programmer-charged-conspiracy-conduct-multiple-cyber-attacks-and" }],
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
@@ -1523,6 +1584,7 @@ export const seedIncidents: Incident[] = [
       aliases: [],
     },
     escalation: {
+      thresholds: ["election-or-nc3-target"],
       phases: [
         {
           tier: "intrusion",
@@ -1542,14 +1604,15 @@ export const seedIncidents: Incident[] = [
         "No destructive or disruptive actions taken, activity consistent with intelligence collection",
         "No public evidence of data weaponization or influence operations",
       ],
-      thresholdCrossings: [
+      significance: [
         "Compromise of a national legislature and ruling/opposition parties during an election period",
         "Blurred line between traditional espionage and potential election interference",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Australian Parliament House", sector: "government", country: "AU" }],
       targetSectors: ["government"],
-      targetCountries: ["Australia"],
+      targetCountries: ["AU"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1114", name: "Email Collection", tactic: "Collection" },
@@ -1559,7 +1622,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Unauthorized access to parliamentary and political party networks; scope of data exfiltration not publicly disclosed.",
     },
     governance: {
-      flags: ["attribution-public", "deterrence-signal"],
+      flags: ["deterrence-signal"],
       normsInvoked: [
         "Non-interference in democratic processes",
         "UN GGE norms on responsible state behavior in ICT use",
@@ -1614,6 +1677,7 @@ export const seedIncidents: Incident[] = [
       aliases: [],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "degradation",
@@ -1633,14 +1697,16 @@ export const seedIncidents: Incident[] = [
         "Incidents were narrowly targeted at specific nuclear facilities",
         "No broader civilian infrastructure affected",
       ],
-      thresholdCrossings: [
+      significance: [
         "If confirmed as cyber-enabled, represents continued willingness to physically damage nuclear infrastructure through non-kinetic means",
         "Occurs against the backdrop of active diplomatic negotiations (JCPOA)",
       ],
     },
     infrastructure: {
+      targetEntities: [{ name: "Natanz enrichment facility", sector: "energy", country: "IR" }],
+      sectorCountryPairs: [["energy", "IR"]],
       targetSectors: ["energy", "critical-infrastructure"],
-      targetCountries: ["Iran"],
+      targetCountries: ["IR"],
       techniques: [
         { id: "T0831", name: "Manipulation of Control", tactic: "Impact (ICS)" },
       ],
@@ -1648,7 +1714,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Reported physical damage at Natanz enrichment facility; scope and technical details not independently verified.",
     },
     governance: {
-      flags: ["norm-violation", "deterrence-signal"],
+      flags: ["norm-violation"],
       normsInvoked: [
         "Sovereignty and non-intervention",
         "Nuclear safety and security obligations (IAEA framework)",
@@ -1700,8 +1766,10 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Attributed by researchers and the US government to China-linked groups; Taiwan's government has acknowledged the threat without detailed public attribution",
       country: "China (assessed)",
       aliases: ["Volt Typhoon", "Flax Typhoon"],
+      intrusionSetIds: ["G1017"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -1721,14 +1789,15 @@ export const seedIncidents: Incident[] = [
         "No disruptive or destructive actions observed",
         "Activity consistent with intelligence preparation rather than immediate attack",
       ],
-      thresholdCrossings: [
+      significance: [
         "Pre-positioning in telecom infrastructure of a potential military contingency target",
         "Part of a broader pattern including US critical infrastructure (Volt Typhoon)",
       ],
     },
     infrastructure: {
+      sectorCountryPairs: [["telecommunications", "TW"]],
       targetSectors: ["telecommunications", "critical-infrastructure"],
-      targetCountries: ["Taiwan"],
+      targetCountries: ["TW"],
       techniques: [
         { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
         { id: "T1218", name: "System Binary Proxy Execution", tactic: "Defense Evasion" },
@@ -1767,6 +1836,7 @@ export const seedIncidents: Incident[] = [
         "CISA Advisory AA23-144A: PRC State-Sponsored Actors, 2023.",
       ],
     },
+    relatedRecords: [{ id: "cyber:volt-typhoon", sourceUrl: "https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/" }],
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
@@ -1791,8 +1861,11 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Sandworm Team, attributed by Ukraine's CERT-UA and corroborated by ESET and allied governments to Russia's GRU",
       country: "Russia",
       aliases: ["Sandworm", "Voodoo Bear", "IRIDIUM"],
+      intrusionSetIds: ["G0034"],
+      organ: "GRU",
     },
     escalation: {
+      thresholds: ["wartime-use"],
       phases: [
         {
           tier: "intrusion",
@@ -1812,14 +1885,15 @@ export const seedIncidents: Incident[] = [
         "Attack was detected and mitigated before causing sustained outage",
         "Narrower scope than the 2016 Industroyer attack",
       ],
-      thresholdCrossings: [
+      significance: [
         "First known use of purpose-built ICS malware during an active conventional war",
         "Confirmed that Sandworm maintained and updated its grid-attack toolkit across six years",
       ],
     },
     infrastructure: {
+      sectorCountryPairs: [["energy", "UA"]],
       targetSectors: ["energy", "critical-infrastructure"],
-      targetCountries: ["Ukraine"],
+      targetCountries: ["UA"],
       techniques: [
         { id: "T0855", name: "Unauthorized Command Message", tactic: "Impact (ICS)" },
         { id: "T1561", name: "Disk Wipe", tactic: "Impact" },
@@ -1882,8 +1956,10 @@ export const seedIncidents: Incident[] = [
       attributedTo: "Scattered Spider, a loosely organized English-speaking threat group acting as an ALPHV/BlackCat ransomware affiliate",
       country: "United States / United Kingdom (individuals; not state-sponsored)",
       aliases: ["Scattered Spider", "UNC3944", "Octo Tempest", "0ktapus"],
+      intrusionSetIds: ["G1015"],
     },
     escalation: {
+      thresholds: [],
       phases: [
         {
           tier: "intrusion",
@@ -1909,14 +1985,15 @@ export const seedIncidents: Incident[] = [
         "Financially motivated, no geopolitical or destructive intent",
         "Attackers offered decryption for payment, consistent with criminal ransomware model",
       ],
-      thresholdCrossings: [
+      significance: [
         "Demonstrated that social engineering alone can defeat sophisticated technical security at major enterprises",
         "Highlighted that young, loosely organized groups can cause damage comparable to state-sponsored actors",
       ],
     },
     infrastructure: {
-      targetSectors: ["multiple"],
-      targetCountries: ["United States"],
+      targetEntities: [{ name: "MGM Resorts", sector: "hospitality", country: "US" }, { name: "Caesars Entertainment", sector: "hospitality", country: "US" }],
+      targetSectors: ["hospitality"],
+      targetCountries: ["US"],
       techniques: [
         { id: "T1566.004", name: "Phishing: Spearphishing Voice", tactic: "Initial Access" },
         { id: "T1199", name: "Trusted Relationship", tactic: "Initial Access" },

@@ -6,6 +6,7 @@ import {
   escalationTierLabels,
   escalationTierBadge,
   tierIndex,
+  thresholdMeta,
 } from "@/lib/utils/incidents";
 import { SectionHeading } from "./SectionHeading";
 import { EscalationRadar } from "./EscalationRadar";
@@ -24,7 +25,7 @@ interface EscalationSectionProps {
 }
 
 export function EscalationSection({ incident }: EscalationSectionProps) {
-  const { phases, peakTier, restraintFactors, thresholdCrossings } =
+  const { phases, peakTier, restraintFactors, thresholds, significance } =
     incident.escalation;
   const peakIdx = tierIndex(peakTier);
 
@@ -123,19 +124,33 @@ export function EscalationSection({ incident }: EscalationSectionProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="p-4 rounded-lg bg-signal-50/50 dark:bg-signal-900/10 border border-signal-200/30 dark:border-signal-700/30">
           <p className="text-xs font-semibold text-signal-700 dark:text-signal-300 uppercase tracking-wider mb-2">
-            Threshold Crossings
+            Thresholds Crossed
           </p>
-          <ul className="space-y-1">
-            {thresholdCrossings.map((t, i) => (
-              <li
-                key={i}
-                className="text-sm text-ink dark:text-white flex gap-2"
-              >
-                <span className="text-signal-500 shrink-0">&bull;</span>
-                {t}
-              </li>
-            ))}
-          </ul>
+          {thresholds.length === 0 ? (
+            <p className="text-sm text-steel-500 dark:text-steel-300">None of the five listed thresholds.</p>
+          ) : (
+            <ul className="space-y-1">
+              {thresholds.map((t) => (
+                <li key={t} className="text-sm text-ink dark:text-white flex gap-2" title={thresholdMeta[t].crossedWhen}>
+                  <span className="text-signal-500 shrink-0">&bull;</span>
+                  {thresholdMeta[t].label}
+                </li>
+              ))}
+            </ul>
+          )}
+          {significance.length > 0 && (
+            <>
+              <p className="text-xs font-semibold text-signal-700 dark:text-signal-300 uppercase tracking-wider mt-4 mb-2">Significance</p>
+              <ul className="space-y-1">
+                {significance.map((t, i) => (
+                  <li key={i} className="text-sm text-ink dark:text-white flex gap-2">
+                    <span className="text-signal-500 shrink-0">&bull;</span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
         <div className="p-4 rounded-lg bg-atlas-50/50 dark:bg-atlas-900/10 border border-atlas-200/30 dark:border-atlas-700/30">
           <p className="text-xs font-semibold text-atlas-700 dark:text-atlas-300 uppercase tracking-wider mb-2">

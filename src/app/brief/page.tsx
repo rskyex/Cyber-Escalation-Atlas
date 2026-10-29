@@ -12,6 +12,7 @@ import {
   filterCasesForBrief,
   type BriefType,
 } from "@/lib/utils/templateBrief";
+import { targetCountryNames } from "@/lib/utils/incidents";
 
 const BRIEF_TYPES = [
   { value: "executive", label: "Executive Summary (500 words)" },
@@ -22,11 +23,11 @@ const BRIEF_TYPES = [
 const allSectors: TargetSector[] = [
   "energy", "finance", "government", "healthcare", "telecommunications",
   "transportation", "defense", "technology", "manufacturing", "media",
-  "critical-infrastructure",
+  "critical-infrastructure", "hospitality",
 ];
 
 const allRegions = Array.from(
-  new Set(seedIncidents.flatMap((i) => i.infrastructure.targetCountries))
+  new Set(seedIncidents.flatMap((i) => targetCountryNames(i)))
 ).sort();
 
 type BriefMode = "ai" | "template";
@@ -211,7 +212,7 @@ ${TRUNCATED_LABEL}` : "";
           <ul className="text-sm text-steel-500 dark:text-steel-300 leading-relaxed list-disc pl-5 space-y-1">
             <li>Scope: how many cases match, the years they cover and their incident types.</li>
             <li>The cases in scope, with attribution and peak escalation tier.</li>
-            <li>Escalation peaks and recorded threshold crossings.</li>
+            <li>Escalation peaks and the thresholds crossed from the closed list.</li>
             <li>Attribution status: confidence levels and attributed state nexus.</li>
             <li>Governance responses recorded for each case.</li>
           </ul>

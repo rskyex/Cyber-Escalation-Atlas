@@ -14,12 +14,12 @@
 // ---------------------------------------------------------------------------
 
 const { seedIncidents } = await import("@/data/incidents");
+const { countryNames } = await import("@/data/countries");
+const { confidenceFromLayers, attributionLayers } = await import("@/lib/utils/incidents");
 
 // Claimant actors that are not a state speaking for itself.
 const NON_STATE_CLAIMANTS = new Set(["Academic/Private Sector", "Contested/Unknown"]);
-const ANALYTIC_FLAGS = ["norm-violation", "deterrence-signal"];
 const FORMAL_FLAGS = ["attribution-public", "sanctions-imposed", "indictment"];
-const FORMAL_CONSEQUENCES = ["Sanctions", "Indictment", "Diplomatic Expulsion"];
 // Consequence ↔ flag pairs that must appear together.
 const PAIRS = [
   ["Indictment", "indictment"],
@@ -69,24 +69,42 @@ for (const inc of seedIncidents) {
   if (noFormalResponse) {
     const formal = FORMAL_FLAGS.filter((f) => flags.has(f));
     if (formal.length) add(errors, inc, "formal-flag-with-no-response", `${formal.join(", ")} with "No Formal Response"`);
-    const analytic = ANALYTIC_FLAGS.filter((f) => flags.has(f));
-    if (analytic.length) add(errors, inc, "analytic-flag-with-no-response", `${analytic.join(", ")} with "No Formal Response"`);
+    // A deterrence signal is a reading of a state response, so it needs one.
+    if (flags.has("deterrence-signal")) add(errors, inc, "deterrence-signal-with-no-response", `deterrence-signal with "No Formal Response"`);
   }
+
+  // Norm violation is the atlas's judgement and must name the norm.
+  if (flags.has("norm-violation") && !inc.governance.normsInvoked.length)
+    add(errors, inc, "norm-violation-without-norm", "'norm-violation' flag but normsInvoked is empty");
 
   // 5. Consequence lists that contradict themselves.
   if (cons.has("No Formal Response") && cons.size > 1)
     add(errors, inc, "no-response-plus-response", `"No Formal Response" listed with ${[...cons].filter((c) => c !== "No Formal Response").join(", ")}`);
-  const formalCons = FORMAL_CONSEQUENCES.filter((c) => cons.has(c));
-  if (cons.has("Public Naming Only") && formalCons.length)
-    add(errors, inc, "naming-only-plus-measures", `"Public Naming Only" listed with ${formalCons.join(", ")}`);
 
   // Warnings: likely omissions.
-  if (cons.has("Public Naming Only") && !flags.has("attribution-public"))
-    add(warnings, inc, "naming-without-attribution-flag", `"Public Naming Only" but no 'attribution-public' flag (country: "${inc.attribution.country}")`);
+  const nonState = /criminal|not (directly )?state|individuals|non-state/i.test(inc.attribution.country) || /criminal/i.test(inc.attribution.attributedTo);
+  if (cons.has("Public Naming") && !flags.has("attribution-public") && !nonState)
+    add(warnings, inc, "naming-without-attribution-flag", `"Public Naming" but no 'attribution-public' flag (country: "${inc.attribution.country}")`);
   if (d.coordinationType === "joint" && !flags.has("international-cooperation"))
     add(warnings, inc, "joint-without-cooperation-flag", "coordination 'joint' but no 'international-cooperation' flag");
   if (d.coordinationType === "none" && stateClaimants.length > 0)
     add(warnings, inc, "none-with-state-claimant", `coordination 'none' but government claimant(s): ${stateClaimants.map((c) => c.actor).join(", ")}`);
+}
+
+// Geography: ISO codes only; non-country areas go in geographicScope.
+for (const inc of seedIncidents) {
+  for (const c of inc.infrastructure.targetCountries)
+    if (!countryNames[c]) add(errors, inc, "country-not-iso", `targetCountries has "${c}", not a known ISO 3166-1 alpha-2 code`);
+  if (inc.infrastructure.targetSectors.includes("multiple")) add(errors, inc, "sector-multiple", '"multiple" is not a sector');
+}
+
+// Attribution confidence vs evidence layers (methodology §05). Reported for
+// review, not failed: the claimant table is coarse.
+for (const inc of seedIncidents) {
+  if (inc.attribution.confidence === "contested") continue;
+  const implied = confidenceFromLayers(inc);
+  if (implied !== inc.attribution.confidence)
+    add(warnings, inc, "confidence-vs-layers", `coded "${inc.attribution.confidence}", layers (${attributionLayers(inc).join(", ") || "none"}) imply "${implied}"`);
 }
 
 // Inclusion criteria: the two mechanical ones must match the record.

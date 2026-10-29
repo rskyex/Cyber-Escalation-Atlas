@@ -22,7 +22,9 @@ import {
   targetSectorLabels,
   governanceFlagLabels,
   tierIndex,
+  thresholdMeta,
 } from "@/lib/utils/incidents";
+import { targetCountryNames } from "@/lib/utils/incidents";
 
 export type BriefType = "executive" | "technical" | "governance";
 
@@ -48,9 +50,7 @@ export function filterCasesForBrief(
   }
   if (region !== "all") {
     cases = cases.filter((c) =>
-      c.infrastructure.targetCountries.some(
-        (country) => country.toLowerCase() === region.toLowerCase(),
-      ),
+      targetCountryNames(c).some((country) => country.toLowerCase() === region.toLowerCase()),
     );
   }
   return cases;
@@ -144,15 +144,15 @@ export function buildTemplateBrief(
       .join(", ")}.`,
   );
   const totalCrossings = cases.reduce(
-    (n, c) => n + c.escalation.thresholdCrossings.length,
+    (n, c) => n + c.escalation.thresholds.length,
     0,
   );
   lines.push(
     `${plural(totalCrossings, "threshold crossing")} recorded across these cases. For the highest tier cases:`,
   );
   for (const c of topCases) {
-    if (c.escalation.thresholdCrossings.length === 0) continue;
-    lines.push(`- ${c.shortName || c.name}: ${c.escalation.thresholdCrossings.join("; ")}`);
+    if (c.escalation.thresholds.length === 0) continue;
+    lines.push(`- ${c.shortName || c.name}: ${c.escalation.thresholds.map((t) => thresholdMeta[t].label.toLowerCase()).join("; ")}`);
   }
   lines.push("");
 

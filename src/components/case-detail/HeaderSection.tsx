@@ -8,7 +8,7 @@ import {
   attributionLabels,
   attributionBadge,
   targetSectorLabels,
-  unpeaceScore,
+  unpeaceScore, targetCountryNames
 } from "@/lib/utils/incidents";
 import { dataCutoff } from "@/lib/datasetStats";
 
@@ -71,7 +71,7 @@ export function HeaderSection({ incident }: HeaderSectionProps) {
         <Fact label="Actor country" value={incident.attribution.country} />
         <Fact
           label="Target regions"
-          value={incident.infrastructure.targetCountries.join(", ")}
+          value={targetCountryNames(incident).join(", ")}
         />
         <Fact
           label="Unpeace score"

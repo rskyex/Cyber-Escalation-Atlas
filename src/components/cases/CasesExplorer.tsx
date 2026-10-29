@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import type { Incident } from "@/lib/types/incidents";
-import { unpeaceScore } from "@/lib/utils/incidents";
+import { targetCountryNames, unpeaceScore } from "@/lib/utils/incidents";
 import { CasesFilters, defaultFilters } from "./CasesFilters";
 import type { CasesFilterState } from "./CasesFilters";
 import { CaseCard } from "./CaseCard";
@@ -30,9 +30,7 @@ function applyFilters(
       return false;
     if (
       f.region &&
-      !inc.infrastructure.targetCountries.some(
-        (c) => c.toLowerCase() === f.region.toLowerCase(),
-      )
+      !targetCountryNames(inc).some((c) => c.toLowerCase() === f.region.toLowerCase())
     )
       return false;
     if (inc.year < f.yearMin || inc.year > f.yearMax) return false;

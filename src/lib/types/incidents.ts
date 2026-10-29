@@ -40,7 +40,21 @@ export type TargetSector =
   | "media"
   | "education"
   | "critical-infrastructure"
-  | "multiple";
+  | "hospitality";
+
+/** Non-country geography (targetCountries holds ISO 3166-1 alpha-2 codes only). */
+export type GeographicScope = "global" | "nato-allies" | "central-europe" | "allied-jurisdictions";
+
+/** Closed list of escalation thresholds (methodology §06). */
+export type ThresholdCode =
+  | "physical-effects"
+  | "civilian-service-harm"
+  | "unintended-spillover"
+  | "wartime-use"
+  | "election-or-nc3-target";
+
+/** Evidence layers behind an attribution (methodology §05). */
+export type AttributionLayer = "technical" | "governmental" | "legal" | "documentary";
 
 export type GovernanceFlag =
   | "norm-violation"
@@ -74,6 +88,12 @@ export interface Attribution {
   attributedTo: string;
   country: string;
   aliases: string[];
+  /** MITRE ATT&CK group IDs for the aliases, where ATT&CK has the group. */
+  intrusionSetIds?: string[];
+  /** State organ named in the attribution (GRU, MSS, GCHQ, ...). */
+  organ?: string;
+  /** Evidence layers; derived from claimants and consequences when absent. */
+  layers?: AttributionLayer[];
 }
 
 export interface EscalationPhase {
@@ -87,7 +107,10 @@ export interface EscalationProfile {
   phases: EscalationPhase[];
   peakTier: EscalationTier;
   restraintFactors: string[];
-  thresholdCrossings: string[];
+  /** Thresholds crossed, from the closed list; these enter the scores. */
+  thresholds: ThresholdCode[];
+  /** Why the case is significant (narrative; not scored). */
+  significance: string[];
 }
 
 export interface AttackTechnique {
@@ -98,7 +121,13 @@ export interface AttackTechnique {
 
 export interface InfrastructureProfile {
   targetSectors: TargetSector[];
+  /** ISO 3166-1 alpha-2 codes. */
   targetCountries: string[];
+  geographicScope?: GeographicScope;
+  /** Named target organisations, where the record names them. */
+  targetEntities?: { name: string; sector: TargetSector; country?: string }[];
+  /** Sector and country tied together by the record text ([sector, ISO code]). */
+  sectorCountryPairs?: [TargetSector, string][];
   techniques: AttackTechnique[];
   malwareFamilies: string[];
   impactSummary: string;
@@ -143,7 +172,7 @@ export type AttributionConsequenceType =
   | "Sanctions"
   | "Indictment"
   | "Diplomatic Expulsion"
-  | "Public Naming Only"
+  | "Public Naming"
   | "No Formal Response";
 
 export interface AttributionClaimant {
@@ -185,6 +214,8 @@ export interface Incident {
   lastUpdated: string;
   /** Inclusion criteria this case meets. The guideline is at least 3 of 5. */
   inclusionCriteriaMet: InclusionCriterion[];
+  /** Records in this or another Faultline dataset that one cited source names together. */
+  relatedRecords?: { id: string; sourceUrl: string }[];
   /** Legal frameworks/rules whose application to this case is debated. */
   legalFrameworks?: LegalFrameworkRef[];
 }

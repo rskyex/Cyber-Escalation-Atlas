@@ -18,7 +18,7 @@ const CONSEQUENCES: AttributionConsequenceType[] = [
   "Sanctions",
   "Indictment",
   "Diplomatic Expulsion",
-  "Public Naming Only",
+  "Public Naming",
   "No Formal Response",
 ];
 

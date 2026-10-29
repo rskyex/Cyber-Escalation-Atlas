@@ -10,7 +10,10 @@ import type {
   GovernanceFlag,
   SourceCategory,
   Incident,
+  ThresholdCode,
+  AttributionLayer,
 } from "@/lib/types/incidents";
+import { countryName, scopeLabels } from "@/data/countries";
 
 // ---- Label maps -------------------------------------------------------------
 
@@ -53,18 +56,66 @@ export const targetSectorLabels: Record<TargetSector, string> = {
   media: "Media",
   education: "Education",
   "critical-infrastructure": "Critical Infrastructure",
-  multiple: "Multiple Sectors",
+  hospitality: "Hospitality",
 };
 
+/** Closed threshold list (methodology §06). */
+export const thresholdMeta: Record<ThresholdCode, { label: string; crossedWhen: string; evidence: string }> = {
+  "physical-effects": {
+    label: "Physical effects",
+    crossedWhen: "The operation damaged equipment or changed a physical process (power cut, centrifuges, chemical dosing, bricked hardware).",
+    evidence: "Victim, government or vendor technical report.",
+  },
+  "civilian-service-harm": {
+    label: "Civilian service harm",
+    crossedWhen: "Essential services to the public were disrupted (power, water, fuel, health care, emergency alerts, public telecoms, core government services).",
+    evidence: "Official statement or two independent reports.",
+  },
+  "unintended-spillover": {
+    label: "Unintended spillover",
+    crossedWhen: "Effects reached states or organisations outside the evident target set.",
+    evidence: "Technical analysis of propagation, or victims outside the target state.",
+  },
+  "wartime-use": {
+    label: "Wartime use",
+    crossedWhen: "Used during an armed conflict between states, by a party to it. Russia–Ukraine is counted from 24 February 2022.",
+    evidence: "Operation date within the conflict.",
+  },
+  "election-or-nc3-target": {
+    label: "Election or NC3 target",
+    crossedWhen: "Targets electoral bodies, parties during a campaign, or nuclear command, control and communications.",
+    evidence: "Official statement or two independent reports.",
+  },
+};
+export const THRESHOLD_CODES = Object.keys(thresholdMeta) as ThresholdCode[];
+
+/** Governance flags that record an official act, versus analyst judgements. */
+export const FORMAL_FLAGS: GovernanceFlag[] = [
+  "attribution-public",
+  "sanctions-imposed",
+  "indictment",
+  "regulatory-change",
+  "international-cooperation",
+  "un-discussion",
+];
+export const ANALYTIC_FLAGS: GovernanceFlag[] = ["norm-violation", "deterrence-signal"];
+
+/** Display names for an incident's target countries and geographic scope. */
+export function targetCountryNames(incident: Incident): string[] {
+  const names = incident.infrastructure.targetCountries.map(countryName);
+  const scope = incident.infrastructure.geographicScope;
+  return scope ? [...names, scopeLabels[scope]] : names;
+}
+
 export const governanceFlagLabels: Record<GovernanceFlag, string> = {
-  "norm-violation": "Norm Violation",
+  "norm-violation": "Norm Violation (analyst judgement)",
   "attribution-public": "Public Attribution",
   "sanctions-imposed": "Sanctions Imposed",
   indictment: "Indictment",
   "un-discussion": "UN Discussion",
   "regulatory-change": "Regulatory Change",
   "international-cooperation": "International Cooperation",
-  "deterrence-signal": "Deterrence Signal",
+  "deterrence-signal": "Deterrence Signal (analyst judgement)",
 };
 
 export const sourceCategoryLabels: Record<SourceCategory, string> = {
@@ -185,9 +236,7 @@ export function filterByCountry(
   return incidents.filter(
     (i) =>
       i.attribution.country.toLowerCase() === lower ||
-      i.infrastructure.targetCountries.some(
-        (c) => c.toLowerCase() === lower,
-      ),
+      targetCountryNames(i).some((c) => c.toLowerCase() === lower),
   );
 }
 
@@ -238,11 +287,11 @@ export function comparativeProfile(incident: Incident): ComparativeProfile {
   const tier = tierIndex(incident.escalation.peakTier) + 1; // 1–6
   const sectors = incident.infrastructure.targetSectors.length;
   const countries = incident.infrastructure.targetCountries.length;
-  const govFlags = incident.governance.flags.length; // 0–8
+  const govFlags = governanceAxis(incident).formal; // 0–6 formal responses
   return {
     escalation: Math.round((tier / 6) * 100),
     infrastructure: Math.min(100, Math.round(((sectors + countries) / 12) * 100)),
-    governance: Math.min(100, Math.round((govFlags / 8) * 100)),
+    governance: Math.min(100, Math.round((govFlags / FORMAL_FLAGS.length) * 100)),
     attribution: confidenceStrength[incident.attribution.confidence],
     entanglement: entanglementScore(incident) * 10,
   };
@@ -308,36 +357,95 @@ export function yearRange(
 
 // ---- Derived scores ---------------------------------------------------------
 
+/** Weights of the unpeace severity formula; the sensitivity table varies them. */
+export const UNPEACE_WEIGHTS = { tier: 1.2, threshold: 1 } as const;
+
 /**
- * Compute a 1–10 "unpeace" score reflecting escalation severity,
- * threshold crossings, and governance impact weight.
+ * Raw unpeace severity on 1–10 without rounding. The weighted sum is rescaled
+ * by its theoretical range (tier 1–6, thresholds 0–5), so it cannot exceed 10
+ * and needs no cap. Governance responses are not part of severity.
  */
+export function unpeaceRaw(incident: Incident, weights: { tier: number; threshold: number } = UNPEACE_WEIGHTS): number {
+  const tier = tierIndex(incident.escalation.peakTier) + 1; // 1–6
+  const x = incident.escalation.thresholds.length; // 0–5
+  const lo = weights.tier * 1;
+  const hi = weights.tier * 6 + weights.threshold * THRESHOLD_CODES.length;
+  return 1 + (9 * (weights.tier * tier + weights.threshold * x - lo)) / (hi - lo);
+}
+
+/** Unpeace severity, 1–10 (rounded). */
 export function unpeaceScore(incident: Incident): number {
-  const base = tierIndex(incident.escalation.peakTier) + 1; // 1-6
-  const crossings = incident.escalation.thresholdCrossings.length;
-  const govWeight = incident.governance.flags.length;
-  return Math.min(
-    10,
-    Math.round(((base * 1.2 + crossings + govWeight * 0.5) / 10) * 10),
-  );
+  return Math.round(unpeaceRaw(incident));
+}
+
+/** Governance response axis, reported separately from severity. */
+export function governanceAxis(incident: Incident): { formal: number; analytic: number; formalFlags: GovernanceFlag[]; analyticFlags: GovernanceFlag[] } {
+  const formalFlags = incident.governance.flags.filter((f) => FORMAL_FLAGS.includes(f));
+  const analyticFlags = incident.governance.flags.filter((f) => ANALYTIC_FLAGS.includes(f));
+  return { formal: formalFlags.length, analytic: analyticFlags.length, formalFlags, analyticFlags };
 }
 
 /**
- * Compute entanglement risk score (how many sectors, countries, and
- * collateral dimensions an incident touches). Range 1–10.
+ * Entanglement: spread across sectors and countries, 1–10, computed from the
+ * sector list and ISO country codes. A global scope sets the score to 10.
  */
 export function entanglementScore(incident: Incident): number {
+  if (incident.infrastructure.geographicScope === "global") return 10;
   const sectors = incident.infrastructure.targetSectors.length;
   const countries = incident.infrastructure.targetCountries.length;
-  const crossings = incident.escalation.thresholdCrossings.length;
-  return Math.min(10, Math.max(1, sectors + countries + crossings - 1));
+  return Math.min(10, Math.max(1, sectors + countries - 1));
+}
+
+/** Rank (1 = most severe, ties share the top rank) of each incident under given weights. */
+export function unpeaceRanks(incidents: Incident[], weights: { tier: number; threshold: number }): Map<string, number> {
+  const vals = incidents.map((i) => unpeaceRaw(i, weights));
+  const sorted = [...vals].sort((a, b) => b - a);
+  return new Map(incidents.map((i, k) => [i.slug, 1 + sorted.findIndex((v) => Math.abs(v - vals[k]) < 1e-9)]));
+}
+
+// ---- Attribution confidence from evidence layers ----------------------------
+
+const NON_STATE_CLAIMANTS = new Set(["Academic/Private Sector", "Contested/Unknown"]);
+
+/** Evidence layers: coded on the record, or derived from claimants and consequences. */
+export function attributionLayers(incident: Incident): AttributionLayer[] {
+  if (incident.attribution.layers) return incident.attribution.layers;
+  const d = incident.attributionDetail;
+  const out = new Set<AttributionLayer>();
+  for (const c of d?.claimants ?? []) {
+    if (c.actor === "Academic/Private Sector") out.add("technical");
+    else if (!NON_STATE_CLAIMANTS.has(c.actor)) out.add("governmental");
+  }
+  if (d?.consequences.some((c) => c === "Indictment" || c === "Sanctions")) out.add("legal");
+  return Array.from(out);
+}
+
+/** Number of distinct governments attributing on the record (from claimants). */
+function governmentsOnRecord(incident: Incident): number {
+  if (incident.attribution.layers) return incident.attribution.layers.includes("governmental") ? 1 : 0;
+  return new Set((incident.attributionDetail?.claimants ?? []).filter((c) => !NON_STATE_CLAIMANTS.has(c.actor)).map((c) => c.actor)).size;
+}
+
+/**
+ * Confidence implied by the layers (methodology §05):
+ * confirmed = governmental + legal, or governmental by two or more states + technical;
+ * high = governmental + technical, or documentary + technical;
+ * moderate = technical only; low = none. "contested" is coded by hand.
+ */
+export function confidenceFromLayers(incident: Incident): AttributionConfidence {
+  const L = new Set(attributionLayers(incident));
+  if (L.has("governmental") && (L.has("legal") || (L.has("technical") && governmentsOnRecord(incident) >= 2))) return "confirmed";
+  if ((L.has("governmental") || L.has("documentary")) && L.has("technical")) return "high";
+  if (L.has("governmental")) return "high";
+  if (L.has("technical")) return "moderate";
+  return "low";
 }
 
 // ---- Score breakdowns (transparency of the composite formulas) -------------
 
 export interface ScoreComponent {
   label: string;
-  /** Raw input value (e.g. number of threshold crossings). */
+  /** Raw input value (e.g. number of thresholds crossed). */
   input: number;
   /** Weight applied to the input in the formula. */
   weight: number;
@@ -349,106 +457,65 @@ export interface ScoreComponent {
 
 export interface ScoreBreakdown {
   score: number;
-  /** Raw weighted sum before rounding/capping. */
+  /** Raw score before rounding. */
   raw: number;
-  /** Whether the raw sum was capped by the formula ceiling. */
+  /** Whether the raw value was clamped to the 1–10 range. */
   capped: boolean;
   components: ScoreComponent[];
   /** Human-readable formula string. */
   formula: string;
 }
 
-/**
- * Decompose the unpeace score into its weighted components so the case page
- * can show exactly how the number is assembled. Mirrors {@link unpeaceScore}.
- */
+/** Decompose the unpeace score. Mirrors {@link unpeaceScore}. */
 export function unpeaceBreakdown(incident: Incident): ScoreBreakdown {
-  const base = tierIndex(incident.escalation.peakTier) + 1; // 1–6
-  const crossings = incident.escalation.thresholdCrossings.length;
-  const govWeight = incident.governance.flags.length;
-
+  const tier = tierIndex(incident.escalation.peakTier) + 1;
+  const x = incident.escalation.thresholds.length;
   const components: ScoreComponent[] = [
     {
       label: "Escalation peak",
-      input: base,
-      weight: 1.2,
-      contribution: base * 1.2,
+      input: tier,
+      weight: UNPEACE_WEIGHTS.tier,
+      contribution: tier * UNPEACE_WEIGHTS.tier,
       note: `Peak tier reached (${incident.escalation.peakTier}), ranked 1–6.`,
     },
     {
-      label: "Threshold crossings",
-      input: crossings,
-      weight: 1,
-      contribution: crossings,
-      note: "Distinct escalation thresholds the operation crossed.",
-    },
-    {
-      label: "Governance weight",
-      input: govWeight,
-      weight: 0.5,
-      contribution: govWeight * 0.5,
-      note: "Formal governance responses flagged (attribution, sanctions, indictments…).",
+      label: "Thresholds crossed",
+      input: x,
+      weight: UNPEACE_WEIGHTS.threshold,
+      contribution: x * UNPEACE_WEIGHTS.threshold,
+      note: x
+        ? `From the closed list: ${incident.escalation.thresholds.map((t) => thresholdMeta[t].label.toLowerCase()).join(", ")}.`
+        : "None of the five listed thresholds.",
     },
   ];
-
-  const raw = components.reduce((s, c) => s + c.contribution, 0);
-  const score = Math.min(10, Math.round(raw));
+  const raw = unpeaceRaw(incident);
   return {
-    score,
+    score: Math.round(raw),
     raw,
-    capped: Math.round(raw) > 10,
+    capped: false,
     components,
-    formula: "round( escalationPeak×1.2 + crossings×1 + governance×0.5 ), capped at 10",
+    formula: "1 + 9 × (1.2 × peak + thresholds − 1.2) ÷ 11, rounded (range 1–10, no cap; governance is a separate axis)",
   };
 }
 
-/**
- * Decompose the entanglement score. Mirrors {@link entanglementScore}.
- */
+/** Decompose the entanglement score. Mirrors {@link entanglementScore}. */
 export function entanglementBreakdown(incident: Incident): ScoreBreakdown {
   const sectors = incident.infrastructure.targetSectors.length;
   const countries = incident.infrastructure.targetCountries.length;
-  const crossings = incident.escalation.thresholdCrossings.length;
-
+  const global = incident.infrastructure.geographicScope === "global";
   const components: ScoreComponent[] = [
-    {
-      label: "Sectors affected",
-      input: sectors,
-      weight: 1,
-      contribution: sectors,
-      note: "Distinct critical-infrastructure sectors touched.",
-    },
-    {
-      label: "Countries / regions",
-      input: countries,
-      weight: 1,
-      contribution: countries,
-      note: "Geographic spread of impact.",
-    },
-    {
-      label: "Threshold crossings",
-      input: crossings,
-      weight: 1,
-      contribution: crossings,
-      note: "Escalation thresholds crossed (collateral-spread proxy).",
-    },
-    {
-      label: "Baseline offset",
-      input: 1,
-      weight: -1,
-      contribution: -1,
-      note: "Constant offset so a single-sector, single-country event floors at 1.",
-    },
+    { label: "Sectors affected", input: sectors, weight: 1, contribution: sectors, note: "Distinct sectors in targetSectors." },
+    { label: "Countries", input: countries, weight: 1, contribution: countries, note: "ISO country codes in targetCountries." },
+    { label: "Baseline offset", input: 1, weight: -1, contribution: -1, note: "Constant offset so a single-sector, single-country event scores 1." },
   ];
-
-  const raw = components.reduce((s, c) => s + c.contribution, 0);
+  const raw = global ? 10 : sectors + countries - 1;
   const score = Math.min(10, Math.max(1, raw));
   return {
     score,
     raw,
-    capped: raw > 10 || raw < 1,
+    capped: !global && (raw > 10 || raw < 1),
     components,
-    formula: "clamp( sectors + countries + crossings − 1, 1, 10 )",
+    formula: global ? "Geographic scope is global, so the score is 10" : "clamp( sectors + countries − 1, 1, 10 )",
   };
 }
 

@@ -15,7 +15,7 @@ function radarData(incident: Incident) {
   const esc = (tierIndex(incident.escalation.peakTier) + 1) / 6;
   const phases = Math.min(incident.escalation.phases.length / 5, 1);
   const thresholds = Math.min(
-    incident.escalation.thresholdCrossings.length / 4,
+    incident.escalation.thresholds.length / 5,
     1,
   );
   const restraint =
