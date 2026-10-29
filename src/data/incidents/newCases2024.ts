@@ -191,7 +191,7 @@ export const newCases2024: Incident[] = [
     inclusionCriteriaMet: ["effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
       { title: "CISA: ALPHV BlackCat Advisory Update", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-353a", category: "government", date: "2024-02-27" },
-      { title: "UnitedHealth Group: Change Healthcare Cyber Response Update", category: "vendor", date: "2024-03-13" },
+      { title: "UnitedHealth Group: Cyberattack Status Update", url: "https://www.unitedhealthgroup.com/newsroom/2024/2024-03-18-uhg-cyberattack-status-update.html", category: "vendor", date: "2024-03-18" },
       { title: "Senate Finance Committee: Hearing Testimony on Change Healthcare", url: "https://www.finance.senate.gov/imo/media/doc/0501_witty_testimony.pdf", category: "government", date: "2024-05-01" },
     ],
     attributionDetail: {
@@ -477,7 +477,7 @@ export const newCases2024: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
-      { title: "Ukraine SBU: Sandworm responsible for Kyivstar attack", category: "government", date: "2024-01-04" },
+      { title: "Reuters: Russian hackers were inside Ukraine telecoms giant for months (interview with SBU cyber chief Illia Vitiuk)", category: "journalistic", date: "2024-01-04" },
       { title: "Kyivstar: Statement on cyber attack and service restoration", category: "vendor", date: "2023-12-12" },
     ],
     attributionDetail: {

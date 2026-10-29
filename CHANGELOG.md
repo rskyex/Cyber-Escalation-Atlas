@@ -1,5 +1,27 @@
 # Changelog
 
+## Dataset 2.2.0 — 2026-10-29
+
+Sources that could not be found, resolved:
+
+- Removed two cases whose described intrusions no source supports: Thailand 2019 election
+  (the only verifiable report is a police statement that a "rapid report" system was hacked, with no
+  actor named; the cited Election Commission statement and Reuters article were not found) and
+  Bangladesh e-government 2021–2022 (no record of such intrusions; the cited CERT advisory was not
+  found, and the one verified source is about a 2023 data exposure). 33 cases.
+- Removed sources that do not exist as cited: Recorded Future 2019 India/Pakistan report, Check
+  Point Gaza Cybergang report, ACSC Parliament advisory, Microsoft Salt Typhoon profile, Washington
+  Post 26 Oct 2024 article. Claimant text that named them is corrected.
+- Replaced miscited sources with the real document: UnitedHealth 18 Mar 2024 status update (no
+  13 Mar release exists); DHS announcement of TSA Security Directive Pipeline-2021-02 (the July 2021
+  directive; Pipeline-2021-01 was May 2021); Reuters interview with SBU cyber chief Illia Vitiuk
+  (not an SBU statement); WSJ for the Caesars ransom figure (not Bloomberg), plus Caesars' SEC 8-K;
+  The Register on the leaked Belgian prosecutor report, which named GCHQ (no public closure statement
+  was found, and the record no longer says the case was closed or that no state was named).
+- Corrected: Clapper's OPM remarks were at the GEOINT Symposium, not AFCEA; the 2017 Cloud Hopper
+  report was by PwC UK and BAE Systems, supported by NCSC.
+- Viasat: "Sanctions" consequence and flag removed; no sanctions citing the attack are sourced.
+
 ## Dataset 2.1.0 — 2026-10-29
 
 Attribution confidence review (cea-confidence-review.md):

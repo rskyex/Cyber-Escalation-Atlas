@@ -118,7 +118,7 @@ export const newCasesAttribution: Incident[] = [
         "UN GGE 2015 Norm 13(f) on critical infrastructure (the norm did not yet exist at the time of the operation but was widely retro-applied in academic commentary)",
       ],
       policyResponses: [
-        "Belgian federal prosecutor opened a criminal investigation in 2013; closed in 2018 without charges, citing inability to prosecute foreign state agents",
+        "Belgian federal prosecutor opened a criminal investigation in 2013; a confidential 2018 report, leaked to De Standaard, named GCHQ, and the UK declined to cooperate; no charges",
         "No formal Belgian, EU, or NATO attribution statement issued",
         "No sanctions, diplomatic expulsions, or indictments",
       ],
@@ -142,7 +142,7 @@ export const newCasesAttribution: Incident[] = [
       furtherReading: [
         "Gallagher, R. 'Operation Socialist: The Inside Story of How British Spies Hacked Belgium's Largest Telco.' The Intercept, 13 December 2014.",
         "Symantec Security Response. 'Regin: Top-tier espionage tool enables stealthy surveillance.' November 2014.",
-        "De Standaard / Le Soir investigative reporting on the Belgian federal prosecutor's 2018 closure of the investigation.",
+        "De Standaard / Le Soir investigative reporting on the Belgian federal prosecutor's confidential 2018 report on the investigation.",
         "Bossong, R. & Wagner, B. 'A typology of cybersecurity and public-private partnerships in the context of the EU.' Crime, Law and Social Change, 67(3), 2017.",
       ],
     },
@@ -177,12 +177,7 @@ export const newCasesAttribution: Incident[] = [
         category: "vendor",
         date: "2014-11-24",
       },
-      {
-        title:
-          "Belgian Federal Prosecutor, Statement on closure of the Belgacom investigation (reported by RTBF and De Standaard)",
-        category: "legal",
-        date: "2018-09",
-      },
+      { title: "The Register: 'Belgium: Oi, Brits, explain why Belgacom hack IPs pointed at you and your GCHQ' (on the leaked federal prosecutor report reported by De Standaard)", url: "https://www.theregister.com/2018/10/26/belgium_finds_evidence_gchq_belgacom_hack_proximus/", category: "journalistic", date: "2018-10-26" },
     ],
     attributionDetail: {
       claimants: [
@@ -212,7 +207,7 @@ export const newCasesAttribution: Incident[] = [
           date: "2018-09-01",
           confidenceLevel: "High",
           evidenceBasis:
-            "Belgian federal prosecutor closure noted the operation was conducted by a foreign state but declined to name the state in the public communiqué; no government formally attributed",
+            "A confidential Belgian federal prosecutor report, leaked to De Standaard in 2018, concluded that GCHQ carried out the hack; no official public attribution was made",
         },
       ],
       coordinationType: "none",
@@ -365,7 +360,7 @@ export const newCasesAttribution: Incident[] = [
       furtherReading: [
         "US House of Representatives, Committee on Oversight and Government Reform. 'The OPM Data Breach: How the Government Jeopardized Our National Security for More than a Generation.' Majority staff report, September 2016.",
         "GAO Reports on OPM information security (GAO-15-714T, GAO-16-501).",
-        "Clapper, J.R. Remarks at AFCEA Defense Intelligence Senior Executive Service Forum, Washington DC, 25 June 2015, the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
+        "Clapper, J.R. Remarks at the GEOINT Symposium, 25 June 2015, the 'you have to kind of salute the Chinese' framing of the OPM breach. Widely reported by AP, Reuters, and Federal News Network.",
       ],
     },
     lastUpdated: "2026-10-29",
@@ -392,7 +387,7 @@ export const newCasesAttribution: Incident[] = [
       },
       {
         title:
-          "AP / Reuters wire reporting on DNI James Clapper's remarks at the AFCEA Defense Intelligence Senior Executive Service Forum, the 'you have to kind of salute the Chinese' characterisation of the OPM breach",
+          "AP / Reuters wire reporting on DNI James Clapper's remarks at the GEOINT Symposium (25 June 2015), the 'you have to kind of salute the Chinese' characterisation of the OPM breach",
         category: "journalistic",
         date: "2015-06-25",
       },
@@ -791,18 +786,6 @@ export const newCasesAttribution: Incident[] = [
         category: "journalistic",
         date: "2024-09-25",
       },
-      {
-        title:
-          "Washington Post: 'Chinese hack of U.S. telecoms compromised more than Trump campaign phones'",
-        category: "journalistic",
-        date: "2024-10-26",
-      },
-      {
-        title:
-          "Microsoft Threat Intelligence: 'Salt Typhoon / Earth Estries, adversary profile'",
-        category: "vendor",
-        date: "2024-11",
-      },
     ],
     attributionDetail: {
       claimants: [
@@ -1177,7 +1160,7 @@ export const newCasesAttribution: Incident[] = [
     sources: [
       {
         title:
-          "PwC UK / BAE Systems / UK NCSC: 'Operation Cloud Hopper' joint report",
+          "PwC UK / BAE Systems: 'Operation Cloud Hopper' report (supported by the UK NCSC)",
         category: "vendor",
         date: "2017-04-03",
       },

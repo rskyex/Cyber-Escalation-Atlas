@@ -61,7 +61,6 @@ const REGIONS = [
   "India",
   "Pakistan",
   "Israel",
-  "Thailand",
   "Guam",
 ];
 

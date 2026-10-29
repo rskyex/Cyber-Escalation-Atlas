@@ -94,7 +94,7 @@ export const attributionDetails: Record<string, AttributionDetail> = {
       { actor: "Academic/Private Sector", date: "2022-03-31", confidenceLevel: "High", evidenceBasis: "SentinelOne technical analysis of AcidRain wiper" },
     ],
     coordinationType: "joint",
-    consequences: ["Sanctions", "Public Naming"],
+    consequences: ["Public Naming"],
   },
   "exchange-hafnium": {
     claimants: [

@@ -78,12 +78,11 @@ export const newCasesGlobal: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["state-attribution", "two-analytical-lenses"],
     sources: [
-      { title: "Recorded Future: Pakistan-Linked Cyber Threats to Indian Targets", category: "vendor", date: "2019-06" },
       { title: "Kaspersky: Transparent Tribe: Evolution analysis, part 1", url: "https://securelist.com/transparent-tribe-part-1/98127/", category: "vendor", date: "2020-08-20" },
     ],
     attributionDetail: {
       claimants: [
-        { actor: "Academic/Private Sector", date: "2019-06-01", confidenceLevel: "Moderate", evidenceBasis: "Recorded Future and Symantec research documenting bilateral campaigns" },
+        { actor: "Academic/Private Sector", date: "2019-06-01", confidenceLevel: "Moderate", evidenceBasis: "Vendor research (Kaspersky's Transparent Tribe analysis) documenting Pakistan-linked campaigns against Indian targets" },
       ],
       coordinationType: "none",
       consequences: ["No Formal Response"],
@@ -167,186 +166,10 @@ export const newCasesGlobal: Incident[] = [
     inclusionCriteriaMet: ["two-analytical-lenses"],
     sources: [
       { title: "ESET: APT-C-23 group evolves its Android spyware", url: "https://www.welivesecurity.com/2020/09/30/aptc23-group-evolves-its-android-spyware/", category: "vendor", date: "2020-09-30" },
-      { title: "Check Point: Gaza Cybergang Threat Intelligence Report", category: "vendor", date: "2021-02" },
     ],
     attributionDetail: {
       claimants: [
-        { actor: "Academic/Private Sector", date: "2020-01-01", confidenceLevel: "Moderate", evidenceBasis: "ESET, Kaspersky, and Check Point independent research attributing to Hamas-linked group" },
-      ],
-      coordinationType: "none",
-      consequences: ["No Formal Response"],
-    },
-    actorSlug: "unknown-contested",
-  },
-  {
-    id: "thailand-election-2019",
-    slug: "thailand-election-2019",
-    name: "Thailand Election Infrastructure Targeting",
-    shortName: "Thailand Election",
-    year: 2019,
-    dateRange: "2019",
-    incidentType: "espionage",
-    summary:
-      "Intrusions targeting Thailand's Election Commission and political party systems during the 2019 general election, the first since the 2014 military coup. The operations compromised voter registration databases and party communication systems, raising concerns about electoral integrity in a democratically fragile context.",
-    attribution: {
-      confidence: "low",
-      attributedTo: "Assessed to be regional state-linked actors; specific attribution remains inconclusive",
-      country: "Unknown (regional state-linked actors assessed)",
-      aliases: [],
-      layers: [],
-    },
-    escalation: {
-      thresholds: ["election-or-nc3-target"],
-      phases: [
-        { tier: "intrusion", label: "Election Commission compromise", description: "Unauthorized access to Election Commission systems including voter registration infrastructure during the pre-election period.", date: "2019-02" },
-        { tier: "intrusion", label: "Party systems targeted", description: "Political party communication and coordination systems accessed, raising concerns about intelligence collection on democratic opposition.", date: "2019-03" },
-      ],
-      peakTier: "intrusion",
-      restraintFactors: [
-        "No evidence of data manipulation or vote-count interference",
-        "No disruptive or destructive actions observed",
-      ],
-      significance: [
-        "Targeting of electoral infrastructure in a democratically fragile Southeast Asian state",
-        "Compromise during the first election after a military coup, heightening political sensitivity",
-      ],
-    },
-    infrastructure: {
-      targetEntities: [{ name: "Election Commission of Thailand", sector: "government", country: "TH" }],
-      targetSectors: ["government"],
-      targetCountries: ["TH"],
-      techniques: [
-        { id: "T1078", name: "Valid Accounts", tactic: "Initial Access" },
-        { id: "T1114", name: "Email Collection", tactic: "Collection" },
-      ],
-      malwareFamilies: [],
-      impactSummary: "Election Commission and party systems accessed; no evidence of data manipulation; intelligence collection suspected.",
-    },
-    governance: {
-      flags: [],
-      normsInvoked: [
-        "Non-interference in electoral processes (UN GGE 2015 Norm 13(b))",
-        "Sovereignty of democratic institutions",
-      ],
-      policyResponses: [
-        "Thai Election Commission acknowledged cyber incidents without detailed public attribution",
-        "Regional cybersecurity cooperation discussions in ASEAN context",
-      ],
-      regulatoryChanges: [
-        "Thailand strengthened Cybersecurity Act (2019) implementation",
-        "Electoral Commission adopted enhanced security protocols",
-      ],
-      impact: "Highlighted the vulnerability of electoral infrastructure in Southeast Asia to cyber intrusion, contributing to ASEAN-level discussions on election security norms in a region where democratic institutions face diverse pressures.",
-    },
-    whyThisMatters: "The Thailand election targeting illustrates that electoral cyber interference extends beyond the frequently studied US and European cases, affecting democratically transitional states where institutional resilience is lowest and stakes are highest.",
-    teaching: {
-      keyQuestion: "How should democratically fragile states protect electoral infrastructure when they lack both attribution capability and deterrence credibility?",
-      discussionPoints: [
-        "Electoral cyber security in transitional democracies vs. established ones",
-        "ASEAN cyber norm development and its applicability to election security",
-        "Attribution gaps in the Global South and their governance implications",
-      ],
-      furtherReading: [
-        "International Crisis Group: Thailand's Election and Its Aftermath, 2019.",
-        "ASEAN: Framework on Digital Data Governance, 2019.",
-      ],
-    },
-    lastUpdated: "2026-10-29",
-    inclusionCriteriaMet: ["two-source-categories", "two-analytical-lenses"],
-    sources: [
-      { title: "Thai Election Commission: Statement on cyber incidents", category: "government", date: "2019-03" },
-      { title: "Reuters: Thailand election agency targeted by cyber attacks", category: "journalistic", date: "2019-03" },
-    ],
-    attributionDetail: {
-      claimants: [
-        { actor: "Contested/Unknown", date: "2019-03-01", confidenceLevel: "Moderate", evidenceBasis: "Regional state-linked actors assessed; no formal attribution" },
-      ],
-      coordinationType: "none",
-      consequences: ["No Formal Response"],
-    },
-    actorSlug: "unknown-contested",
-  },
-  {
-    id: "bangladesh-egov-2021",
-    slug: "bangladesh-egov-2021",
-    name: "Bangladesh e-Government Portal Intrusions",
-    shortName: "Bangladesh e-Gov",
-    year: 2021,
-    dateRange: "2021 – 2022",
-    incidentType: "espionage",
-    summary:
-      "Series of intrusions targeting Bangladeshi government digital service portals, exposing citizen data including national identity information and disrupting administrative functions. The incidents highlighted the vulnerability of rapidly digitized government services in developing states where cybersecurity investment has not kept pace with digital transformation.",
-    attribution: {
-      confidence: "low",
-      attributedTo: "Unknown; investigations did not produce public attribution. Some researchers noted similarities with regional threat groups but evidence remained inconclusive",
-      country: "Unknown",
-      aliases: [],
-      layers: [],
-    },
-    escalation: {
-      thresholds: [],
-      phases: [
-        { tier: "intrusion", label: "Government portal compromise", description: "Attackers gained access to multiple e-government service portals including citizen registration and administrative systems.", date: "2021-07" },
-        { tier: "disruption", label: "Data exposure and service disruption", description: "Citizen data exposed through compromised portals; some administrative services taken offline during incident response.", date: "2021-12" },
-      ],
-      peakTier: "disruption",
-      restraintFactors: [
-        "No destructive payloads deployed",
-        "Scope appeared opportunistic rather than strategically targeted",
-      ],
-      significance: [
-        "Compromise of national citizen identity data in a rapidly digitizing state",
-        "Exposed the security gap between e-government ambition and cybersecurity capability",
-      ],
-    },
-    infrastructure: {
-      targetSectors: ["government", "technology"],
-      targetCountries: ["BD"],
-      techniques: [
-        { id: "T1190", name: "Exploit Public-Facing Application", tactic: "Initial Access" },
-        { id: "T1530", name: "Data from Cloud Storage", tactic: "Collection" },
-      ],
-      malwareFamilies: [],
-      impactSummary: "Citizen data from government portals exposed; administrative services temporarily disrupted.",
-    },
-    governance: {
-      flags: ["regulatory-change"],
-      normsInvoked: [
-        "State duty to protect citizen data in digitized government services",
-        "Responsible development of e-government platforms",
-      ],
-      policyResponses: [
-        "Bangladesh CERT issued advisories on government portal security",
-        "Government initiated security audits of digital service platforms",
-      ],
-      regulatoryChanges: [
-        "Bangladesh Digital Security Act enforcement strengthened",
-        "National cybersecurity awareness programs expanded",
-      ],
-      impact: "Demonstrated the security debt accumulated during rapid e-government digitization in developing states, reinforcing the need for cybersecurity capacity-building in digital development assistance frameworks.",
-    },
-    whyThisMatters: "The Bangladesh e-government intrusions exemplify a pattern common across rapidly digitizing developing states: the gap between e-government ambition and cybersecurity capability creates systemic risk to citizen data and public trust in digital services.",
-    teaching: {
-      keyQuestion: "How should development assistance for e-government in developing states integrate cybersecurity as a foundational requirement rather than an afterthought?",
-      discussionPoints: [
-        "Digital transformation security debt in developing states",
-        "Capacity-building: international assistance models for government cybersecurity",
-        "Citizen trust and the social contract implications of government data breaches",
-      ],
-      furtherReading: [
-        "World Bank: Digital Government Readiness Assessment, 2022.",
-        "ITU: Global Cybersecurity Index, 2020.",
-      ],
-    },
-    lastUpdated: "2026-10-29",
-    inclusionCriteriaMet: ["formal-governance-response", "two-source-categories", "two-analytical-lenses"],
-    sources: [
-      { title: "Bangladesh CERT: Advisory on Government Portal Security", category: "government", date: "2021-08" },
-      { title: "TechCrunch: Bangladesh government website leaks citizens' personal data", url: "https://techcrunch.com/2023/07/07/bangladesh-government-website-leaks-citizens-personal-data/", category: "journalistic", date: "2023-07" },
-    ],
-    attributionDetail: {
-      claimants: [
-        { actor: "Contested/Unknown", date: "2021-07-01", confidenceLevel: "Low", evidenceBasis: "No public attribution; investigations inconclusive" },
+        { actor: "Academic/Private Sector", date: "2020-01-01", confidenceLevel: "Moderate", evidenceBasis: "ESET research attributing the activity to a Hamas-linked group" },
       ],
       coordinationType: "none",
       consequences: ["No Formal Response"],

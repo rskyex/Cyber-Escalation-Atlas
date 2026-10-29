@@ -356,6 +356,9 @@ export default function MethodologyPage() {
             the legal act cites this operation.
             Ecuador&apos;s 2019 data exposure was removed in dataset 2.0.0: it
             had no attacker, so it is outside the scope of an escalation atlas.
+            The Thailand 2019 election and Bangladesh e-government cases were
+            removed in dataset 2.2.0: no source could be found for the
+            intrusions they described.
           </p>
           <h4 className="text-base font-bold text-ink dark:text-white mt-4">Governance flag codebook</h4>
           <FlagCodebookTable />

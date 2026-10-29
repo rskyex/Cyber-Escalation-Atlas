@@ -860,7 +860,7 @@ export const seedIncidents: Incident[] = [
     sources: [
       { title: "CISA Alert AA21-131A: DarkSide Ransomware", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-131a", category: "government", date: "2021-05-11" },
       { title: "DOJ: Department of Justice Seizes $2.3 Million in Cryptocurrency", url: "https://www.justice.gov/archives/opa/pr/department-justice-seizes-23-million-cryptocurrency-paid-ransomware-extortionists-darkside", category: "legal", date: "2021-06-07" },
-      { title: "TSA Security Directive Pipeline-2021-01", category: "government", date: "2021-07-20" },
+      { title: "DHS: New Cybersecurity Requirements for Critical Pipeline Owners and Operators (TSA Security Directive Pipeline-2021-02)", url: "https://www.dhs.gov/news/2021/07/20/dhs-announces-new-cybersecurity-requirements-critical-pipeline-owners-and-operators", category: "government", date: "2021-07-20" },
     ],
   },
 
@@ -1024,7 +1024,7 @@ export const seedIncidents: Incident[] = [
       impactSummary: "Tens of thousands of satellite modems bricked; disruption to Ukrainian military comms and collateral outages across multiple EU states.",
     },
     governance: {
-      flags: ["norm-violation", "attribution-public", "sanctions-imposed", "international-cooperation"],
+      flags: ["norm-violation", "attribution-public", "international-cooperation"],
       normsInvoked: [
         "UN GGE 2015 norm against attacking critical infrastructure",
         "International humanitarian law: proportionality and distinction in armed conflict",
@@ -1676,7 +1676,6 @@ export const seedIncidents: Incident[] = [
     inclusionCriteriaMet: ["state-attribution", "effects-beyond-target", "formal-governance-response", "two-analytical-lenses"],
     sources: [
       { title: "Australian PM Morrison: Statement on Cyber Incident Affecting Parliament", url: "https://pmtranscripts.pmc.gov.au/release/transcript-42131", category: "government", date: "2019-02-18" },
-      { title: "Australian Cyber Security Centre: Advisory on Parliament Compromise", category: "government", date: "2019-02" },
     ],
   },
 
@@ -2061,9 +2060,10 @@ export const seedIncidents: Incident[] = [
     lastUpdated: "2026-10-29",
     inclusionCriteriaMet: ["formal-governance-response", "two-source-categories", "two-analytical-lenses"],
     sources: [
+      { title: "SEC: Caesars Entertainment Form 8-K (cybersecurity incident)", url: "https://www.sec.gov/Archives/edgar/data/1590895/000119312523235015/d537840d8k.htm", category: "legal", date: "2023-09-14" },
       { title: "CISA/FBI Advisory AA23-320A: Scattered Spider", url: "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a", category: "government", date: "2023-11-16" },
       { title: "SEC: MGM Resorts International Form 8-K", url: "https://www.sec.gov/Archives/edgar/data/789570/000119312523251667/d461062d8k.htm", category: "legal", date: "2023-10-05" },
-      { title: "Bloomberg: Caesars Paid Roughly Half of $30M Ransom Demand", category: "journalistic", date: "2023-09-14" },
+      { title: "Wall Street Journal: Caesars paid roughly half of a $30 million ransom demand", category: "journalistic", date: "2023-09-14" },
     ],
   },
 ];

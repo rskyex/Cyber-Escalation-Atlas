@@ -154,11 +154,9 @@ export const normsData: NormEntry[] = [
     ],
     cases: [
       "australia-parliament",
-      "thailand-election-2019",
     ],
     normEffects: [
       { caseSlug: "australia-parliament", effect: "reinforced" },
-      { caseSlug: "thailand-election-2019", effect: "exposed gap in" },
     ],
   },
   {
